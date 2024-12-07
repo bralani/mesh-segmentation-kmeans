@@ -36,3 +36,4 @@ tests/main.cpp
 
 # To not commit the executable  
 executable
+/tests/main.cpp
