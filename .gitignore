@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# To not commit your private test/main.cpp  
+tests/main.cpp
+
+# To not commit the executable  
+executable
