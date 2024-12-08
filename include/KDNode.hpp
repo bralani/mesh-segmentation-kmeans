@@ -16,6 +16,18 @@ public:
     Point<POINT_TYPE, POINT_DIMENSIONS> point_; 
     std::unique_ptr<KDNode<POINT_TYPE, POINT_DIMENSIONS>> left_node_;
     std::unique_ptr<KDNode<POINT_TYPE, POINT_DIMENSIONS>> right_node_;
+
+
+    // Getter
+    const Point<POINT_TYPE, POINT_DIMENSIONS>& getPoint() const;
+    KDNode* getLeftNode() const;
+    KDNode* getRightNode() const;
+
+    // Setter
+    void setPoint(const Point<POINT_TYPE, POINT_DIMENSIONS>& point);
+    void setLeftNode(std::unique_ptr<KDNode<POINT_TYPE, POINT_DIMENSIONS>> leftNode);
+    void setRightNode(std::unique_ptr<KDNode<POINT_TYPE, POINT_DIMENSIONS>> rightNode);
+    
 };
 
 #endif // KDNODE_HPP
