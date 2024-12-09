@@ -3,7 +3,7 @@ TARGET = executable
 
 # Compilatore e flag
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++20 -O2 -Iinclude -Iinclude/matplotlibcpp
+CXXFLAGS = -Wall -Wextra -std=c++20 -O2 -Iinclude -Iinclude/matplotlibcpp -Iinclude/csv-parser
 
 # Specifica manuale dei file sorgenti e dei file oggetto
 SRC = tests/main.cpp src/plot.cpp
