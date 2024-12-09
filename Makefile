@@ -3,11 +3,11 @@ TARGET = executable
 
 # Compilatore e flag
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++20 -O2 -Iinclude
+CXXFLAGS = -Wall -Wextra -std=c++20 -O2 -Iinclude -Iinclude/matplotlibcpp
 
 # Specifica manuale dei file sorgenti e dei file oggetto
-SRC = tests/main.cpp
-OBJ = build/main.o
+SRC = tests/main.cpp src/plot.cpp
+OBJ = $(SRC:%.cpp=build/%.o) # Convert .cpp to .o in the build/ directory
 
 # Regole principali
 all: $(TARGET)
@@ -16,14 +16,9 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJ)
 
-# Regole per compilare i singoli file sorgenti
-
-build/main.o: tests/main.cpp 
-	@mkdir -p build
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-build/KDTree.o: src/KDTree.cpp
-	@mkdir -p build
+# Regola per compilare i singoli file sorgenti
+build/%.o: %.cpp
+	@mkdir -p $(@D) # Ensure the build directory exists
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Regola per pulire i file generati
