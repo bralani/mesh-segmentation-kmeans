@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        
+      {
+        "name": "Debug KMeans Project",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${workspaceFolder}/executable",
+        "args": [],  // Puoi aggiungere qui gli argomenti necessari
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "gdb",
+        "miDebuggerPath": "/usr/bin/gdb", // Assicurati che GDB sia installato
+        "setupCommands": [
+          {
+            "description": "Abilita la formattazione delle stampe per gdb",
+            "text": "-enable-pretty-printing",
+            "ignoreFailures": true
+          }
+        ],
+        "preLaunchTask": "Build KMeans Project"
+      }
+    ]
+  }
+  
