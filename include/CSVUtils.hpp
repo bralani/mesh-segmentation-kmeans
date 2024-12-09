@@ -1,3 +1,6 @@
+#ifndef CSVUTILS_HPP
+#define CSVUTILS_HPP
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -45,3 +48,5 @@ public:
         return points;
     }
 };
+
+#endif

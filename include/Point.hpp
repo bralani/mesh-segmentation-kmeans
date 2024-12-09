@@ -1,3 +1,6 @@
+#ifndef POINT_HPP
+#define POINT_HPP
+
 #include <iostream>
 #include <vector>
 #include <cmath>
@@ -91,3 +94,5 @@ public:
         return os;
     }
 };
+
+#endif
