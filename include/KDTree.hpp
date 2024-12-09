@@ -4,7 +4,8 @@
 #include "Point.hpp"
 #include <memory>
 #include <vector>   
-
+#include <ctime>   
+#include <unordered_set>
 //PT = Point type
 //PD = Point Dimensions
 
@@ -13,7 +14,7 @@ class KDTree {
 public:
     KDTree() : root_(nullptr), size_(0) {}
     KDTree(std::vector<Point<PT, PD>> points){
-        root_ = buildTree(points.begin(), points.end(), 0);
+        root_ = buildTree(points.begin(), points.end(),0);
         size_ = points.size();      
     }
 
@@ -47,6 +48,7 @@ private:
         Point<PT, PD> point_; 
         KDNode* left_node_;
         KDNode* right_node_;
+        std::vector<Point<PT,PD>*> candidates;
 
         /*// Getter
         const Point<POINT_TYPE, POINT_DIMENSIONS>& getPoint() const {
@@ -101,6 +103,43 @@ private:
         new_node->right_node_ = buildTree(middle + 1, end, level_index + 1);
         return new_node;       
     }
+
+
+    std::vector<Point<PT, PD>*> to_vector() {
+        std::vector<Point<PT, PD>*> points;
+        points.reserve(size_);
+        collectPoints(root_, points); 
+        return points;
+    }
+    
+    void collectPoints(KDNode* node, std::vector<Point<PT, PD>*>& points) {
+        if (node == nullptr) return; 
+        points.push_back(&(node->point_)); 
+        collectPoints(node->left_node_, points); 
+        collectPoints(node->right_node_, points); 
+    }
+
+    std::vector<Point<PT, PD>*> extract_k_random_points(int k) {
+        if (k > size_) {
+            throw std::out_of_range("k è maggiore della dimensione dell'albero.");
+        }
+
+        std::vector<Point<PT, PD>*> all_points = to_vector(); 
+        std::vector<Point<PT, PD>*> random_points;
+
+        std::srand(std::time(nullptr));  
+        std::unordered_set<int> selected_indices;
+
+        while (random_points.size() < k) {
+            int random_index = std::rand() % all_points.size();
+            if (selected_indices.find(random_index) == selected_indices.end()) {
+                random_points.push_back(all_points[random_index]);
+                selected_indices.insert(random_index); 
+            }
+        }
+        return random_points;
+    }
+
 
     //void removeRecursively_internalCall(std::optional<KDNode&> currNode)
     /*
