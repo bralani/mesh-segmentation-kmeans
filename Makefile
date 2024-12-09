@@ -6,8 +6,8 @@ CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++20 -O2 -Iinclude
 
 # Specifica manuale dei file sorgenti e dei file oggetto
-SRC = tests/main.cpp src/KDTree.cpp 
-OBJ = build/main.o build/KDTree.o 
+SRC = tests/main.cpp
+OBJ = build/main.o
 
 # Regole principali
 all: $(TARGET)
