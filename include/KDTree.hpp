@@ -14,8 +14,12 @@ class KDTree {
 public:
     KDTree() : root_(nullptr), size_(0) {}
     KDTree(std::vector<Point<PT, PD>> points){
-        root_ = buildTree(points.begin(), points.end(),0);
+        root_ = buildTree(points.begin(), points.end(), 0, NULL);
         size_ = points.size();      
+
+        root_->max_dim_coordinates_ = find_max_coordinates(points.begin(), points.end());
+        root_->min_dim_coordinates_ = find_min_coordinates(points.begin(), points.end());
+        setup_dimensions(root_,0);
     }
 
     /*void insert(const Point<N>& pt, const ElemType& value);
@@ -39,16 +43,23 @@ public:
 private:
 
     struct KDNode{
-        KDNode() : left_node_(nullptr), right_node_(nullptr) {}
+        KDNode(){}
 
         KDNode(const Point<PT, PD>& point)
-            : point_(point), left_node_(nullptr), right_node_(nullptr) {}
+            : point_(point) {}
 
 
         Point<PT, PD> point_; 
+        /** Cordinates to keep track of the limits of the C cell of the node */
+        std::array<PT, PD> min_dim_coordinates_;
+        std::array<PT, PD> max_dim_coordinates_;
+
         KDNode* left_node_;
         KDNode* right_node_;
-        std::vector<Point<PT,PD>*> candidates;
+        KDNode* parent_node_;
+
+        /** Candidate centers */
+        std::vector<Point<PT,PD>*> candidates_;
 
         /*// Getter
         const Point<POINT_TYPE, POINT_DIMENSIONS>& getPoint() const {
@@ -76,10 +87,15 @@ private:
     KDNode* root_;
     size_t size_;  
 
+
+    /**
+     * Creates a KdTree recursively
+     */
     KDNode*
     buildTree(const std::vector<Point<PT, PD>>::iterator& start,
               const std::vector<Point<PT, PD>>::iterator& end, 
-              int level_index)
+              int level_index,
+              KDNode* parent)
     {
         if (start >= end) 
             return nullptr;
@@ -98,10 +114,91 @@ private:
         
         //...//
 
+
         KDNode* new_node = new KDNode(*middle);
-        new_node->left_node_ = buildTree(start, middle, level_index + 1);
-        new_node->right_node_ = buildTree(middle + 1, end, level_index + 1);
-        return new_node;       
+        new_node->parent_node_ = parent;
+        new_node->left_node_ = buildTree(start, middle, level_index + 1, new_node);
+        new_node->right_node_ = buildTree(middle + 1, end, level_index + 1, new_node);
+        return new_node;
+    }
+    
+    /**
+     * Traverse the tree and sets up the C cells limits
+     */
+    void setup_dimensions(KDNode* node, int axis) {
+        if (node == nullptr) {
+            return;
+        }
+        else if (node->parent_node_ != nullptr) {
+
+            // Copies the C cells coordinates of the parent
+            node->max_dim_coordinates_ = node->parent_node_->max_dim_coordinates_;
+            node->min_dim_coordinates_ = node->parent_node_->min_dim_coordinates_;
+
+            // Change the single coordinates due to the split
+            int previous_axis = (axis - 1 + PD) % PD;
+            if (node == node->parent_node_->left_node_) {
+                node->max_dim_coordinates_[previous_axis] = node->parent_node_->point_[previous_axis];
+            } else if (node == node->parent_node_->right_node_) {
+                node->min_dim_coordinates_[previous_axis] = node->parent_node_->point_[previous_axis];
+            }
+        }
+
+        // Chiamate ricorsive per i figli
+        if (node->left_node_ != nullptr) {
+            setup_dimensions(node->left_node_, (axis + 1) % PD);
+        }
+        if (node->right_node_ != nullptr) {
+            setup_dimensions(node->right_node_, (axis + 1) % PD);
+        }
+    }
+
+    /*
+    
+     */
+
+    std::array<PT, PD> find_max_coordinates(const typename std::vector<Point<PT, PD>>::iterator& start,
+                                            const typename std::vector<Point<PT, PD>>::iterator& end) {
+        // Array per memorizzare le coordinate massime
+        std::array<PT, PD> max_coordinates;
+
+        // Inizializza il massimo con i valori del primo punto nell'intervallo
+        for (std::size_t dim = 0; dim < PD; ++dim) {
+            max_coordinates[dim] = (*start)[dim];
+        }
+
+        // Scansiona i punti nell'intervallo
+        for (auto it = start; it != end; ++it) {
+            for (std::size_t dim = 0; dim < PD; ++dim) {
+                if ((*it)[dim] > max_coordinates[dim]) {
+                    max_coordinates[dim] = (*it)[dim];
+                }
+            }
+        }
+
+        return max_coordinates;
+    }
+
+    std::array<PT, PD> find_min_coordinates(const typename std::vector<Point<PT, PD>>::iterator& start,
+                                            const typename std::vector<Point<PT, PD>>::iterator& end) {
+        // Array per memorizzare le coordinate minime
+        std::array<PT, PD> min_coordinates;
+
+        // Inizializza il minimo con i valori del primo punto nell'intervallo
+        for (std::size_t dim = 0; dim < PD; ++dim) {
+            min_coordinates[dim] = (*start)[dim];
+        }
+
+        // Scansiona i punti nell'intervallo
+        for (auto it = start; it != end; ++it) {
+            for (std::size_t dim = 0; dim < PD; ++dim) {
+                if ((*it)[dim] < min_coordinates[dim]) {
+                    min_coordinates[dim] = (*it)[dim];
+                }
+            }
+        }
+
+        return min_coordinates;
     }
 
 
