@@ -1,316 +1,216 @@
-#ifndef KDTREE_HPP
+#ifndef KDTREE_PP
 #define KDTREE_HPP
 
+#include "KDNode.hpp"
 #include "Point2.hpp"
-#include <memory>
-#include <vector>   
-#include <ctime>   
-#include <unordered_set>
+#include "CentroidPoint.hpp"
+#include <vector>
 #include <algorithm>
-#include <iostream>
-//PT = Point type
-//PD = Point Dimensions
 
-template <typename PT, std::size_t PD>
-class KDTree {
+/**
+ * Points to discuss:
+ * - Should Point be templated with TYPE + DIMENSION?
+ */
+
+
+/**
+ * Point deve implementare:
+ * Somma
+ * Sottrazione
+ * un metodo statico per fare la vectorSum di un vettore di punti
+ * Avere una classa figlia CentroidPoint 
+ */
+
+/**
+ * CentroidPoint deve ereditara da Point implementare:
+ * un attributo Count
+ * un costruttore che prenda in ingresso un Point
+ */
+
+class KdTree {
 public:
-    KDTree() : root_(nullptr), size_(0) {}
-    KDTree(std::vector<Point<PT, PD>> points){
-        root_ = buildTree(points.begin(), points.end(), 0, NULL);
-        size_ = points.size();      
+    // Constructor: builds the tree from a set of points and a given dimensionality
+    KdTree(const std::vector<Point>& points, int dimension);
 
-        root_->max_dim_coordinates_ = find_max_coordinates(points.begin(), points.end());
-        root_->min_dim_coordinates_ = find_min_coordinates(points.begin(), points.end());
-        setup_dimensions(root_,0);
-    }
+    // Destructor: deallocates the tree
+    ~KdTree();
 
-    void testFindNode(const Point<PT, PD>& pt){
-        void* pp;
-        pp = this->findNode(pt);
-        std::cout<<"Get it"<<std::endl;
-        pp = NULL;
-    }
-
-    std::size_t countNodes(const typename KDTree<PT, PD>::KDNode *currNode) const ;
-    std::size_t countNodes() const ;
-
-    size_t getSize_t();
-    void setSize_t(size_t tmp);
-
-    std::size_t dimension() const;
+    // Filters the given centers based on the KD-tree structure
+    void filter(std::vector<CentroidPoint>& centers);
 
 private:
+    KdNode* root = nullptr; // Root node of the KD-tree
+    int dimension;          // Dimensionality of the points
 
-    struct KDNode{
-        KDNode(){}
+    // Recursively builds the KD-tree from a set of points
+    KdNode* buildTree(std::vector<Point>& points, int depth);
 
-        KDNode(const Point<PT, PD>& point, int level_index)
-            : point_(point), level_(level_index) {}
+    // Recursive helper for the filter function
+    void filterRecursive(KdNode* node, std::vector<CentroidPoint*> &candidates);
 
+    // Finds the closest point to a target from a set of candidates
+    Point findClosestPoint(const std::vector<Point>& candidates, const Point& target);
 
-        Point<PT, PD> point_; 
-        /** Cordinates to keep track of the limits of the C cell of the node */
-        std::array<PT, PD> min_dim_coordinates_;
-        std::array<PT, PD> max_dim_coordinates_;
-
-        KDNode* left_node_;
-        KDNode* right_node_;
-        KDNode* parent_node_;
-
-        int level_;
-
-        /** Candidate centers */
-        std::vector<Point<PT,PD>*> candidates_;
-
-        const Point<PT, PD>& getPoint() const;
-        void setPoint(const Point<PT, PD>& point);
-
-        KDNode* getLeftNode() const;
-        void setLeftNode(KDNode* leftNode);
-
-        KDNode* getRightNode() const;
-        void setRightNode(KDNode* rightNode);
-
-    };
-
-    KDNode* root_;
-    size_t size_;  
-
-    /**
-     * Creates a KdTree recursively
-     */
-    KDNode*
-    buildTree(const std::vector<Point<PT, PD>>::iterator& start,
-              const std::vector<Point<PT, PD>>::iterator& end, 
-              int level_index,
-              KDNode* parent)
-    {
-        if (start >= end) 
-            return nullptr;
-
-        int axis = level_index % PD;
-
-        auto points_lenght = end - start;
-        auto middle = start + points_lenght / 2;
-
-        auto compare_lambda = [axis](const Point<PT, PD> &p1,
-                                    const Point<PT, PD> &p2) {
-            return p1[axis] < p2[axis];
-        };
-
-        std::nth_element(start, middle, end, compare_lambda); 
-        
-        //...//
-
-
-        KDNode* new_node = new KDNode(*middle, level_index);
-        new_node->parent_node_ = parent;
-        new_node->left_node_ = buildTree(start, middle, level_index + 1, new_node);
-        new_node->right_node_ = buildTree(middle + 1, end, level_index + 1, new_node);
-        return new_node;
-    }
-    
-    /**
-     * Traverse the tree and sets up the C cells limits
-     */
-    void setup_dimensions(KDNode* node, int axis) {
-        if (node == nullptr) {
-            return;
-        }
-        else if (node->parent_node_ != nullptr) {
-
-            // Copies the C cells coordinates of the parent
-            node->max_dim_coordinates_ = node->parent_node_->max_dim_coordinates_;
-            node->min_dim_coordinates_ = node->parent_node_->min_dim_coordinates_;
-
-            // Change the single coordinates due to the split
-            int previous_axis = (axis - 1 + PD) % PD;
-            if (node == node->parent_node_->left_node_) {
-                node->max_dim_coordinates_[previous_axis] = node->parent_node_->point_[previous_axis];
-            } else if (node == node->parent_node_->right_node_) {
-                node->min_dim_coordinates_[previous_axis] = node->parent_node_->point_[previous_axis];
-            }
-        }
-
-        // Chiamate ricorsive per i figli
-        if (node->left_node_ != nullptr) {
-            setup_dimensions(node->left_node_, (axis + 1) % PD);
-        }
-        if (node->right_node_ != nullptr) {
-            setup_dimensions(node->right_node_, (axis + 1) % PD);
-        }
-    }
-
-
-    /*
-    
-     */
-
-    std::array<PT, PD> find_max_coordinates(const typename std::vector<Point<PT, PD>>::iterator& start,
-                                            const typename std::vector<Point<PT, PD>>::iterator& end) {
-        // Array per memorizzare le coordinate massime
-        std::array<PT, PD> max_coordinates;
-
-        // Inizializza il massimo con i valori del primo punto nell'intervallo
-        for (std::size_t dim = 0; dim < PD; ++dim) {
-            max_coordinates[dim] = (*start)[dim];
-        }
-
-        // Scansiona i punti nell'intervallo
-        for (auto it = start; it != end; ++it) {
-            for (std::size_t dim = 0; dim < PD; ++dim) {
-                if ((*it)[dim] > max_coordinates[dim]) {
-                    max_coordinates[dim] = (*it)[dim];
-                }
-            }
-        }
-
-        return max_coordinates;
-    }
-
-    std::array<PT, PD> find_min_coordinates(const typename std::vector<Point<PT, PD>>::iterator& start,
-                                            const typename std::vector<Point<PT, PD>>::iterator& end) {
-        // Array per memorizzare le coordinate minime
-        std::array<PT, PD> min_coordinates;
-
-        // Inizializza il minimo con i valori del primo punto nell'intervallo
-        for (std::size_t dim = 0; dim < PD; ++dim) {
-            min_coordinates[dim] = (*start)[dim];
-        }
-
-        // Scansiona i punti nell'intervallo
-        for (auto it = start; it != end; ++it) {
-            for (std::size_t dim = 0; dim < PD; ++dim) {
-                if ((*it)[dim] < min_coordinates[dim]) {
-                    min_coordinates[dim] = (*it)[dim];
-                }
-            }
-        }
-
-        return min_coordinates;
-    }
-
-
-    std::vector<Point<PT, PD>*> to_vector() {
-        std::vector<Point<PT, PD>*> points;
-        points.reserve(size_);
-        collectPoints(root_, points); 
-        return points;
-    }
-    
-    void collectPoints(KDNode* node, std::vector<Point<PT, PD>*>& points) {
-        if (node == nullptr) return; 
-        points.push_back(&(node->point_)); 
-        collectPoints(node->left_node_, points); 
-        collectPoints(node->right_node_, points); 
-    }
-
-    std::vector<Point<PT, PD>*> extract_k_random_points(int k) {
-        if (k > size_) {
-            throw std::out_of_range("k è maggiore della dimensione dell'albero.");
-        }
-
-        std::vector<Point<PT, PD>*> all_points = to_vector(); 
-        std::vector<Point<PT, PD>*> random_points;
-
-        std::srand(std::time(nullptr));  
-        std::unordered_set<int> selected_indices;
-
-        while (random_points.size() < k) {
-            int random_index = std::rand() % all_points.size();
-            if (selected_indices.find(random_index) == selected_indices.end()) {
-                random_points.push_back(all_points[random_index]);
-                selected_indices.insert(random_index); 
-            }
-        }
-        return random_points;
-    }
-    
-
-    KDNode* findNode(KDNode* currNode, const Point<PT, PD>& pt) const {
-        if (currNode == nullptr || currNode->point_ == pt) {
-            return currNode;
-        }
-
-        const Point<PT, PD>& currPoint = currNode->point_;
-        int currLevel = currNode->level_;
-
-        if (pt[currLevel % PD] < currPoint[currLevel % PD]) {
-            return (currNode->left_node_ != nullptr) ? findNode(currNode->left_node_, pt) : currNode;
-        } else {
-            return (currNode->right_node_ != nullptr) ? findNode(currNode->right_node_, pt) : currNode;
-        }
-    }
-
-
-    KDNode* findNode(const Point<PT, PD>& pt) const {
-        return findNode(root_, pt);
-    }
-
-
+    // Determines if a point `z` is farther from a bounding box than `zStar`
+    bool isFarther(const Point& z, const Point& zStar, const KdNode& node);
 };
 
-template <typename PT, std::size_t PD>
-void KDTree<PT, PD>::setSize_t(size_t tmp){
-    size_ = tmp;
+// Constructor: initializes the KD-tree by building it
+KdTree::KdTree(const std::vector<Point>& points, int dimension) : dimension(dimension) {
+    std::vector<Point> pointsCopy = points; // Create a local copy of the points
+    root = buildTree(pointsCopy, 0);        // Build the tree starting at depth 0
 }
 
-template <typename PT, std::size_t PD>
-size_t KDTree<PT, PD>::getSize_t(){
-    return size_;
+// Recursively builds the KD-tree
+KdNode* KdTree::buildTree(std::vector<Point>& points, int depth) {
+    if (points.empty()) return nullptr;
+
+    // Allocate a new KD-tree node
+    KdNode* node = new KdNode(dimension);
+    node->count = points.size();
+    node->wgtCent = Point::VectorSum(points); // Compute weighted centroid
+
+    // Initialize cell bounds
+    for (int i = 0; i < dimension; ++i) {
+        node->cellMin[i] = std::numeric_limits<double>::max();
+        node->cellMax[i] = std::numeric_limits<double>::lowest();
+        for (const Point& p : points) {
+            node->cellMin[i] = std::min(node->cellMin[i], p.coordinates[i]);
+            node->cellMax[i] = std::max(node->cellMax[i], p.coordinates[i]);
+        }
+    }
+
+    // If there is only one point, store it in the node
+    if (points.size() == 1) {
+        node->points = points;
+        node->wgtCent = points[0];
+        return node;
+    }
+
+    // Choose the splitting axis based on the depth
+    int axis = depth % dimension;
+
+    // Sort points along the chosen axis
+    std::sort(points.begin(), points.end(),
+              [axis](const Point& a, const Point& b) {
+                  return a.coordinates[axis] < b.coordinates[axis];
+              });
+
+    // Split points into left and right subsets
+    size_t medianIndex = points.size() / 2;
+    std::vector<Point> leftPoints(points.begin(), points.begin() + medianIndex);
+    std::vector<Point> rightPoints(points.begin() + medianIndex, points.end());
+
+    // Recursively build the left and right subtrees
+    node->left = buildTree(leftPoints, depth + 1);
+    node->right = buildTree(rightPoints, depth + 1);
+
+    return node;
 }
 
-template <typename PT, std::size_t PD>
-inline std::size_t KDTree<PT, PD>::countNodes(const typename KDTree<PT, PD>::KDNode *currNode) const{
-    if(currNode != nullptr)
-        return 1 + countNodes(currNode->left_node_) + countNodes(currNode->right_node_) ;
-    return 0;
+// Destructor: deallocate the KD-tree nodes
+KdTree::~KdTree() {
+    delete root;
 }
 
-template <typename PT, std::size_t PD>
-inline std::size_t KDTree<PT, PD>::countNodes() const{
-    return countNodes(root_);
+// Filters the given set of centers using the KD-tree
+void KdTree::filter(std::vector<CentroidPoint>& centers) {
+    std::vector<CentroidPoint*> centersPointers;
+
+    // Convert centers to pointers for in-place modification
+    for (CentroidPoint& z : centers) {
+        centersPointers.push_back(&z);
+    }
+
+    // Start the recursive filtering process
+    filterRecursive(root, centersPointers);
 }
 
-template <typename PT, std::size_t PD>
-std::size_t KDTree<PT, PD>::dimension() const {
-        return PD;
+// Recursive function for filtering
+void KdTree::filterRecursive(KdNode* node, std::vector<CentroidPoint*> &candidates) {
+    if (!node) return;
+
+    // Leaf node: find the closest candidate and update it
+    if (!node->left && !node->right) {
+        Point zStar = *candidates[0];
+        for (int i = 1; i < candidates.size(); i++) {
+            double minDist = zStar.distanceTo(node->wgtCent);
+            double dist = (*candidates[i]).distanceTo(node->wgtCent);
+            if (dist < minDist) {
+                minDist = dist;
+                zStar = *candidates[i];
+            }
+        }
+        *candidates[0] = *candidates[0] + node->wgtCent;
+        candidates[0]->count = candidates[0]->count + node->count;
+
+    } else {
+        // Internal node: compute the midpoint of the cell
+        Point cellMidpoint(dimension);
+        for (int i = 0; i < dimension; ++i)
+            cellMidpoint.coordinates[i] = (node->cellMin[i] + node->cellMax[i]) / 2.0;
+
+        // Find the closest candidate to the cell midpoint
+        Point zStar = *candidates[0];
+        for (int i = 1; i < candidates.size(); i++) {
+            double minDist = zStar.distanceTo(cellMidpoint);
+            double dist = (*candidates[i]).distanceTo(cellMidpoint);
+            if (dist < minDist) {
+                minDist = dist;
+                zStar = *candidates[i];
+            }
+        }
+
+        // Filter candidates based on proximity to zStar
+        std::vector<CentroidPoint*> filteredCandidates;
+        for (CentroidPoint*& z : candidates) {
+            if (!isFarther(*z, zStar, *node)) {
+                filteredCandidates.push_back(z);
+            }
+        }
+
+        // Recursively filter left and right subtrees
+        if (filteredCandidates.size() == 1) {
+            *filteredCandidates[0] = *filteredCandidates[0] + node->wgtCent;
+            filteredCandidates[0]->count = filteredCandidates[0]->count + node->count;
+        } else {
+            filterRecursive(node->left, filteredCandidates);
+            filterRecursive(node->right, filteredCandidates);
+        }
+    }
 }
 
-// Getter per `point_`
-template <typename PT, std::size_t PD>
-const Point<PT, PD>& KDTree<PT, PD>::KDNode::getPoint() const {
-    return point_;
+// Finds the closest point to the target among a set of candidates
+Point KdTree::findClosestPoint(const std::vector<Point>& candidates, const Point& target) {
+    Point closest = candidates[0];
+    double minDist = closest.distanceTo(target);
+
+    for (const Point& z : candidates) {
+        double dist = z.distanceTo(target);
+        if (dist < minDist) {
+            minDist = dist;
+            closest = z;
+        }
+    }
+
+    return closest;
 }
 
-// Setter per `point_`
-template <typename PT, std::size_t PD>
-void KDTree<PT, PD>::KDNode::setPoint(const Point<PT, PD>& point) {
-    point_ = point;
-}
+// Checks if a point z is farther from a bounding box than zStar
+bool KdTree::isFarther(const Point& z, const Point& zStar, const KdNode& node) {
+    Point u(dimension);
+    u = z - zStar;
 
-// Getter per `left_node_`
-template <typename PT, std::size_t PD>
-typename KDTree<PT, PD>::KDNode* KDTree<PT, PD>::KDNode::getLeftNode() const {
-    return left_node_;
-}
+    Point vH(dimension);
+    for (size_t i = 0; i < dimension; ++i) {
+        double coordinate = (u.coordinates[i] > 0) ? node.cellMax[i] : node.cellMin[i];
+        vH.coordinates[i] = coordinate;
+    }
 
-// Setter per `left_node_`
-template <typename PT, std::size_t PD>
-void KDTree<PT, PD>::KDNode::setLeftNode(KDNode* leftNode) {
-    left_node_ = leftNode;
-}
+    double distZ = z.distanceTo(vH);
+    double distZStar = zStar.distanceTo(vH);
 
-// Getter per `right_node_`
-template <typename PT, std::size_t PD>
-typename KDTree<PT, PD>::KDNode* KDTree<PT, PD>::KDNode::getRightNode() const {
-    return right_node_;
-}
-
-// Setter per `right_node_`
-template <typename PT, std::size_t PD>
-void KDTree<PT, PD>::KDNode::setRightNode(KDNode* rightNode) {
-    right_node_ = rightNode;
+    return distZ > distZStar;
 }
 
 #endif
