@@ -1,15 +1,31 @@
 cmake_minimum_required(VERSION 3.10)
 project(KMeans)
 
+# Add submodule for matplotlib-cpp (if this is still needed for your project)
 add_subdirectory(include/matplotlib-cpp)
 
-
+# Set the target architecture for macOS (arm64)
 set(CMAKE_OSX_ARCHITECTURES arm64)
 
+# Set C++ standard version (if required)
+# set(CMAKE_CXX_STANDARD 17)
+
+# Include csv-parser as a submodule
+set(CSV_PARSER_DIR "${CMAKE_SOURCE_DIR}/include/csv-parser")
+include_directories(${CSV_PARSER_DIR}/single_include)
+
+# Create the executable for your project
 add_executable(plot src/plot.cpp)
+
+# Link the matplotlib-cpp library (if still required)
 target_link_libraries(plot PRIVATE matplotlib_cpp)
+
+# Specify the output directory for the compiled executable
 set_target_properties(plot PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
+# Include directories for matplotlib-cpp and csv-parser
+target_include_directories(plot PRIVATE include/matplotlib-cpp/single_include)
+target_include_directories(plot PRIVATE ${CSV_PARSER_DIR}/single_include)
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 message(STATUS "Python3 Executable: ${Python3_EXECUTABLE}")

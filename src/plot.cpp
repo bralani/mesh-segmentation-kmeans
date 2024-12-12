@@ -1,6 +1,10 @@
 #include <vector>
 
+#include <iostream>
+#include "../include/csv-parser/single_include/csv.hpp"
+#include "../include/CSVUtils.hpp"
 #include "../include/matplotlib-cpp/matplotlibcpp.h"
+
 namespace plt = matplotlibcpp;
 
 int main()
@@ -18,7 +22,10 @@ int main()
     plt::ylabel("Y-axis");
 
     // Save the plot as an image
-    plt::save("/app/output/plot.png");
+    plt::save("plot.png");
+
+    // If you are running this from Docker use the following
+    // plt::save("/app/output/plot.png");
 
     // Show the plot
     plt::show();
