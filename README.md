@@ -39,6 +39,12 @@ cmake ..
 make
 ```
 
+### 4. Docker commands
+```bash
+docker build -t kmeans-plot . # To build the image
+docker run --rm -it -v $(pwd)/output:/app/output kmeans-plot # to run the image and store the plot
+```
+
 ### 4. Project Structure
 ```bash
 k-means/
