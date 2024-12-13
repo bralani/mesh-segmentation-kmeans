@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <functional> // For passing metric as a function
 #include <sstream>    // For std::ostringstream
+#include "typedefs.h"
 
 /**
  * Class to represent a point in an N-dimensional space
@@ -69,7 +70,7 @@ public:
      * @return The distance between the two points
      * @throws std::invalid_argument if the points have different dimensions
      */
-    double distanceTo(const Point& other, const std::function<double(const std::vector<double>&, const std::vector<double>&)>& metric) const {
+    double distanceTo(const Point& other, const DistanceMetric& metric) const {
         if (dimensions != other.getDimensions()) {
             throw std::invalid_argument("Points must have the same number of dimensions to calculate the distance.");
         }
