@@ -33,26 +33,30 @@ public:
     KdTree(const std::vector<Point>& points, int dimension);
 
     // Destructor: deallocates the tree
-    ~KdTree();
+    ~KdTree() = default;
 
     // Filters the given centers based on the KD-tree structure
     void filter(std::vector<CentroidPoint>& centers);
 
 private:
-    KdNode* root = nullptr; // Root node of the KD-tree
+    std::unique_ptr<KdNode> root = nullptr; // Root node of the KD-tree
     int dimension;          // Dimensionality of the points
 
     // Recursively builds the KD-tree from a set of points
-    KdNode* buildTree(std::vector<Point>& points, int depth);
+    std::unique_ptr<KdNode> buildTree(std::vector<Point>& points, int depth);
 
     // Recursive helper for the filter function
-    void filterRecursive(KdNode* node, std::vector<CentroidPoint*> &candidates);
+    void filterRecursive(std::unique_ptr<KdNode> &node, std::vector<std::shared_ptr<CentroidPoint>> &candidates);
 
     // Finds the closest point to a target from a set of candidates
     Point findClosestPoint(const std::vector<Point>& candidates, const Point& target);
 
     // Determines if a point `z` is farther from a bounding box than `zStar`
     bool isFarther(const Point& z, const Point& zStar, const KdNode& node);
+
+    //Find the closest candidates (point in general) to a fiven point
+    CentroidPoint findClosestCandidate(const std::vector<std::shared_ptr<CentroidPoint>>& candidates, const Point& target) ;
+
 };
 
 // Constructor: initializes the KD-tree by building it
@@ -62,11 +66,11 @@ KdTree::KdTree(const std::vector<Point>& points, int dimension) : dimension(dime
 }
 
 // Recursively builds the KD-tree
-KdNode* KdTree::buildTree(std::vector<Point>& points, int depth) {
+std::unique_ptr<KdNode> KdTree::buildTree(std::vector<Point>& points, int depth) {
     if (points.empty()) return nullptr;
 
     // Allocate a new KD-tree node
-    KdNode* node = new KdNode(dimension);
+    auto node = std::make_unique<KdNode>(dimension);
     node->count = points.size();
     node->wgtCent = Point::VectorSum(points); // Compute weighted centroid, c.wgtCent
 
@@ -103,32 +107,43 @@ KdNode* KdTree::buildTree(std::vector<Point>& points, int depth) {
     std::vector<Point> rightPoints(points.begin() + medianIndex, points.end());
 
     // Recursively build the left and right subtrees
-    node->left = buildTree(leftPoints, depth + 1);
-    node->right = buildTree(rightPoints, depth + 1);
+    node->left = std::move(buildTree(leftPoints, depth + 1));
+    node->right = std::move(buildTree(rightPoints, depth + 1));
 
     return node;
 }
 
-// Destructor: deallocate the KD-tree nodes
-KdTree::~KdTree() {
-    delete root;
-}
 
 // Filters the given set of centers using the KD-tree
 void KdTree::filter(std::vector<CentroidPoint>& centers) {
-    std::vector<CentroidPoint*> centersPointers;
+    std::vector<std::shared_ptr<CentroidPoint>> centersPointers;
 
-    // Convert centers to pointers for in-place modification
+    // Convert centers to shared pointers for in-place modification
     for (CentroidPoint& z : centers) {
-        centersPointers.push_back(&z); //Take the address of each candidate centers with &
+        centersPointers.push_back(std::make_shared<CentroidPoint>(z));
     }
 
     // Start the recursive filtering process
     filterRecursive(root, centersPointers);
 }
 
+CentroidPoint KdTree::findClosestCandidate(const std::vector<std::shared_ptr<CentroidPoint>>& candidates, const Point& target) {
+    auto closest = candidates[0];
+    double minDist = closest->distanceTo(target);
+
+    for (const auto& candidate : candidates) {
+        double dist = candidate->distanceTo(target);
+        if (dist < minDist) {
+            minDist = dist;
+            closest = candidate;
+        }
+    }
+    return *closest;
+}
+
+
 // Recursive function for filtering. References to a vector of pointers of CentroidPoint
-void KdTree::filterRecursive(KdNode* node, std::vector<CentroidPoint*> &candidates) {
+void KdTree::filterRecursive(std::unique_ptr<KdNode> &node, std::vector<std::shared_ptr<CentroidPoint>> &candidates){
     if (!node) return;
 
     // Leaf node: find the closest candidate and update it, if (|Z| = 1)
@@ -136,8 +151,9 @@ void KdTree::filterRecursive(KdNode* node, std::vector<CentroidPoint*> &candidat
         // z* ← the closest point in Z to u.point;
         // z*.wgtCent ← z*.wgtCent + u.point;
         // z*.count ← z*.count + 1;
-        Point zStar = *candidates[0];  //Select first of remain candidates
+        //Point zStar = *candidates[0];  //Select first of remain candidates
         //Find the closest 
+        /*
         for (int i = 1; i < candidates.size(); i++) {
             double minDist = zStar.distanceTo(node->wgtCent);
             double dist = (*candidates[i]).distanceTo(node->wgtCent);
@@ -148,7 +164,11 @@ void KdTree::filterRecursive(KdNode* node, std::vector<CentroidPoint*> &candidat
         }
         *candidates[0] = *candidates[0] + node->wgtCent;
         candidates[0]->count = candidates[0]->count + node->count;
-
+        */
+        CentroidPoint zStar = findClosestCandidate(candidates, node->wgtCent);
+        zStar = zStar + node->wgtCent;
+        zStar.count += node->count;
+        return;
     } else {
         // z* ← the closest point in Z to C’s midpoint;
         // for each (z ∈ Z \ {z*})
@@ -160,24 +180,17 @@ void KdTree::filterRecursive(KdNode* node, std::vector<CentroidPoint*> &candidat
             cellMidpoint.coordinates[i] = (node->cellMin[i] + node->cellMax[i]) / 2.0;
 
         // Find the closest candidate to the cell midpoint
-        Point zStar = *candidates[0];
-        for (int i = 1; i < candidates.size(); i++) {
-            double minDist = zStar.distanceTo(cellMidpoint);
-            double dist = (*candidates[i]).distanceTo(cellMidpoint);
-            if (dist < minDist) {
-                minDist = dist;
-                zStar = *candidates[i];
-            }
-        }
+        CentroidPoint zStar = findClosestCandidate(candidates, node->wgtCent);
 
         // Filter candidates based on proximity to zStar
         // New vector with address of candidates
-        std::vector<CentroidPoint*> filteredCandidates;
-        for (CentroidPoint*& z : candidates) {
-            if (!isFarther(*z, zStar, *node)) {
-                filteredCandidates.push_back(z);
+        std::vector<std::shared_ptr<CentroidPoint>> filteredCandidates;
+        /*for (const auto& candidate : candidates) {
+            if (!isFarther(*candidate, zStar, *node)) {
+                filteredCandidates.push_back(candidate);
             }
-        }
+        }DICE CHE È PIÙ VELOCE CHAT*/
+        filteredCandidates.reserve(candidates.size());
 
         // Recursively filter left and right subtrees
         if (filteredCandidates.size() == 1) {
