@@ -1,11 +1,12 @@
 #include <vector>
-
 #include <iostream>
 #include "../include/csv-parser/single_include/csv.hpp"
 #include "../include/CSVUtils.hpp"
 #include "../include/matplotlib-cpp/matplotlibcpp.h"
 
 namespace plt = matplotlibcpp;
+
+using namespace std;
 
 int main()
 {
@@ -26,6 +27,15 @@ int main()
 
     // If you are running this from Docker use the following
     // plt::save("/app/output/plot.png");
+
+    string path = "./file.csv";
+
+    vector<Point> points = CSVUtils::readCSV(path);
+
+    for (const Point &point : points)
+    {
+        cout << point << '\n';
+    }
 
     // Show the plot
     plt::show();

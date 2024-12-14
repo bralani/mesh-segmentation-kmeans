@@ -4,13 +4,15 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
 
-    string path = "file.csv";
-    
+    string path = "../resources/file_4d.csv";
+
     vector<Point> points = CSVUtils::readCSV(path);
 
-    for (const Point& point : points) {
+    for (const Point &point : points)
+    {
         cout << point << '\n';
     }
 
