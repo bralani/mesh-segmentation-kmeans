@@ -11,11 +11,22 @@ int main()
     try
     {
         // Path to the CSV file
-        std::string path = "../resources/file.csv";
+        std::string path = "../../resources/file_2d.csv";
 
         // Read 2D points (x, y) from the CSV file
         constexpr std::size_t DIMENSIONS = 2; // Assume 2D points (x, y)
-        auto points = CSVUtils::readCSV<double, DIMENSIONS>(path);
+        std::vector<Point<double, DIMENSIONS>> points;
+
+        try
+        {
+            points = CSVUtils::readCSV<double, 2>(path);
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "Failed to read CSV: " << e.what() << '\n';
+            std::cerr << "Ensure the file exists at: " << path << '\n';
+            return 1;
+        }
 
         // Separate the x and y coordinates for plotting
         std::vector<double> x, y;
