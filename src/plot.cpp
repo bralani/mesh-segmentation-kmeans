@@ -6,39 +6,53 @@
 
 namespace plt = matplotlibcpp;
 
-using namespace std;
-
 int main()
 {
-    // Generate sample data
-    std::vector<double> x = {1, 2, 3, 4, 5};
-    std::vector<double> y = {1, 4, 9, 16, 25};
-
-    // Plot the data
-    plt::plot(x, y);
-
-    // Set title and labels
-    plt::title("Sample Plot");
-    plt::xlabel("X-axis");
-    plt::ylabel("Y-axis");
-
-    // Save the plot as an image
-    plt::save("plot.png");
-
-    // If you are running this from Docker use the following
-    // plt::save("/app/output/plot.png");
-
-    string path = "./file.csv";
-
-    vector<Point> points = CSVUtils::readCSV(path);
-
-    for (const Point &point : points)
+    try
     {
-        cout << point << '\n';
-    }
+        // Path to the CSV file
+        std::string path = "../resources/file.csv";
 
-    // Show the plot
-    plt::show();
+        // Read 2D points (x, y) from the CSV file
+        constexpr std::size_t DIMENSIONS = 2; // Assume 2D points (x, y)
+        auto points = CSVUtils::readCSV<double, DIMENSIONS>(path);
+
+        // Separate the x and y coordinates for plotting
+        std::vector<double> x, y;
+        for (const auto &point : points)
+        {
+            x.push_back(point.coordinates[0]); // x-coordinate
+            y.push_back(point.coordinates[1]); // y-coordinate
+        }
+
+        // Plot the data
+        plt::plot(x, y);
+
+        // Set title and labels
+        plt::title("Plot from CSV Data");
+        plt::xlabel("X-axis");
+        plt::ylabel("Y-axis");
+
+        // Save the plot as an image
+        plt::save("plot.png");
+
+        // If you are running this from Docker, save to a known directory
+        // plt::save("/app/output/plot.png");
+
+        // Print points to the console
+        for (const auto &point : points)
+        {
+            std::cout << point << '\n';
+        }
+
+        // Show the plot
+        plt::show();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Error: " << e.what() << '\n';
+        return 1;
+    }
 
     return 0;
 }
