@@ -15,22 +15,21 @@ set(CSV_PARSER_DIR "${CMAKE_SOURCE_DIR}/include/csv-parser")
 include_directories(${CSV_PARSER_DIR}/single_include)
 
 # Create the executable for your project
-add_executable(plot src/plot.cpp)
+add_executable(k_means src/main.cpp)
 
 # Link the matplotlib-cpp library (if still required)
-target_link_libraries(plot PRIVATE matplotlib_cpp)
+target_link_libraries(k_means PRIVATE matplotlib_cpp)
 
 # Specify the output directory for the compiled executable
-set_target_properties(plot PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set_target_properties(k_means PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 # Include directories for matplotlib-cpp and csv-parser
-target_include_directories(plot PRIVATE include/matplotlib-cpp/single_include)
-target_include_directories(plot PRIVATE ${CSV_PARSER_DIR}/single_include)
+target_include_directories(k_means PRIVATE include)
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 message(STATUS "Python3 Executable: ${Python3_EXECUTABLE}")
 message(STATUS "Python3 Library: ${Python3_LIBRARIES}")
 message(STATUS "Python3 Include Directory: ${Python3_INCLUDE_DIRS}")
 
-target_include_directories(plot PRIVATE ${Python3_INCLUDE_DIRS})
-target_link_libraries(plot PRIVATE ${Python3_LIBRARIES})
+target_include_directories(k_means PRIVATE ${Python3_INCLUDE_DIRS})
+target_link_libraries(k_means PRIVATE ${Python3_LIBRARIES})
