@@ -6,6 +6,7 @@
 #include <cmath>
 #include <stdexcept>
 #include <numeric>
+#include "typedefs.h"
 
 /**
  * Template class to represent a generic point in PD-dimensional space.
@@ -50,10 +51,11 @@ public:
 
     /**
      * Setter for coordinate coordinates
-     * @param newValues The new coordinate coordinates
+     * @param value The new value to set
+     * @param idx The index of the coordinate to set
      */
-    void setValues(const std::array<PT, PD>& newValues) {
-        coordinates = newValues;
+    void setValue(PT value, int idx) {
+        coordinates[idx] = value;
     }
 
 
@@ -63,21 +65,15 @@ public:
      * @param metric A function that calculates the distance between two arrays of coordinates
      * @return The distance between the two points
      */
-/*
-    double distanceTo(const Point<PT, PD>& other, const DistanceMetric<PT>& metric) const {
-        return metric(coordinates, other.getValues());
-    }
-*/
-    // Old implementation (remove it when no longer needed)
-    /*// Method to calculate the Euclidean distance to another point
-    PT distanceTo(const Point<PT, PD>& other) const {
+    PT distanceTo(const Point<PT, PD>& other, const DistanceMetric& metric) const {
+        //return metric(coordinates, other.getValues(), PD);
         PT sum = PT(0);
         for (std::size_t i = 0; i < PD; ++i) {
             PT diff = coordinates[i] - other.coordinates[i];
             sum += diff * diff;
         }
         return std::sqrt(sum);
-    }*/
+    }
 
     // Addition operator (+)
     Point<PT, PD> operator+(const Point<PT, PD>& other) const {
