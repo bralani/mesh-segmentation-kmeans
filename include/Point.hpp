@@ -15,49 +15,66 @@
  * - PT: The type of the coordinate coordinates (e.g., float, double, int).
  * - PD: The number of dimensions of the point.
  */
+// Aggiungere il supporto per somma, sottrazione e divisione con uno scalare
 template <typename PT, std::size_t PD>
 class Point {
 public:
-    std::array<PT, PD> coordinates; // Coordinates of the point
+    std::array<PT, PD> coordinates; // Coordinate del punto
 
-    // Default constructor: initializes all coordinates to zero
-    Point() {
+    Point(){
         coordinates.fill(PT(0));
     }
 
-    // Constructor that accepts an array of coordinates
-    explicit Point(const std::array<PT, PD>& coords) : coordinates(coords) {}
+    Point(const std::array<PT, PD>& coords) : coordinates(coords){}
 
-    // Constructor that accepts an initial value for all coordinates
-    explicit Point(PT value) {
+    Point(PT value)  {
         coordinates.fill(value);
     }
 
-    /**
-     * Getter for the number of dimensions
-     * @return The number of dimensions (always PD)
-     */
     constexpr std::size_t getDimensions() const {
         return PD;
     }
 
-    /**
-     * Getter for coordinate coordinates
-     * @return A constant reference to the array of coordinate coordinates
-     */
     const std::array<PT, PD>& getValues() const {
         return coordinates;
     }
 
-    /**
-     * Setter for coordinate coordinates
-     * @param value The new value to set
-     * @param idx The index of the coordinate to set
-     */
     void setValue(PT value, int idx) {
+        if (idx < 0 || idx >= static_cast<int>(PD)) {
+            throw std::out_of_range("Index out of bounds");
+        }
         coordinates[idx] = value;
     }
 
+    // Operatore di somma
+    Point<PT, PD> operator+(const Point<PT, PD>& other) const {
+        Point<PT, PD> result;
+        for (std::size_t i = 0; i < PD; ++i) {
+            result.coordinates[i] = this->coordinates[i] + other.coordinates[i];
+        }
+        return result;
+    }
+
+    // Operatore di sottrazione
+    Point<PT, PD> operator-(const Point<PT, PD>& other) const {
+        Point<PT, PD> result;
+        for (std::size_t i = 0; i < PD; ++i) {
+            result.coordinates[i] = this->coordinates[i] - other.coordinates[i];
+        }
+        return result;
+    }
+
+    // Operatore di divisione per uno scalare
+    Point<PT, PD> operator/(PT scalar) const {
+        if (scalar == PT(0)) {
+            throw std::invalid_argument("Division by zero is not allowed.");
+        }
+        Point<PT, PD> result;
+        for (std::size_t i = 0; i < PD; ++i) {
+            result.coordinates[i] = this->coordinates[i] / scalar;
+        }
+        return result;
+    }
 
     /**
      * Calculates the distance between this point and another point using a given metric
@@ -75,43 +92,6 @@ public:
         return std::sqrt(sum);
     }
 
-    // Addition operator (+)
-    Point<PT, PD> operator+(const Point<PT, PD>& other) const {
-        Point<PT, PD> result;
-        for (std::size_t i = 0; i < PD; ++i) {
-            result.coordinates[i] = coordinates[i] + other.coordinates[i];
-        }
-        return result;
-    }
-
-    // Subtraction operator (-)
-    Point<PT, PD> operator-(const Point<PT, PD>& other) const {
-        Point<PT, PD> result;
-        for (std::size_t i = 0; i < PD; ++i) {
-            result.coordinates[i] = coordinates[i] - other.coordinates[i];
-        }
-        return result;
-    }
-
-    // Multiplication operator for a scalar (*)
-    Point<PT, PD> operator*(PT scalar) const {
-        Point<PT, PD> result;
-        for (std::size_t i = 0; i < PD; ++i) {
-            result.coordinates[i] = coordinates[i] * scalar;
-        }
-        return result;
-    }
-
-    // Method to print the point
-    void print() const {
-        std::cout << "(";
-        for (std::size_t i = 0; i < PD; ++i) {
-            std::cout << coordinates[i];
-            if (i < PD - 1) std::cout << ", ";
-        }
-        std::cout << ")";
-    }
-
     // Static function to compute the sum of a vector of points
     static Point<PT, PD> vectorSum(const std::vector<Point<PT, PD>>& points) {
         if (points.empty()) {
@@ -125,23 +105,17 @@ public:
         return sum;
     }
 
-    /**
-     * Overload of the << operator to print the Point
-     * @param os The output stream
-     * @param point The Point object to print
-     * @return The output stream with the Point's string representation
-     */
-    friend std::ostream& operator<<(std::ostream& os, const Point<PT, PD>& point) {
-        os << "Point(" << PD << "D: [";
+    void print() const {
+        std::cout << "(";
         for (std::size_t i = 0; i < PD; ++i) {
-            os << point.coordinates[i];
-            if (i < PD - 1) {
-                os << ", ";
-            }
+            std::cout << coordinates[i];
+            if (i < PD - 1) std::cout << ", ";
         }
-        os << "])";
-        return os;
+        std::cout << ")";
     }
+
+    
 };
+
 
 #endif

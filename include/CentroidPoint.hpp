@@ -14,33 +14,58 @@
 template <typename PT, std::size_t PD>
 class CentroidPoint : public Point<PT, PD> {
 public:
-    int count; // Number of points in the cell
+    int count; // Numero di punti nel cluster
 
-    /**
-     * Constructor with coordinates
-     * @param coordinates The coordinate values for the centroid point
-     */
+    CentroidPoint() : Point<PT, PD>(), count(1) {}
+
     CentroidPoint(const std::array<PT, PD>& coordinates)
-        : Point<PT, PD>(coordinates), count(0) {}
+        : Point<PT, PD>(coordinates), count(1) {}
 
-    /**
-     * Constructor from a Point object
-     * @param point The Point object to use as the base for this CentroidPoint
-     */
     CentroidPoint(const Point<PT, PD>& point)
-        : Point<PT, PD>(point), count(0) {}
+        : Point<PT, PD>(point), count(1) {}
 
-    /**
-     * Print the CentroidPoint, including additional information
-     */
+    // Operatore di somma
+    CentroidPoint<PT, PD> operator+(const Point<PT, PD>& other) const {
+        CentroidPoint<PT, PD> result;
+        for (std::size_t i = 0; i < PD; ++i) {
+            result.coordinates[i] = this->coordinates[i] + other.coordinates[i];
+        }
+        result.count = this->count;
+        return result;
+    }
+
+    // Operatore di sottrazione
+    CentroidPoint<PT, PD> operator-(const Point<PT, PD>& other) const {
+        CentroidPoint<PT, PD> result;
+        for (std::size_t i = 0; i < PD; ++i) {
+            result.coordinates[i] = this->coordinates[i] - other.coordinates[i];
+        }
+        result.count = this->count;
+        return result;
+    }
+
+    // Operatore di divisione per uno scalare
+    CentroidPoint<PT, PD> operator/(PT scalar) const {
+        if (scalar == PT(0)) {
+            throw std::invalid_argument("Division by zero is not allowed.");
+        }
+        CentroidPoint<PT, PD> result;
+        for (std::size_t i = 0; i < PD; ++i) {
+            result.coordinates[i] = this->coordinates[i] / scalar;
+        }
+        result.count = this->count;
+        return result;
+    }
+
     void print() const {
         std::cout << "CentroidPoint (";
         for (std::size_t i = 0; i < PD; ++i) {
-            std::cout << this->getValues()[i];
+            std::cout << this->coordinates[i];
             if (i < PD - 1) std::cout << ", ";
         }
         std::cout << ") - Count: " << count << "\n";
     }
 };
+
 
 #endif // CENTROID_POINT_HPP

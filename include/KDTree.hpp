@@ -51,7 +51,8 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT, PD>::buildTree(std::vector<Point<PT, 
     // Allocate a new KD-tree node
     auto node = std::unique_ptr<KdNode<PT, PD>>(new KdNode<PT, PD>());
     node->count = points.size();
-    node->wgtCent = Point<PT, PD>::vectorSum(points); // Compute weighted centroid
+    node->wgtCent = Point<PT, PD>::vectorSum(points); 
+    node->wgtCent = node->wgtCent / node->count; 
 
     // Initialize cell bounds
     for (std::size_t i = 0; i < PD; ++i) {
@@ -65,8 +66,6 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT, PD>::buildTree(std::vector<Point<PT, 
 
     // If there is only one point, store it in the node
     if (points.size() == 1) {
-        node->points = points;
-        node->wgtCent = points[0];
         return node;
     }
 

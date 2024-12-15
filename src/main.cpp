@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include "CSVUtils.hpp"
-#include "../include/CSVUtils.hpp"
 #include "../include/metrics.hpp"
 #include "../include/KMeans.hpp"
 
@@ -29,6 +28,8 @@ int main()
     KMeans<double, DIMENSION> kmeans(num_clusters, data, euclMetric);
 
     kmeans.fit();
+
+    kmeans.print();
 
     return 0;
 }

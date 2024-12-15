@@ -14,20 +14,20 @@
  */
 template <typename PT, std::size_t PD>
 struct KdNode {
-    std::vector<Point<PT, PD>> points;    // Points in the cell (only if leaf)
-    Point<PT, PD> wgtCent;               // Weighted centroid (sum of the points)
+    Point<PT, PD> wgtCent;               // wgtCent for the cell (see paper)
     int count = 0;                       // Number of points in the cell
     std::array<PT, PD> cellMin;          // Bounding box minimum coordinates
     std::array<PT, PD> cellMax;          // Bounding box maximum coordinates
     std::unique_ptr<KdNode<PT, PD>> left = nullptr;              // Left child
     std::unique_ptr<KdNode<PT, PD>> right = nullptr;             // Right child
 
+
     /**
      * Constructor
      * Initializes the bounding box and the weighted centroid.
      */
     KdNode()
-        : wgtCent(), cellMin(), cellMax() {
+        : cellMin(), cellMax() {
         cellMin.fill(PT(0));
         cellMax.fill(PT(0));
     }
@@ -38,7 +38,7 @@ struct KdNode {
      * @param max Initial maximum bounding box coordinates
      */
     KdNode(const std::array<PT, PD>& min, const std::array<PT, PD>& max)
-        : wgtCent(), cellMin(min), cellMax(max) {}
+        :  cellMin(min), cellMax(max) {}
 
     /**
      * Destructor
