@@ -58,7 +58,7 @@ public:
   void filter();
 
   // Recursive helper for the filter function
-  void filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates);
+  void filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, int depth = 0);
 
   // Determines if a point `z` is farther from a bounding box than `zStar`
   bool isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zStar, const KdNode<PT, PD> &node);
@@ -136,7 +136,7 @@ void KMeans<PT, PD>::filter()
   }
 
   // Start the recursive filtering process
-  filterRecursive(kdtree->getRoot(), centersPointers);
+  filterRecursive(kdtree->getRoot(), centersPointers, 0);
 
   /** We need to divide the wgtCent of the centroid for the number of points which has it as centroid */
   for(CentroidPoint<PT, PD> &c : centroids){
@@ -147,7 +147,7 @@ void KMeans<PT, PD>::filter()
 
 /**  Recursive function for filtering. Follow exactly the paper */
 template <typename PT, std::size_t PD>
-void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates)
+void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, int depth)
 {
   if (!node)
     return;
@@ -187,48 +187,49 @@ void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std:
     }
 
 
-    /*
-    if (filteredCandidates.size() == 1)
-    {
-      // If an internal node has a single candidate, just update it and spread the candidate among the subtree 
-      *filteredCandidates[0] = *filteredCandidates[0] + *node;
-      assignCentroid(node->left, filteredCandidates[0]);
-      assignCentroid(node->right, filteredCandidates[0]);
-    }
-    else
-    {
-      // Recursively filter left and right subtrees
-      filterRecursive(node->left, filteredCandidates);
-      filterRecursive(node->right, filteredCandidates);
-    }
-    */
-    #pragma omp parallel
-    #pragma omp single
-    {
-        if (filteredCandidates.size() == 1)
-        {
-            // If an internal node has a single candidate, just update it and spread the candidate among the subtree 
-            *filteredCandidates[0] = *filteredCandidates[0] + *node;
+    int max_threads = omp_get_max_threads();
+    bool can_parallelize = (depth < std::log2(max_threads));
 
-            #pragma omp task shared(node, filteredCandidates)
-            assignCentroid(node->left, filteredCandidates[0]);
+    if(can_parallelize) {
 
-            #pragma omp task shared(node, filteredCandidates)
-            assignCentroid(node->right, filteredCandidates[0]);
+      #pragma omp parallel
+      #pragma omp single
+      {
+          if (filteredCandidates.size() == 1)
+          {
+              // If an internal node has a single candidate, just update it and spread the candidate among the subtree 
+              *filteredCandidates[0] = *filteredCandidates[0] + *node;
 
-            //#pragma omp taskwait 
-        }
-        else
-        {
-            // Recursively filter left and right subtrees
-            #pragma omp task shared(node, filteredCandidates)
-            filterRecursive(node->left, filteredCandidates);
+              #pragma omp task shared(node, filteredCandidates)
+              assignCentroid(node->left, filteredCandidates[0]);
 
-            #pragma omp task shared(node, filteredCandidates)
-            filterRecursive(node->right, filteredCandidates);
+              #pragma omp task shared(node, filteredCandidates)
+              assignCentroid(node->right, filteredCandidates[0]);
+          }
+          else
+          {
+              // Recursively filter left and right subtrees
+              #pragma omp task shared(node, filteredCandidates)
+              filterRecursive(node->left, filteredCandidates, depth + 1);
 
-            //#pragma omp taskwait 
-        }
+              #pragma omp task shared(node, filteredCandidates)
+              filterRecursive(node->right, filteredCandidates, depth + 1);
+          }
+      }
+    } else {
+      if (filteredCandidates.size() == 1)
+      {
+        // If an internal node has a single candidate, just update it and spread the candidate among the subtree 
+        *filteredCandidates[0] = *filteredCandidates[0] + *node;
+        assignCentroid(node->left, filteredCandidates[0]);
+        assignCentroid(node->right, filteredCandidates[0]);
+      }
+      else
+      {
+        // Recursively filter left and right subtrees
+        filterRecursive(node->left, filteredCandidates, depth + 1);
+        filterRecursive(node->right, filteredCandidates, depth + 1);
+      }
     }
   }
 }

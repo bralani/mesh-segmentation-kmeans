@@ -85,20 +85,27 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT,PD>::buildTree(typename std::vector<Po
     // Find the median
     auto median = begin + count / 2;
 
-    // Recursively build left and right subtrees
-    //node->left = buildTree(begin, median, depth + 1);   // Left subtree
-    //node->right = buildTree(median, end, depth + 1);    // Right subtree
-    #pragma omp parallel
-    {
-        #pragma omp single
+
+    int max_threads = omp_get_max_threads();
+    bool can_parallelize = (depth < std::log2(max_threads));
+
+    if(can_parallelize) {
+        #pragma omp parallel
         {
-            #pragma omp task shared(node)
-            node->left = buildTree(begin, median, depth + 1); // Left subtree
-            
-            #pragma omp task shared(node)
-            node->right = buildTree(median, end, depth + 1);  // Right subtree
+            #pragma omp single
+            {
+                #pragma omp task shared(node)
+                node->left = buildTree(begin, median, depth + 1); // Left subtree
+                
+                #pragma omp task shared(node)
+                node->right = buildTree(median, end, depth + 1);  // Right subtree
+            }
         }
+    } else {
+        node->left = buildTree(begin, median, depth + 1);   // Left subtree
+        node->right = buildTree(median, end, depth + 1);    // Right subtree
     }
+
     return node;
 }
 
