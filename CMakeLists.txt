@@ -14,6 +14,10 @@ set(CMAKE_OSX_ARCHITECTURES arm64)
 set(CSV_PARSER_DIR "${CMAKE_SOURCE_DIR}/include/csv-parser")
 include_directories(${CSV_PARSER_DIR}/single_include)
 
+#PROFILING
+set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+
 # Create the executable for your project
 add_executable(k_means src/main.cpp)
 
@@ -33,3 +37,9 @@ message(STATUS "Python3 Include Directory: ${Python3_INCLUDE_DIRS}")
 
 target_include_directories(k_means PRIVATE ${Python3_INCLUDE_DIRS})
 target_link_libraries(k_means PRIVATE ${Python3_LIBRARIES})
+
+#Openmp
+find_package(OpenMP REQUIRED)
+target_link_libraries(k_means PUBLIC OpenMP::OpenMP_CXX)
+set(ENV{OMP_NESTED} TRUE)
+set(ENV{OMP_NUM_THREADS} 8)
