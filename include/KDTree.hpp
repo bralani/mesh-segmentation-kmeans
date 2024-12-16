@@ -22,7 +22,7 @@ public:
     KdTree(std::vector<Point<PT, PD>>& points);
 
     // Destructor: deallocates the tree
-    ~KdTree() = default;
+    virtual ~KdTree() = default;
 
     // Returns the root node of the KD-tree
     std::unique_ptr<KdNode<PT, PD>>& getRoot() {

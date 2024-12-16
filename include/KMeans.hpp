@@ -31,7 +31,7 @@ public:
   }
 
   // Destructor: deallocates the tree
-  ~KMeans() = default;
+  virtual ~KMeans() = default;
 
   // Fit method to perform the KMeans algorithm
   void fit();
@@ -115,7 +115,6 @@ bool KMeans<PT, PD>::checkConvergence(){
       dist += centroids[i].distanceTo(oldCentroids[i], metric);
     }
     dist = dist/centroids.size(); 
-    std::cout<<dist<<std::endl;
     if(dist > treshold) 
         return false;
     return true;
