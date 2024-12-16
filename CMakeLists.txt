@@ -14,10 +14,6 @@ set(CMAKE_OSX_ARCHITECTURES arm64)
 set(CSV_PARSER_DIR "${CMAKE_SOURCE_DIR}/include/csv-parser")
 include_directories(${CSV_PARSER_DIR}/single_include)
 
-#PROFILING
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
-
 # Create the executable for your project
 add_executable(k_means src/main.cpp)
 

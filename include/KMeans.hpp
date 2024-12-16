@@ -10,6 +10,7 @@
 #include "Point.hpp"
 #include "CentroidPoint.hpp"
 #include "KDTree.hpp"
+#include <omp.h>
 
 
 
@@ -186,7 +187,7 @@ void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std:
     }
 
 
-    
+    /*
     if (filteredCandidates.size() == 1)
     {
       // If an internal node has a single candidate, just update it and spread the candidate among the subtree 
@@ -199,6 +200,35 @@ void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std:
       // Recursively filter left and right subtrees
       filterRecursive(node->left, filteredCandidates);
       filterRecursive(node->right, filteredCandidates);
+    }
+    */
+    #pragma omp parallel
+    #pragma omp single
+    {
+        if (filteredCandidates.size() == 1)
+        {
+            // If an internal node has a single candidate, just update it and spread the candidate among the subtree 
+            *filteredCandidates[0] = *filteredCandidates[0] + *node;
+
+            #pragma omp task shared(node, filteredCandidates)
+            assignCentroid(node->left, filteredCandidates[0]);
+
+            #pragma omp task shared(node, filteredCandidates)
+            assignCentroid(node->right, filteredCandidates[0]);
+
+            //#pragma omp taskwait 
+        }
+        else
+        {
+            // Recursively filter left and right subtrees
+            #pragma omp task shared(node, filteredCandidates)
+            filterRecursive(node->left, filteredCandidates);
+
+            #pragma omp task shared(node, filteredCandidates)
+            filterRecursive(node->right, filteredCandidates);
+
+            //#pragma omp taskwait 
+        }
     }
   }
 }

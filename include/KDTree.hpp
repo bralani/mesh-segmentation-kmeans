@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <memory>
 #include <limits>
+#include <omp.h>
 
 /**
  * Class template to represent a KD-Tree
@@ -85,9 +86,19 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT,PD>::buildTree(typename std::vector<Po
     auto median = begin + count / 2;
 
     // Recursively build left and right subtrees
-    node->left = buildTree(begin, median, depth + 1);   // Left subtree
-    node->right = buildTree(median, end, depth + 1);    // Right subtree
-
+    //node->left = buildTree(begin, median, depth + 1);   // Left subtree
+    //node->right = buildTree(median, end, depth + 1);    // Right subtree
+    #pragma omp parallel
+    {
+        #pragma omp single
+        {
+            #pragma omp task shared(node)
+            node->left = buildTree(begin, median, depth + 1); // Left subtree
+            
+            #pragma omp task shared(node)
+            node->right = buildTree(median, end, depth + 1);  // Right subtree
+        }
+    }
     return node;
 }
 
