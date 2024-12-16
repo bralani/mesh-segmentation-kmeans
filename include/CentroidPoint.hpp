@@ -2,70 +2,38 @@
 #define CENTROID_POINT_HPP
 
 #include "Point.hpp"
+#include "HasWgtCent.hpp"
 #include <iostream>
 #include <array>
 
-/**
- * Class template to represent a centroid point derived from Point
- * Template parameters:
- * - PT: The type of the coordinate values (e.g., double, float)
- * - PD: The number of dimensions of the point (e.g., 2 for 2D, 3 for 3D)
- */
 template <typename PT, std::size_t PD>
-class CentroidPoint : public Point<PT, PD> {
+class CentroidPoint : public Point<PT, PD>, public HasWgtCent<PT, PD> {
 public:
-    int count; // Numero di punti nel cluster
+    // Default constructor
+    CentroidPoint() 
+        : Point<PT, PD>(), HasWgtCent<PT, PD>() {}
 
-    CentroidPoint() : Point<PT, PD>(), count(1) {}
-
-    CentroidPoint(const std::array<PT, PD>& coordinates)
-        : Point<PT, PD>(coordinates), count(1) {}
-
+    // Constructor with a Point as input
     CentroidPoint(const Point<PT, PD>& point)
-        : Point<PT, PD>(point), count(1) {}
+        : Point<PT, PD>(point), HasWgtCent<PT, PD>() {}
 
-    // Operatore di somma
-    CentroidPoint<PT, PD> operator+(const Point<PT, PD>& other) const {
-        CentroidPoint<PT, PD> result;
+    CentroidPoint<PT, PD> operator+(const HasWgtCent<PT, PD>& other) const {
+        CentroidPoint<PT, PD> result(*this);
         for (std::size_t i = 0; i < PD; ++i) {
-            result.coordinates[i] = this->coordinates[i] + other.coordinates[i];
+            result.wgtCent[i] = this->wgtCent[i] + other.wgtCent[i];
         }
-        result.count = this->count;
+        result.count = this->count + other.count;
         return result;
     }
 
-    // Operatore di sottrazione
-    CentroidPoint<PT, PD> operator-(const Point<PT, PD>& other) const {
-        CentroidPoint<PT, PD> result;
+
+    void normalize() {
         for (std::size_t i = 0; i < PD; ++i) {
-            result.coordinates[i] = this->coordinates[i] - other.coordinates[i];
+            this->coordinates[i] = this->wgtCent[i] / this->count;
         }
-        result.count = this->count;
-        return result;
     }
 
-    // Operatore di divisione per uno scalare
-    CentroidPoint<PT, PD> operator/(PT scalar) const {
-        if (scalar == PT(0)) {
-            throw std::invalid_argument("Division by zero is not allowed.");
-        }
-        CentroidPoint<PT, PD> result;
-        for (std::size_t i = 0; i < PD; ++i) {
-            result.coordinates[i] = this->coordinates[i] / scalar;
-        }
-        result.count = this->count;
-        return result;
-    }
 
-    void print() const {
-        std::cout << "CentroidPoint (";
-        for (std::size_t i = 0; i < PD; ++i) {
-            std::cout << this->coordinates[i];
-            if (i < PD - 1) std::cout << ", ";
-        }
-        std::cout << ") - Count: " << count;
-    }
 };
-
 
 #endif // CENTROID_POINT_HPP

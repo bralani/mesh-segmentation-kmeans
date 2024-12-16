@@ -24,8 +24,8 @@ public:
    * points: Vector of Points to be used in K-Means
    * dist: Function used as the distance metric between two points
     */
-  KMeans(int clusters, std::vector<Point<PT, PD>> &points, DistanceMetric &dist)
-  : numClusters(clusters), data(points), metric(dist) {  
+  KMeans(int clusters, std::vector<Point<PT, PD>> &points, DistanceMetric &dist, PT treshold)
+  : numClusters(clusters), data(points), metric(dist), treshold(treshold) {  
     initializeCentroids();
     kdtree = new KdTree<PT, PD>(data);
   }
@@ -45,8 +45,10 @@ public:
   int numClusters;                                    // Number of clusters
   std::vector<Point<PT, PD>> data;                    // Data points
   std::vector<CentroidPoint<PT, PD>> centroids;       // Centroids of clusters
+  std::vector<CentroidPoint<PT, PD>> oldCentroids;    // Centroids on the previous filter
   DistanceMetric &metric;                             // Distance metric function
   KdTree <PT, PD>* kdtree;                            // Kd-Tree structure
+  PT treshold;
 
   // Method to extract randomly some initial clusters
   void initializeCentroids();
@@ -65,6 +67,8 @@ public:
 
 
   void assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, std::shared_ptr<CentroidPoint<PT,PD>> &centroid);
+
+  bool checkConvergence();
 };
 
 /** Extracts randomly "numClusters" initial Centroids from the same data that were provided
@@ -92,14 +96,32 @@ void KMeans<PT, PD>::initializeCentroids() {
 template <typename PT, std::size_t PD>
 void KMeans<PT, PD>::fit()
 {
-  this->filter();
-
-  //Qui devo dividere i valori dei centroidi per il numero di a cui sono associati
-  //Se dobbiamo fare piu iterazioni di filter magari dovrà essere messo come ultima istruzione di filter
-  for(CentroidPoint<PT, PD> &c : centroids){
-    c = c / c.count; 
+  bool convergence = false;
+  while(!convergence)
+  {
+    this->filter();
+    convergence = checkConvergence();
+    oldCentroids = centroids;
   }
 }
+
+template <typename PT, std::size_t PD>
+bool KMeans<PT, PD>::checkConvergence(){
+  if(oldCentroids.empty())
+    return false;
+  else{
+    PT dist = 0;
+    for(int i = 0; i<centroids.size(); i++){
+      dist += centroids[i].distanceTo(oldCentroids[i], metric);
+    }
+    dist = dist/centroids.size(); 
+    std::cout<<dist<<std::endl;
+    if(dist > treshold) 
+        return false;
+    return true;
+  }
+}
+
 
 /** Implements the "filter" function discussed in the paper*/
 template <typename PT, std::size_t PD>
@@ -109,11 +131,17 @@ void KMeans<PT, PD>::filter()
   // Convert centers to shared pointers. During filterRecursive their values will be modified
   std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> centersPointers;
   for (CentroidPoint<PT, PD> &z : centroids) {
+    z.resetCount();
     centersPointers.push_back(std::shared_ptr<CentroidPoint<PT, PD>>(&z, [](CentroidPoint<PT, PD>*) {}));
   }
 
   // Start the recursive filtering process
   filterRecursive(kdtree->getRoot(), centersPointers);
+
+  /** We need to divide the wgtCent of the centroid for the number of points which has it as centroid */
+  for(CentroidPoint<PT, PD> &c : centroids){
+    c.normalize();
+  }
 }
 
 
@@ -129,8 +157,7 @@ void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std:
   {
     // Leaf node: find the closest candidate and update it
     std::shared_ptr<CentroidPoint<PT, PD>> zStar_ptr = findClosestCandidate(candidates, node->wgtCent); 
-    *zStar_ptr = *zStar_ptr + node->wgtCent;
-    zStar_ptr->count += 1;
+    *zStar_ptr = *zStar_ptr + *node;
 
     // The leaf nodes are directly linked to the data we provided. Here we assign each Point its centroid
     node->myPoint->setCentroid(zStar_ptr);
@@ -152,7 +179,9 @@ void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std:
     std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> filteredCandidates;
     filteredCandidates.reserve(candidates.size());
     for (auto &z: candidates) {
-      if (!isFarther(*z, *zStar_ptr, *node)) {
+      if(z == zStar_ptr) {
+        filteredCandidates.push_back(z);
+      } else if (!isFarther(*z, *zStar_ptr, *node)) {
         filteredCandidates.push_back(z);
       }
     }
@@ -162,8 +191,7 @@ void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std:
     if (filteredCandidates.size() == 1)
     {
       // If an internal node has a single candidate, just update it and spread the candidate among the subtree 
-      *filteredCandidates[0] = *filteredCandidates[0] + node->wgtCent;
-      filteredCandidates[0]->count = filteredCandidates[0]->count + node->count;
+      *filteredCandidates[0] = *filteredCandidates[0] + *node;
       assignCentroid(node->left, filteredCandidates[0]);
       assignCentroid(node->right, filteredCandidates[0]);
     }
@@ -209,7 +237,7 @@ bool KMeans<PT, PD>::isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zSta
   Point<PT, PD> vH;
   for (std::size_t i = 0; i < PD; ++i)
   {
-    vH.setValue((u.getValues()[i] > 0) ? node.cellMax[i] : node.cellMin[i], i);
+    vH.setValue((u.getValues()[i] >= 0) ? node.cellMax[i] : node.cellMin[i], i);
   }
 
   double distZ = z.distanceTo(vH, metric);
@@ -245,11 +273,11 @@ void KMeans<PT, PD>::print(){
     p.print();
     std::cout<<"\n";
   } 
-  std::cout<<"-----------------------"<<std::endl;
+  /*std::cout<<"-----------------------"<<std::endl;
   std::cout<<"Points and their centroid: \n";
   for(auto &p : data){
     p.print();
     std::cout<<"\n";
-  } 
+  } */
 }
 

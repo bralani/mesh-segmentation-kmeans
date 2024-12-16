@@ -25,7 +25,7 @@ int main()
     std::vector<Point<double, DIMENSION>> data = CSVUtils::readCSV<double, DIMENSION>(path);
 
     DistanceMetric euclMetric = euclideanMetric;
-    KMeans<double, DIMENSION> kmeans(num_clusters, data, euclMetric);
+    KMeans<double, DIMENSION> kmeans(num_clusters, data, euclMetric, 1e-4);
 
     kmeans.fit();
 

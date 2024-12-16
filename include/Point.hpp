@@ -51,7 +51,7 @@ public:
     }
 
     // Operatore di somma
-    Point<PT, PD> operator+(const Point<PT, PD>& other) const {
+    virtual Point<PT, PD> operator+(const Point<PT, PD>& other) const {
         Point<PT, PD> result;
         for (std::size_t i = 0; i < PD; ++i) {
             result.coordinates[i] = this->coordinates[i] + other.coordinates[i];
@@ -68,17 +68,7 @@ public:
         return result;
     }
 
-    // Operatore di divisione per uno scalare
-    Point<PT, PD> operator/(PT scalar) const {
-        if (scalar == PT(0)) {
-            throw std::invalid_argument("Division by zero is not allowed.");
-        }
-        Point<PT, PD> result;
-        for (std::size_t i = 0; i < PD; ++i) {
-            result.coordinates[i] = this->coordinates[i] / scalar;
-        }
-        return result;
-    }
+    
 
     /**
      * Calculates the distance between this point and another point using a given metric

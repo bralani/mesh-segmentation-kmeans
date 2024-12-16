@@ -55,7 +55,7 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT,PD>::buildTree(typename std::vector<Po
     auto node = std::unique_ptr<KdNode<PT, PD>>(new KdNode<PT, PD>());
     size_t count = std::distance(begin, end);
     node->count = count;
-    node->wgtCent = Point<PT, PD>::vectorSum(begin, end);  
+    node->wgtCent = Point<PT, PD>::vectorSum(begin, end).coordinates;  
 
     // Initialize cell bounds
     for (std::size_t i = 0; i < PD; ++i) {
