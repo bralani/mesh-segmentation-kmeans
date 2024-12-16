@@ -30,4 +30,4 @@ RUN [ -d build ] && rm -rf build || true && \
     cmake --build . --config Release
 
 # Set the default command to execute the compiled binary
-CMD ["./build/bin/plot"]
+CMD ["./build/bin/k_means"]

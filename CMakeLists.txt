@@ -34,6 +34,11 @@ message(STATUS "Python3 Include Directory: ${Python3_INCLUDE_DIRS}")
 target_include_directories(k_means PRIVATE ${Python3_INCLUDE_DIRS})
 target_link_libraries(k_means PRIVATE ${Python3_LIBRARIES})
 
+
+# For compilers to find libomp you may need to set:
+# export LDFLAGS="-L/usr/local/opt/libomp/lib"
+# export CPPFLAGS="-I/usr/local/opt/libomp/include"
+
 #Openmp
 find_package(OpenMP REQUIRED)
 target_link_libraries(k_means PUBLIC OpenMP::OpenMP_CXX)

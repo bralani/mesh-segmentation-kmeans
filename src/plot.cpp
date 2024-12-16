@@ -11,7 +11,7 @@ int main()
     try
     {
         // Path to the CSV file
-        std::string path = "../../resources/file_2d.csv";
+        std::string path = "/app/resources/file_2d.csv";
 
         // Read 2D points (x, y) from the CSV file
         constexpr std::size_t DIMENSIONS = 2; // Assume 2D points (x, y)
