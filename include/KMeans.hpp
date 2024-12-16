@@ -11,16 +11,23 @@
 #include "CentroidPoint.hpp"
 #include "KDTree.hpp"
 
-// A class to implement the KMeans clustering algorithm
+
+
+/** Class implementing the K-Means algorithm using a Kd-Tree data structure
+    and employing the filtering method discussed in the Paper */
 template <typename PT, std::size_t PD>
 class KMeans
 {
 public:
-  // Constructor: builds the kmeans object from a set of points, number of clusters, and a distance metric
+  /** Constructor
+   * clusters: Number of clusters to be generated
+   * points: Vector of Points to be used in K-Means
+   * dist: Function used as the distance metric between two points
+    */
   KMeans(int clusters, std::vector<Point<PT, PD>> &points, DistanceMetric &dist)
-  : numClusters(clusters), data(points), metric(dist) {  // Initialize metric here
+  : numClusters(clusters), data(points), metric(dist) {  
     initializeCentroids();
-    kdtree = new KdTree<PT, PD>(points);
+    kdtree = new KdTree<PT, PD>(data);
   }
 
   // Destructor: deallocates the tree
@@ -34,16 +41,14 @@ public:
 
   void print();
 
-  void assignRecursive(std::unique_ptr<KdNode<PT, PD>> &node, const std::shared_ptr<CentroidPoint<PT, PD>> centroid_ptr);
-
   private:
-  int numClusters;                      // Number of clusters
-  std::vector<Point<PT, PD>> data;      // Data points
-  std::vector<CentroidPoint<PT, PD>> centroids; // Centroids of clusters
-  DistanceMetric &metric;               // Distance metric function
-  KdTree <PT, PD>* kdtree;            // KD-Tree for efficient nearest neighbor search
+  int numClusters;                                    // Number of clusters
+  std::vector<Point<PT, PD>> data;                    // Data points
+  std::vector<CentroidPoint<PT, PD>> centroids;       // Centroids of clusters
+  DistanceMetric &metric;                             // Distance metric function
+  KdTree <PT, PD>* kdtree;                            // Kd-Tree structure
 
-  // Method to initialize centroids randomly
+  // Method to extract randomly some initial clusters
   void initializeCentroids();
 
   // Filters the given centers based on the KD-tree structure
@@ -52,50 +57,57 @@ public:
   // Recursive helper for the filter function
   void filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates);
 
-  // Finds the closest point to a target from a set of candidates
-  Point<PT, PD> findClosestPoint(const std::vector<Point<PT, PD>> &candidates, const Point<PT, PD> &target);
-
   // Determines if a point `z` is farther from a bounding box than `zStar`
   bool isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zStar, const KdNode<PT, PD> &node);
 
   // Finds the closest candidate (centroid) to a given point
   std::shared_ptr<CentroidPoint<PT, PD>> findClosestCandidate(const std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, const Point<PT, PD> &target);
 
+
+  void assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, std::shared_ptr<CentroidPoint<PT,PD>> &centroid);
 };
 
-// Initializes the centroids randomly
+/** Extracts randomly "numClusters" initial Centroids from the same data that were provided
+*/
 template <typename PT, std::size_t PD>
-void KMeans<PT, PD>::initializeCentroids()
-{
+void KMeans<PT, PD>::initializeCentroids() {
   std::random_device rd;
   std::mt19937 gen(rd());
-  std::uniform_int_distribution<int> dist(0, data.size() - 1);
 
-  for (int i = 0; i < numClusters; ++i)
-  {
-    int idx = dist(gen);
-    centroids.push_back(CentroidPoint<PT, PD>(data[i]));
+  // Contenitore per memorizzare gli indici casuali
+  std::vector<int> indices(data.size());
+  std::iota(indices.begin(), indices.end(), 0); // Riempie gli indici da 0 a data.size() - 1
+
+  // Selezione casuale senza ripetizioni
+  std::vector<int> sampledIndices;
+  std::sample(indices.begin(), indices.end(), std::back_inserter(sampledIndices), numClusters, gen);
+
+  // Creazione dei centroidi iniziali
+  for (int idx : sampledIndices) {
+    centroids.push_back(CentroidPoint<PT, PD>(data[idx]));
   }
 }
 
-// Fits the KMeans algorithm to the data
+/** Fits the KMeans algorithm to the data */ 
 template <typename PT, std::size_t PD>
 void KMeans<PT, PD>::fit()
 {
   this->filter();
 
+  //Qui devo dividere i valori dei centroidi per il numero di a cui sono associati
+  //Se dobbiamo fare piu iterazioni di filter magari dovrà essere messo come ultima istruzione di filter
   for(CentroidPoint<PT, PD> &c : centroids){
     c = c / c.count; 
   }
 }
 
-// Filters the given set of centers using the KD-tree
+/** Implements the "filter" function discussed in the paper*/
 template <typename PT, std::size_t PD>
 void KMeans<PT, PD>::filter()
 {
-  std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> centersPointers;
 
-  // Convert centers to shared pointers for in-place modification
+  // Convert centers to shared pointers. During filterRecursive their values will be modified
+  std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> centersPointers;
   for (CentroidPoint<PT, PD> &z : centroids) {
     centersPointers.push_back(std::shared_ptr<CentroidPoint<PT, PD>>(&z, [](CentroidPoint<PT, PD>*) {}));
   }
@@ -104,38 +116,24 @@ void KMeans<PT, PD>::filter()
   filterRecursive(kdtree->getRoot(), centersPointers);
 }
 
-// Finds the closest candidate to a target point
-template <typename PT, std::size_t PD>
-std::shared_ptr<CentroidPoint<PT, PD>> KMeans<PT, PD>::findClosestCandidate(const std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, const Point<PT, PD> &target)
-{
-  auto closest = candidates[0];
-  double minDist = closest->distanceTo(target, metric);
 
-  for (const auto &candidate : candidates)
-  {
-    double dist = candidate->distanceTo(target, metric);
-    if (dist < minDist)
-    {
-      minDist = dist;
-      closest = candidate;
-    }
-  }
-  return closest;
-}
-
-// Recursive function for filtering
+/**  Recursive function for filtering. Follow exactly the paper */
 template <typename PT, std::size_t PD>
 void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates)
 {
   if (!node)
     return;
 
-  // Leaf node: find the closest candidate and update it
+  
   if (!node->left && !node->right)
   {
+    // Leaf node: find the closest candidate and update it
     std::shared_ptr<CentroidPoint<PT, PD>> zStar_ptr = findClosestCandidate(candidates, node->wgtCent); 
     *zStar_ptr = *zStar_ptr + node->wgtCent;
     zStar_ptr->count += 1;
+
+    // The leaf nodes are directly linked to the data we provided. Here we assign each Point its centroid
+    node->myPoint->setCentroid(zStar_ptr);
     return;
   }
   else
@@ -160,41 +158,49 @@ void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std:
     }
 
 
-    // Recursively filter left and right subtrees
+    
     if (filteredCandidates.size() == 1)
     {
+      // If an internal node has a single candidate, just update it and spread the candidate among the subtree 
       *filteredCandidates[0] = *filteredCandidates[0] + node->wgtCent;
       filteredCandidates[0]->count = filteredCandidates[0]->count + node->count;
+      assignCentroid(node->left, filteredCandidates[0]);
+      assignCentroid(node->right, filteredCandidates[0]);
     }
     else
     {
+      // Recursively filter left and right subtrees
       filterRecursive(node->left, filteredCandidates);
       filterRecursive(node->right, filteredCandidates);
     }
   }
 }
 
-// Finds the closest point to the target among a set of candidates
-template <typename PT, std::size_t PD>
-Point<PT, PD> KMeans<PT, PD>::findClosestPoint(const std::vector<Point<PT, PD>> &candidates, const Point<PT, PD> &target)
-{
-  Point<PT, PD> closest = candidates[0];
-  double minDist = closest.distanceTo(target);
 
-  for (const Point<PT, PD> &z : candidates)
+// Finds the closest candidate to a target point
+template <typename PT, std::size_t PD>
+std::shared_ptr<CentroidPoint<PT, PD>> KMeans<PT, PD>::findClosestCandidate(const std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, const Point<PT, PD> &target)
+{
+  auto closest = candidates[0];
+  double minDist = closest->distanceTo(target, metric);
+
+  for (const auto &candidate : candidates)
   {
-    double dist = z.distanceTo(target);
+    double dist = candidate->distanceTo(target, metric);
     if (dist < minDist)
     {
       minDist = dist;
-      closest = z;
+      closest = candidate;
     }
   }
-
   return closest;
 }
 
-// Checks if a point z is farther from a bounding box than zStar
+
+
+/** Implements the isFarther fuction discussed in the paper.
+*  Checks if a point z is farther from a bounding box than zStar
+*/
 template <typename PT, std::size_t PD>
 bool KMeans<PT, PD>::isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zStar, const KdNode<PT, PD> &node)
 {
@@ -212,11 +218,38 @@ bool KMeans<PT, PD>::isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zSta
   return distZ > distZStar;
 }
 
+/**
+ * Assign the centroid to the leaf nodes of the subtree
+ */
+template <typename PT, std::size_t PD>
+void KMeans<PT, PD>::assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, std::shared_ptr<CentroidPoint<PT,PD>> &centroid)
+{
+  if (!node->left && !node->right)
+  {
+    node->myPoint->setCentroid(centroid);
+    return;
+  }else{
+      assignCentroid(node->left, centroid);
+      assignCentroid(node->right, centroid);
+  }
+}
+
+
+
+/** DEBUG FUNCTION */
 template <typename PT, std::size_t PD>
 void KMeans<PT, PD>::print(){
+  std::cout<<"-----------------------"<<std::endl;
+  std::cout<<"Centroids: \n";
   for(auto &p : centroids){
     p.print();
-
+    std::cout<<"\n";
+  } 
+  std::cout<<"-----------------------"<<std::endl;
+  std::cout<<"Points and their centroid: \n";
+  for(auto &p : data){
+    p.print();
+    std::cout<<"\n";
   } 
 }
 

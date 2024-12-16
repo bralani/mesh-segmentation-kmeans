@@ -15,11 +15,15 @@
  * - PT: The type of the coordinate coordinates (e.g., float, double, int).
  * - PD: The number of dimensions of the point.
  */
-// Aggiungere il supporto per somma, sottrazione e divisione con uno scalare
 template <typename PT, std::size_t PD>
 class Point {
 public:
-    std::array<PT, PD> coordinates; // Coordinate del punto
+    std::array<PT, PD> coordinates; 
+    std::shared_ptr<Point<PT,PD>> centroid = nullptr;
+
+    void setCentroid(std::shared_ptr<Point<PT,PD>> centroid){
+        this->centroid = centroid;
+    }
 
     Point(){
         coordinates.fill(PT(0));
@@ -93,14 +97,11 @@ public:
     }
 
     // Static function to compute the sum of a vector of points
-    static Point<PT, PD> vectorSum(const std::vector<Point<PT, PD>>& points) {
-        if (points.empty()) {
-            throw std::invalid_argument("The vector of points must not be empty.");
-        }
-
+    static Point<PT, PD> vectorSum(typename std::vector<Point<PT, PD>>::iterator begin,
+                               typename std::vector<Point<PT, PD>>::iterator end) {
         Point<PT, PD> sum;
-        for (const auto& point : points) {
-            sum = sum + point;
+        for (auto it = begin; it != end; ++it) {
+            sum = sum + *it;
         }
         return sum;
     }
@@ -112,6 +113,10 @@ public:
             if (i < PD - 1) std::cout << ", ";
         }
         std::cout << ")";
+        if(centroid != nullptr){
+            std::cout<<"-> Centroid: ";
+            centroid->print();
+        }
     }
 
     

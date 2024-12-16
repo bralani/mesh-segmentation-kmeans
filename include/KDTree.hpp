@@ -19,7 +19,7 @@ template <typename PT, std::size_t PD>
 class KdTree {
 public:
     // Constructor: builds the tree from a set of points and a given dimensionality
-    KdTree(const std::vector<Point<PT, PD>>& points);
+    KdTree(std::vector<Point<PT, PD>>& points);
 
     // Destructor: deallocates the tree
     ~KdTree() = default;
@@ -32,60 +32,61 @@ public:
 private:
     std::unique_ptr<KdNode<PT, PD>> root = nullptr; // Root node of the KD-tree
 
-    // Recursively builds the KD-tree from a set of points
-    std::unique_ptr<KdNode<PT, PD>> buildTree(std::vector<Point<PT, PD>>& points, int depth);
+    // Recursively builds the KD-tree using iterators
+    std::unique_ptr<KdNode<PT, PD>> buildTree(typename std::vector<Point<PT, PD>>::iterator begin,
+                                              typename std::vector<Point<PT, PD>>::iterator end,
+                                              int depth);
 };
 
 // Constructor: initializes the KD-tree by building it
 template <typename PT, std::size_t PD>
-KdTree<PT, PD>::KdTree(const std::vector<Point<PT, PD>>& points) {
-    std::vector<Point<PT, PD>> pointsCopy = points; // Create a local copy of the points
-    root = buildTree(pointsCopy, 0);               // Build the tree starting at depth 0
+KdTree<PT, PD>::KdTree(std::vector<Point<PT, PD>>& points) {
+    root = buildTree(points.begin(), points.end(), 0);  
 }
 
 // Recursively builds the KD-tree
 template <typename PT, std::size_t PD>
-std::unique_ptr<KdNode<PT, PD>> KdTree<PT, PD>::buildTree(std::vector<Point<PT, PD>>& points, int depth) {
-    if (points.empty()) return nullptr;
+std::unique_ptr<KdNode<PT, PD>> KdTree<PT,PD>::buildTree(typename std::vector<Point<PT, PD>>::iterator begin,
+                                              typename std::vector<Point<PT, PD>>::iterator end,
+                                              int depth){
+    if (begin == end) return nullptr; // Base case: no points
 
     // Allocate a new KD-tree node
     auto node = std::unique_ptr<KdNode<PT, PD>>(new KdNode<PT, PD>());
-    node->count = points.size();
-    node->wgtCent = Point<PT, PD>::vectorSum(points); 
-    node->wgtCent = node->wgtCent / node->count; 
+    size_t count = std::distance(begin, end);
+    node->count = count;
+    node->wgtCent = Point<PT, PD>::vectorSum(begin, end);  
 
     // Initialize cell bounds
     for (std::size_t i = 0; i < PD; ++i) {
         node->cellMin[i] = std::numeric_limits<PT>::max();
         node->cellMax[i] = std::numeric_limits<PT>::lowest();
-        for (const Point<PT, PD>& p : points) {
-            node->cellMin[i] = std::min(node->cellMin[i], p.getValues()[i]);
-            node->cellMax[i] = std::max(node->cellMax[i], p.getValues()[i]);
+        for (auto it = begin; it != end; ++it) {
+            node->cellMin[i] = std::min(node->cellMin[i], it->getValues()[i]);
+            node->cellMax[i] = std::max(node->cellMax[i], it->getValues()[i]);
         }
     }
 
     // If there is only one point, store it in the node
-    if (points.size() == 1) {
+    if (count == 1) {
+        node->myPoint = std::unique_ptr<Point<PT, PD>>(&(*begin));
         return node;
     }
 
-    // Choose the splitting axis based on the depth
+    // Choose splitting axis
     int axis = depth % PD;
 
     // Sort points along the chosen axis
-    std::sort(points.begin(), points.end(),
-              [axis](const Point<PT, PD>& a, const Point<PT, PD>& b) {
-                  return a.getValues()[axis] < b.getValues()[axis];
-              });
+    std::sort(begin, end, [axis](const Point<PT, PD>& a, const Point<PT, PD>& b) {
+        return a.getValues()[axis] < b.getValues()[axis];
+    });
 
-    // Split points into left and right subsets
-    size_t medianIndex = points.size() / 2;
-    std::vector<Point<PT, PD>> leftPoints(points.begin(), points.begin() + medianIndex);
-    std::vector<Point<PT, PD>> rightPoints(points.begin() + medianIndex, points.end());
+    // Find the median
+    auto median = begin + count / 2;
 
-    // Recursively build the left and right subtrees
-    node->left = std::move(buildTree(leftPoints, depth + 1));
-    node->right = std::move(buildTree(rightPoints, depth + 1));
+    // Recursively build left and right subtrees
+    node->left = buildTree(begin, median, depth + 1);   // Left subtree
+    node->right = buildTree(median, end, depth + 1);    // Right subtree
 
     return node;
 }

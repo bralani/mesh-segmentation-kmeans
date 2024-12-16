@@ -63,7 +63,7 @@ public:
             std::cout << this->coordinates[i];
             if (i < PD - 1) std::cout << ", ";
         }
-        std::cout << ") - Count: " << count << "\n";
+        std::cout << ") - Count: " << count;
     }
 };
 

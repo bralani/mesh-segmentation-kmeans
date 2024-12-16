@@ -8,6 +8,18 @@
 
 /**
  * Class template to represent a node in a KD-Tree
+ * 
+ * A node in this tree delines a spacial region (a Cell).
+ * The spacial region is delimited by cellMin and cellMax which corresponds to the min
+ * and max coordinates of any point that can be put in this spatia region-
+ * WgtCent is the vector sum of all the points contained in the spatial region
+ * 
+ * In particular, only the leaves of such three has the attribute myPoint.
+ * That's because for leaves the spatial region has cellMin = cellMax = the coordinate of
+ * a single point.
+ * myPoint is kept as a pointer to be able to assign it a centroid later on.
+ * 
+ * 
  * Template parameters:
  * - PT: The type of the coordinate values (e.g., double, float)
  * - PD: The number of dimensions of the points (e.g., 2 for 2D, 3 for 3D)
@@ -21,6 +33,7 @@ struct KdNode {
     std::unique_ptr<KdNode<PT, PD>> left = nullptr;              // Left child
     std::unique_ptr<KdNode<PT, PD>> right = nullptr;             // Right child
 
+    std::unique_ptr<Point<PT,PD>> myPoint = nullptr;
 
     /**
      * Constructor
