@@ -41,8 +41,9 @@ make
 
 ### 4. Docker commands
 ```bash
-docker build -t kmeans-plot . # To build the image
-docker run --rm -it -v $(pwd)/output:/app/output kmeans-plot # to run the image and store the plot
+#From the main folder
+docker build -t kmeans-plot . # To build the image, you may need to use "sudo"
+docker run --rm -it -v $(pwd)/output:/app/output kmeans-plot # to run the image and store the plot, you may need to use "sudo"
 ```
 
 ### 4. Project Structure
