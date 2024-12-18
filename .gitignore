@@ -38,3 +38,4 @@ tests/main.cpp
 executable
 /tests/main.cpp
 /build
+/.idea
