@@ -14,11 +14,15 @@ class CentroidPoint : public Point<PT, PD>, public HasWgtCent<PT, PD> {
 public:
     // Default constructor
     // Initializes both Point and HasWgtCent part of the class
+    // NOTE this is the default you could have written CentroidPoint()=default;
     CentroidPoint() 
         : Point<PT, PD>(), HasWgtCent<PT, PD>() {}
 
     // Constructor with a Point as input
     // Initializes the Point part with the given point and the HasWgtCent part as a default object
+    // Note. It is not an error, but unnecessary to state that HasWgtCent<PT, PD> is defualt constructed:
+    // CentroidPoint(const Point<PT, PD>& point): Point<PT, PD>(point){}
+    // is enough
     CentroidPoint(const Point<PT, PD>& point)
         : Point<PT, PD>(point), HasWgtCent<PT, PD>() {}
 
