@@ -88,7 +88,7 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT,PD>::buildTree(typename std::vector<Po
 
     int max_threads = omp_get_max_threads();
     bool can_parallelize = (depth < std::log2(max_threads));
-
+    // Note: deesn't it work with just #pragma omp parallel if(depth < std::log2(max_threads))?
     if(can_parallelize) {
         #pragma omp parallel
         {
