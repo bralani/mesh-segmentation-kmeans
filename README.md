@@ -2,7 +2,17 @@
 
 Welcome to the **K-Means Clustering Hands-On** project! This repository provides an interactive and educational implementation of the **K-means clustering algorithm**. It's designed to help you understand how the algorithm works and experiment with clustering data.
 
----
+## Introduction to K-Means Clustering
+
+The **K-Means clustering algorithm** is a popular unsupervised machine learning method used to group data into clusters based on their features. It's widely used in various fields, including image processing, market segmentation, and bioinformatics.
+
+### How It Works
+1. **Initialization**: The algorithm starts by selecting `K` initial centroids, which can be chosen randomly or using specific strategies.
+2. **Assignment Step**: Each data point is assigned to the nearest centroid, forming clusters.
+3. **Update Step**: The centroids are recalculated as the mean of all data points assigned to them.
+4. **Iteration**: Steps 2 and 3 are repeated until centroids stabilize (i.e., do not change significantly) or a maximum number of iterations is reached.
+
+K-Means aims to minimize the **intra-cluster variance**, ensuring that data points within a cluster are as close as possible to their centroid. While simple and efficient, the algorithm may converge to a local minimum and can be sensitive to the initial placement of centroids.
 
 ## Features
 
@@ -10,8 +20,6 @@ Welcome to the **K-Means Clustering Hands-On** project! This repository provides
 - **Modular Design**: Easily configurable parameters for customization.
 - **Simple Setup**: Get started with minimal configuration.
 - **Visualizations**: View clustering results and centroids.
-
----
 
 ## Setup and Installation
 
