@@ -47,30 +47,30 @@ int main()
         DistanceMetric euclMetric = euclideanMetric;
         KMeans<double, DIMENSION> kmeans(num_clusters, points, euclMetric, 1e-4);
 
-        // Separate the x and y coordinates for plotting
-        std::vector<double> x, y;
-        for (const auto &point : points)
-        {
-            x.push_back(point.coordinates[0]); // x-coordinate
-            y.push_back(point.coordinates[1]); // y-coordinate
-        }
+        // // Separate the x and y coordinates for plotting
+        // std::vector<double> x, y;
+        // for (const auto &point : points)
+        // {
+        //     x.push_back(point.coordinates[0]); // x-coordinate
+        //     y.push_back(point.coordinates[1]); // y-coordinate
+        // }
 
-        // Plot the data
-        plt::scatter(x, y, 10);
+        // // Plot the data
+        // plt::scatter(x, y, 10);
 
         kmeans.fit();
 
         kmeans.print();
 
         // Set title and labels
-        plt::title("Plot from CSV Data");
-        plt::xlabel("X-axis");
-        plt::ylabel("Y-axis");
+        // plt::title("Plot from CSV Data");
+        // plt::xlabel("X-axis");
+        // plt::ylabel("Y-axis");
 
-        // Save the plot as an image
-        plt::save("/app/output/plot.png");
+        // // Save the plot as an image
+        // plt::save("/app/output/plot.png");
 
-        plt::show();
+        // plt::show();
 
         return 0;
     }

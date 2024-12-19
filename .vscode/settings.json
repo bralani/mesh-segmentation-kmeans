@@ -85,6 +85,8 @@
         "print": "cpp",
         "queue": "cpp",
         "stack": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "__availability": "cpp",
+        "version": "cpp"
     }
 }

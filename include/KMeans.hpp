@@ -316,8 +316,50 @@ void KMeans<PT, PD>::print()
     std::cout << "\n";
   }
 
+  std::cout << "-----------------------" << std::endl;
+  std::cout << "Points: \n";
+
+  // Color map based on the centroid index
+  std::vector<std::string> colors = {"r", "g", "b", "y", "m", "c", "k", "orange", "purple", "brown"};
+
+  // Store the points and their respective colors
+  std::vector<double> x_points, y_points;
+  std::vector<std::string> point_colors;
+
+  for (auto &p : data)
+  {
+    p.print();
+    if (p.centroid != nullptr) // Check if a centroid is set
+    {
+      std::cout << " -> Centroid: ";
+      p.centroid->print();
+
+      // Find the index of the corresponding centroid
+      // Assuming Point<PT, PD> is compatible with CentroidPoint<PT, PD>
+      auto centroid_candidate = CentroidPoint<PT, PD>(*p.centroid); // Convert Point to CentroidPoint
+      auto it = std::find(centroids.begin(), centroids.end(), centroid_candidate);
+      int centroid_index = std::distance(centroids.begin(), it);
+
+      // Add the point's coordinates and color based on the centroid index
+      x_points.push_back(p.coordinates[0]);
+      y_points.push_back(p.coordinates[1]);
+      point_colors.push_back(colors[centroid_index % colors.size()]);
+    }
+    else
+    {
+      std::cout << " -> No centroid assigned.";
+    }
+    std::cout << "\n";
+  }
+
   try
   {
+
+    std::map<std::string, std::string> point_options;
+    point_options["color"] = "yellow"; // for all points, or dynamically set it per point
+
+    plt::scatter(x_points, y_points, 50, point_options);
+
     // Plot the centroids with bigger markers (e.g., size 50) and a distinct color (e.g., black)
     std::vector<double> x_centroids, y_centroids;
     for (const auto &centroid : centroids)
@@ -325,7 +367,6 @@ void KMeans<PT, PD>::print()
       x_centroids.push_back(centroid.coordinates[0]);
       y_centroids.push_back(centroid.coordinates[1]);
     }
-
     plt::scatter(x_centroids, y_centroids, 50, {{"color", "k"}, {"label", "Centroids"}}); // Black color for centroids
 
     // Set title and labels
