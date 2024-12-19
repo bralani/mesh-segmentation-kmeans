@@ -46,22 +46,20 @@ public:
         }
     }
 
-    // Equality operator to compare two CentroidPoint objects
+    // Equality operator to compare two CentroidPoint objects based on the integer part of coordinates only
     bool operator==(const CentroidPoint<PT, PD> &other) const
     {
-        // Compare the base Point and HasWgtCent classes
-        if (this->coordinates != other.coordinates)
-        {
-            return false; // Coordinates are different
-        }
+        // Compare the integer part of the coordinates
         for (std::size_t i = 0; i < PD; ++i)
         {
-            if (this->wgtCent[i] != other.wgtCent[i])
+            if (std::floor(this->coordinates[i]) != std::floor(other.coordinates[i]))
             {
-                return false; // Weights are different
+                return false; // Coordinates differ in their integer part
             }
         }
-        return this->count == other.count; // Compare the count
+
+        // No comparison for 'count', we are only comparing coordinates here
+        return true; // If coordinates are the same (integer part), return true
     }
 
     // Virtual destructor

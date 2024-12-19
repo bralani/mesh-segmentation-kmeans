@@ -322,9 +322,9 @@ void KMeans<PT, PD>::print()
   // Color map based on the centroid index
   std::vector<std::string> colors = {"r", "g", "b", "y", "m", "c", "k", "orange", "purple", "brown"};
 
-  // Store the points and their respective colors
-  std::vector<double> x_points, y_points;
-  std::vector<std::string> point_colors;
+  // Create vectors for points associated with each centroid
+  std::vector<std::vector<double>> x_points_per_centroid(centroids.size());
+  std::vector<std::vector<double>> y_points_per_centroid(centroids.size());
 
   for (auto &p : data)
   {
@@ -338,12 +338,19 @@ void KMeans<PT, PD>::print()
       // Assuming Point<PT, PD> is compatible with CentroidPoint<PT, PD>
       auto centroid_candidate = CentroidPoint<PT, PD>(*p.centroid); // Convert Point to CentroidPoint
       auto it = std::find(centroids.begin(), centroids.end(), centroid_candidate);
-      int centroid_index = std::distance(centroids.begin(), it);
 
-      // Add the point's coordinates and color based on the centroid index
-      x_points.push_back(p.coordinates[0]);
-      y_points.push_back(p.coordinates[1]);
-      point_colors.push_back(colors[centroid_index % colors.size()]);
+      if (it != centroids.end())
+      {
+        int centroid_index = std::distance(centroids.begin(), it);
+
+        // Add the point's coordinates to the appropriate centroid's point vector
+        x_points_per_centroid[centroid_index].push_back(p.coordinates[0]);
+        y_points_per_centroid[centroid_index].push_back(p.coordinates[1]);
+      }
+      else
+      {
+        std::cerr << "Error: Centroid not found!" << std::endl;
+      }
     }
     else
     {
@@ -354,11 +361,12 @@ void KMeans<PT, PD>::print()
 
   try
   {
-
-    std::map<std::string, std::string> point_options;
-    point_options["color"] = "yellow"; // for all points, or dynamically set it per point
-
-    plt::scatter(x_points, y_points, 50, point_options);
+    // Plot the points for each centroid with its associated color
+    for (size_t i = 0; i < centroids.size(); ++i)
+    {
+      // Plot the points for the current centroid with its corresponding color
+      plt::scatter(x_points_per_centroid[i], y_points_per_centroid[i], 20, {{"color", colors[i % colors.size()]}, {"label", "Centroid " + std::to_string(i)}});
+    }
 
     // Plot the centroids with bigger markers (e.g., size 50) and a distinct color (e.g., black)
     std::vector<double> x_centroids, y_centroids;
