@@ -42,7 +42,11 @@ private:
 // Constructor: initializes the KD-tree by building it
 template <typename PT, std::size_t PD>
 KdTree<PT, PD>::KdTree(std::vector<Point<PT, PD>>& points) {
-    root = buildTree(points.begin(), points.end(), 0);  
+    #pragma omp parallel
+    {
+        #pragma omp single
+        root = buildTree(points.begin(), points.end(), 0); 
+    }
 }
 
 // Recursively builds the KD-tree
@@ -87,23 +91,20 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT,PD>::buildTree(typename std::vector<Po
 
 
     int max_threads = omp_get_max_threads();
-    bool can_parallelize = (depth < std::log2(max_threads));
+    bool can_parallelize = (depth < std::log2(max_threads) + 1);
 
-    if(can_parallelize) {
-        #pragma omp parallel
+    if (can_parallelize) {
+        #pragma omp parallel sections
         {
-            #pragma omp single
-            {
-                #pragma omp task shared(node)
-                node->left = buildTree(begin, median, depth + 1); // Left subtree
-                
-                #pragma omp task shared(node)
-                node->right = buildTree(median, end, depth + 1);  // Right subtree
-            }
+            #pragma omp section 
+            node->left = buildTree(begin, median, depth + 1);
+
+            #pragma omp section
+            node->right = buildTree(median, end, depth + 1);
         }
     } else {
-        node->left = buildTree(begin, median, depth + 1);   // Left subtree
-        node->right = buildTree(median, end, depth + 1);    // Right subtree
+        node->left = buildTree(begin, median, depth + 1);
+        node->right = buildTree(median, end, depth + 1); 
     }
 
     return node;

@@ -62,7 +62,7 @@ private:
   void filter();
 
   // Recursive helper for the filter function
-  void filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, int depth = 0);
+  void filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, const std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, int depth = 0);
 
   // Determines if a point `z` is farther from a bounding box than `zStar`
   bool isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zStar, const KdNode<PT, PD> &node);
@@ -70,7 +70,7 @@ private:
   // Finds the closest candidate (centroid) to a given point
   std::shared_ptr<CentroidPoint<PT, PD>> findClosestCandidate(const std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, const Point<PT, PD> &target);
 
-  void assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, std::shared_ptr<CentroidPoint<PT, PD>> &centroid);
+  void assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, const std::shared_ptr<CentroidPoint<PT, PD>> &centroid);
 
   bool checkConvergence();
 };
@@ -144,7 +144,11 @@ void KMeans<PT, PD>::filter()
   }
 
   // Start the recursive filtering process
-  filterRecursive(kdtree->getRoot(), centersPointers, 0);
+  #pragma omp parallel 
+  {
+    #pragma omp single
+    filterRecursive(kdtree->getRoot(), centersPointers, 0);
+  }
 
   /** We need to divide the wgtCent of the centroid for the number of points which has it as centroid */
   for (CentroidPoint<PT, PD> &c : centroids)
@@ -155,7 +159,7 @@ void KMeans<PT, PD>::filter()
 
 /**  Recursive function for filtering. Follow exactly the paper */
 template <typename PT, std::size_t PD>
-void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, int depth)
+void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, const std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, int depth)
 {
   if (!node)
     return;
@@ -198,48 +202,53 @@ void KMeans<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, std:
     }
 
     int max_threads = omp_get_max_threads();
-    bool can_parallelize = (depth < std::log2(max_threads));
+    bool can_parallelize = (depth < std::log2(max_threads)+1);
 
-    if (can_parallelize)
+    if (filteredCandidates.size() == 1)
     {
+      // If an internal node has a single candidate, just update it and spread the candidate among the subtree
+      *filteredCandidates[0] = *filteredCandidates[0] + *node;
 
-#pragma omp parallel
-#pragma omp single
+      if (can_parallelize)
       {
-        if (filteredCandidates.size() == 1)
+        #pragma omp parallel
         {
-          // If an internal node has a single candidate, just update it and spread the candidate among the subtree
-          *filteredCandidates[0] = *filteredCandidates[0] + *node;
+          #pragma omp single
+          {
+            // Create tasks to assign centroids to the left and right subtrees
+            #pragma omp task shared(node, filteredCandidates)
+            assignCentroid(node->left, filteredCandidates[0]);
 
-#pragma omp task firstprivate(filteredCandidates)
-          assignCentroid(node->left, filteredCandidates[0]);
-
-#pragma omp task firstprivate(filteredCandidates)
-          assignCentroid(node->right, filteredCandidates[0]);
+            #pragma omp task shared(node, filteredCandidates)
+            assignCentroid(node->right, filteredCandidates[0]);
+          }
         }
-        else
-        {
-// Recursively filter left and right subtrees
-#pragma omp task firstprivate(filteredCandidates)
-          filterRecursive(node->left, filteredCandidates, depth + 1);
-
-#pragma omp task firstprivate(filteredCandidates)
-          filterRecursive(node->right, filteredCandidates, depth + 1);
-        }
+      }
+      else
+      {
+        assignCentroid(node->left, filteredCandidates[0]);
+        assignCentroid(node->right, filteredCandidates[0]);
       }
     }
     else
     {
-      if (filteredCandidates.size() == 1)
+      if (can_parallelize)
       {
-        // If an internal node has a single candidate, just update it and spread the candidate among the subtree
-        *filteredCandidates[0] = *filteredCandidates[0] + *node;
-        assignCentroid(node->left, filteredCandidates[0]);
-        assignCentroid(node->right, filteredCandidates[0]);
+        #pragma omp parallel
+        {
+          #pragma omp single
+          {
+            // Create tasks to filter the left and right subtrees recursively
+            #pragma omp task shared(filteredCandidates)
+            filterRecursive(node->left, filteredCandidates, depth + 1);
+
+            #pragma omp task shared(filteredCandidates)
+            filterRecursive(node->right, filteredCandidates, depth + 1);
+          }
+        }
       }
       else
       {
-        // Recursively filter left and right subtrees
         filterRecursive(node->left, filteredCandidates, depth + 1);
         filterRecursive(node->right, filteredCandidates, depth + 1);
       }
@@ -290,7 +299,7 @@ bool KMeans<PT, PD>::isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zSta
  * Assign the centroid to the leaf nodes of the subtree
  */
 template <typename PT, std::size_t PD>
-void KMeans<PT, PD>::assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, std::shared_ptr<CentroidPoint<PT, PD>> &centroid)
+void KMeans<PT, PD>::assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, const std::shared_ptr<CentroidPoint<PT, PD>> &centroid)
 {
   if (!node->left && !node->right)
   {
