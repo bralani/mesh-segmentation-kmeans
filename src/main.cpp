@@ -1,11 +1,11 @@
 #include <vector>
 
 #include <iostream>
-#include "../include/metrics.hpp"
-#include "../include/KMeans.hpp"
-#include "../include/CSVUtils.hpp"
-#include "../include/csv-parser/single_include/csv.hpp"
-#include "../include/matplotlib-cpp/matplotlibcpp.h"
+
+#include "CSVUtils.hpp"
+#include "KDTree.hpp"
+#include "KMeans.hpp"
+#include "metrics.hpp"
 
 namespace plt = matplotlibcpp;
 
@@ -43,8 +43,7 @@ int main()
             return 1;
         }
 
-        DistanceMetric euclMetric = euclideanMetric;
-        KMeans<double, DIMENSION> kmeans(num_clusters, points, euclMetric, 1e-4);
+        KMeans<double, DIMENSION, EuclideanMetric<double, DIMENSION>> kmeans(num_clusters, points, 1e-4);
 
         kmeans.fit();
         kmeans.print();

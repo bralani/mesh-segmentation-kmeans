@@ -8,7 +8,7 @@ add_subdirectory(include/matplotlib-cpp)
 set(CMAKE_OSX_ARCHITECTURES arm64)
 
 # Set C++ standard version (if required)
-# set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # Include csv-parser as a submodule
 set(CSV_PARSER_DIR "${CMAKE_SOURCE_DIR}/include/csv-parser")

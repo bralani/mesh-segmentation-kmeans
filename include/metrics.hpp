@@ -1,32 +1,45 @@
+#ifndef METRICS_HPP
+#define METRICS_HPP
+
+#include <iostream>
 #include <vector>
 #include <cmath>
+#include <stdexcept>
 
 /**
- * Euclidean distance metric
- * Calculates the straight-line distance between two points
- * @param a Vector of coordinates for the first point
- * @param b Vector of coordinates for the second point
- * @return The Euclidean distance
+ * Abstract class representing a generic metric for calculating distances.
  */
-double euclideanMetric(const std::vector<double>& a, const std::vector<double>& b) {
-    double sum = 0;
-    for (size_t i = 0; i < a.size(); ++i) {
-        sum += (a[i] - b[i]) * (a[i] - b[i]);
-    }
-    return std::sqrt(sum);
-}
+template <typename PT, std::size_t PD>
+class Metric
+{
+public:
+    // Pure virtual function to calculate distance
+    virtual PT distanceTo(const Point<PT, PD>& a, const Point<PT, PD>& b) const = 0;
+
+    // Virtual destructor to ensure proper cleanup in derived classes
+    virtual ~Metric() = default;
+};
 
 /**
- * Manhattan distance metric
- * Calculates the sum of the absolute differences between the coordinates of two points
- * @param a Vector of coordinates for the first point
- * @param b Vector of coordinates for the second point
- * @return The Manhattan distance
+ * Euclidean metric: calculates straight-line distance.
  */
-double manhattanMetric(const std::vector<double>& a, const std::vector<double>& b) {
-    double sum = 0;
-    for (size_t i = 0; i < a.size(); ++i) {
-        sum += std::abs(a[i] - b[i]);
+template <typename PT, std::size_t PD>
+class EuclideanMetric : public Metric<PT, PD>
+{
+public:
+    PT distanceTo(const Point<PT, PD>& a, const Point<PT, PD>& b) const override
+    {
+        if (a.coordinates.size() != a.coordinates.size())
+        {
+            throw std::invalid_argument("Points must have the same dimensionality");
+        }
+        PT sum = 0;
+        for (size_t i = 0; i < a.coordinates.size(); ++i)
+        {
+            sum += std::pow(a.coordinates[i] - b.coordinates[i], 2);
+        }
+        return std::sqrt(sum);
     }
-    return sum;
-}
+};
+
+#endif

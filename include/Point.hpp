@@ -6,7 +6,6 @@
 #include <cmath>
 #include <stdexcept>
 #include <numeric>
-#include "typedefs.h"
 
 /* Class to represent a point in a space of arbitrary dimensions (PD)
 * PT represents the type of the coordinates (e.g., double, int), and PD represents the number of dimensions
@@ -70,20 +69,6 @@ public:
             result.coordinates[i] = this->coordinates[i] - other.coordinates[i];
         }
         return result;
-    }
-
-    /**
-     * Calculates the distance between this point and another point using a given metric.
-     * The distance is computed by applying the metric function to the coordinates of the points.
-     */
-    PT distanceTo(const Point<PT, PD>& other, const DistanceMetric& metric) const {
-        //return metric(coordinates, other.getValues());
-        PT sum = PT(0);
-        for (std::size_t i = 0; i < PD; ++i) {
-            PT diff = coordinates[i] - other.coordinates[i];
-            sum += diff * diff;
-        }
-        return std::sqrt(sum);
     }
 
     // Static function to compute the sum of a vector of points (element-wise)
