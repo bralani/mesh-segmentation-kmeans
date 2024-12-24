@@ -5,7 +5,7 @@
 [submodule "include/csv-parser"]
 	path = include/csv-parser
 	url = https://github.com/vincentlaucsb/csv-parser.git
-
+	
 [submodule "include/meshlib"]
 	path = include/meshlib
 	url = https://github.com/MeshInspector/MeshLib.git
