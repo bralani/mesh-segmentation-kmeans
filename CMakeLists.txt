@@ -15,7 +15,7 @@ set(CSV_PARSER_DIR "${CMAKE_SOURCE_DIR}/include/csv-parser")
 include_directories(${CSV_PARSER_DIR}/single_include)
 
 # Create the executable for your project
-add_executable(k_means src/main.cpp)
+add_executable(k_means src/main.cpp src/Mesh.cpp)
 
 # Link the matplotlib-cpp library (if still required)
 target_link_libraries(k_means PRIVATE matplotlib_cpp)
@@ -44,3 +44,13 @@ find_package(OpenMP REQUIRED)
 target_link_libraries(k_means PUBLIC OpenMP::OpenMP_CXX)
 set(ENV{OMP_NESTED} TRUE)
 set(ENV{OMP_NUM_THREADS} 8)
+
+# MeshLib
+find_package(MeshLib CONFIG REQUIRED)
+find_package(TBB REQUIRED)
+target_include_directories(k_means PUBLIC ${MESHLIB_INCLUDE_DIR} ${MESHLIB_THIRDPARTY_INCLUDE_DIR})
+target_link_libraries(k_means PRIVATE MeshLib::MRMesh TBB::tbb)
+target_link_directories(k_means PUBLIC ${MESHLIB_THIRDPARTY_LIB_DIR})
+target_link_libraries(k_means PRIVATE MeshLib::MRIOExtras)
+find_package(fmt REQUIRED)
+find_package(spdlog REQUIRED)

@@ -21,6 +21,15 @@ K-Means aims to minimize the **intra-cluster variance**, ensuring that data poin
 - **Simple Setup**: Get started with minimal configuration.
 - **Visualizations**: View clustering results and centroids.
 
+## Requirements
+To run the project, you need the following tools and libraries:
+- **C++ Compiler**: To compile and run the source code.
+- **CMake**: To build the project.
+- **Python with matplotlib**: To generate plots in 2D.
+- **OpenMP**: For parallel processing.
+- **Meshlib**: To load 3D models. Please install the release build following this guide: [https://meshlib.io/documentation/MeshLibCppSetupGuide.html](https://meshlib.io/documentation/MeshLibCppSetupGuide.html).
+- **Docker**: To run the project in a container (optional).
+
 ## Setup and Installation
 
 Follow these steps to get the project up and running:
