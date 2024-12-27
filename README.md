@@ -30,6 +30,9 @@ To run the project, you need the following tools and libraries:
 - **Meshlib**: To load 3D models. Please install the release build following this guide: [https://meshlib.io/documentation/MeshLibCppSetupGuide.html](https://meshlib.io/documentation/MeshLibCppSetupGuide.html).
 - **Docker**: To run the project in a container (optional).
 
+## Data
+In order to run the project, you must download the 3D dataset from the following [link](https://polimi365-my.sharepoint.com/:u:/g/personal/10978268_polimi_it/EVFMeQt8fdRCjSt8ZlpPfgcBnbx4x689MhNPFvU4Sx7S_A?e=obGYGv), unzip it and place it in the `resources` folder.
+
 ## Setup and Installation
 
 Follow these steps to get the project up and running:
