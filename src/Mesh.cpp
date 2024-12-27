@@ -4,7 +4,9 @@ Mesh::Mesh(const std::filesystem::path& path)
 {
   std::cout << "Loading mesh from " << path << std::endl;
   MR::Mesh mesh = *MR::MeshLoad::fromAnySupportedFormat(path);
-  buildGraphFromTopology(mesh.topology);
+  this->mesh = mesh;
+
+  buildGraph();
 }
 
 std::ostream &operator<<(std::ostream &os, const Mesh &graph)
@@ -26,16 +28,16 @@ const std::unordered_map<MR::VertId, std::vector<MR::VertId>>& Mesh::getGraph() 
   return adjacencyList;
 }
 
-void Mesh::buildGraphFromTopology(const MR::MeshTopology &meshTopology)
+void Mesh::buildGraph()
 {
   std::unordered_map<MR::VertId, std::set<MR::VertId>> tempAdjacencyList;
 
-  for (MR::EdgeId edge(0); edge < meshTopology.edgeSize(); ++edge)
+  for (MR::EdgeId edge(0); edge < mesh.topology.edgeSize(); ++edge)
   {
-    if (!meshTopology.isLoneEdge(edge))
+    if (!mesh.topology.isLoneEdge(edge))
     {
-      MR::VertId org = meshTopology.org(edge);
-      MR::VertId dest = meshTopology.dest(edge);
+      MR::VertId org = mesh.topology.org(edge);
+      MR::VertId dest = mesh.topology.dest(edge);
       tempAdjacencyList[org].insert(dest);
       tempAdjacencyList[dest].insert(org);
     }

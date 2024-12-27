@@ -13,6 +13,11 @@
 #include <string>
 #include <filesystem>
 
+// Typedefs for Mesh identifiers (VertId, EdgeId, FaceId)
+typedef MR::VertId VertId;  // Alias for MR::VertId
+typedef MR::EdgeId EdgeId;  // Alias for MR::EdgeId
+typedef MR::FaceId FaceId;  // Alias for MR::FaceId
+
 class Mesh
 {
 public:
@@ -23,13 +28,27 @@ public:
   friend std::ostream &operator<<(std::ostream &os, const Mesh &graph);
 
   // Get the adjacency list (graph representation)
-  const std::unordered_map<MR::VertId, std::vector<MR::VertId>>& getGraph() const;
+  const std::unordered_map<VertId, std::vector<VertId>>& getGraph() const;
+
+  // Get the mesh
+  const MR::Mesh& getMesh() const { return mesh; }
+  
+  // Get the mesh topology
+  const MR::MeshTopology& getMeshTopology() const { return mesh.topology; }
+
+  // Get the face cluster
+  const int getFaceCluster(FaceId face) const { return faceClusters.at(face); }
+
+  // Set the face cluster
+  void setFaceCluster(FaceId face, int cluster) { faceClusters[face] = cluster; }
 
 private:
-  std::unordered_map<MR::VertId, std::vector<MR::VertId>> adjacencyList;
+  MR::Mesh mesh;
+  std::unordered_map<VertId, std::vector<VertId>> adjacencyList;
+  std::unordered_map<FaceId, int> faceClusters;
 
   // Build the graph from topology
-  void buildGraphFromTopology(const MR::MeshTopology &meshTopology);
+  void buildGraph();
 };
 
 #endif // MESH_HPP
