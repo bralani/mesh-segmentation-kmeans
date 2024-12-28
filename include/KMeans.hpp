@@ -1,3 +1,6 @@
+#ifndef K_MEANS_HPP
+#define K_MEANS_HPP
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -44,6 +47,8 @@ public:
 
   void print();
 
+  std::vector<Point<PT, PD>>& getPoints() { return data; }
+
 private:
   int numClusters;                                 // Number of clusters
   std::vector<Point<PT, PD>> data;                 // Data points
@@ -89,10 +94,13 @@ void KMeans<PT, PD, M>::initializeCentroids()
   std::vector<int> sampledIndices;
   std::sample(indices.begin(), indices.end(), std::back_inserter(sampledIndices), numClusters, gen);
 
+  int i = 0;
   // Creazione dei centroidi iniziali
   for (int idx : sampledIndices)
   {
     centroids.push_back(CentroidPoint<PT, PD>(data[idx]));
+    centroids[i].setID(i);
+    i++;
   }
 }
 
@@ -402,3 +410,5 @@ void KMeans<PT, PD, M>::print()
     return;
   }
 }
+
+#endif // K_MEANS_HPP

@@ -13,20 +13,23 @@
 template <typename PT, std::size_t PD>
 class Point {
 public:
-    std::array<PT, PD> coordinates;  // Array to store the coordinates of the point
+    int id;                                             // Unique identifier for the point
+    std::array<PT, PD> coordinates;                     // Array to store the coordinates of the point
     std::shared_ptr<Point<PT, PD>> centroid = nullptr;  // Optional pointer to the centroid of the point (if applicable)
     
     // Default constructor, initializes coordinates to zero
     Point(){
         coordinates.fill(PT(0));
+        id = -1;
     }
 
     // Constructor to initialize with a specific array of coordinates
-    Point(const std::array<PT, PD>& coords) : coordinates(coords){}
+    Point(const std::array<PT, PD>& coords, int id = -1) : coordinates(coords), id(id) {}
 
     // Constructor to initialize all coordinates with a single value
-    Point(PT value)  {
+    Point(PT value, int id = -1)  {
         coordinates.fill(value);
+        this->id = id;
     }
 
     // Returns the number of dimensions of the point (PD)
@@ -93,6 +96,12 @@ public:
             std::cout << "-> Centroid: ";
             centroid->print();
         }
+
+        std::cout << " Point ID: " << id;
+    }
+
+    void setID(int id) {
+        this->id = id;
     }
 
     virtual ~Point() = default;

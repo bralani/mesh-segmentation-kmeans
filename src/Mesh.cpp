@@ -48,4 +48,12 @@ void Mesh::buildGraph()
   {
     adjacencyList[vertex] = std::vector<MR::VertId>(neighbors.begin(), neighbors.end());
   }
+
+  for (FaceId face(0); face < mesh.topology.faceSize(); ++face) {
+    auto coords = mesh.triCenter(face);
+    std::array<double, 3> arr = {coords.x, coords.y, coords.z};
+
+    Point<double, 3> point(arr, face);
+    meshFacesPoints.push_back(point);
+  }
 }

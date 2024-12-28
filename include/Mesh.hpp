@@ -5,6 +5,7 @@
 #include <MRMesh/MRMeshLoad.h>
 #include <MRMesh/MRMeshSave.h>
 #include <MRMesh/MRVector.h> // For VertId and EdgeId
+#include "Point.hpp"
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -34,7 +35,7 @@ public:
   const MR::Mesh& getMesh() const { return mesh; }
   
   // Get the mesh topology
-  const MR::MeshTopology& getMeshTopology() const { return mesh.topology; }
+  MR::MeshTopology& getMeshTopology()  { return mesh.topology; }
 
   // Get the face cluster
   const int getFaceCluster(FaceId face) const { return faceClusters.at(face); }
@@ -42,10 +43,16 @@ public:
   // Set the face cluster
   void setFaceCluster(FaceId face, int cluster) { faceClusters[face] = cluster; }
 
+  // Get the mesh faces as points
+  std::vector<Point<double, 3>>& getMeshFacesPoints() {
+    return meshFacesPoints;
+  }
+
 private:
   MR::Mesh mesh;
   std::unordered_map<VertId, std::vector<VertId>> adjacencyList;
   std::unordered_map<FaceId, int> faceClusters;
+  std::vector<Point<double, 3>> meshFacesPoints;
 
   // Build the graph from topology
   void buildGraph();
