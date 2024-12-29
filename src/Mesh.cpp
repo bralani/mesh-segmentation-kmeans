@@ -2,11 +2,44 @@
 
 Mesh::Mesh(const std::filesystem::path& path)
 {
-  std::cout << "Loading mesh from " << path << std::endl;
   MR::Mesh mesh = *MR::MeshLoad::fromAnySupportedFormat(path);
   this->mesh = mesh;
 
   buildGraph();
+}
+
+int Mesh::createSegmentationFromSegFile(const std::filesystem::path& path)
+{
+  // check if the file has .seg extension
+  if (path.extension() != ".seg")
+  {
+    throw std::invalid_argument("File must have .seg extension");
+  }
+
+  std::ifstream file(path);
+  if (!file.is_open()) {
+    throw std::runtime_error("Failed to open file");
+  } 
+
+  std::string line;
+  int faceId = 0;
+  int maxCluster = 0;
+  while (std::getline(file, line))
+  {
+    std::istringstream iss(line);
+    int cluster;
+    if (!(iss >> cluster)) { break; } // error
+    
+    this->setFaceCluster(FaceId(faceId), cluster);
+
+    if (cluster > maxCluster)
+    {
+      maxCluster = cluster;
+    }
+    faceId++;
+  }
+
+  return maxCluster + 1;
 }
 
 std::ostream &operator<<(std::ostream &os, const Mesh &graph)

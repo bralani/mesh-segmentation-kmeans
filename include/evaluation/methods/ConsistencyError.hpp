@@ -1,8 +1,8 @@
 #ifndef CONSISTENCY_ERROR_HPP
 #define CONSISTENCY_ERROR_HPP
 
-#include "evaluation/Segmentations.hpp"
 #include "evaluation/Entry.hpp"
+#include "evaluation/Segmentations.hpp"
 
 /**************************************************************************************************
  **************************************************************************************************
@@ -14,9 +14,8 @@
  * Evaluate both global and local consistency error (GCE & LCE)
  * see Martin et. al in ICCV 01'
  */
-void EvaluateConsistencyError(Segmentation *s1, Segmentation *s2)
+struct Entry_CE* EvaluateConsistencyError(Segmentation *s1, Segmentation *s2)
 {
-
   int i, j;
   double GCE = 0, LCE = 0, GCEa = 0, LCEa = 0;
 
@@ -132,12 +131,13 @@ void EvaluateConsistencyError(Segmentation *s1, Segmentation *s2)
     delete[] areaSeg2;
   }
 
-  printf("Evaluation of Consistency Error ...\n");
-  printf("  GCE  = %.2f \n", GCE);
-  printf("  LCE  = %.2f \n", LCE);
-  printf("  GCEa = %.2f \n", GCEa);
-  printf("  LCEa = %.2f \n", LCEa);
-  fflush(stdout);
+  // return the booking entry
+	Entry_CE *e = new Entry_CE;
+	e->GCE = GCE;
+	e->LCE = LCE;
+	e->GCEa = GCEa;
+	e->LCEa = LCEa;
+	return e;
 }
 
 #endif

@@ -16,15 +16,24 @@ include_directories(${CSV_PARSER_DIR}/single_include)
 
 # Create the executable for your project
 add_executable(k_means src/main.cpp src/Mesh.cpp)
+add_executable(mesh_segmentation src/segmentation.cpp src/Mesh.cpp)
+add_executable(evaluation src/evaluation.cpp src/Mesh.cpp)
 
 # Link the matplotlib-cpp library (if still required)
 target_link_libraries(k_means PRIVATE matplotlib_cpp)
+target_link_libraries(mesh_segmentation PRIVATE matplotlib_cpp)
+target_link_libraries(evaluation PRIVATE matplotlib_cpp)
 
 # Specify the output directory for the compiled executable
 set_target_properties(k_means PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set_target_properties(mesh_segmentation PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+set_target_properties(evaluation PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 
 # Include directories for matplotlib-cpp and csv-parser
 target_include_directories(k_means PRIVATE include)
+target_include_directories(mesh_segmentation PRIVATE include)
+target_include_directories(evaluation PRIVATE include)
+
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 message(STATUS "Python3 Executable: ${Python3_EXECUTABLE}")
@@ -33,6 +42,9 @@ message(STATUS "Python3 Include Directory: ${Python3_INCLUDE_DIRS}")
 
 target_include_directories(k_means PRIVATE ${Python3_INCLUDE_DIRS})
 target_link_libraries(k_means PRIVATE ${Python3_LIBRARIES})
+target_include_directories(mesh_segmentation PRIVATE ${Python3_INCLUDE_DIRS})
+target_link_libraries(mesh_segmentation PRIVATE ${Python3_LIBRARIES})
+target_link_libraries(evaluation PRIVATE ${Python3_LIBRARIES})
 
 
 # For compilers to find libomp you may need to set:
@@ -52,5 +64,13 @@ target_include_directories(k_means PUBLIC ${MESHLIB_INCLUDE_DIR} ${MESHLIB_THIRD
 target_link_libraries(k_means PRIVATE MeshLib::MRMesh TBB::tbb)
 target_link_directories(k_means PUBLIC ${MESHLIB_THIRDPARTY_LIB_DIR})
 target_link_libraries(k_means PRIVATE MeshLib::MRIOExtras)
+target_include_directories(mesh_segmentation PUBLIC ${MESHLIB_INCLUDE_DIR} ${MESHLIB_THIRDPARTY_INCLUDE_DIR})
+target_link_libraries(mesh_segmentation PRIVATE MeshLib::MRMesh TBB::tbb)
+target_link_directories(mesh_segmentation PUBLIC ${MESHLIB_THIRDPARTY_LIB_DIR})
+target_link_libraries(mesh_segmentation PRIVATE MeshLib::MRIOExtras)
+target_include_directories(evaluation PUBLIC ${MESHLIB_INCLUDE_DIR} ${MESHLIB_THIRDPARTY_INCLUDE_DIR})
+target_link_libraries(evaluation PRIVATE MeshLib::MRMesh TBB::tbb)
+target_link_directories(evaluation PUBLIC ${MESHLIB_THIRDPARTY_LIB_DIR})
+target_link_libraries(evaluation PRIVATE MeshLib::MRIOExtras)
 find_package(fmt REQUIRED)
 find_package(spdlog REQUIRED)

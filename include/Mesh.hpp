@@ -25,6 +25,9 @@ public:
   // Constructor
   Mesh(const std::filesystem::path& path);
 
+  // Create a segmentation from a .segm file and returns the number of clusters
+  int createSegmentationFromSegFile(const std::filesystem::path& path);
+
   // Overload the output operator for printing the graph
   friend std::ostream &operator<<(std::ostream &os, const Mesh &graph);
 

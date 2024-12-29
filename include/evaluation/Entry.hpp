@@ -5,47 +5,74 @@
 #include <string>
 
 /*
+ * Entry.hpp
+ * 
+ * Define the structs to book evaluations results
+ * 
+ */
+
+/*
  * The entry to book Cut Discrepancy results
  */
-struct EntryCD {
-    double CD = 0.0;
+struct Entry_CD {
+    double CD = 0;
+
+    friend std::ostream& operator<<(std::ostream& os, const Entry_CD& entry) {
+        os << "Evaluation of Cut Discrepancy ...\n";
+        os << "CD: " << entry.CD;
+        os << std::endl;
+        return os;
+    }
 };
 
 /*
  * The entry to book Consistency Error results
  */
-struct EntryCE {
-    double GCE = 0.0;
-    double LCE = 0.0;
-    double GCEa = 0.0;
-    double LCEa = 0.0;
+struct Entry_CE {
+    double GCE = 0;
+    double LCE = 0;
+    double GCEa = 0;
+    double LCEa = 0;
+
+    friend std::ostream& operator<<(std::ostream& os, const Entry_CE& entry) {
+        os << "Evaluation of Consistency Error ...\n";
+        os << "GCE: " << entry.GCE << ", LCE: " << entry.LCE
+           << ", GCEa: " << entry.GCEa << ", LCEa: " << entry.LCEa;
+        os << std::endl;
+        return os;
+    }
 };
 
 /*
  * The entry to book Hamming Distance
  */
-struct EntryHD {
-    double distance = 0.0;
-    double missingRate = 0.0;
-    double falseAlarmRate = 0.0;
+struct Entry_HD {
+    double distance = 0;
+    double missingRate = 0;
+    double falseAlarmRate = 0;
+
+    friend std::ostream& operator<<(std::ostream& os, const Entry_HD& entry) {
+        os << "Evaluation of Hamming Distance ...\n";
+        os << "Distance: " << entry.distance
+           << ", Missing Rate: " << entry.missingRate
+           << ", False Alarm Rate: " << entry.falseAlarmRate;
+        os << std::endl;
+        return os;
+    }
 };
 
 /*
  * The entry to book Rand Index related measure
  */
-struct EntryRI {
-    double RI = 0.0; // Rand Index
-};
+struct Entry_RI {
+    double RI = 0; // Rand Index
 
-/*
- * The entry to book all evaluations
- */
-struct Entry {
-    std::string name;                                // Name of the entry
-    std::unique_ptr<EntryCE> eCE = nullptr;         // Consistency Error
-    std::unique_ptr<EntryHD> eHD = nullptr;         // Hamming Distance
-    std::unique_ptr<EntryCD> eCD = nullptr;         // Cut Discrepancy
-    std::unique_ptr<EntryRI> eRI = nullptr;         // Rand Index
+    friend std::ostream& operator<<(std::ostream& os, const Entry_RI& entry) {
+        os << "Evaluation of Rand Index ...\n";
+        os << "RI: " << entry.RI;
+        os << std::endl;
+        return os;
+    }
 };
 
 #endif // ENTRY_HPP

@@ -25,7 +25,7 @@ inline double CN2(int N, double den) {
 /*
  * Get Rand Index
  */
-void EvaluateRandIndex(Segmentation* s1, Segmentation* s2){
+Entry_RI* EvaluateRandIndex(Segmentation* s1, Segmentation* s2){
 	
 	// variables
 	double RI = 0;
@@ -89,10 +89,10 @@ void EvaluateRandIndex(Segmentation* s1, Segmentation* s2){
 		delete n;
 	}
 	
-	// Output results
-  printf("Evaluating Rand Index ...\n");
-  printf("  RI = %.2f \n", RI);
-  fflush(stdout);
+	Entry_RI* e = new Entry_RI;
+	e->RI = RI;
+
+	return e;
 }
 
 #endif

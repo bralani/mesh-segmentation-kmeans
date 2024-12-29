@@ -13,7 +13,7 @@
 /* 
  * Evaluate Hamming Distance, Huang et. al, ICIP 95'
  */
-void EvaluateHammingDistance(Segmentation* s1, Segmentation* s2){
+struct Entry_HD* EvaluateHammingDistance(Segmentation* s1, Segmentation* s2){
 	
 	// Variables
 	int i, j;
@@ -76,19 +76,22 @@ void EvaluateHammingDistance(Segmentation* s1, Segmentation* s2){
 	for(i = 0; i < nSeg1; i ++){
 		dh21 -= intersection[i][matchForS1[i]];
 	}
-	
-  printf("Evaluation of Hamming Distance ...\n");
-  printf("  HammingDistance  = %.2f \n", (dh12 + dh21) / (2 * area));
-  printf("  MissingRate  = %.2f \n", dh12 / area);
-  printf("  FalseAlarmRate = %.2f \n", dh21 / area);
-  fflush(stdout);
-	
+
 	// Release memories
 	for(i = 0; i < nSeg1; i ++) 
 		delete []intersection[i];
 	delete []intersection;
 	delete []matchForS1;
 	delete []matchForS2;
+
+
+	// Booking
+	Entry_HD* e_HD = new Entry_HD;
+	e_HD->distance = (dh12 + dh21) / (2 * area);
+	e_HD->missingRate = dh12 / area;
+	e_HD->falseAlarmRate = dh21 / area;
+
+	return e_HD;
 }
 
 #endif // HAMMING_DISTANCE_HPP

@@ -28,7 +28,7 @@ public:
     // Method to perform mesh segmentation (clustering on a 3D mesh)
     void fit();
 
-    void separateMeshes();
+    void assignClustersToMesh();
 
 private:
     Mesh* mesh;  // Pointer to the mesh
@@ -40,34 +40,21 @@ void MeshSegmentation<M>::fit()
 {
     // Perform the KMeans clustering from the base class
     KMeans<double, 3, M>::fit();
-
-    // Separate the meshes based on the clusters
-    separateMeshes();
 }
 
 template <class M>
-void MeshSegmentation<M>::separateMeshes() {
+void MeshSegmentation<M>::assignClustersToMesh() {
 
-    for(int k = 0; k < 5; k++) {
+    std::vector<Point<double, 3>>& points = KMeans<double, 3, M>::getPoints();
 
-        Mesh cur_mesh("/Users/matteobalice/Desktop/16-kmeans-16-kmeans/resources/meshes/stl/75.stl");
+    for (auto& point : points) {
+        // Get the centroid of the point
+        std::shared_ptr<Point<double, 3>> centroid = point.centroid;
 
-        std::vector<Point<double, 3>>& points = KMeans<double, 3, M>::getPoints();
+        FaceId face = FaceId(point.id);
+        int cluster = centroid->id;
 
-        for (auto& point : points) {
-            // Get the centroid of the point
-            std::shared_ptr<Point<double, 3>> centroid = point.centroid;
-
-            FaceId face = FaceId(point.id);
-            int cluster = centroid->id;
-
-            if (cluster != k) {
-                cur_mesh.getMeshTopology().deleteFace(face);
-            }
-        }
-
-        // Save the mesh
-        MR::MeshSave::toAnySupportedFormat(cur_mesh.getMesh(), "output" + std::to_string(k) + ".stl");
+        mesh->setFaceCluster(face, cluster);
     }
 }
 
