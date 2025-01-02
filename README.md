@@ -31,7 +31,7 @@ To run the project, you need the following tools and libraries:
 - **Docker**: To run the project in a container (optional).
 
 ## Data
-In order to run the project, you must download the 3D dataset from the following [link](https://polimi365-my.sharepoint.com/:u:/g/personal/10978268_polimi_it/EVFMeQt8fdRCjSt8ZlpPfgcBnbx4x689MhNPFvU4Sx7S_A?e=obGYGv), unzip it and place it in the `resources` folder.
+In order to run the project, you must download the 3D dataset from the following [link](https://polimi365-my.sharepoint.com/:u:/g/personal/10978268_polimi_it/EZKJJOmNr_REh4EHY5Tln7QBmNEsD940wz2wfekhq0LguA?e=noOjtN), unzip it and place it in the `resources` folder.
 
 ## Setup and Installation
 

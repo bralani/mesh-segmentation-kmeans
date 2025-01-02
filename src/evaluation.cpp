@@ -26,7 +26,7 @@ int main()
 
     std::cout << std::endl;
 
-    string file_name = "/Users/matteobalice/Desktop/16-kmeans-16-kmeans/resources/meshes/stl/" + id + ".stl";
+    string file_name = "/Users/matteobalice/Desktop/16-kmeans-16-kmeans/resources/meshes/obj/" + id + ".obj";
     Mesh mesh(file_name);
     Mesh mesh2(file_name);
 
