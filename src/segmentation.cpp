@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "MeshSegmentation.hpp"
-#include "metrics.hpp"
+#include "segmentation/MeshSegmentation.hpp"
+#include "point/metrics.hpp"
 
 namespace plt = matplotlibcpp;
 

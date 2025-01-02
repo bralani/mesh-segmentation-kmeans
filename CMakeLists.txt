@@ -14,47 +14,26 @@ set(CMAKE_CXX_STANDARD 20)
 set(CSV_PARSER_DIR "${CMAKE_SOURCE_DIR}/include/csv-parser")
 include_directories(${CSV_PARSER_DIR}/single_include)
 
-# Create the executable for your project
-add_executable(k_means src/main.cpp src/Mesh.cpp)
-add_executable(mesh_segmentation src/segmentation.cpp src/Mesh.cpp)
-add_executable(evaluation src/evaluation.cpp src/Mesh.cpp)
+# Function to define an executable with common settings
+function(add_kmeans_executable exe_name source_files)
+    add_executable(${exe_name} ${source_files})
+    target_link_libraries(${exe_name} PRIVATE matplotlib_cpp ${Python3_LIBRARIES} OpenMP::OpenMP_CXX)
+    target_include_directories(${exe_name} PRIVATE include ${Python3_INCLUDE_DIRS})
+    set_target_properties(${exe_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+endfunction()
 
-# Link the matplotlib-cpp library (if still required)
-target_link_libraries(k_means PRIVATE matplotlib_cpp)
-target_link_libraries(mesh_segmentation PRIVATE matplotlib_cpp)
-target_link_libraries(evaluation PRIVATE matplotlib_cpp)
-
-# Specify the output directory for the compiled executable
-set_target_properties(k_means PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-set_target_properties(mesh_segmentation PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-set_target_properties(evaluation PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-
-# Include directories for matplotlib-cpp and csv-parser
-target_include_directories(k_means PRIVATE include)
-target_include_directories(mesh_segmentation PRIVATE include)
-target_include_directories(evaluation PRIVATE include)
-
-
+# Find Python3
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 message(STATUS "Python3 Executable: ${Python3_EXECUTABLE}")
 message(STATUS "Python3 Library: ${Python3_LIBRARIES}")
 message(STATUS "Python3 Include Directory: ${Python3_INCLUDE_DIRS}")
 
-target_include_directories(k_means PRIVATE ${Python3_INCLUDE_DIRS})
-target_link_libraries(k_means PRIVATE ${Python3_LIBRARIES})
-target_include_directories(mesh_segmentation PRIVATE ${Python3_INCLUDE_DIRS})
-target_link_libraries(mesh_segmentation PRIVATE ${Python3_LIBRARIES})
-target_link_libraries(evaluation PRIVATE ${Python3_LIBRARIES})
-
-
-# For compilers to find libomp you may need to set:
-# export LDFLAGS="-L/usr/local/opt/libomp/lib"
-# export CPPFLAGS="-I/usr/local/opt/libomp/include"
-
-#Openmp
+# OpenMP settings
 find_package(OpenMP REQUIRED)
-target_link_libraries(k_means PUBLIC OpenMP::OpenMP_CXX)
-target_link_libraries(mesh_segmentation PUBLIC OpenMP::OpenMP_CXX)
-target_link_libraries(evaluation PUBLIC OpenMP::OpenMP_CXX)
 set(ENV{OMP_NESTED} TRUE)
 set(ENV{OMP_NUM_THREADS} 8)
+
+# Define executables
+add_kmeans_executable(k_means "src/main.cpp;")
+add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;src/Mesh.cpp")
+add_kmeans_executable(evaluation "src/evaluation.cpp;src/Mesh.cpp")
