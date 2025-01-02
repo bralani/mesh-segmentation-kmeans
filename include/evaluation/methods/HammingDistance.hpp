@@ -32,11 +32,11 @@ struct Entry_HD* EvaluateHammingDistance(Segmentation* s1, Segmentation* s2){
 			intersection[i][j] = 0;
 		}
 	}
-  for (FaceId face(0); face < s1->getMesh()->getMeshTopology().faceSize(); ++face)
+  for (FaceId face(0); face < s1->getMesh()->numFaces(); ++face)
   {
     int i= s1->getMesh()->getFaceCluster(face);
     int j = s2->getMesh()->getFaceCluster(face);
-		intersection[i][j] += s1->getMesh()->getMesh().area(face);
+		intersection[i][j] += s1->getMesh()->getFace(face).getArea();
 	}
 	
 	// Find the best matches

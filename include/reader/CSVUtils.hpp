@@ -5,8 +5,8 @@
 #include <vector>
 #include <string>
 #include <stdexcept>
-#include "./csv-parser/single_include/csv.hpp"
-#include "Point.hpp"
+#include "../single_include/csv.hpp"
+#include "point/Point.hpp"
 
 /**
  * Static utility class to handle reading a CSV file and creating Points from the data.

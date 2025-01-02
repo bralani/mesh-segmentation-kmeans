@@ -24,7 +24,7 @@ struct Entry_CE* EvaluateConsistencyError(Segmentation *s1, Segmentation *s2)
   int nSeg2 = s2->getSegments().size();
 
   // Number of faces in segments(should be the same for s1 and s2)
-  int nFaces = s1->getMesh()->getMeshTopology().faceSize();
+  int nFaces = s1->getMesh()->numFaces();
 
   // only compute under non-trial cases, otherwise, consistency errors are just 0
   if (nSeg1 != 1 && nSeg2 != 1 && nSeg1 != nFaces && nSeg2 != nFaces)
@@ -52,12 +52,12 @@ struct Entry_CE* EvaluateConsistencyError(Segmentation *s1, Segmentation *s2)
 
 
     // get intersections
-    for (FaceId face(0); face < s1->getMesh()->getMeshTopology().faceSize(); ++face)
+    for (FaceId face(0); face < s1->getMesh()->numFaces(); ++face)
     {
       int a = s1->getMesh()->getFaceCluster(face);
       int b = s2->getMesh()->getFaceCluster(face);
       Intersection[a * nSeg2 + b] += 1;
-      AreaIntersection[a * nSeg2 + b] += s1->getMesh()->getMesh().area(face);
+      AreaIntersection[a * nSeg2 + b] += s1->getMesh()->getFace(face).getArea();
     }
 
 

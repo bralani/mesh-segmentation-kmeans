@@ -5,6 +5,8 @@
 #include <iostream>
 #include <cmath>
 #include <stdexcept>
+#include <memory>
+#include <vector>
 #include <numeric>
 
 /* Class to represent a point in a space of arbitrary dimensions (PD)
@@ -74,6 +76,15 @@ public:
         return result;
     }
 
+    // Overloaded operator for dividing two points (coordinate-wise subtraction)
+    Point<PT, PD> operator/(const Point<PT, PD>& other) const {
+        Point<PT, PD> result;
+        for (std::size_t i = 0; i < PD; ++i) {
+            result.coordinates[i] = this->coordinates[i] / other.coordinates[i];
+        }
+        return result;
+    }
+
     // Static function to compute the sum of a vector of points (element-wise)
     static Point<PT, PD> vectorSum(typename std::vector<Point<PT, PD>>::iterator begin,
                                    typename std::vector<Point<PT, PD>>::iterator end) {
@@ -82,6 +93,24 @@ public:
             sum = sum + *it;  // Add each point in the vector to the sum
         }
         return sum;
+    }
+
+    Point<PT, PD> cross(const Point<PT, PD>& other) const {
+        Point<PT, PD> result;
+        
+        for (std::size_t i = 0; i < PD; ++i) {
+            result.coordinates[i] = this->coordinates[(i + 1) % PD] * other.coordinates[(i + 2) % PD] - this->coordinates[(i + 2) % PD] * other.coordinates[(i + 1) % PD];
+        }
+
+        return result;
+    }
+
+    PT norm () const {
+        PT sum = 0;
+        for (std::size_t i = 0; i < PD; ++i) {
+            sum += coordinates[i] * coordinates[i];
+        }
+        return std::sqrt(sum);
     }
 
     // Prints the coordinates of the point. If a centroid is set, prints it as well.
@@ -98,6 +127,16 @@ public:
         }
 
         std::cout << " Point ID: " << id;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Point<PT, PD>& point) {
+        os << "(";
+        for (std::size_t i = 0; i < PD; ++i) {
+            os << point.coordinates[i];
+            if (i < PD - 1) os << ", ";
+        }
+        os << ")";
+        return os;
     }
 
     void setID(int id) {

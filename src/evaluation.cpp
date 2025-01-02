@@ -2,12 +2,12 @@
 #include <filesystem>
 #include <iostream>
 
-#include "MeshSegmentation.hpp"
+#include "segmentation/MeshSegmentation.hpp"
 #include "evaluation/Segmentations.hpp"
 #include "evaluation/methods/ConsistencyError.hpp"
 #include "evaluation/methods/HammingDistance.hpp"
 #include "evaluation/methods/RandIndex.hpp"
-#include "metrics.hpp"
+#include "point/metrics.hpp"
 
 namespace plt = matplotlibcpp;
 namespace fs = std::filesystem;

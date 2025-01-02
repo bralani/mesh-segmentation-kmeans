@@ -1,10 +1,11 @@
 #ifndef CENTROID_POINT_HPP
 #define CENTROID_POINT_HPP
 
-#include "Point.hpp"
-#include "HasWgtCent.hpp"
 #include <iostream>
 #include <array>
+
+#include "point/Point.hpp"
+#include "point/HasWgtCent.hpp"
 
 // The CentroidPoint class inherits from both Point and HasWgtCent
 // This class represents a point with additional weighted centroids functionality

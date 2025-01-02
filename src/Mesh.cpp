@@ -1,11 +1,50 @@
-#include "Mesh.hpp"
+#include "reader/obj.h"
+#include "segmentation/Mesh.hpp"
 
-Mesh::Mesh(const std::filesystem::path& path)
+Mesh::Mesh(const std::string path)
 {
-  MR::Mesh mesh = *MR::MeshLoad::fromAnySupportedFormat(path);
-  this->mesh = mesh;
+  
+	// Initialize Loader
+	objl::Loader Loader;
 
-  buildGraph();
+	bool loadout = Loader.LoadFile(path);
+
+
+	if (loadout)
+	{
+		for (int i = 0; i < Loader.LoadedMeshes.size(); i++)
+		{
+			objl::Mesh curMesh = Loader.LoadedMeshes[i];
+
+			for (int j = 0; j < curMesh.Vertices.size(); j++)
+			{
+        std::array<double, 3> coords = {curMesh.Vertices[j].Position.X, curMesh.Vertices[j].Position.Y, curMesh.Vertices[j].Position.Z};
+        Point<double, 3> point(coords, j);
+        meshVertices.push_back(point);
+			}
+
+
+			for (int j = 0; j < curMesh.Indices.size(); j += 3)
+			{
+        FaceId faceId(j / 3);
+        Face face = Face({curMesh.Indices[j], curMesh.Indices[j + 1], curMesh.Indices[j + 2]}, meshVertices, faceId);
+        
+        meshFaces.push_back(face);
+			}
+		}
+	} else {
+    throw std::runtime_error("Failed to load file");
+	}
+}
+
+std::ostream &operator<<(std::ostream &os, const Mesh &graph)
+{
+  os << "Vertices: " << std::endl;
+  for (const auto &vertex : graph.meshVertices)
+  {
+    os << vertex << std::endl;
+  }
+  return os;
 }
 
 int Mesh::createSegmentationFromSegFile(const std::filesystem::path& path)
@@ -40,53 +79,4 @@ int Mesh::createSegmentationFromSegFile(const std::filesystem::path& path)
   }
 
   return maxCluster + 1;
-}
-
-std::ostream &operator<<(std::ostream &os, const Mesh &graph)
-{
-  for (const auto &[vertex, neighbors] : graph.adjacencyList)
-  {
-    os << "Vertex " << vertex << " is connected to: ";
-    for (const auto &neighbor : neighbors)
-    {
-      os << neighbor << " ";
-    }
-    os << std::endl;
-  }
-  return os;
-}
-
-const std::unordered_map<MR::VertId, std::vector<MR::VertId>>& Mesh::getGraph() const
-{
-  return adjacencyList;
-}
-
-void Mesh::buildGraph()
-{
-  std::unordered_map<MR::VertId, std::set<MR::VertId>> tempAdjacencyList;
-
-  for (MR::EdgeId edge(0); edge < mesh.topology.edgeSize(); ++edge)
-  {
-    if (!mesh.topology.isLoneEdge(edge))
-    {
-      MR::VertId org = mesh.topology.org(edge);
-      MR::VertId dest = mesh.topology.dest(edge);
-      tempAdjacencyList[org].insert(dest);
-      tempAdjacencyList[dest].insert(org);
-    }
-  }
-
-  // Convert sets to vectors for adjacencyList
-  for (const auto &[vertex, neighbors] : tempAdjacencyList)
-  {
-    adjacencyList[vertex] = std::vector<MR::VertId>(neighbors.begin(), neighbors.end());
-  }
-
-  for (FaceId face(0); face < mesh.topology.faceSize(); ++face) {
-    auto coords = mesh.triCenter(face);
-    std::array<double, 3> arr = {coords.x, coords.y, coords.z};
-
-    Point<double, 3> point(arr, face);
-    meshFacesPoints.push_back(point);
-  }
 }

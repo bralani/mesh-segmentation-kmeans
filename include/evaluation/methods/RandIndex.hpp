@@ -35,7 +35,7 @@ Entry_RI* EvaluateRandIndex(Segmentation* s1, Segmentation* s2){
   int nSeg2 = s2->getSegments().size();
 
   // Number of faces in segments(should be the same for s1 and s2)
-  int nFaces = s1->getMesh()->getMeshTopology().faceSize();
+  int nFaces = s1->getMesh()->numFaces();
 	
 	// deal with the extreme case for optimization: every face is a segmentation
 	if(nSeg1 == nFaces || nSeg2==nFaces) {

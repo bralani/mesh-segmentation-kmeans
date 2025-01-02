@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-#include "CSVUtils.hpp"
-#include "KDTree.hpp"
-#include "KMeans.hpp"
-#include "metrics.hpp"
+#include "reader/CSVUtils.hpp"
+#include "k_means/KDTree.hpp"
+#include "k_means/KMeans.hpp"
+#include "point/metrics.hpp"
 
 namespace plt = matplotlibcpp;
 

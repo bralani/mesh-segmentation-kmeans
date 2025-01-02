@@ -1,11 +1,12 @@
 #ifndef KDNODE_HPP
 #define KDNODE_HPP
 
-#include "Point.hpp"
-#include "HasWgtCent.hpp"
 #include <vector>
 #include <array>
 #include <memory>
+
+#include "point/Point.hpp"
+#include "point/HasWgtCent.hpp"
 
 // The KdNode class represents a node in a k-d tree
 // It inherits from HasWgtCent, which provides weighted centroid functionality

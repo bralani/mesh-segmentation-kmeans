@@ -7,18 +7,17 @@
 #include <cmath>
 #include <limits>
 #include <random>
+#include <omp.h>
 
-#include "CSVUtils.hpp"
-#include "Point.hpp"
-#include "CentroidPoint.hpp"
-#include "KDTree.hpp"
-#include "metrics.hpp"
+#include "reader/CSVUtils.hpp"
+#include "point/Point.hpp"
+#include "point/CentroidPoint.hpp"
+#include "k_means/KDTree.hpp"
+#include "point/metrics.hpp"
 
 #include "matplotlib-cpp/matplotlibcpp.h"
-
 namespace plt = matplotlibcpp;
 
-#include <omp.h>
 
 /** Class implementing the K-Means algorithm using a Kd-Tree data structure
     and employing the filtering method discussed in the Paper */
@@ -31,7 +30,7 @@ public:
    * points: Vector of Points to be used in K-Means
    * dist: Function used as the distance metric between two points
    */
-  KMeans(int clusters, std::vector<Point<PT, PD>> &points, PT treshold)
+  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold)
       : numClusters(clusters), data(points), treshold(treshold)
   {
     initializeCentroids();

@@ -10,7 +10,7 @@
 #include <iostream>
 #include <cassert>
 #include <map>
-#include "Mesh.hpp"
+#include "segmentation/Mesh.hpp"
 
 /*
  * Definition for Segment
@@ -103,11 +103,11 @@ void Segmentation::CreateSegmentation(int k)
         segments[i] = segment;
     }
 
-    for (FaceId face(0); face < mesh->getMeshTopology().faceSize(); ++face)
+    for (FaceId face(0); face < mesh->numFaces(); ++face)
     {
         int id = mesh->getFaceCluster(face);
 
-        float faceArea = mesh->getMesh().area(face);
+        float faceArea = mesh->getFace(face).getArea();
         segments[id].addFace(face, faceArea);
         area += faceArea;
     }

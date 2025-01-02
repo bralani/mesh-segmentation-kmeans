@@ -1,14 +1,15 @@
 #ifndef KDTREE_HPP
 #define KDTREE_HPP
 
-#include "KDNode.hpp"
-#include "Point.hpp"
-#include "CentroidPoint.hpp"
 #include <vector>
 #include <algorithm>
 #include <memory>
 #include <limits>
 #include <omp.h>
+
+#include "point/Point.hpp"
+#include "point/CentroidPoint.hpp"
+#include "k_means/KDNode.hpp"
 
 /**
  * Class template to represent a KD-Tree
