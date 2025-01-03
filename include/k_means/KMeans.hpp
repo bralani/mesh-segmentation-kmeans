@@ -18,6 +18,11 @@
 #include "matplotlib-cpp/matplotlibcpp.h"
 namespace plt = matplotlibcpp;
 
+#define MIN_NUM_POINTS_CUDA 10000
+#ifdef USE_CUDA
+  // Declaration of the CUDA kernel function (defined in kmeans.cu)
+  void kmeans_cuda(int K, int dim, int numPoints, float *points, float *centroids, int *cluster_assignment, float threshold);
+#endif
 
 /** Class implementing the K-Means algorithm using a Kd-Tree data structure
     and employing the filtering method discussed in the Paper */
@@ -34,7 +39,18 @@ public:
       : numClusters(clusters), data(points), treshold(treshold)
   {
     initializeCentroids();
-    kdtree = new KdTree<PT, PD>(data);
+
+    #ifdef USE_CUDA
+      if (data.size() > MIN_NUM_POINTS_CUDA) {
+        // In cuda mode, the kdtree is not used
+        kdtree = nullptr;
+      } else {
+        kdtree = new KdTree<PT, PD>(data);
+      }
+    #else
+      kdtree = new KdTree<PT, PD>(data);
+    #endif
+
     metric = M();
   }
 
@@ -75,6 +91,13 @@ private:
   void assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, const std::shared_ptr<CentroidPoint<PT, PD>> &centroid);
 
   bool checkConvergence();
+  
+  // Fit the KMeans algorithm on the CPU or GPU
+  void fit_cpu();
+
+  #ifdef USE_CUDA
+    void fit_gpu();
+  #endif
 };
 
 /** Extracts randomly "numClusters" initial Centroids from the same data that were provided
@@ -107,6 +130,21 @@ void KMeans<PT, PD, M>::initializeCentroids()
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::fit()
 {
+  #ifdef USE_CUDA
+    if (data.size() > MIN_NUM_POINTS_CUDA) {
+      fit_gpu();
+    } else {
+      fit_cpu();
+    }
+  #else
+    fit_cpu();
+  #endif
+}
+
+
+/** Kmeans on CPU */
+template <typename PT, std::size_t PD, class M>
+void KMeans<PT, PD, M>::fit_cpu() {
   bool convergence = false;
   while (!convergence)
   {
@@ -115,6 +153,57 @@ void KMeans<PT, PD, M>::fit()
     oldCentroids = centroids;
   }
 }
+
+#ifdef USE_CUDA
+/** Kmeans on GPU */
+template <typename PT, std::size_t PD, class M>
+void KMeans<PT, PD, M>::fit_gpu() {
+  
+  // Convert the data to a flat array
+  float *data_flat = new float[data.size() * PD];
+  #pragma omp parallel for collapse(2)
+  for (int i = 0; i < data.size(); i++)
+  {
+    for (int j = 0; j < PD; j++)
+    {
+      data_flat[i * PD + j] = data[i].coordinates[j];
+    }
+  }
+
+  float *centroids_flat = new float[numClusters * PD];
+  #pragma omp parallel for collapse(2)
+  for (int i = 0; i < numClusters; i++)
+  {
+    for (int j = 0; j < PD; j++)
+    {
+      centroids_flat[i * PD + j] = centroids[i].coordinates[j];
+    }
+  }
+
+  int *cluster_assignment = new int[data.size()];
+
+  // Call the CUDA kernel function
+  kmeans_cuda(numClusters, PD, data.size(), data_flat, centroids_flat, cluster_assignment, (float)treshold);
+
+  // Convert the centroids back to the original format
+  #pragma omp parallel for collapse(2)
+  for (int i = 0; i < numClusters; i++)
+  {
+    for (int j = 0; j < PD; j++)
+    {
+      centroids[i].coordinates[j] = centroids_flat[i * PD + j];
+    }
+  }
+
+  // Convert the cluster assignments back to the original format
+  #pragma omp parallel for
+  for (int i = 0; i < data.size(); i++) 
+  {
+    std::shared_ptr<CentroidPoint<PT, PD>> centroid_ptr = std::make_shared<CentroidPoint<PT, PD>>(centroids[cluster_assignment[i]]);
+    data[i].setCentroid(centroid_ptr);
+  }
+}
+#endif
 
 template <typename PT, std::size_t PD, class M>
 bool KMeans<PT, PD, M>::checkConvergence()
