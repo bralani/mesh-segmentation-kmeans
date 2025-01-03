@@ -36,8 +36,6 @@ function(add_kmeans_executable exe_name source_files cuda_files)
 endfunction()
 
 # Find Python3
-set(Python3_ROOT_DIR "D:/Users/miche/anaconda3")  # Change to your Python installation
-set(Python3_EXECUTABLE "D:/Users/miche/anaconda3/python.exe")
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 message(STATUS "Python3 Executable: ${Python3_EXECUTABLE}")
 message(STATUS "Python3 Library: ${Python3_LIBRARIES}")
