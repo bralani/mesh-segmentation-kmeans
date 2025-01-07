@@ -1,7 +1,7 @@
-[submodule "include/matplotlib-cpp"]
-	path = include/matplotlib-cpp
+[submodule "third_party/matplotlib-cpp"]
+	path = third_party/matplotlib-cpp
 	url = https://github.com/lava/matplotlib-cpp.git
 	
-[submodule "include/csv-parser"]
-	path = include/csv-parser
+[submodule "third_party/csv-parser"]
+	path = third_party/csv-parser
 	url = https://github.com/vincentlaucsb/csv-parser.git

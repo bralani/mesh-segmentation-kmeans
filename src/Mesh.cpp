@@ -1,4 +1,4 @@
-#include "reader/obj.h"
+#include "reader_obj.h"
 #include "segmentation/Mesh.hpp"
 
 Mesh::Mesh(const std::string path)

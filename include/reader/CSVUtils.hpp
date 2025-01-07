@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <stdexcept>
-#include "../single_include/csv.hpp"
+#include "csv.hpp"
 #include "point/Point.hpp"
 
 /**

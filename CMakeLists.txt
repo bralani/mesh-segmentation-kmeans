@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(KMeans)
 
-# Add submodule for matplotlib-cpp (if this is still needed for your project)
-add_subdirectory(include/matplotlib-cpp)
 
 # Set the target architecture for macOS (arm64)
 set(CMAKE_OSX_ARCHITECTURES arm64)
@@ -13,8 +11,8 @@ find_package(CUDA)
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_50") # Set GPU architecture (adjust if necessary)
 
 # Include csv-parser as a submodule
-set(CSV_PARSER_DIR "${CMAKE_SOURCE_DIR}/include/csv-parser")
-include_directories(${CSV_PARSER_DIR}/single_include)
+include_directories(third_party/csv-parser/single_include)
+add_subdirectory(third_party/matplotlib-cpp)
 
 # Function to define an executable with common settings
 function(add_kmeans_executable exe_name source_files cuda_files)
@@ -23,23 +21,17 @@ function(add_kmeans_executable exe_name source_files cuda_files)
     if(CUDA_FOUND AND MSVC)
         add_definitions(-DUSE_CUDA)
         cuda_add_executable(${exe_name} ${source_files} ${cuda_files})
-        target_link_libraries(${exe_name} ${CUDA_LIBRARIES} matplotlib_cpp ${Python3_LIBRARIES} ${OpenMP_CXX_LIBRARIES})
+        target_link_libraries(${exe_name} ${CUDA_LIBRARIES} matplotlib_cpp ${OpenMP_CXX_LIBRARIES})
     else()
         add_executable(${exe_name} ${source_files})
-        target_link_libraries(${exe_name} matplotlib_cpp ${Python3_LIBRARIES} ${OpenMP_CXX_LIBRARIES})
+        target_link_libraries(${exe_name} matplotlib_cpp ${OpenMP_CXX_LIBRARIES})
     endif()
 
     target_compile_options(${exe_name} PRIVATE ${OpenMP_CXX_FLAGS})
-    target_include_directories(${exe_name} PRIVATE include ${Python3_INCLUDE_DIRS})
+    target_include_directories(${exe_name} PRIVATE include third_party)
     set_target_properties(${exe_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
     set_target_properties(${exe_name} PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
 endfunction()
-
-# Find Python3
-find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-message(STATUS "Python3 Executable: ${Python3_EXECUTABLE}")
-message(STATUS "Python3 Library: ${Python3_LIBRARIES}")
-message(STATUS "Python3 Include Directory: ${Python3_INCLUDE_DIRS}")
 
 # OpenMP settings
 find_package(OpenMP REQUIRED)
