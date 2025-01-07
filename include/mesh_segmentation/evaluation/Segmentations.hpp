@@ -10,7 +10,7 @@
 #include <iostream>
 #include <cassert>
 #include <map>
-#include "segmentation/Mesh.hpp"
+#include "geometry/mesh/Mesh.hpp"
 
 /*
  * Definition for Segment

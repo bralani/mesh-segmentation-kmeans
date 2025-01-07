@@ -7,9 +7,9 @@
 #include <limits>
 #include <omp.h>
 
-#include "point/Point.hpp"
-#include "point/CentroidPoint.hpp"
-#include "k_means/KDNode.hpp"
+#include "geometry/point/Point.hpp"
+#include "geometry/point/CentroidPoint.hpp"
+#include "clustering/KDNode.hpp"
 
 /**
  * Class template to represent a KD-Tree

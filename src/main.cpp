@@ -2,12 +2,9 @@
 
 #include <iostream>
 
-#include "reader/CSVUtils.hpp"
-#include "k_means/KDTree.hpp"
-#include "k_means/KMeans.hpp"
-#include "point/metrics.hpp"
-
-namespace plt = matplotlibcpp;
+#include "utils/CSVUtils.hpp"
+#include "clustering/KMeans.hpp"
+#include "geometry/metrics/EuclideanMetric.hpp"
 
 #define DIMENSION 2
 

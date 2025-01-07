@@ -1,5 +1,5 @@
 #include "reader_obj.h"
-#include "segmentation/Mesh.hpp"
+#include "geometry/mesh/Mesh.hpp"
 
 Mesh::Mesh(const std::string path)
 {

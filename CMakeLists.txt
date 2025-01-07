@@ -42,6 +42,6 @@ if(MSVC)
 endif()
 
 # Define executables
-add_kmeans_executable(k_means "src/main.cpp" "include/k_means/kmeans.cu")
-add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;src/Mesh.cpp" "include/k_means/kmeans.cu")
-add_kmeans_executable(evaluation "src/evaluation.cpp;src/Mesh.cpp" "include/k_means/kmeans.cu")
+add_kmeans_executable(k_means "src/main.cpp" "include/clustering/kmeans.cu")
+add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;src/Mesh.cpp" "include/clustering/kmeans.cu")
+add_kmeans_executable(evaluation "src/evaluation.cpp;src/Mesh.cpp" "include/clustering/kmeans.cu")

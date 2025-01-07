@@ -1,8 +1,8 @@
 #ifndef CONSISTENCY_ERROR_HPP
 #define CONSISTENCY_ERROR_HPP
 
-#include "evaluation/Entry.hpp"
-#include "evaluation/Segmentations.hpp"
+#include "mesh_segmentation/evaluation/Entry.hpp"
+#include "mesh_segmentation/evaluation/Segmentations.hpp"
 
 /**************************************************************************************************
  **************************************************************************************************

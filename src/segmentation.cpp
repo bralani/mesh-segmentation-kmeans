@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "segmentation/MeshSegmentation.hpp"
-#include "point/metrics.hpp"
+#include "geometry/metrics/EuclideanMetric.hpp"
 
 namespace plt = matplotlibcpp;
 

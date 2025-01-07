@@ -9,9 +9,9 @@
 #include <random>
 #include <unordered_map>
 
-#include "segmentation/Mesh.hpp"
-#include "point/metrics.hpp"
-#include "k_means/KMeans.hpp"
+#include "geometry/mesh/Mesh.hpp"
+#include "geometry/metrics/Metric.hpp"
+#include "clustering/KMeans.hpp"
 
 template <class M>
 class MeshSegmentation : public KMeans<double, 3, M>  // Fixed PD to 3 for 3D points

@@ -5,8 +5,8 @@
 #include <array>
 #include <memory>
 
-#include "point/Point.hpp"
-#include "point/HasWgtCent.hpp"
+#include "geometry/point/Point.hpp"
+#include "geometry/point/HasWgtCent.hpp"
 
 // The KdNode class represents a node in a k-d tree
 // It inherits from HasWgtCent, which provides weighted centroid functionality

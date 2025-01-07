@@ -9,11 +9,10 @@
 #include <random>
 #include <omp.h>
 
-#include "reader/CSVUtils.hpp"
-#include "point/Point.hpp"
-#include "point/CentroidPoint.hpp"
-#include "k_means/KDTree.hpp"
-#include "point/metrics.hpp"
+#include "geometry/point/Point.hpp"
+#include "geometry/point/CentroidPoint.hpp"
+#include "clustering/KDTree.hpp"
+#include "geometry/metrics/Metric.hpp"
 
 #include "matplotlib-cpp/matplotlibcpp.h"
 namespace plt = matplotlibcpp;

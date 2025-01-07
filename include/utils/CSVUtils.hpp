@@ -6,7 +6,7 @@
 #include <string>
 #include <stdexcept>
 #include "csv.hpp"
-#include "point/Point.hpp"
+#include "geometry/point/Point.hpp"
 
 /**
  * Static utility class to handle reading a CSV file and creating Points from the data.

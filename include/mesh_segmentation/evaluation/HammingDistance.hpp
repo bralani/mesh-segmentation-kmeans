@@ -1,8 +1,8 @@
 #ifndef HAMMING_DISTANCE_HPP
 #define HAMMING_DISTANCE_HPP
 
-#include "evaluation/Segmentations.hpp"
-#include "evaluation/Entry.hpp"
+#include "mesh_segmentation/evaluation/Segmentations.hpp"
+#include "mesh_segmentation/evaluation/Entry.hpp"
 
 /**************************************************************************************************
  **************************************************************************************************
