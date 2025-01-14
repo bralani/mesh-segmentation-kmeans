@@ -114,8 +114,6 @@ private:
             return 0;
         }
 
-        cout << "Computing distance between " << startFace << " and " << endFace << endl;
-
         // Initialize Dijkstra's algorithm
         std::unordered_map<FaceId, PT> distances; // Minimum distance from startFace
         std::unordered_map<FaceId, bool> visited; // Keep track of visited faces
