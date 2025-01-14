@@ -1,40 +1,34 @@
-#include "reader_obj.h"
+#include "objload.h"
 #include "geometry/mesh/Mesh.hpp"
 
 Mesh::Mesh(const std::string path)
 {
-  
-	// Initialize Loader
-	objl::Loader Loader;
+  try
+  {
+    std::ifstream in(path.c_str());
+    auto model = obj::parseObjModel(in);
+    for (int i = 0; i < model.vertex.size(); i = i + 3)
+    {
+      std::array<double, 3> coords = {model.vertex[i], model.vertex[i + 1], model.vertex[i + 2]};
+      Point<double, 3> point(coords, i / 3);
+      meshVertices.push_back(point);
+    }
 
-	bool loadout = Loader.LoadFile(path);
+    const auto faces = model.faces.at("default");
+    const auto &faceVertices = faces.first;
 
+    for (int j = 0; j < faceVertices.size(); j = j + 3)
+    {
+      FaceId faceId(j / 3);
+      Face face = Face({VertId(faceVertices[j].v), VertId(faceVertices[j + 1].v), VertId(faceVertices[j + 2].v)}, meshVertices, faceId);
 
-	if (loadout)
-	{
-		for (int i = 0; i < Loader.LoadedMeshes.size(); i++)
-		{
-			objl::Mesh curMesh = Loader.LoadedMeshes[i];
-
-			for (int j = 0; j < curMesh.Vertices.size(); j++)
-			{
-        std::array<double, 3> coords = {curMesh.Vertices[j].Position.X, curMesh.Vertices[j].Position.Y, curMesh.Vertices[j].Position.Z};
-        Point<double, 3> point(coords, j);
-        meshVertices.push_back(point);
-			}
-
-
-			for (int j = 0; j < curMesh.Indices.size(); j += 3)
-			{
-        FaceId faceId(j / 3);
-        Face face = Face({curMesh.Indices[j], curMesh.Indices[j + 1], curMesh.Indices[j + 2]}, meshVertices, faceId);
-        
-        meshFaces.push_back(face);
-			}
-		}
-	} else {
+      meshFaces.push_back(face);
+    }
+  }
+  catch (const std::exception &e)
+  {
     throw std::runtime_error("Failed to load file");
-	}
+  }
 }
 
 std::ostream &operator<<(std::ostream &os, const Mesh &graph)
@@ -47,7 +41,7 @@ std::ostream &operator<<(std::ostream &os, const Mesh &graph)
   return os;
 }
 
-int Mesh::createSegmentationFromSegFile(const std::filesystem::path& path)
+int Mesh::createSegmentationFromSegFile(const std::filesystem::path &path)
 {
   // check if the file has .seg extension
   if (path.extension() != ".seg")
@@ -56,9 +50,10 @@ int Mesh::createSegmentationFromSegFile(const std::filesystem::path& path)
   }
 
   std::ifstream file(path);
-  if (!file.is_open()) {
+  if (!file.is_open())
+  {
     throw std::runtime_error("Failed to open file");
-  } 
+  }
 
   std::string line;
   int faceId = 0;
@@ -67,8 +62,11 @@ int Mesh::createSegmentationFromSegFile(const std::filesystem::path& path)
   {
     std::istringstream iss(line);
     int cluster;
-    if (!(iss >> cluster)) { break; } // error
-    
+    if (!(iss >> cluster))
+    {
+      break;
+    } // error
+
     this->setFaceCluster(FaceId(faceId), cluster);
 
     if (cluster > maxCluster)

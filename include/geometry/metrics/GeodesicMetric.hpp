@@ -17,8 +17,13 @@ template <typename PT, std::size_t PD>
 class GeodesicMetric : public Metric<PT, PD>
 {
 public:
-    GeodesicMetric(const Mesh &mesh)
-        : mesh(mesh) {}
+
+    GeodesicMetric(const Mesh &mesh) : mesh(mesh) {}
+
+    void setMesh(const Mesh &mesh)
+    {
+        this->mesh = mesh;
+    }
 
     void setCentroids(std::vector<CentroidPoint<PT, PD>> &centroids) override
     {
@@ -27,7 +32,6 @@ public:
 
     void setup() override
     {
-        std::unordered_map<int, std::unordered_map<FaceId, PT>> distances;
         std::unordered_map<int, FaceId> centroidToFaceMap;
 
         // Map each centroid to the closest face
@@ -40,14 +44,9 @@ public:
         // Compute the distance between each pair of faces
         for (const auto &[centroidId, startFace] : centroidToFaceMap)
         {
-            for (FaceId faceId = 0; faceId < mesh.numFaces(); ++faceId)
-            {
-                PT distance = computeDijkstraDistance(startFace, faceId);
-                distances[centroidId][faceId] = distance;
-            }
+            std::vector<PT> current_distances = computeDijkstraDistances(startFace);
+            this->distances[FaceId(centroidId)] = current_distances;
         }
-
-        this->distances = std::move(distances);
     }
 
     void initialSetup() override
@@ -88,13 +87,17 @@ public:
 
     PT distanceTo(const Point<PT, PD> &a, const Point<PT, PD> &b) const override
     {
-        return distances.at(a.id).at(b.id);
+        
+        FaceId closest = findClosestFace(b);
+        auto dist = this->distances.at(FaceId(a.id));
+
+        return dist.at(closest);
     }
 
 private:
     Mesh mesh;
     std::optional<std::reference_wrapper<std::vector<CentroidPoint<PT, PD>>>> centroids;
-    std::unordered_map<int, std::unordered_map<FaceId, PT>> distances;
+    std::unordered_map<FaceId, std::vector<PT>> distances;
 
     double computeEuclideanDistance(const Point<PT, PD>& a, const Point<PT, PD>& b) const
     {
@@ -106,27 +109,20 @@ private:
         return std::sqrt(sum);
     }
 
-    PT computeDijkstraDistance(FaceId startFace, FaceId endFace) const
+    std::vector<PT> computeDijkstraDistances(FaceId startFace) const
     {
-        // Check if the points are in the same face
-        if (startFace == endFace)
-        {
-            return 0;
-        }
-
         // Initialize Dijkstra's algorithm
-        std::unordered_map<FaceId, PT> distances; // Minimum distance from startFace
+        std::vector<PT> curr_distances(mesh.numFaces()); // Minimum distance from startFace
         std::unordered_map<FaceId, bool> visited; // Keep track of visited faces
         std::priority_queue<std::pair<PT, FaceId>, std::vector<std::pair<PT, FaceId>>, std::greater<>> pq;
 
-        // Initialize distances and visited flags
-        for (const auto &pair : mesh.getFaceAdjacency())
-        {
-            distances[pair.first] = std::numeric_limits<PT>::max();
-            visited[pair.first] = false;
+        // Initialize curr_distances and visited flags
+        for (int i = 0; i < mesh.numFaces(); ++i) {
+            curr_distances[i] = std::numeric_limits<PT>::max();
+            visited[i] = false;
         }
 
-        distances[startFace] = 0;
+        curr_distances[startFace] = 0;
         pq.push({0, startFace});
 
         // Execute Dijkstra
@@ -141,7 +137,7 @@ private:
             visited[currentFace] = true;
 
             // Iterate over the neighbors of the current face
-            for (const auto &neighbor : mesh.getFaceAdjacency()[currentFace])
+            for (const auto &neighbor : mesh.getFaceAdjacencyAt(currentFace))
             {
                 const auto &neighborFace = mesh.getFace(neighbor);
 
@@ -151,20 +147,15 @@ private:
                 PT weight = computeEuclideanDistance(currentBaricenter, neighborBaricenter);
 
                 // Update the distance if a shorter path is found
-                if (distances[currentFace] + weight < distances[neighbor])
+                if (curr_distances[currentFace] + weight < curr_distances[neighbor])
                 {
-                    distances[neighbor] = distances[currentFace] + weight;
-                    pq.push({distances[neighbor], neighbor});
+                    curr_distances[neighbor] = curr_distances[currentFace] + weight;
+                    pq.push({curr_distances[neighbor], neighbor});
                 }
             }
         }
 
-        if (distances[endFace] == std::numeric_limits<PT>::max())
-        {
-            throw std::runtime_error("No path found between the two points.");
-        }
-
-        return distances[endFace];
+        return curr_distances;
     }
 };
 

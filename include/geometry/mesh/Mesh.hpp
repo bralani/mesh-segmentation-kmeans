@@ -89,8 +89,8 @@ public:
 
   }
 
-  std::unordered_map<FaceId, std::vector<FaceId>> getFaceAdjacency() const {
-    return faceAdjacency;
+  std::vector<FaceId> getFaceAdjacencyAt(FaceId id) const {
+    return faceAdjacency.at(id);
   }
 
 

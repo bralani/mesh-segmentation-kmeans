@@ -18,6 +18,8 @@
 namespace plt = matplotlibcpp;
 
 #define MIN_NUM_POINTS_CUDA 10000
+#define MAX_ITERATIONS 100
+
 #ifdef USE_CUDA
   // Declaration of the CUDA kernel function (defined in kmeans.cu)
   void kmeans_cuda(int K, int dim, int numPoints, float *points, float *centroids, int *cluster_assignment, float threshold);
@@ -34,12 +36,10 @@ public:
    * points: Vector of Points to be used in K-Means
    * dist: Function used as the distance metric between two points
    */
-  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M metric = M())
+  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M metric)
       : numClusters(clusters), data(points), treshold(treshold), metric(metric)
   {
     initializeCentroids();
-    metric.setCentroids(centroids);
-    metric.initialSetup();
 
     #ifdef USE_CUDA
       if (data.size() > MIN_NUM_POINTS_CUDA) {
@@ -63,12 +63,14 @@ public:
 
   std::vector<Point<PT, PD>>& getPoints() { return data; }
 
+protected:
+  M metric;                                        // Distance metric function
+
 private:
   int numClusters;                                 // Number of clusters
   std::vector<Point<PT, PD>> data;                 // Data points
   std::vector<CentroidPoint<PT, PD>> centroids;    // Centroids of clusters
   std::vector<CentroidPoint<PT, PD>> oldCentroids; // Centroids on the previous filter
-  M metric;                                        // Distance metric function
   KdTree<PT, PD> *kdtree;                          // Kd-Tree structure
   PT treshold;
 
@@ -89,7 +91,7 @@ private:
 
   void assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, const std::shared_ptr<CentroidPoint<PT, PD>> &centroid);
 
-  bool checkConvergence();
+  bool checkConvergence(int iter);
   
   // Fit the KMeans algorithm on the CPU or GPU
   void fit_cpu();
@@ -144,13 +146,18 @@ void KMeans<PT, PD, M>::fit()
 /** Kmeans on CPU */
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::fit_cpu() {
+  metric.setCentroids(centroids);
+  metric.initialSetup();
+
   bool convergence = false;
+  int iter = 0;
   while (!convergence)
-  {
+  { 
     this->filter();
-    convergence = checkConvergence();
+    convergence = checkConvergence(iter);
     oldCentroids = centroids;
     metric.setup();
+    iter++;
   }
 }
 
@@ -206,8 +213,11 @@ void KMeans<PT, PD, M>::fit_gpu() {
 #endif
 
 template <typename PT, std::size_t PD, class M>
-bool KMeans<PT, PD, M>::checkConvergence()
+bool KMeans<PT, PD, M>::checkConvergence(int iter)
 {
+  if (iter > MAX_ITERATIONS)
+    return true;
+
   if (oldCentroids.empty())
     return false;
   else

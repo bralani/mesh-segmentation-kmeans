@@ -11,6 +11,7 @@
 
 #include "geometry/mesh/Mesh.hpp"
 #include "geometry/metrics/Metric.hpp"
+#include "geometry/metrics/GeodesicMetric.hpp"
 #include "clustering/KMeans.hpp"
 
 template <class M>
