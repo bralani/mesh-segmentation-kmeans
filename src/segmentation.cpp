@@ -2,8 +2,9 @@
 
 #include <iostream>
 
-#include "segmentation/MeshSegmentation.hpp"
+#include "mesh_segmentation/MeshSegmentation.hpp"
 #include "geometry/metrics/EuclideanMetric.hpp"
+#include "geometry/metrics/GeodesicMetric.hpp"
 
 namespace plt = matplotlibcpp;
 
@@ -28,9 +29,9 @@ int main()
     std::cout << mesh << std::endl;
 
     // MeshSegmentation<EuclideanMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4);
-    GeodeticMetric<double, 3> geodeticMetric(mesh);
+    GeodesicMetric<double, 3> geodesicMetric(mesh);
 
-    MeshSegmentation<GeodeticMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, geodeticMetric);
+    MeshSegmentation<GeodesicMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, geodesicMetric);
 
     segmentation.fit();
 

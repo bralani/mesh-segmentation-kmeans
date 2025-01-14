@@ -34,8 +34,6 @@ public:
    * points: Vector of Points to be used in K-Means
    * dist: Function used as the distance metric between two points
    */
-  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold)
-      : numClusters(clusters), data(points), treshold(treshold)
   KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M metric = M())
       : numClusters(clusters), data(points), treshold(treshold), metric(metric)
   {

@@ -14,10 +14,10 @@
 
 
 template <typename PT, std::size_t PD>
-class GeodeticMetric : public Metric<PT, PD>
+class GeodesicMetric : public Metric<PT, PD>
 {
 public:
-    GeodeticMetric(const Mesh &mesh)
+    GeodesicMetric(const Mesh &mesh)
         : mesh(mesh) {}
 
     void setCentroids(std::vector<CentroidPoint<PT, PD>> &centroids) override
