@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.h": "cpp",
         "array": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
@@ -87,6 +88,10 @@
         "stack": "cpp",
         "valarray": "cpp",
         "__availability": "cpp",
-        "version": "cpp"
+        "version": "cpp",
+        "codecvt": "cpp",
+        "format": "cpp",
+        "span": "cpp",
+        "text_encoding": "cpp"
     }
 }

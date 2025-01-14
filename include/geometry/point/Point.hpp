@@ -58,6 +58,16 @@ public:
         this->centroid = centroid;
     }
 
+    // Operatore equivalenza con tollernza
+    bool operator==(const Point& other) const {
+        for (std::size_t i = 0; i < PD; ++i) {
+            if (std::abs(coordinates[i] - other.coordinates[i]) > 1e-6) { 
+                return false;
+            }
+        }
+        return true;
+    }
+
     // Overloaded operator for adding two points (coordinate-wise addition)
     virtual Point<PT, PD> operator+(const Point<PT, PD>& other) const {
         Point<PT, PD> result;

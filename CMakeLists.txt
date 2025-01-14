@@ -12,6 +12,8 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_50") # Set GPU architecture (
 
 # Include csv-parser as a submodule
 include_directories(third_party/csv-parser/single_include)
+include_directories(${CMAKE_SOURCE_DIR}/third_party/eigen)
+include_directories(/usr/include/eigen3)
 add_subdirectory(third_party/matplotlib-cpp)
 
 # Function to define an executable with common settings

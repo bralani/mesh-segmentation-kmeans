@@ -3,11 +3,15 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/include"
+                "${workspaceFolder}/include",
+                "/u/sw/toolchains/gcc-glibc/11.2.0/base/include",
+                "/u/sw/toolchains/gcc-glibc/11.2.0/pkgs/eigen/3.3.9/include/eigen3",
+                "/u/sw/toolchains/gcc-glibc/11.2.0/pkgs/lis/2.0.30/include",
+                "/u/sw/toolchains/gcc-glibc/11.2.0/pkgs/dealii/9.5.1/include"
             ],
             "defines": [],
             "cStandard": "c17",
-            "cppStandard": "gnu++17",
+            "cppStandard": "c++20",
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/g++"
         }
