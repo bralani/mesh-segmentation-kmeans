@@ -1,5 +1,5 @@
-#ifndef GEODETICMETRIC_HPP
-#define GEODETICMETRIC_HPP
+#ifndef GEODESICMETRIC_HPP
+#define GEODESICMETRIC_HPP
 
 #include <queue>
 #include <utility>
@@ -159,4 +159,4 @@ private:
     }
 };
 
-#endif
+#endif // GEODESICMETRIC_HPP

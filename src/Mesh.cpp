@@ -78,3 +78,38 @@ int Mesh::createSegmentationFromSegFile(const std::filesystem::path &path)
 
   return maxCluster + 1;
 }
+
+void Mesh::buildFaceAdjacency()
+{
+  faceAdjacency.clear();
+
+  // Temporary map to store the faces connected to each vertex
+  std::unordered_map<VertId, std::set<FaceId>> vertexToFaces;
+
+  // Populates the vertexToFaces map
+  for (const auto &face : meshFaces)
+  {
+    for (VertId vertex : face.vertices)
+    {
+      vertexToFaces[vertex].insert(face.baricenter.id);
+    }
+  }
+
+  // Creates the adjacency list
+  for (const auto &face : meshFaces)
+  {
+    std::set<FaceId> adjacentFacesSet;
+
+    for (VertId vertex : face.vertices)
+    {
+      const auto &connectedFaces = vertexToFaces[vertex];
+      adjacentFacesSet.insert(connectedFaces.begin(), connectedFaces.end());
+    }
+
+    // Remove the face itself from the set
+    adjacentFacesSet.erase(face.baricenter.id);
+
+    // Save in the final adjacency map
+    faceAdjacency[face.baricenter.id] = std::vector<FaceId>(adjacentFacesSet.begin(), adjacentFacesSet.end());
+  }
+}

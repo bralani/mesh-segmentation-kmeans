@@ -27,6 +27,9 @@ public:
   // Create a segmentation from a .segm file and returns the number of clusters
   int createSegmentationFromSegFile(const std::filesystem::path& path);
 
+  // Build the face adjacency
+  void buildFaceAdjacency();
+
   // Overload the output operator for printing the graph
   friend std::ostream &operator<<(std::ostream &os, const Mesh &graph);
 
@@ -56,37 +59,6 @@ public:
 
   std::vector<Point<double, 3>>& getVertices() {
     return meshVertices;
-  }
-
-  void buildFaceAdjacency() {
-    faceAdjacency.clear();
-
-    // Mappa temporanea per associare i vertici alle facce
-    std::unordered_map<VertId, std::set<FaceId>> vertexToFaces;
-
-    // Popola la mappa dei vertici alle facce
-    for (const auto& face : meshFaces) { // Itera su face con id
-        for (VertId vertex : face.vertices) {
-            vertexToFaces[vertex].insert(face.baricenter.id);
-        }
-    }
-
-    // Crea la lista di adiacenze
-    for (const auto& face : meshFaces) {
-        std::set<FaceId> adjacentFacesSet;
-
-        for (VertId vertex : face.vertices) {
-            const auto& connectedFaces = vertexToFaces[vertex];
-            adjacentFacesSet.insert(connectedFaces.begin(), connectedFaces.end());
-        }
-
-        // Rimuove sé stessa dalle adiacenze
-        adjacentFacesSet.erase(face.baricenter.id);
-
-        // Salva nella mappa finale
-        faceAdjacency[face.baricenter.id] = std::vector<FaceId>(adjacentFacesSet.begin(), adjacentFacesSet.end());
-    }
-
   }
 
   std::vector<FaceId> getFaceAdjacencyAt(FaceId id) const {
