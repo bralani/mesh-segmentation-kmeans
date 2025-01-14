@@ -36,8 +36,12 @@ public:
    */
   KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold)
       : numClusters(clusters), data(points), treshold(treshold)
+  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M metric = M())
+      : numClusters(clusters), data(points), treshold(treshold), metric(metric)
   {
     initializeCentroids();
+    metric.setCentroids(centroids);
+    metric.initialSetup();
 
     #ifdef USE_CUDA
       if (data.size() > MIN_NUM_POINTS_CUDA) {
@@ -49,8 +53,6 @@ public:
     #else
       kdtree = new KdTree<PT, PD>(data);
     #endif
-
-    metric = M();
   }
 
   // Destructor: deallocates the tree
@@ -150,6 +152,7 @@ void KMeans<PT, PD, M>::fit_cpu() {
     this->filter();
     convergence = checkConvergence();
     oldCentroids = centroids;
+    metric.setup();
   }
 }
 

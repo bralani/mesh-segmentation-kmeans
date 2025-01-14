@@ -5,6 +5,8 @@
 #include <vector>
 #include <cmath>
 #include <stdexcept>
+#include "geometry/point/CentroidPoint.hpp"
+
 
 /**
  * Euclidean metric: calculates straight-line distance.
@@ -25,6 +27,21 @@ public:
             sum += std::pow(a.coordinates[i] - b.coordinates[i], 2);
         }
         return std::sqrt(sum);
+    }
+
+    void setup() override
+    {
+        // Do nothing
+    }
+
+    void initialSetup() override
+    {
+        // Do nothing
+    }
+
+    void setCentroids(std::vector<CentroidPoint<PT, PD>> &centroids) override
+    {
+        // Do nothing
     }
 };
 

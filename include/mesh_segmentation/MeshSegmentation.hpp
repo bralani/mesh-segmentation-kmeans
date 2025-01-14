@@ -18,8 +18,8 @@ class MeshSegmentation : public KMeans<double, 3, M>  // Fixed PD to 3 for 3D po
 {
 public:
     // Constructor: Inherit from KMeans and pass the parameters
-    MeshSegmentation(Mesh* mesh, int clusters, double threshold)
-        : KMeans<double, 3, M>(clusters, mesh->getMeshFacesPoints(), threshold)
+    MeshSegmentation(Mesh* mesh, int clusters, double threshold, M metric)
+        : KMeans<double, 3, M>(clusters, mesh->getMeshFacesPoints(), threshold, metric)
     {
         this->mesh = mesh;
     }

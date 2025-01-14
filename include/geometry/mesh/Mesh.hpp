@@ -58,11 +58,48 @@ public:
     return meshVertices;
   }
 
+  void buildFaceAdjacency() {
+    faceAdjacency.clear();
+
+    // Mappa temporanea per associare i vertici alle facce
+    std::unordered_map<VertId, std::set<FaceId>> vertexToFaces;
+
+    // Popola la mappa dei vertici alle facce
+    for (const auto& face : meshFaces) { // Itera su face con id
+        for (VertId vertex : face.vertices) {
+            vertexToFaces[vertex].insert(face.baricenter.id);
+        }
+    }
+
+    // Crea la lista di adiacenze
+    for (const auto& face : meshFaces) {
+        std::set<FaceId> adjacentFacesSet;
+
+        for (VertId vertex : face.vertices) {
+            const auto& connectedFaces = vertexToFaces[vertex];
+            adjacentFacesSet.insert(connectedFaces.begin(), connectedFaces.end());
+        }
+
+        // Rimuove sé stessa dalle adiacenze
+        adjacentFacesSet.erase(face.baricenter.id);
+
+        // Salva nella mappa finale
+        faceAdjacency[face.baricenter.id] = std::vector<FaceId>(adjacentFacesSet.begin(), adjacentFacesSet.end());
+    }
+
+  }
+
+  std::unordered_map<FaceId, std::vector<FaceId>> getFaceAdjacency() const {
+    return faceAdjacency;
+  }
+
+
 private:
   std::vector<Point<double, 3>> meshVertices;
   std::vector<Face> meshFaces;
 
   std::unordered_map<FaceId, int> faceClusters;
+  std::unordered_map<FaceId, std::vector<FaceId>> faceAdjacency;
 };
 
 #endif // MESH_HPP
