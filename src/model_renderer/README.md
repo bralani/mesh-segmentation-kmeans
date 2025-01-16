@@ -20,6 +20,7 @@ This project is configured for Windows 11 64-bit & MSVC 2022. If you are using a
 - `mkdir build && cd build`
 - `cmake ..`
 - Run `make` to build the project.
+- Run `./Mesh_Viewer` to run the program.
 
 Currently, shader & resource path is hard-coded in `main.cpp`, so the `Mesh-Viewer.exe` file should be placed at a `bin` directory, along with `src/shader` and `resource` directory. 
 
