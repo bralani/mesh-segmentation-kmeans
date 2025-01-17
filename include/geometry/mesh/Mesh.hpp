@@ -34,7 +34,13 @@ public:
   friend std::ostream &operator<<(std::ostream &os, const Mesh &graph);
 
   // Get the face cluster
-  const int getFaceCluster(FaceId face) const { return faceClusters.at(face); }
+  const int getFaceCluster(FaceId face) const { 
+    try {
+      return faceClusters.at(face);
+    } catch (const std::out_of_range& e) {
+      return -1;
+    }
+  }
 
   // Set the face cluster
   void setFaceCluster(FaceId face, int cluster) { faceClusters[face] = cluster; }

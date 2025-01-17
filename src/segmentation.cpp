@@ -28,14 +28,9 @@ int main()
 
     std::cout << mesh << std::endl;
 
-    // MeshSegmentation<EuclideanMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4);
-    GeodesicMetric<double, 3> geodesicMetric(mesh);
-
-    MeshSegmentation<GeodesicMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, geodesicMetric);
+    MeshSegmentation segmentation(&mesh, num_clusters, 1e-4);
 
     segmentation.fit();
-
-    segmentation.print();
 
     return 0;
   }

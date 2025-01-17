@@ -6,6 +6,7 @@
 #include <optional>
 #include <functional> 
 #include "geometry/mesh/Mesh.hpp"
+#include "geometry/metrics/Metric.hpp"
 #include "geometry/point/CentroidPoint.hpp"
 #include <iostream>
 #include <vector>
@@ -18,16 +19,9 @@ class GeodesicMetric : public Metric<PT, PD>
 {
 public:
 
-    GeodesicMetric(const Mesh &mesh) : mesh(mesh) {}
-
-    void setMesh(const Mesh &mesh)
+    GeodesicMetric(Mesh &mesh, double percentage_threshold) : mesh(&mesh)
     {
-        this->mesh = mesh;
-    }
-
-    void setCentroids(std::vector<CentroidPoint<PT, PD>> &centroids) override
-    {
-        this->centroids = std::ref(centroids);
+        this->threshold = percentage_threshold;
     }
 
     void setup() override
@@ -35,7 +29,7 @@ public:
         std::unordered_map<int, FaceId> centroidToFaceMap;
 
         // Map each centroid to the closest face
-        for (const auto &centroid : centroids->get())
+        for (const auto &centroid : *(this->centroids))
         {
             FaceId closestFaceId = findClosestFace(centroid);
             centroidToFaceMap[centroid.id] = closestFaceId;
@@ -49,26 +43,15 @@ public:
         }
     }
 
-    void initialSetup() override
-    {
-        if (!centroids.has_value())
-        {
-            throw std::runtime_error("Centroids not set!");
-        }
-
-        mesh.buildFaceAdjacency();
-        setup();
-    }
-
     FaceId findClosestFace(const Point<PT, PD> &centroid) const
     {
         double minDistance = std::numeric_limits<double>::max();
         FaceId closestFaceId = 0;
 
         // Iterate over all faces
-        for (FaceId faceId = 0; faceId < mesh.numFaces(); ++faceId)
+        for (FaceId faceId = 0; faceId < mesh->numFaces(); ++faceId)
         {
-            const auto &face = mesh.getFace(faceId);
+            const auto &face = mesh->getFace(faceId);
             const auto &baricenter = face.baricenter;
 
             // Compute euclidean distance between the centroid and the baricenter
@@ -84,19 +67,101 @@ public:
 
         return closestFaceId;
     }
+   
+    // Do kmeans clustering on the CPU
+    void fit_cpu() override {
+        if (this->centroids->empty()) {
+            throw std::runtime_error("Centroids not set!");
+        }
 
-    PT distanceTo(const Point<PT, PD> &a, const Point<PT, PD> &b) const override
-    {
-        
-        FaceId closest = findClosestFace(b);
-        auto dist = this->distances.at(FaceId(a.id));
+        const size_t numFaces = mesh->numFaces();
+        const size_t numCentroids = this->centroids->size();
 
-        return dist.at(closest);
+        // Temporary storage for new centroids
+        std::vector<Point<PT, PD>> newCentroids(numCentroids);
+
+        bool hasConverged = false;
+        size_t iteration = 0;
+
+        mesh->buildFaceAdjacency();
+
+        while (!hasConverged) {
+            unsigned int numChanged = 0;
+            hasConverged = true;
+
+            setup();
+
+            // Step 1: Assign each face to the nearest centroid
+            for (FaceId faceId = 0; faceId < numFaces; ++faceId) {
+                double minDistance = std::numeric_limits<double>::max();
+                int closestCentroid = -1;
+
+                for (size_t centroidIndex = 0; centroidIndex < numCentroids; ++centroidIndex) {
+                    double distance = this->distances[FaceId(centroidIndex)][faceId];
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        closestCentroid = centroidIndex;
+                    }
+                }
+
+                if(mesh->getFaceCluster(faceId) != closestCentroid) {
+                    numChanged++;
+                    mesh->setFaceCluster(faceId, closestCentroid);
+                }
+            }
+
+            // Step 2: Recompute centroids based on the new assignments
+            std::vector<size_t> counts(numCentroids, 0);
+            for (size_t i = 0; i < numCentroids; ++i) {
+                newCentroids[i].coordinates.fill(0);
+            }
+
+            for (FaceId faceId = 0; faceId < numFaces; ++faceId) {
+                int centroidIndex = mesh->getFaceCluster(faceId);
+                const auto &baricenter = mesh->getFace(faceId).baricenter;
+
+                for (size_t dim = 0; dim < PD; ++dim) {
+                    newCentroids[centroidIndex].coordinates[dim] += baricenter.coordinates[dim];
+                }
+                counts[centroidIndex]++;
+            }
+
+            for (size_t centroidIndex = 0; centroidIndex < numCentroids; ++centroidIndex) {
+                if (counts[centroidIndex] > 0) {
+                    for (size_t dim = 0; dim < PD; ++dim) {
+                        newCentroids[centroidIndex].coordinates[dim] /= counts[centroidIndex];
+                    }
+                }
+            }
+
+            // Step 3: Update the centroids
+            for (size_t i = 0; i < numCentroids; ++i) {
+                this->centroids->at(i).coordinates = newCentroids[i].coordinates;
+            }
+
+            // Step 4: Check for convergence
+            double curr_perc = (double)numChanged / numFaces;
+            if (curr_perc > this->threshold) {
+                hasConverged = false;
+            }
+
+            iteration++;
+            if (iteration > 100) {
+                std::cerr << "Warning: K-Means did not converge after 100 iterations." << std::endl;
+                break;
+            }
+        }
     }
 
+
+    #ifdef USE_CUDA
+        void fit_gpu() override {
+            // Do nothing
+        }
+    #endif
+
 private:
-    Mesh mesh;
-    std::optional<std::reference_wrapper<std::vector<CentroidPoint<PT, PD>>>> centroids;
+    Mesh *mesh;
     std::unordered_map<FaceId, std::vector<PT>> distances;
 
     double computeEuclideanDistance(const Point<PT, PD>& a, const Point<PT, PD>& b) const
@@ -112,12 +177,12 @@ private:
     std::vector<PT> computeDijkstraDistances(FaceId startFace) const
     {
         // Initialize Dijkstra's algorithm
-        std::vector<PT> curr_distances(mesh.numFaces()); // Minimum distance from startFace
+        std::vector<PT> curr_distances(mesh->numFaces()); // Minimum distance from startFace
         std::unordered_map<FaceId, bool> visited; // Keep track of visited faces
         std::priority_queue<std::pair<PT, FaceId>, std::vector<std::pair<PT, FaceId>>, std::greater<>> pq;
 
         // Initialize curr_distances and visited flags
-        for (int i = 0; i < mesh.numFaces(); ++i) {
+        for (int i = 0; i < mesh->numFaces(); ++i) {
             curr_distances[i] = std::numeric_limits<PT>::max();
             visited[i] = false;
         }
@@ -137,12 +202,12 @@ private:
             visited[currentFace] = true;
 
             // Iterate over the neighbors of the current face
-            for (const auto &neighbor : mesh.getFaceAdjacencyAt(currentFace))
+            for (const auto &neighbor : mesh->getFaceAdjacencyAt(currentFace))
             {
-                const auto &neighborFace = mesh.getFace(neighbor);
+                const auto &neighborFace = mesh->getFace(neighbor);
 
                 // Compute distance between baricenters
-                const auto &currentBaricenter = mesh.getFace(currentFace).baricenter;
+                const auto &currentBaricenter = mesh->getFace(currentFace).baricenter;
                 const auto &neighborBaricenter = neighborFace.baricenter;
                 PT weight = computeEuclideanDistance(currentBaricenter, neighborBaricenter);
 

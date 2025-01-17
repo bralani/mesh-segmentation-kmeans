@@ -5,6 +5,7 @@
 #include <vector>
 #include <cmath>
 #include <stdexcept>
+#include <optional>
 #include "geometry/point/CentroidPoint.hpp"
 
 /**
@@ -14,8 +15,13 @@ template <typename PT, std::size_t PD>
 class Metric
 {
 public:
-    // Pure virtual function to calculate distance
-    virtual PT distanceTo(const Point<PT, PD>& a, const Point<PT, PD>& b) const = 0;
+    // Default constructor with null centroids
+    Metric() : centroids(nullptr) {}
+
+    // Constructor to initialize centroids reference
+    explicit Metric(std::vector<CentroidPoint<PT, PD>> &centroids) : centroids(&centroids) {}
+
+public:
 
     // Virtual destructor to ensure proper cleanup in derived classes
     virtual ~Metric() = default;
@@ -23,12 +29,22 @@ public:
     // Virtual function to setup the metric
     virtual void setup() = 0;
 
-    // Virtual function to perform initial setup
-    virtual void initialSetup() = 0;
-
     // Set the centroids for the metric
-    virtual void setCentroids(std::vector<CentroidPoint<PT, PD>> &centroids) = 0;
-};
+    void setCentroids(std::vector<CentroidPoint<PT, PD>> &centroids) {
+        this->centroids = &centroids;
+    }
 
+    // Fit the KMeans algorithm on the CPU or GPU
+    virtual void fit_cpu() = 0;
+
+    #ifdef USE_CUDA
+        virtual void fit_gpu() = 0;
+    #endif
+
+protected:
+    double threshold;
+    std::vector<CentroidPoint<PT, PD>> oldCentroids;
+    std::vector<CentroidPoint<PT, PD>> *centroids; // Pointer to centroids
+};
 
 #endif

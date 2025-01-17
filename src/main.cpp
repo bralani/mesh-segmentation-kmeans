@@ -40,7 +40,8 @@ int main()
             return 1;
         }
 
-        KMeans<double, DIMENSION, EuclideanMetric<double, DIMENSION>> kmeans(num_clusters, points, 1e-4);
+        EuclideanMetric<double, DIMENSION> metric(points, 1e-4);
+        KMeans<double, DIMENSION, EuclideanMetric<double, DIMENSION>> kmeans(num_clusters, points, 1e-4, metric);
 
         kmeans.fit();
         kmeans.print();

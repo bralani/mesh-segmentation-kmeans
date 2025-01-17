@@ -48,11 +48,9 @@ int main()
           {
             int num_clusters = mesh2.createSegmentationFromSegFile(entry.path());
 
-            MeshSegmentation<EuclideanMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4);
+            MeshSegmentation segmentation(&mesh, num_clusters, 1e-4);
 
             segmentation.fit();
-
-            segmentation.assignClustersToMesh();
 
             Segmentation s1(&mesh, num_clusters);
             Segmentation s2(&mesh2, num_clusters);
