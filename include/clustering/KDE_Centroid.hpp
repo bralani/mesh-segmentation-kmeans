@@ -153,7 +153,6 @@ void KDE<PD>::set_KDE_parameter(int bandwidthMethods, int r, int dim_ste) {
     m_r = r;
     step_dimension = dim_ste;
 
-    // Calcola la larghezza di banda usando la regola del pollice
     this->h_ = bandwidth_RuleOfThumb();
 }
 
@@ -167,11 +166,8 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
         vector<Point<double, PD>> gridPoints = generateGrid();
 
         // Find the peaks (local maxima) in the grid
-
-        //DA METTERE IL LIMITE K 
         std::vector<Point<double, PD>> peaks = findLocalMaxima(gridPoints);
 
-        //stampa_point_2d(data, peaks);
         int i = 0;
         for (auto& p : peaks)
         {
@@ -237,11 +233,7 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
                 counters[dim] = 0; // Reset the counter for the current dimension
             }
 
-        }
-        //std::cout<<"Generated grid dimension: "<<grid.size()<<std::endl;
-        
-        //stampa_point_2d(grid);
-
+        }        
         return grid; // Return the generated grid
     }
 
@@ -312,15 +304,11 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
 
         // Create a diagonal matrix from the squared bandwidth values
         MatrixXd bandwidthMatrix = bandwidths.array().square().matrix().asDiagonal();
-        //std::cout << "Bandwidth Matrix:" << std::endl;
-        //std::cout << bandwidthMatrix << std::endl;
 
         // Compute necessary components for KDE
         SelfAdjointEigenSolver<MatrixXd> solver(bandwidthMatrix);
-        this->m_h_sqrt_inv = solver.operatorInverseSqrt(); // Inverse square root of the bandwidth matrix
-        //std::cout << "Invese Bandwidth Matrix:" << std::endl;
-        //std::cout << m_h_sqrt_inv << std::endl;
-        this->m_h_det_sqrt = sqrt(bandwidthMatrix.determinant());         // Square root of the determinant of the bandwidth matrix
+        this->m_h_sqrt_inv = solver.operatorInverseSqrt();                  // Inverse square root of the bandwidth matrix
+        this->m_h_det_sqrt = sqrt(bandwidthMatrix.determinant());           // Square root of the determinant of the bandwidth matrix
         m_transformedPoints.clear();
         for (const auto& xi : this->m_data) {
             Eigen::VectorXd transformed = m_h_sqrt_inv * pointToVector(xi);
@@ -333,26 +321,30 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
 
     /* This defines the actual function. "x" is the independent variable, and "data" 
        represents the set of points required for the calculation.
-       It simply computes the kernel density estimate (KDE) for the given input. */
+       It simply computes the kernel density estimate (KDE) for the given input. 
+        * f(x) = (1 / (n * h)) * Σ K((x - x_i) / h) for i = 1 to n
+        * 
+        * Where:
+        * - f(x): The estimated density at point x.
+        * - n: The total number of data points.
+        * - h: The bandwidth (or smoothing parameter) controlling the kernel's width.
+        * - x_i: The i-th data point in the dataset.
+        * - K(u): The kernel function, typically a symmetric and normalized function.
+     */
     template<std::size_t PD>
     double KDE<PD>::kdeValue(const Point<double, PD>& x) {
         if (h_.rows() == 0 || h_.cols() == 0) {
             throw std::runtime_error("Bandwidth matrix is not initialized.");
         }
        
-         // Trasforma il punto di query
-        //std::cout << "m_h_sqrt_inv dimensions: " << m_h_sqrt_inv.rows() << "x" << m_h_sqrt_inv.cols() << std::endl;
-        //std::cout << "pointToVector(x) dimensions: " << pointToVector(x).rows() << "x" << pointToVector(x).cols() << std::endl;
         Eigen::VectorXd transformedQuery = m_h_sqrt_inv * pointToVector(x);
 
-        // Calcola la densità
         double density = 0.0;
         for (const auto& transformedPoint : m_transformedPoints) {
             Eigen::VectorXd diff = transformedQuery - transformedPoint;
             density += gaussianKernel(diff);
         }
 
-        // Normalizza la densità
         density /= (m_transformedPoints.size() * m_h_det_sqrt);
         return density;
     }
@@ -367,64 +359,34 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
         return vec;
     }
 
-
-
-    template<std::size_t PD>
-    void printDensitiesInOrder(const std::vector<Point<double, PD>>& gridPoints, const std::vector<double>& densities) {
-        // Vettore di indici
-        std::vector<size_t> indices(densities.size());
-        for (size_t i = 0; i < indices.size(); ++i) {
-            indices[i] = i; // Inizializza con gli indici originali
-        }
-
-        // Ordina gli indici in base ai valori di densities
-        std::sort(indices.begin(), indices.end(), [&](size_t a, size_t b) {
-            return densities[a] > densities[b]; // Ordine decrescente
-        });
-
-        // Stampa le densità ordinate e i corrispondenti punti
-        
-        std::cout << "Densities in descending order:" << std::endl;
-        for (size_t idx : indices) {
-            std::cout << "Density: " << densities[idx] 
-                    << " at Point: (" << gridPoints[idx].coordinates[0] 
-                    << ", " << gridPoints[idx].coordinates[1] << ")" << std::endl;
-        }
-        
-    }
-
     // Find local maxima in the grid
     template<std::size_t PD>
     std::vector<Point<double, PD>> KDE<PD>::findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints) {
-        std::vector<Point<double, PD>> maxima; // Vector to store the local maxima
-        // Calculate the KDE values for all points in the grid
+        std::vector<std::pair<Point<double, PD>, double>> maximaPD;
         std::vector<double> densities;
-        //VETTORE DI COPPIE PER MAXIMA
+        std::vector<Point<double, PD>> returnVec; 
+        
         while(1){
-
             for (const auto& point : gridPoints) {
-                // Compute the density at the current grid point using the KDE
                 densities.push_back(this->kdeValue(point));
             }
-
-            //stampa_point_3d(gridPoints, densities);
             
             // Identify local maxima in the grid
             for (size_t i = 0; i < gridPoints.size(); ++i) {
-                // Check if the current grid point is a local maximum
                 if (isLocalMaximum(gridPoints, densities, i)) {
-                    maxima.push_back(gridPoints[i]); // Add to the list of maxima
+                    maximaPD.emplace_back(gridPoints[i], densities[i]);
                 }
             }
-            //std::cout<<"Numero di massimi trovati: " << maxima.size() << std::endl;
-            if(this->m_k != 0 && maxima.size() < this->m_k){
+
+            if(this->m_k != 0 && maximaPD.size() < this->m_k){
                 //try to reduce the band, near points will influence less the result
                 densities.clear();
-                maxima.clear();
+                maximaPD.clear();
                 h_.diagonal() *= 0.85;
+                //Adjust also the parameters 
                 SelfAdjointEigenSolver<MatrixXd> solver(h_);
-                this->m_h_sqrt_inv = solver.operatorInverseSqrt(); // Inverse square root of the bandwidth matrix
-                this->m_h_det_sqrt = sqrt(h_.determinant());         // Square root of the determinant of the bandwidth matrix
+                this->m_h_sqrt_inv = solver.operatorInverseSqrt();      // Inverse square root of the bandwidth matrix
+                this->m_h_det_sqrt = sqrt(h_.determinant());            // Square root of the determinant of the bandwidth matrix
                 m_transformedPoints.clear();
                 for (const auto& xi : this->m_data) {
                     Eigen::VectorXd transformed = m_h_sqrt_inv * pointToVector(xi);
@@ -432,14 +394,21 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
                 }
             }else{
                 //there are more local maximum that necessary, catch only k-max value 
-                if(maxima.size() > this->m_k){
-                    
-                }else{
-                    break;
+                if(his->m_k != 0 && maximaPD.size() > this->m_k){
+                    std::sort(maximaPD.begin(), maximaPD.end(),
+                        [](const auto& a, const auto& b) {
+                            return a.second > b.second; 
+                        });
+
+                    maximaPD.resize(this->m_k);
                 }
+                for (const auto& pair : maximaPD) {
+                    returnVec.push_back(pair.first); 
+                }
+                break;
             }
         }
-        return maxima; // Return the list of local maxima
+        return returnVec; // Return the list of local maxima
     }
 
     // Check if a point is a local maximum
@@ -451,16 +420,6 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
 
         // Generate neighbors for the current point
         generateNeighbors(gridPoints, gridPoints[index], m_r, 0, neighbors, offsets);
-
-        /*
-        std::vector<Point<double, PD>> perStampa;
-        for (const auto& neighborIndex : neighbors) {
-            perStampa.push_back(gridPoints[neighborIndex]);
-        }
-        std::vector<Point<double, PD>> perStampa2;
-        perStampa2.push_back(gridPoints[index]);
-        stampa_point_2d(perStampa, perStampa2);
-        */
 
         // Compare the density of the current point with its neighbors
         for (const auto& neighborIndex : neighbors) {
