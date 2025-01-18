@@ -43,7 +43,9 @@ if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /openmp:llvm /openmp:experimental")
 endif()
 
+file(GLOB_RECURSE SOURCES "src/geometry/*.cpp")
+
 # Define executables
-add_kmeans_executable(k_means "src/main.cpp" "include/clustering/kmeans.cu")
-add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;src/Mesh.cpp" "include/clustering/kmeans.cu")
-add_kmeans_executable(evaluation "src/evaluation.cpp;src/Mesh.cpp" "include/clustering/kmeans.cu")
+add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" "include/clustering/kmeans.cu")
+add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;${SOURCES}" "include/clustering/kmeans.cu")
+add_kmeans_executable(evaluation "src/evaluation.cpp;${SOURCES}" "include/clustering/kmeans.cu")
