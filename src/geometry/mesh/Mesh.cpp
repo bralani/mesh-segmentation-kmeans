@@ -1,5 +1,7 @@
 #include "objload.h"
 #include "geometry/mesh/Mesh.hpp"
+#include <fstream>  // For file output
+#include <sstream>  // For stringstream
 
 Mesh::Mesh(const std::string path)
 {
