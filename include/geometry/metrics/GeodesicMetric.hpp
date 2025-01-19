@@ -12,6 +12,7 @@
 #include <vector>
 #include <cmath>
 #include <stdexcept>
+#include <omp.h>
 
 
 template <typename PT, std::size_t PD>
@@ -26,19 +27,13 @@ public:
 
     void setup() override
     {
-        std::unordered_map<int, FaceId> centroidToFaceMap;
-
-        // Map each centroid to the closest face
-        for (const auto &centroid : *(this->centroids))
+        // Map each centroid to the closest face and compute the distances
+        #pragma omp parallel for
+        for (int centroidId = 0; centroidId < this->centroids->size(); ++centroidId)
         {
+            const auto &centroid = this->centroids->at(centroidId);
             FaceId closestFaceId = findClosestFace(centroid);
-            centroidToFaceMap[centroid.id] = closestFaceId;
-        }
-
-        // Compute the distance between each pair of faces
-        for (const auto &[centroidId, startFace] : centroidToFaceMap)
-        {
-            std::vector<PT> current_distances = computeDijkstraDistances(startFace);
+            std::vector<PT> current_distances = computeDijkstraDistances(closestFaceId);
             this->distances[FaceId(centroidId)] = current_distances;
         }
     }
@@ -48,25 +43,42 @@ public:
         double minDistance = std::numeric_limits<double>::max();
         FaceId closestFaceId = 0;
 
-        // Iterate over all faces
-        for (FaceId faceId = 0; faceId < mesh->numFaces(); ++faceId)
+        #pragma omp parallel
         {
-            const auto &face = mesh->getFace(faceId);
-            const auto &baricenter = face.baricenter;
+            double threadMinDistance = std::numeric_limits<double>::max();
+            FaceId threadClosestFaceId = 0;
 
-            // Compute euclidean distance between the centroid and the baricenter
-            double distance = computeEuclideanDistance(centroid, baricenter);
-
-            // Update the closest FaceId
-            if (distance < minDistance)
+            #pragma omp for nowait
+            for (FaceId faceId = 0; faceId < mesh->numFaces(); ++faceId)
             {
-                minDistance = distance;
-                closestFaceId = faceId;
+                const auto &face = mesh->getFace(faceId);
+                const auto &baricenter = face.baricenter;
+
+                // Compute euclidean distance between the centroid and the baricenter
+                double distance = computeEuclideanDistance(centroid, baricenter);
+
+                // Update the closest FaceId for this thread
+                if (distance < threadMinDistance)
+                {
+                    threadMinDistance = distance;
+                    threadClosestFaceId = faceId;
+                }
+            }
+
+            // Combine results from threads
+            #pragma omp critical
+            {
+                if (threadMinDistance < minDistance)
+                {
+                    minDistance = threadMinDistance;
+                    closestFaceId = threadClosestFaceId;
+                }
             }
         }
 
         return closestFaceId;
     }
+
    
     // Do kmeans clustering on the CPU
     void fit_cpu() override {
@@ -174,7 +186,7 @@ private:
         return std::sqrt(sum);
     }
 
-    std::vector<PT> computeDijkstraDistances(FaceId startFace) const
+    std::vector<PT> computeDijkstraDistances(const FaceId startFace) const
     {
         // Initialize Dijkstra's algorithm
         std::vector<PT> curr_distances(mesh->numFaces()); // Minimum distance from startFace
