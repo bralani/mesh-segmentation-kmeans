@@ -9,6 +9,13 @@
 
 #include "matplotlib-cpp/matplotlibcpp.h"
 #include "geometry/point/Point.hpp"
+#include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
+
+#define BANDWIDTHMETHODS 0
+#define RANGE_NUMBER_DIVISION 4
+#define NUMBER_RAY_STEP 3
+
+
 namespace plt = matplotlibcpp;
 
 using namespace std;
@@ -16,25 +23,32 @@ using namespace Eigen;
 
 
 
+
 template<std::size_t PD>
 class KDE : public CentroidInitMethod<double, PD> {
 public:
-    KDE(std::vector<Point<double, PD>>& data, int k) : CentroidInitMethod<double, PD>(data, k) {}
+    KDE(std::vector<Point<double, PD>>& data, int k) : CentroidInitMethod<double, PD>(data, k) {
+        this->m_h = bandwidth_RuleOfThumb();
+    }
 
-    KDE(std::vector<Point<double, PD>>& data) : CentroidInitMethod<double, PD>(data) {}
-
-    void set_KDE_parameter(int bandwidthMethods, int r, int dim_ste);
+    KDE(std::vector<Point<double, PD>>& data) : CentroidInitMethod<double, PD>(data) {
+        this->m_h = bandwidth_RuleOfThumb();
+    }
 
     void findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) override;
 private:
-    // Attributes
-    int m_bandwidthMethods, m_r;
-    Eigen::MatrixXd h_;
-    //Pre-computed value fro efficienty
-    MatrixXd m_h_sqrt_inv;
+    int m_bandwidthMethods;
+    std::size_t m_totalPoints;
     double m_h_det_sqrt;
+    Eigen::MatrixXd m_h;
+    MatrixXd m_h_sqrt_inv;
     std::vector<Eigen::VectorXd> m_transformedPoints;
-    int step_dimension;
+    std::vector<double> m_rs;
+    std::vector<double> m_range;
+    std::vector<double> m_step;
+
+    //Automatic parameters setting
+    void automatic_set();
 
     // Gaussian kernel
     double gaussianKernel(const Eigen::VectorXd& u);
@@ -59,41 +73,45 @@ private:
 
     // Check local maximum
     bool isLocalMaximum(const std::vector<Point<double, PD>>& gridPoints, const std::vector<double>& densities, size_t index);
+
     // Generate neighbors
-    void generateNeighbors(const std::vector<Point<double, PD>>& grid, const Point<double, PD>& currentPoint, int r, int dim,
-                           std::vector<size_t>& neighbors, std::vector<int>& offsets);
+    void generateNeighbors(const std::vector<Point<double, PD>>& grid, const Point<double, PD>& currentPoint, int dim, std::vector<size_t>& neighbors, std::vector<double>& offsets);
 
 
-
-    void stampa_point_2d(const std::vector<Point<double, PD>>& points) {
-        // Vettori per le coordinate x e y di `points`
+    void stampa_point_2d(const std::vector<Point<double, 2>>& points, const std::vector<Point<double, 2>>& peaks) {
+        // Vettori per le coordinate x e y dei punti della griglia
         std::vector<double> x_points, y_points;
 
-        // Vettori per le coordinate x e y di `peaks`
+        // Vettori per le coordinate x e y dei picchi
         std::vector<double> x_peaks, y_peaks;
-
-        // Estraggo le coordinate dai punti
+        //std::cout<<"POINT";
+        // Estrai le coordinate dai punti
         for (const auto& point : points) {
-            x_points.push_back(point.coordinates[0]);
-            y_points.push_back(point.coordinates[1]);
+            x_points.push_back(point.coordinates[0]); // X
+            y_points.push_back(point.coordinates[1]); // Y
+        }
+        //std::cout<<"PEAKS";
+        // Estrai le coordinate dai picchi
+        for (const auto& peak : peaks) {
+            x_peaks.push_back(peak.coordinates[0]); // X
+            y_peaks.push_back(peak.coordinates[1]); // Y
         }
 
-        // Traccia i punti principali
-        plt::scatter(x_points, y_points, 10.0, {{"label", "Points"}}); // Marker size = 10.0
+        // Traccia i punti della griglia
+        plt::scatter(x_points, y_points, 10.0, {{"label", "Grid Points"}, {"color", "blue"}}); // Punti blu
 
-        // Traccia i picchi (peaks) con marker più grandi
+        // Traccia i picchi
+        plt::scatter(x_peaks, y_peaks, 20.0, {{"label", "Peaks"}, {"color", "red"}, {"marker", "*"}}); // Picchi rossi, stelle
 
-        // Imposto i titoli degli assi
+        // Imposta i titoli degli assi
         plt::xlabel("X");
         plt::ylabel("Y");
 
         // Aggiungi una legenda
         plt::legend();
 
-        // Mostro il grafico
+        // Mostra il grafico
         plt::show();
-
-        return;
     }
 
     void stampa_point_3d(const std::vector<Point<double, PD>>& points, std::vector<double> densities){
@@ -137,27 +155,6 @@ private:
 };
 
 
-template<std::size_t PD>
-void KDE<PD>::set_KDE_parameter(int bandwidthMethods, int r, int dim_ste) {
-    if (bandwidthMethods != 0) {
-        throw std::invalid_argument("Bandwidth method not supported, valid method: 0");
-    }
-    if (r <= 0) {
-        throw std::invalid_argument("Parameter 'm_r' must be greater than 0.");
-    }
-    if (dim_ste <= 0) {
-        throw std::invalid_argument("Parameter 'step_dimension' must be greater than 0.");
-    }
-
-    m_bandwidthMethods = bandwidthMethods;
-    m_r = r;
-    step_dimension = dim_ste;
-
-    this->h_ = bandwidth_RuleOfThumb();
-}
-
-
-
 // Find peaks
 template<std::size_t PD>
 void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
@@ -178,65 +175,59 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
         return;
 }
 
-    /* This function creates a regular grid of points distributed across the
-    multidimensional space specified by the range and step size for each dimension.
-    The range can include negative values to represent data that extends below zero.*/
-    template<std::size_t PD>
-    std::vector<Point<double, PD>> KDE<PD>::generateGrid() {
+/*This function allows the creation of a grid in the multidimensional space where the points to be classified reside. 
+Once the maximum and minimum values are found for each dimension, 
+each range is divided into steps. Each step in every dimension represents a point, 
+and this point will be used to calculate the density */
+template<std::size_t PD>
+std::vector<Point<double, PD>> KDE<PD>::generateGrid() {
 
-        // Initialize min and max values for each dimension with the appropriate limits
-        vector<double> minValues(PD, std::numeric_limits<double>::max());
-        vector<double> maxValues(PD, std::numeric_limits<double>::lowest());
+    // Initialize the minimum and maximum limits for each dimension
+    std::vector<double> minValues(PD, std::numeric_limits<double>::max());
+    std::vector<double> maxValues(PD, std::numeric_limits<double>::lowest());
 
-        // Find the actual minimum and maximum values in each dimension
-        for (const auto& point : this->m_data) {
-            for (size_t dim = 0; dim < PD; ++dim) {
-                minValues[dim] = std::min(minValues[dim], point.coordinates[dim]);
-                maxValues[dim] = std::max(maxValues[dim], point.coordinates[dim]);
-            }
-        }
-
-        vector<double> step(PD, step_dimension); // Step size for each dimension
-        vector<double> range(PD);    // Range for each dimension
+    // Find the minimum and maximum values in each dimension
+    for (const auto& point : this->m_data) {
         for (size_t dim = 0; dim < PD; ++dim) {
-            range[dim] = maxValues[dim] - minValues[dim];
+            minValues[dim] = std::min(minValues[dim], point.coordinates[dim]);
+            maxValues[dim] = std::max(maxValues[dim], point.coordinates[dim]);
         }
+    }
+    
+    for (size_t dim = 0; dim < PD; ++dim) {
+        m_range.push_back(maxValues[dim] - minValues[dim]);
+        m_step.push_back(m_range[dim] / RANGE_NUMBER_DIVISION); 
+        m_rs.push_back(m_step[dim] * NUMBER_RAY_STEP);
+    }    
 
-        vector<Point<double, PD>> grid; // Stores the generated grid points
-
-        // Initialize counters to track the current index in each dimension
-        vector<size_t> counters(PD, 0);
-        size_t totalPoints = 1; // Total number of points in the grid
-
-        // Calculate the total number of points based on the range and step for each dimension
-        for (size_t i = 0; i < PD; ++i) {
-            totalPoints *= static_cast<size_t>(range[i] / step[i]) + 1;
-        }
-
-        // Generate the grid points
-        for (size_t i = 0; i < totalPoints; ++i) {
-            Point<double, PD> point;
-
-            // Compute the coordinates for the current point in each dimension
-            for (size_t dim = 0; dim < PD; ++dim) {
-                point.coordinates[dim] = minValues[dim] + counters[dim] * step[dim];
-            }
-
-            // Add the current point to the grid
-            grid.push_back(point);
-
-            // Increment the counters for the next iteration
-            for (size_t dim = 0; dim < PD; ++dim) {
-                if (++counters[dim] <= static_cast<size_t>(range[dim] / step[dim])) {
-                    break; // Continue to the next point in the same dimension
-                }
-                counters[dim] = 0; // Reset the counter for the current dimension
-            }
-
-        }        
-        return grid; // Return the generated grid
+    // Compute the total number of points
+    std::vector<size_t> counters(PD, 0);
+    m_totalPoints = 1;
+    for (size_t i = 0; i < PD; ++i) {
+        m_totalPoints *= static_cast<size_t>(m_range[i] / m_step[i]) + 1;
     }
 
+    // Initialize the grid vector to store points
+    std::vector<Point<double, PD>> grid;
+    grid.reserve(m_totalPoints);
+
+    for (size_t i = 0; i < m_totalPoints; ++i) {
+        Point<double, PD> point;
+        size_t index = i;
+
+        // Compute the coordinates for the current point
+        for (size_t dim = 0; dim < PD; ++dim) {
+            size_t offset = index % (static_cast<size_t>(m_range[dim] / m_step[dim]) + 1);
+            point.coordinates[dim] = minValues[dim] + offset * m_step[dim];
+            index /= static_cast<size_t>(m_range[dim] / m_step[dim]) + 1;
+        }
+
+        // Add the point to the grid
+        grid.push_back(point);
+    }
+
+    return grid; // Return the generated grid
+}
 
     /* Multivariate Gaussian Kernel Function.
     This function evaluates the Gaussian kernel at a given vector `u`.
@@ -333,7 +324,7 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
      */
     template<std::size_t PD>
     double KDE<PD>::kdeValue(const Point<double, PD>& x) {
-        if (h_.rows() == 0 || h_.cols() == 0) {
+        if (m_h.rows() == 0 || m_h.cols() == 0) {
             throw std::runtime_error("Bandwidth matrix is not initialized.");
         }
        
@@ -344,7 +335,6 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
             Eigen::VectorXd diff = transformedQuery - transformedPoint;
             density += gaussianKernel(diff);
         }
-
         density /= (m_transformedPoints.size() * m_h_det_sqrt);
         return density;
     }
@@ -362,66 +352,115 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
     // Find local maxima in the grid
     template<std::size_t PD>
     std::vector<Point<double, PD>> KDE<PD>::findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints) {
+
         std::vector<std::pair<Point<double, PD>, double>> maximaPD;
         std::vector<double> densities;
-        std::vector<Point<double, PD>> returnVec; 
-        
-        while(1){
+        std::vector<Point<double, PD>> returnVec;
+
+        //std::cout << "Starting findLocalMaxima...\n";
+        //std::cout << "Grid points size: " << gridPoints.size() << "\n";
+        int countCicle = 0;
+        while (true) {
+            std::cout<<"Counter: "<<countCicle<<std::endl;
+            //int i = 0;
+            //int totp = gridPoints.size();
             for (const auto& point : gridPoints) {
-                densities.push_back(this->kdeValue(point));
+                double density = this->kdeValue(point);
+                densities.push_back(density);
+                //std::cout<<"Point " << i << "/" << totp << " : "<<point<<", density: "<< density << std::endl;
+                //i++;
             }
-            
+
+            //std::cout << "Densities computed. Size: " << densities.size() << "\n";
+
+            //stampa_point_3d(gridPoints, densities);
+
             // Identify local maxima in the grid
+            //std::cout << "Identifying local maxima...\n";
             for (size_t i = 0; i < gridPoints.size(); ++i) {
                 if (isLocalMaximum(gridPoints, densities, i)) {
                     maximaPD.emplace_back(gridPoints[i], densities[i]);
                 }
             }
 
-            if(this->m_k != 0 && maximaPD.size() < this->m_k){
-                //try to reduce the band, near points will influence less the result
+            //std::cout << "\nNumber of local maxima found: " << maximaPD.size() << "\n";
+
+            // Check if we need to adjust the bandwidth matrix
+            if (this->m_k != 0 && maximaPD.size() < this->m_k) {
+                //std::cout << "Not enough local maxima. Adjusting bandwidth matrix...\n";
+
                 densities.clear();
                 maximaPD.clear();
-                h_.diagonal() *= 0.85;
-                //Adjust also the parameters 
-                SelfAdjointEigenSolver<MatrixXd> solver(h_);
-                this->m_h_sqrt_inv = solver.operatorInverseSqrt();      // Inverse square root of the bandwidth matrix
-                this->m_h_det_sqrt = sqrt(h_.determinant());            // Square root of the determinant of the bandwidth matrix
+
+                // Reduce the bandwidth
+                m_h.diagonal() *= 0.85;
+                //std::cout << "Bandwidth matrix reduced by 15%.\n";
+
+                // Recompute derived parameters
+                SelfAdjointEigenSolver<MatrixXd> solver(m_h);
+                this->m_h_sqrt_inv = solver.operatorInverseSqrt();
+                this->m_h_det_sqrt = sqrt(m_h.determinant());
+
+                //std::cout << "Recomputing transformed points...\n";
                 m_transformedPoints.clear();
                 for (const auto& xi : this->m_data) {
                     Eigen::VectorXd transformed = m_h_sqrt_inv * pointToVector(xi);
                     m_transformedPoints.push_back(transformed);
                 }
-            }else{
-                //there are more local maximum that necessary, catch only k-max value 
-                if(his->m_k != 0 && maximaPD.size() > this->m_k){
+
+                //std::cout << "Bandwidth adjustment complete.\n";
+
+            } else {
+                // Too many maxima or just enough
+                if (this->m_k != 0 && maximaPD.size() > this->m_k) {
+                    //std::cout << "Too many local maxima. Selecting top " << this->m_k << " maxima...\n";
+
                     std::sort(maximaPD.begin(), maximaPD.end(),
-                        [](const auto& a, const auto& b) {
-                            return a.second > b.second; 
-                        });
+                            [](const auto& a, const auto& b) {
+                                return a.second > b.second;
+                            });
 
                     maximaPD.resize(this->m_k);
                 }
+
+                // Copy the maxima to the return vector
+                //std::cout << "Finalizing local maxima selection...\n";
                 for (const auto& pair : maximaPD) {
-                    returnVec.push_back(pair.first); 
+                    returnVec.push_back(pair.first);
                 }
                 break;
             }
+            countCicle++;
         }
+
+        //std::cout << "Local maxima search complete. Total maxima returned: " << returnVec.size() << "\n";
+
         return returnVec; // Return the list of local maxima
-    }
+}
+
 
     // Check if a point is a local maximum
     template<std::size_t PD>
     bool KDE<PD>::isLocalMaximum(const std::vector<Point<double, PD>>& gridPoints, const std::vector<double>& densities, size_t index) {
-        double currentDensity = densities[index]; // Get the density of the current point
-        std::vector<size_t> neighbors;            // Vector to store indices of neighbors
-        std::vector<int> offsets(PD, 0);          // Offsets initialized to 0
+        double currentDensity = densities[index];       // Get the density of the current point
+        std::vector<size_t> neighbors;                  // Vector to store indices of neighbors
+        std::vector<double> offsets(PD, 0);             // Offsets initialized to 0
+        int test;
 
         // Generate neighbors for the current point
-        generateNeighbors(gridPoints, gridPoints[index], m_r, 0, neighbors, offsets);
+        //std::cout<<"Generating neighbors...they are: ";
+        generateNeighbors(gridPoints, gridPoints[index], 0, neighbors, offsets);
+        //std::cout<<neighbors.size()<<std::endl;
 
-        // Compare the density of the current point with its neighbors
+        /*std::vector<Point<double, PD>> per_stampa, per_stampa_2;
+        for(auto& nei : neighbors){
+            per_stampa.push_back(gridPoints[nei]);
+        }
+        per_stampa_2.push_back(gridPoints[index]);
+        stampa_point_2d(per_stampa, per_stampa_2);
+        std::cout<<"IN stampa";*/
+
+        // Compare the density of the current point with its neighbors, 
         for (const auto& neighborIndex : neighbors) {
             if (densities[neighborIndex] > currentDensity) {
                 return false; // Not a local maximum
@@ -432,12 +471,7 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
     }
 
     template<std::size_t PD>
-    void KDE<PD>::generateNeighbors(const std::vector<Point<double, PD>>& grid, 
-                                    const Point<double, PD>& currentPoint, 
-                                    int r, 
-                                    int dim,
-                                    std::vector<size_t>& neighbors, 
-                                    std::vector<int>& offsets) {
+    void KDE<PD>::generateNeighbors(const std::vector<Point<double, PD>>& grid, const Point<double, PD>& currentPoint, int dim, std::vector<size_t>& neighbors, std::vector<double>& offsets) {
         // Base case: All dimensions processed
         if (dim == PD) {
             // Generate the neighbor by applying the current offsets
@@ -457,11 +491,10 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
         }
 
         // Recursive case: Iterate over all possible offsets for the current dimension
-        for (int offset = -r; offset <= r; ++offset) {
+        for (double offset = -m_rs[dim]; offset <= m_rs[dim]; offset = offset + m_step[dim]) {
             offsets[dim] = offset; // Set the offset for the current dimension
-            generateNeighbors(grid, currentPoint, r, dim + 1, neighbors, offsets); // Recurse for the next dimension
+            generateNeighbors(grid, currentPoint, dim + 1, neighbors, offsets); // Recurse for the next dimension
         }
     }
-
 
 #endif

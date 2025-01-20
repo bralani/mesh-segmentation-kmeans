@@ -12,6 +12,13 @@
 #include "geometry/point/Point.hpp"
 #include "geometry/point/CentroidPoint.hpp"
 #include "geometry/metrics/Metric.hpp"
+#include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
+
+#include "clustering/CentroidInitializationMethods/KDECentroidMatrix.hpp"
+#include "clustering/CentroidInitializationMethods/KDECentroid.hpp"
+#include "clustering/CentroidInitializationMethods/RandomCentroids.hpp"
+#include "clustering/CentroidInitializationMethods/MostDistantCentroids.hpp"
+
 
 #include "matplotlib-cpp/matplotlibcpp.h"
 namespace plt = matplotlibcpp;
@@ -29,10 +36,10 @@ public:
    * points: Vector of Points to be used in K-Means
    * dist: Function used as the distance metric between two points
    */
-  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M metric)
+  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M metric, int centroidsInitializationMethod)
       : numClusters(clusters), data(points), treshold(treshold), metric(metric)
   {
-    initializeCentroids();
+    initializeCentroids(centroidsInitializationMethod);
   }
 
   // Destructor: deallocates the tree
@@ -55,34 +62,36 @@ protected:
 private:
 
   // Method to extract randomly some initial clusters
-  void initializeCentroids();
+  void initializeCentroids(int centroidsInitializationMethod);
   
 };
 
 /** Extracts randomly "numClusters" initial Centroids from the same data that were provided
  */
 template <typename PT, std::size_t PD, class M>
-void KMeans<PT, PD, M>::initializeCentroids()
+void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod)
 {
-  std::random_device rd;
-  std::mt19937 gen(rd());
-
-  // Contenitore per memorizzare gli indici casuali
-  std::vector<int> indices(data.size());
-  std::iota(indices.begin(), indices.end(), 0); // Riempie gli indici da 0 a data.size() - 1
-
-  // Selezione casuale senza ripetizioni
-  std::vector<int> sampledIndices;
-  std::sample(indices.begin(), indices.end(), std::back_inserter(sampledIndices), numClusters, gen);
-
-  int i = 0;
-  // Creazione dei centroidi iniziali
-  for (int idx : sampledIndices)
-  {
-    centroids.push_back(CentroidPoint<PT, PD>(data[idx]));
-    centroids[i].setID(i);
-    i++;
+  if(centroidsInitializationMethod<0 || centroidsInitializationMethod > 2){
+    std::cerr << "Not valid centroids initialization method!" << std::endl;
   }
+
+  CentroidInitMethod<double, PD>* cim; 
+
+  if(centroidsInitializationMethod == 0)
+    cim = new RandomCentroidInit(data, numClusters);
+  else if(centroidsInitializationMethod == 1)
+    cim = new KDE(data, numClusters);
+  else 
+    cim = new MostDistanceClass(data, numClusters);
+  
+  cim->findCentroid(this->centroids);
+  std::cout << "Centroids: \n";
+  for (auto &p : centroids)
+  {
+    p.print();
+    std::cout << "\n";
+  }
+
 }
 
 /** Fits the KMeans algorithm to the data */

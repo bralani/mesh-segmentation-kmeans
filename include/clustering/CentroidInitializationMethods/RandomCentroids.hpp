@@ -5,7 +5,7 @@
 
 #include "geometry/point/CentroidPoint.hpp"
 #include "geometry/point/Point.hpp"
-#include "clustering/CentroidInitMethods.hpp"
+#include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 #include <random>
 #include <algorithm>
 #include <stdexcept>

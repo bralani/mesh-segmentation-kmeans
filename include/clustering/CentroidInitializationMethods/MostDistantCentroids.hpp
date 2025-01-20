@@ -1,33 +1,42 @@
+#ifndef MD_HPP
+#define MD_HPP
+
+
 #include "CentroidInitMethods.hpp"
+#include "geometry/point/Point.hpp"
+#include "geometry/metrics/EuclideanMetric.hpp"
+#include "geometry/point/CentroidPoint.hpp"
+#include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 #include <random> // For random index generation
 #include <limits> // For std::numeric_limits
 
 template<std::size_t PD>
-class MostDistantCentroids : public CentroidInitMethods<double, PD> {
+class MostDistanceClass : public CentroidInitMethod<double, PD> {
 public:
-    // Constructor that calls the parent constructor
-    MostDistantCentroids( std::vector<Point<double, PD>>& points)
-        : CentroidInitMethods<double, PD>(points) {}
+    MostDistanceClass(std::vector<Point<double, PD>>& data, int k) : CentroidInitMethod<double, PD>(data, k) {
+        //Do nothing
+    }
 
-    MostDistantCentroids( std::vector<Point<double, PD>>& points, int k)
-        : CentroidInitMethods<double, PD>(points, k) {}
+    MostDistanceClass(std::vector<Point<double, PD>>& data) : CentroidInitMethod<double, PD>(data) {
+        //Do nothing
+    }
 
-
-    void findCentroid(std::vector<CentroidPoint<PT, PD>>& centroids) override {
-        std::vector<Point<double, PD>> centroids;
+    void findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) override {
+        EuclideanMetric<double, PD> metric(this->m_data, 1e-4);
         int limit;
         if (this->m_k == 0)
-            set_k(casualK(limit));
+            this->set_k(casualK(limit));
 
         // Generate a random index to select the first point
         std::random_device rd;
         std::mt19937 gen(rd());
-        std::uniform_int_distribution<> dis(0, this->m_points.size() - 1);
+        std::uniform_int_distribution<> dis(0, this->m_data.size() - 1);
 
         // Select the first point randomly
-        centroids.push_back( (this->m_data)[casualNumber(limit)] );
+        CentroidPoint tmpInitialCentroids( (this->m_data)[casualK(limit)] );
+        centroids.push_back(tmpInitialCentroids);
 
-        while (centroids.size() < k) {
+        while (centroids.size() < this->m_k) {
             // Find the point farthest from the current centroids
             Point<double, PD> farthestPoint;
             double maxDistance = -std::numeric_limits<double>::infinity();
@@ -36,7 +45,7 @@ public:
                 // Compute the minimum distance between the point and all centroids
                 double minDistance = std::numeric_limits<double>::infinity();
                 for (const auto& centroid : centroids) {
-                    double distance = this->distanceTo(point, centroid);
+                    double distance = metric.distanceTo(point, centroid);
                     if (distance < minDistance) {
                         minDistance = distance;
                     }
@@ -52,8 +61,6 @@ public:
             // Add the farthest point to the list of centroids
             centroids.push_back(farthestPoint);
         }
-
-        return centroids;
     }
 
     int casualK(int limit){
@@ -61,3 +68,6 @@ public:
         return 0;
     }
 };
+
+
+#endif

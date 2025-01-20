@@ -19,8 +19,8 @@ typedef GeodesicMetric<double, 3> MetricMeshSegmentation;
 class MeshSegmentation
 {
 public:
-    MeshSegmentation(Mesh* mesh, int clusters, double threshold)
-    : kmeans(clusters, mesh->getMeshFacesPoints(), threshold, MetricMeshSegmentation(*mesh, threshold)),
+    MeshSegmentation(Mesh* mesh, int clusters, double threshold, int num_initialization_method)
+    : kmeans(clusters, mesh->getMeshFacesPoints(), threshold, MetricMeshSegmentation(*mesh, threshold), num_initialization_method),
       mesh(mesh) {}
 
     // Method to perform mesh segmentation (clustering on a 3D mesh)
