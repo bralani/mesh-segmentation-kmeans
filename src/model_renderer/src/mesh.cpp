@@ -6,8 +6,8 @@
 
 #include <OBJ_Loader.h>
 
-Mesh::Mesh(const objl::Mesh &mesh, Material *material) :
-        indexSize(mesh.Indices.size()), material(material) {
+Mesh::Mesh(const objl::Mesh &mesh, Material *material) : indexSize(mesh.Indices.size()), material(material)
+{
     vertices = new float[8 * mesh.Vertices.size()];
     indices = new unsigned int[mesh.Indices.size()];
     memcpy(vertices, mesh.Vertices.data(), 8 * sizeof(float) * mesh.Vertices.size());
@@ -24,16 +24,17 @@ Mesh::Mesh(const objl::Mesh &mesh, Material *material) :
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * mesh.Indices.size(), indices, GL_STATIC_DRAW);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *) 0); // position
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0); // position
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *) (3 * sizeof(float))); // normal
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(3 * sizeof(float))); // normal
     glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *) (6 * sizeof(float))); // texcoord
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float))); // texcoord
 
     glBindVertexArray(0);
 }
 
-Mesh::~Mesh() {
+Mesh::~Mesh()
+{
     glDeleteBuffers(1, &glVBO);
     glDeleteBuffers(1, &glEBO);
     glDeleteVertexArrays(1, &glVAO);
@@ -42,8 +43,10 @@ Mesh::~Mesh() {
     delete[] indices;
 }
 
-void Mesh::draw() const {
-    if (material == nullptr) {
+void Mesh::draw() const
+{
+    if (material == nullptr)
+    {
         std::cerr << "Error: Material is nullptr!" << std::endl;
         return;
     }
@@ -56,13 +59,16 @@ void Mesh::draw() const {
     glBindVertexArray(0);
 }
 
-Model::Model(const std::string &path, ShaderProgram *program) : program(program) {
-    if (!std::filesystem::exists(path)) {
+Model::Model(const std::string &path, ShaderProgram *program) : program(program)
+{
+    if (!std::filesystem::exists(path))
+    {
         PLOG_FATAL << "Model Load Error: file not found " + path;
         throw std::runtime_error("File not found: " + path);
     }
     loader = new objl::Loader;
-    if (!loader->LoadFile(path)) {
+    if (!loader->LoadFile(path))
+    {
         PLOG_FATAL << "Model Load Error: unable to load model " + path;
         throw std::runtime_error("Unable to load model: " + path);
     }
@@ -74,18 +80,21 @@ Model::Model(const std::string &path, ShaderProgram *program) : program(program)
     auto defaultMaterial = new PhongMaterial(program, {defaultTexture}, 0, 0, 32.0f); // Default white material
     materials["default"] = defaultMaterial;
 
-    for (const auto &_material : loader->LoadedMaterials) {
+    for (const auto &_material : loader->LoadedMaterials)
+    {
         std::cout << "Material Name: " << _material.name << "\n";
         std::cout << "map_Kd (Texture Path): " << _material.map_Kd << "\n";
         std::cout << "Shininess (Ns): " << _material.Ns << "\n";
 
         Texture2D *texture = nullptr;
-        if (!_material.map_Kd.empty()) {
+        if (!_material.map_Kd.empty())
+        {
             auto texturePath = objDir + "/" + _material.map_Kd;
             texture = loadTexture(texturePath);
         }
 
-        if (!texture) {
+        if (!texture)
+        {
             std::cerr << "Warning: Missing texture for material '" << _material.name
                       << "'. Using default white texture.\n";
             texture = defaultTexture; // Use white texture as fallback
@@ -99,12 +108,16 @@ Model::Model(const std::string &path, ShaderProgram *program) : program(program)
         std::cout << "----------------------------------------\n";
     }
 
-    for (const auto &_mesh : loader->LoadedMeshes) {
+    for (const auto &_mesh : loader->LoadedMeshes)
+    {
         Material *meshMaterial = nullptr;
 
-        if (materials.contains(_mesh.MeshMaterial.name)) {
+        if (materials.contains(_mesh.MeshMaterial.name))
+        {
             meshMaterial = materials[_mesh.MeshMaterial.name];
-        } else {
+        }
+        else
+        {
             std::cerr << "Warning: Missing material for mesh. Falling back to default material.\n";
             meshMaterial = defaultMaterial;
         }
@@ -113,41 +126,77 @@ Model::Model(const std::string &path, ShaderProgram *program) : program(program)
     }
 }
 
-Model::~Model() {
+Model::~Model()
+{
     delete loader;
-    for (const auto mesh: meshes) {
+    for (const auto mesh : meshes)
+    {
         delete mesh;
     }
-    for (const auto &material: materials) {
+    for (const auto &material : materials)
+    {
         delete material.second;
     }
-    for (const auto &texture: textures) {
+    for (const auto &texture : textures)
+    {
         delete texture.second;
     }
 
     delete defaultTexture;
 }
 
-void Model::draw() const {
-    for (const auto &mesh : meshes) {
-        if (mesh != nullptr) {
+void Model::draw() const
+{
+    for (const auto &mesh : meshes)
+    {
+        if (mesh != nullptr)
+        {
             mesh->draw();
-        } else {
+        }
+        else
+        {
             std::cerr << "Found a nullptr in meshes" << std::endl;
         }
     }
 }
 
-// Assuming you have a function like this in your Model class
-glm::vec3 Model::getBoundingBoxSize() const {
+glm::vec3 Model::getBoundingBoxCenter() const
+{
     glm::vec3 minBounds = glm::vec3(INFINITY);
     glm::vec3 maxBounds = glm::vec3(-INFINITY);
 
-    for (const auto& mesh : meshes) {
-        for (size_t i = 0; i < mesh->getVertexCount(); i++) {
+    for (const auto &mesh : meshes)
+    {
+        for (size_t i = 0; i < mesh->getVertexCount(); i++)
+        {
             // Assuming the getVertex function returns a float pointer to the vertex data
-            float* vertexData = mesh->getVertex(i);
-            if (vertexData) {
+            float *vertexData = mesh->getVertex(i);
+            if (vertexData)
+            {
+                glm::vec3 vertex(vertexData[0], vertexData[1], vertexData[2]);
+                minBounds = glm::min(minBounds, vertex);
+                maxBounds = glm::max(maxBounds, vertex);
+            }
+        }
+    }
+
+    return (minBounds + maxBounds) / 2.0f; // Center of the bounding box
+}
+
+// Assuming you have a function like this in your Model class
+glm::vec3 Model::getBoundingBoxSize() const
+{
+    glm::vec3 minBounds = glm::vec3(INFINITY);
+    glm::vec3 maxBounds = glm::vec3(-INFINITY);
+
+    for (const auto &mesh : meshes)
+    {
+        for (size_t i = 0; i < mesh->getVertexCount(); i++)
+        {
+            // Assuming the getVertex function returns a float pointer to the vertex data
+            float *vertexData = mesh->getVertex(i);
+            if (vertexData)
+            {
                 // Construct the glm::vec3 from the vertex data (x, y, z)
                 glm::vec3 vertex(vertexData[0], vertexData[1], vertexData[2]);
                 // Now you can use the vertex as a glm::vec3
@@ -160,7 +209,9 @@ glm::vec3 Model::getBoundingBoxSize() const {
     return maxBounds - minBounds;
 }
 
-Texture2D *Model::loadTexture(const std::string &path) {
-    if (textures.contains(path)) return textures[path];
+Texture2D *Model::loadTexture(const std::string &path)
+{
+    if (textures.contains(path))
+        return textures[path];
     return textures[path] = new Texture2D(path);
 }

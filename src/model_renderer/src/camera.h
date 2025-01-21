@@ -9,7 +9,8 @@
 
 #include "mesh.h"
 
-class Camera {
+class Camera
+{
 public:
     Camera() {}
 
@@ -19,15 +20,17 @@ public:
 
     [[nodiscard]] glm::mat4 getViewMatrix() const;
 
-    [[nodiscard]] float getFOV() const {
+    [[nodiscard]] float getFOV() const
+    {
         return fov;
     }
 
-    [[nodiscard]] glm::vec3 getPosition() const {
+    [[nodiscard]] glm::vec3 getPosition() const
+    {
         return position;
     }
 
-    void setPosition(const glm::vec3& newPosition);
+    void setPosition(const glm::vec3 &newPosition);
 
     virtual void handleMouseInput(float x, float y, bool pressed);
 
@@ -39,11 +42,15 @@ public:
 
     void positionBasedOnObject(const Model &model);
 
+    virtual void setCenter(const glm::vec3 &newCenter) {
+
+    };
+
 protected:
     glm::vec3 position,
-            front = {0.0f, 0.0f, -1.0f},
-            up = {0.0f, 1.0f, 0.0f},
-            right = {1.0f, 0.0f, 0.0f};
+        front = {0.0f, 0.0f, -1.0f},
+        up = {0.0f, 1.0f, 0.0f},
+        right = {1.0f, 0.0f, 0.0f};
     float yaw = -90.0f, pitch = 0.0f, fov;
 
     bool firstMouseInput = true;
@@ -52,14 +59,14 @@ protected:
     glm::mat4 viewMatrix;
 };
 
-class ModelRotationCamera : public Camera {
+class ModelRotationCamera : public Camera
+{
 public:
     ModelRotationCamera() = default;
 
     explicit ModelRotationCamera(glm::vec3 center = {0.0f, 0.0f, 0.0f},
-                                 float distance = 10.0f) :
-            Camera(center - glm::vec3(0.0f, 0.0f, -distance), 60.0f),
-            center(center), distance(distance) {}
+                                 float distance = 10.0f) : Camera(center - glm::vec3(0.0f, 0.0f, -distance), 60.0f),
+                                                           center(center), distance(distance) {}
 
     ~ModelRotationCamera() override = default;
 
@@ -69,9 +76,11 @@ public:
 
     void handleScrollInput(float y) override;
 
+    void setCenter(const glm::vec3 &newCenter) override;
+
 protected:
     glm::vec3 center;
     float distance;
 };
 
-#endif //MESH_VIEWER_CAMERA_H
+#endif // MESH_VIEWER_CAMERA_H

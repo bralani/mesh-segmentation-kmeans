@@ -15,13 +15,15 @@
 
 #include "material.h"
 
-namespace objl {
+namespace objl
+{
     class Mesh;
 
     class Loader;
 }
 
-class Mesh {
+class Mesh
+{
 public:
     Mesh() : indexSize(0), vertices(nullptr), indices(nullptr), glVAO(0), glVBO(0), glEBO(0), material(nullptr) {}
 
@@ -32,17 +34,20 @@ public:
     virtual void draw() const;
 
     // Get the number of vertices (assuming it's based on the vertices array)
-    [[nodiscard]] size_t getVertexCount() const {
-        return indexSize;  // Assuming indexSize reflects the number of vertices in your case
+    [[nodiscard]] size_t getVertexCount() const
+    {
+        return indexSize; // Assuming indexSize reflects the number of vertices in your case
     }
 
     // Get a specific vertex at the given index
     // Assuming the vertices array is structured in a way that each vertex is a set of floats (e.g., x, y, z)
-    [[nodiscard]] float* getVertex(const size_t index) const {
-        if (index < indexSize) {
-            return &vertices[index * 3];  // Assuming each vertex has 3 components (x, y, z)
+    [[nodiscard]] float *getVertex(const size_t index) const
+    {
+        if (index < indexSize)
+        {
+            return &vertices[index * 3]; // Assuming each vertex has 3 components (x, y, z)
         }
-        return nullptr;  // Return nullptr if the index is out of bounds
+        return nullptr; // Return nullptr if the index is out of bounds
     }
 
 protected:
@@ -53,7 +58,8 @@ protected:
     Material *material;
 };
 
-class Model {
+class Model
+{
 public:
     Model() {}
 
@@ -64,9 +70,11 @@ public:
     virtual void draw() const;
 
     [[nodiscard]] virtual glm::vec3 getBoundingBoxSize() const;
+    [[nodiscard]] virtual glm::vec3 getBoundingBoxCenter() const;
 
 protected:
-    Texture2D *loadTexture(const std::string &path);
+    Texture2D *
+    loadTexture(const std::string &path);
 
     objl::Loader *loader = nullptr;
     std::vector<Mesh *> meshes;
@@ -76,4 +84,4 @@ protected:
     std::unordered_map<std::string, Material *> materials;
 };
 
-#endif //MESH_VIEWER_MESH_H
+#endif // MESH_VIEWER_MESH_H
