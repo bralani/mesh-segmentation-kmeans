@@ -108,6 +108,19 @@ void Camera::positionBasedOnObject(const Model &model)
     this->setPosition(cameraPosition); // Assuming the camera has a setPosition function
 }
 
+void Camera::resetCamera()
+{
+    fov = 20.0f;
+
+    position = {0.0f, 10.0f, 0.0f};
+    front = {0.0f, 0.0f, -1.0f};
+    up = {0.0f, 1.0f, 0.0f};
+    right = {1.0f, 0.0f, 0.0f};
+
+    yaw = -90.0f;
+    pitch = 0.0f;
+}
+
 static float modelRotationCameraMouseSpeed = 0.1f,
              modelRotationCameraScrollSpeed = 1.0f;
 

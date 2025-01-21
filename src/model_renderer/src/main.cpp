@@ -158,6 +158,8 @@ int main()
                     currentModel = nullptr;
                 }
 
+                camera->resetCamera();
+
                 currentModel = new Model(selectedModelPath, &program);
                 camera->positionBasedOnObject(*currentModel);
                 renderModel = true; // Trigger rendering
@@ -183,6 +185,7 @@ int main()
                 lastTime = nowTime;
                 handle_keyboard(window, deltaTime);
 
+                camera->setCenter(glm::vec3(0.0f, 0.0f, 0.0f));
                 glm::vec3 modelCenter = currentModel->getBoundingBoxCenter();
                 glm::mat4 model = glm::translate(glm::identity<glm::mat4>(), -modelCenter);
                 glm::mat4 view = camera->getViewMatrix();

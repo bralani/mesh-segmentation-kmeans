@@ -40,6 +40,8 @@ public:
 
     void updateViewMatrix();
 
+    void resetCamera();
+
     void positionBasedOnObject(const Model &model);
 
     virtual void setCenter(const glm::vec3 &newCenter) {
