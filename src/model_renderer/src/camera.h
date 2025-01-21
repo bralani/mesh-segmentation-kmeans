@@ -14,7 +14,7 @@ class Camera
 public:
     Camera() {}
 
-    explicit Camera(glm::vec3 position, float fov = 60.0f);
+    explicit Camera(glm::vec3 position, float fov = 90.0f);
 
     virtual ~Camera() = default;
 

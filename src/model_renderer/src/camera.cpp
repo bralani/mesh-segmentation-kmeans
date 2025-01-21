@@ -49,33 +49,35 @@ void Camera::handleKeyboardInput(int key, float deltaTime)
 {
     if (key == GLFW_KEY_S)
     {
-        position += up * cameraKeyboardSpeed * deltaTime;
+        position += up * cameraKeyboardSpeed * deltaTime; // Move right
     }
     else if (key == GLFW_KEY_W)
     {
-        position -= up * cameraKeyboardSpeed * deltaTime;
+        position -= up * cameraKeyboardSpeed * deltaTime; // Move left
     }
     else if (key == GLFW_KEY_D)
     {
-        position -= right * cameraKeyboardSpeed * deltaTime;
+        position -= right * cameraKeyboardSpeed * deltaTime; // Move up
     }
     else if (key == GLFW_KEY_A)
     {
-        position += right * cameraKeyboardSpeed * deltaTime;
+        position += right * cameraKeyboardSpeed * deltaTime; // Move down
     }
     else if (key == GLFW_KEY_U)
     {
-        position += front * cameraKeyboardSpeed * deltaTime; // Move up
+        position += front * cameraKeyboardSpeed * deltaTime; // Move far
     }
     else if (key == GLFW_KEY_J)
     {
-        position -= front * cameraKeyboardSpeed * deltaTime; // Move down
+        position -= front * cameraKeyboardSpeed * deltaTime; // Move close
     }
 }
 
 void Camera::handleScrollInput(float y)
 {
     fov -= y * cameraScrollSpeed;
+
+    // Clamp to a more reasonable range to avoid the mesh to became a point in space
     fov = std::fmax(std::fmin(fov, 80.0f), 1.0f);
 }
 
