@@ -12,7 +12,7 @@
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 
 #define BANDWIDTHMETHODS 0
-#define RANGE_NUMBER_DIVISION 4
+#define RANGE_NUMBER_DIVISION 50
 #define NUMBER_RAY_STEP 3
 
 
@@ -78,10 +78,10 @@ private:
     void generateNeighbors(const std::vector<Point<double, PD>>& grid, const Point<double, PD>& currentPoint, int dim, std::vector<size_t>& neighbors, std::vector<double>& offsets);
 
 
-    void stampa_point_2d(const std::vector<Point<double, 2>>& points, const std::vector<Point<double, 2>>& peaks) {
+    void stampa_point_2d(const std::vector<Point<double, 2>>& points, const std::vector<Point<double, 2>>& peaks, const std::vector<Point<double, 2>>& grid) {
         // Vettori per le coordinate x e y dei punti della griglia
         std::vector<double> x_points, y_points;
-
+        std::vector<double> x_grid, y_grid;
         // Vettori per le coordinate x e y dei picchi
         std::vector<double> x_peaks, y_peaks;
         //std::cout<<"POINT";
@@ -89,6 +89,10 @@ private:
         for (const auto& point : points) {
             x_points.push_back(point.coordinates[0]); // X
             y_points.push_back(point.coordinates[1]); // Y
+        }
+        for (const auto& point : grid) {
+            x_grid.push_back(point.coordinates[0]); // X
+            y_grid.push_back(point.coordinates[1]); // Y
         }
         //std::cout<<"PEAKS";
         // Estrai le coordinate dai picchi
@@ -98,8 +102,8 @@ private:
         }
 
         // Traccia i punti della griglia
-        plt::scatter(x_points, y_points, 10.0, {{"label", "Grid Points"}, {"color", "blue"}}); // Punti blu
-
+        plt::scatter(x_points, y_points, 10.0, {{"label", "Real points"}, {"color", "blue"}}); // Punti blu
+        plt::scatter(x_grid, y_grid, 5.0, {{"label", "Grid Points"}, {"color", "green"}}); // Punti blu
         // Traccia i picchi
         plt::scatter(x_peaks, y_peaks, 20.0, {{"label", "Peaks"}, {"color", "red"}, {"marker", "*"}}); // Picchi rossi, stelle
 
@@ -114,50 +118,12 @@ private:
         plt::show();
     }
 
-    void stampa_point_3d(const std::vector<Point<double, PD>>& points, std::vector<double> densities){
-        // Definizione dei dati
-        int i = 0;
-
-        // Generazione della griglia di punti (x, y)
-        std::vector<double> x, y, z;
-        for (const auto& point : points) {
-            x.push_back(point.coordinates[0]);
-            y.push_back(point.coordinates[1]);
-            z.push_back(1000*densities[i]);
-            i++;
-        }
-
-        std::vector<double> x_points, y_points;
-        for (const auto& point : this->m_data ) {
-            x_points.push_back(point.coordinates[0]);
-            y_points.push_back(point.coordinates[1]);
-        }
-        plt::scatter(x_points, y_points, 30.0, {{"label", "Points"}});
-
-        // Creazione del grafico 2D
-        plt::scatter(x, y);  // Plot dei punti
-        
-        // Aggiunta delle etichette con i valori z
-        for (size_t i = 0; i < x.size(); ++i) {
-            plt::annotate(std::to_string(z[i]), x[i], y[i]);
-        }
-
-        // Etichette degli assi e titolo
-        plt::xlabel("X-axis");
-        plt::ylabel("Y-axis");
-        plt::title("2D Points with Z Labels");
-
-        // Mostra il grafico
-        plt::show();
-
-        return;
-    }
 };
 
 
-// Find peaks
-template<std::size_t PD>
-void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
+    // Find peaks
+    template<std::size_t PD>
+    void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
 
         // Generate the grid points based on the calculated ranges and steps
         vector<Point<double, PD>> gridPoints = generateGrid();
@@ -172,62 +138,66 @@ void KDE<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) {
             centroids[i].setID(i);
             i++;
         }
+
+        if(PD == 2)
+            stampa_point_2d(this->m_data, peaks, gridPoints);
+
         return;
-}
+    }
 
-/*This function allows the creation of a grid in the multidimensional space where the points to be classified reside. 
-Once the maximum and minimum values are found for each dimension, 
-each range is divided into steps. Each step in every dimension represents a point, 
-and this point will be used to calculate the density */
-template<std::size_t PD>
-std::vector<Point<double, PD>> KDE<PD>::generateGrid() {
+    /*This function allows the creation of a grid in the multidimensional space where the points to be classified reside. 
+    Once the maximum and minimum values are found for each dimension, 
+    each range is divided into steps. Each step in every dimension represents a point, 
+    and this point will be used to calculate the density */
+    template<std::size_t PD>
+    std::vector<Point<double, PD>> KDE<PD>::generateGrid() {
 
-    // Initialize the minimum and maximum limits for each dimension
-    std::vector<double> minValues(PD, std::numeric_limits<double>::max());
-    std::vector<double> maxValues(PD, std::numeric_limits<double>::lowest());
+        // Initialize the minimum and maximum limits for each dimension
+        std::vector<double> minValues(PD, std::numeric_limits<double>::max());
+        std::vector<double> maxValues(PD, std::numeric_limits<double>::lowest());
 
-    // Find the minimum and maximum values in each dimension
-    for (const auto& point : this->m_data) {
-        for (size_t dim = 0; dim < PD; ++dim) {
-            minValues[dim] = std::min(minValues[dim], point.coordinates[dim]);
-            maxValues[dim] = std::max(maxValues[dim], point.coordinates[dim]);
+        // Find the minimum and maximum values in each dimension
+        for (const auto& point : this->m_data) {
+            for (size_t dim = 0; dim < PD; ++dim) {
+                minValues[dim] = std::min(minValues[dim], point.coordinates[dim]);
+                maxValues[dim] = std::max(maxValues[dim], point.coordinates[dim]);
+            }
         }
-    }
-    
-    for (size_t dim = 0; dim < PD; ++dim) {
-        m_range.push_back(maxValues[dim] - minValues[dim]);
-        m_step.push_back(m_range[dim] / RANGE_NUMBER_DIVISION); 
-        m_rs.push_back(m_step[dim] * NUMBER_RAY_STEP);
-    }    
-
-    // Compute the total number of points
-    std::vector<size_t> counters(PD, 0);
-    m_totalPoints = 1;
-    for (size_t i = 0; i < PD; ++i) {
-        m_totalPoints *= static_cast<size_t>(m_range[i] / m_step[i]) + 1;
-    }
-
-    // Initialize the grid vector to store points
-    std::vector<Point<double, PD>> grid;
-    grid.reserve(m_totalPoints);
-
-    for (size_t i = 0; i < m_totalPoints; ++i) {
-        Point<double, PD> point;
-        size_t index = i;
-
-        // Compute the coordinates for the current point
+        
         for (size_t dim = 0; dim < PD; ++dim) {
-            size_t offset = index % (static_cast<size_t>(m_range[dim] / m_step[dim]) + 1);
-            point.coordinates[dim] = minValues[dim] + offset * m_step[dim];
-            index /= static_cast<size_t>(m_range[dim] / m_step[dim]) + 1;
+            m_range.push_back(maxValues[dim] - minValues[dim]);
+            m_step.push_back(m_range[dim] / RANGE_NUMBER_DIVISION); 
+            m_rs.push_back(m_step[dim] * NUMBER_RAY_STEP);
+        }    
+
+        // Compute the total number of points
+        std::vector<size_t> counters(PD, 0);
+        m_totalPoints = 1;
+        for (size_t i = 0; i < PD; ++i) {
+            m_totalPoints *= static_cast<size_t>(m_range[i] / m_step[i]) + 1;
         }
 
-        // Add the point to the grid
-        grid.push_back(point);
-    }
+        // Initialize the grid vector to store points
+        std::vector<Point<double, PD>> grid;
+        grid.reserve(m_totalPoints);
 
-    return grid; // Return the generated grid
-}
+        for (size_t i = 0; i < m_totalPoints; ++i) {
+            Point<double, PD> point;
+            size_t index = i;
+
+            // Compute the coordinates for the current point
+            for (size_t dim = 0; dim < PD; ++dim) {
+                size_t offset = index % (static_cast<size_t>(m_range[dim] / m_step[dim]) + 1);
+                point.coordinates[dim] = minValues[dim] + offset * m_step[dim];
+                index /= static_cast<size_t>(m_range[dim] / m_step[dim]) + 1;
+            }
+
+            // Add the point to the grid
+            grid.push_back(point);
+        }
+
+        return grid; // Return the generated grid
+    }
 
     /* Multivariate Gaussian Kernel Function.
     This function evaluates the Gaussian kernel at a given vector `u`.

@@ -71,8 +71,8 @@ private:
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod)
 {
-  if(centroidsInitializationMethod<0 || centroidsInitializationMethod > 2){
-    std::cerr << "Not valid centroids initialization method!" << std::endl;
+  if (centroidsInitializationMethod < 0 || centroidsInitializationMethod > 3) {
+      throw std::invalid_argument("Not a valid centroids initialization method!");
   }
 
   CentroidInitMethod<double, PD>* cim; 
@@ -81,8 +81,10 @@ void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod)
     cim = new RandomCentroidInit(data, numClusters);
   else if(centroidsInitializationMethod == 1)
     cim = new KDE(data, numClusters);
-  else 
+  else if(centroidsInitializationMethod == 2)
     cim = new MostDistanceClass(data, numClusters);
+  //else 
+    //cim = new KDE3D(data, numClusters);
   
   cim->findCentroid(this->centroids);
   std::cout << "Centroids: \n";

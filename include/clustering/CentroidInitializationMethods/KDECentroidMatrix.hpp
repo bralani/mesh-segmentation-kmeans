@@ -256,34 +256,32 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
 
     // Find local maxima in the grid
     std::vector<Point<double, PDS>> KDE3D::findLocalMaxima(Grid3D& gridPoints) {
-
+        std::size_t Xgrid, Ygrid, Zgrid;
         std::vector<std::pair<Point<double, PDS>, double>> maximaPD;
         std::vector<Point<double, PDS>> returnVec;
 
-        Densities3D densities(
-            m_numPoints[0],
-            std::vector<std::vector<double>>(
-                m_numPoints[1],
-                std::vector<double>(m_numPoints[2])
-            )
-        );
+        Xgrid = gridPoints.size();
+        Ygrid = gridPoints[0].size();
+        Zgrid = gridPoints[0][0].size();
+
+        Densities3D densities(Xgrid, std::vector<std::vector<double>>(Ygrid, std::vector<double>(Zgrid, 0.0)));
 
         int countCicle = 0;
 
         while (true) {
             std::cout<<"Counter: "<<countCicle<<std::endl;
 
-            for (size_t x = 0; x < densities.size(); ++x) {
-                for (size_t y = 0; y < densities[x].size(); ++y) {
-                    for (size_t z = 0; z < densities[x][y].size(); ++z) {
+            for (size_t x = 0; x < Xgrid; ++x) {
+                for (size_t y = 0; y < Ygrid; ++y) {
+                    for (size_t z = 0; z < Zgrid; ++z) {
                         densities[x][y][z] = kdeValue(gridPoints[x][y][z]); 
                     }
-                }
+                }   
             }
 
-            for (size_t x = 0; x < gridPoints.size(); ++x) {
-                for (size_t y = 0; y < gridPoints[x].size(); ++y) {
-                    for (size_t z = 0; z < gridPoints[x][y].size(); ++z) {
+            for (size_t x = 0; x < Xgrid; ++x) {
+                for (size_t y = 0; y < Ygrid; ++y) {
+                    for (size_t z = 0; z < Zgrid; ++z) {
                         if (isLocalMaximum(gridPoints, densities, x, y, z)) {
                             maximaPD.emplace_back(gridPoints[x][y][z], densities[x][y][z]);
                         }
@@ -294,8 +292,7 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
 
             // Check if we need to adjust the bandwidth matrix
             if (this->m_k != 0 && maximaPD.size() < this->m_k) {
-
-                densities.clear();
+                
                 maximaPD.clear();
 
                 // Reduce the bandwidth

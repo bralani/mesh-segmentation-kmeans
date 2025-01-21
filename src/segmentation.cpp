@@ -19,13 +19,14 @@ int main()
     string file_name;
     cout << "Enter the name of the mesh file: ";
     cin >> file_name;
+    file_name = "../../resources/meshes/obj/" + file_name; 
 
     int num_clusters;
     cout << "Enter the number of clusters (parameter k): ";
     cin >> num_clusters;
 
     int num_initialization_method;
-    std::cout << "Enter the number of initialization method for centroids \n (0: random, 1: kernel density estimator, 2: most distant)" <<std::endl;
+    std::cout << "Enter the number of initialization method for centroids \n (0: random, 1: kernel density estimator, 2: most distant, 3: Static KDE - 3D point )" <<std::endl;
     cin >> num_initialization_method;
 
     Mesh mesh(file_name);
