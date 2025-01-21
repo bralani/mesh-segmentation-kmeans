@@ -115,3 +115,32 @@ void Mesh::buildFaceAdjacency()
     faceAdjacency[face.baricenter.id] = std::vector<FaceId>(adjacentFacesSet.begin(), adjacentFacesSet.end());
   }
 }
+void Mesh::exportToObj(const std::string& filepath, int cluster) {
+    std::ofstream objFile(filepath);
+    
+    if (!objFile.is_open()) {
+        std::cerr << "Failed to open file: " << filepath << std::endl;
+        return;
+    }
+
+    // Write the vertices to the file (in .obj format)
+    for (const auto& vertex : meshVertices) {
+        objFile << "v " << vertex.coordinates[0] << " " << vertex.coordinates[1] << " " << vertex.coordinates[2] << std::endl;
+    }
+
+    for (FaceId faceId = 0; faceId < meshFaces.size(); ++faceId) {
+        if (getFaceCluster(faceId) == cluster) {  // Check if the cluster ID is 0
+            const Face& face = meshFaces[faceId];
+            
+            // Write the face in OBJ format (note that OBJ uses 1-based indexing)
+            objFile << "f";
+            for (const auto& vertId : face.vertices) {
+                objFile << " " << (vertId + 1);  // OBJ indices are 1-based
+            }
+            objFile << std::endl;
+        }
+    }
+
+    objFile.close();
+    std::cout << "Exported mesh to " << filepath << std::endl;
+}

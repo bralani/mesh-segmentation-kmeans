@@ -71,6 +71,8 @@ public:
     return faceAdjacency.at(id);
   }
 
+  void exportToObj(const std::string& filepath, int cluster);
+
 
 private:
   std::vector<Point<double, 3>> meshVertices;
