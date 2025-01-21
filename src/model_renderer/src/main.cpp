@@ -120,7 +120,9 @@ int main()
 
     glEnable(GL_DEPTH_TEST);
 
-    while (!glfwWindowShouldClose(window))
+    bool shouldClose = false;
+
+    while (!glfwWindowShouldClose(window) && !shouldClose)
     {
         // Clear the screen
         glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
@@ -157,6 +159,13 @@ int main()
             currentModel = new Model(selectedModelPath, &program);
             camera->positionBasedOnObject(*currentModel);
             renderModel = true; // Trigger rendering
+        }
+
+        // Close Button
+        if (ImGui::Button("Close"))
+        {
+            shouldClose = true; // Signal to exit the application
+            glfwSetWindowShouldClose(window, true);
         }
 
         ImGui::End();
