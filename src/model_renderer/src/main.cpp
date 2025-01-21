@@ -122,94 +122,125 @@ int main()
 
     bool shouldClose = false;
 
-    while (!glfwWindowShouldClose(window) && !shouldClose)
+    try
     {
-        // Clear the screen
-        glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-        // ImGui Frame Initialization
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplGlfw_NewFrame();
-        ImGui::NewFrame();
-
-        // ImGui Menu
-        ImGui::Begin("Model Selector");
-
-        ImGui::Text("Select a Model to Load:");
-        for (int i = 0; i < modelPaths.size(); ++i)
+        while (!glfwWindowShouldClose(window) && !shouldClose)
         {
-            if (ImGui::Selectable(modelPaths[i].c_str(), selectedModelIndex == i))
-            {
-                selectedModelIndex = i;
-                selectedModelPath = modelPaths[i]; // Store the selected path
-            }
-        }
+            // Clear the screen
+            glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        // Render Button
-        if (ImGui::Button("Render") && selectedModelIndex != -1)
-        {
-            // Load the selected model
-            if (currentModel)
+            // ImGui Frame Initialization
+            ImGui_ImplOpenGL3_NewFrame();
+            ImGui_ImplGlfw_NewFrame();
+            ImGui::NewFrame();
+
+            // ImGui Menu
+            ImGui::Begin("Model Selector");
+
+            ImGui::Text("Select a Model to Load:");
+            for (int i = 0; i < modelPaths.size(); ++i)
             {
-                delete currentModel; // Unload the current model
-                currentModel = nullptr;
+                if (ImGui::Selectable(modelPaths[i].c_str(), selectedModelIndex == i))
+                {
+                    selectedModelIndex = i;
+                    selectedModelPath = modelPaths[i]; // Store the selected path
+                }
             }
 
-            currentModel = new Model(selectedModelPath, &program);
-            camera->positionBasedOnObject(*currentModel);
-            renderModel = true; // Trigger rendering
+            // Render Button
+            if (ImGui::Button("Render") && selectedModelIndex != -1)
+            {
+                // Load the selected model
+                if (currentModel)
+                {
+                    delete currentModel; // Unload the current model
+                    currentModel = nullptr;
+                }
+
+                currentModel = new Model(selectedModelPath, &program);
+                camera->positionBasedOnObject(*currentModel);
+                renderModel = true; // Trigger rendering
+            }
+
+            // Close Button
+            if (ImGui::Button("Close"))
+            {
+                shouldClose = true; // Signal to exit the application
+                glfwSetWindowShouldClose(window, true);
+            }
+
+            ImGui::End();
+
+            ImGui::Render();
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+            // Update and render the selected model
+            if (renderModel && currentModel)
+            {
+                float nowTime = glfwGetTime();
+                float deltaTime = nowTime - lastTime;
+                lastTime = nowTime;
+                handle_keyboard(window, deltaTime);
+
+                glm::vec3 modelCenter = currentModel->getBoundingBoxCenter();
+                glm::mat4 model = glm::translate(glm::identity<glm::mat4>(), -modelCenter);
+                glm::mat4 view = camera->getViewMatrix();
+                glm::mat4 projection = glm::perspective(glm::radians(camera->getFOV()),
+                                                        (float)width / height, 0.1f, 100.0f);
+
+                program.setMVPMatrices(model, view, projection);
+                program.setVec3("eyePos", camera->getPosition());
+                program.setVec3("light.position", lightPos);
+                program.setVec3("light.ambient", lightAmbient);
+                program.setVec3("light.diffuse", lightColor);
+                program.setVec3("light.specular", lightColor);
+                currentModel->draw();
+            }
+
+            glfwSwapBuffers(window);
+            glfwPollEvents();
         }
-
-        // Close Button
-        if (ImGui::Button("Close"))
-        {
-            shouldClose = true; // Signal to exit the application
-            glfwSetWindowShouldClose(window, true);
-        }
-
-        ImGui::End();
-
-        ImGui::Render();
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-        // Update and render the selected model
-        if (renderModel && currentModel)
-        {
-            float nowTime = glfwGetTime();
-            float deltaTime = nowTime - lastTime;
-            lastTime = nowTime;
-            handle_keyboard(window, deltaTime);
-
-            glm::vec3 modelCenter = currentModel->getBoundingBoxCenter();
-            glm::mat4 model = glm::translate(glm::identity<glm::mat4>(), -modelCenter);
-            glm::mat4 view = camera->getViewMatrix();
-            glm::mat4 projection = glm::perspective(glm::radians(camera->getFOV()),
-                                                    (float)width / height, 0.1f, 100.0f);
-
-            program.setMVPMatrices(model, view, projection);
-            program.setVec3("eyePos", camera->getPosition());
-            program.setVec3("light.position", lightPos);
-            program.setVec3("light.ambient", lightAmbient);
-            program.setVec3("light.diffuse", lightColor);
-            program.setVec3("light.specular", lightColor);
-            currentModel->draw();
-        }
-
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Exception occurred: " << e.what() << std::endl;
+    }
+    catch (const char *msg)
+    {
+        std::cerr << "Error: " << msg << std::endl;
+    }
+    catch (...)
+    {
+        std::cerr << "Unknown error occurred!" << std::endl;
     }
 
-    // Cleanup
-    if (currentModel)
-        delete currentModel;
-    delete camera;
+    try
+    {
+        // Cleanup
+        if (currentModel)
+            delete currentModel;
+        delete camera;
 
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
 
-    glfwTerminate();
+        glfwTerminate();
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << "Cleanup failed: " << e.what() << std::endl;
+    }
+    catch (const char *msg)
+    {
+        std::cerr << "Error during cleanup: " << msg << std::endl;
+    }
+    catch (...)
+    {
+        std::cerr << "Unknown error during cleanup!" << std::endl;
+    }
+
     return 0;
 }
 
