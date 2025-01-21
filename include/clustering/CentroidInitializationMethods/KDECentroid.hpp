@@ -138,9 +138,9 @@ private:
             centroids[i].setID(i);
             i++;
         }
-
+        /*    
         if(PD == 2)
-            stampa_point_2d(this->m_data, peaks, gridPoints);
+            stampa_point_2d(this->m_data, peaks, gridPoints);*/
 
         return;
     }

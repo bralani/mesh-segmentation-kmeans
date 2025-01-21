@@ -83,8 +83,8 @@ void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod)
     cim = new KDE(data, numClusters);
   else if(centroidsInitializationMethod == 2)
     cim = new MostDistanceClass(data, numClusters);
-  //else 
-    //cim = new KDE3D(data, numClusters);
+  else 
+    cim = new KDE3D(data, numClusters);
   
   cim->findCentroid(this->centroids);
   std::cout << "Centroids: \n";
