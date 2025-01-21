@@ -12,17 +12,11 @@
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 
 #define BANDWIDTHMETHODS 0
-#define RANGE_NUMBER_DIVISION 50
+#define RANGE_NUMBER_DIVISION 20
 #define NUMBER_RAY_STEP 3
 
-
 namespace plt = matplotlibcpp;
-
-using namespace std;
 using namespace Eigen;
-
-
-
 
 template<std::size_t PD>
 class KDE : public CentroidInitMethod<double, PD> {
@@ -138,7 +132,7 @@ private:
             centroids[i].setID(i);
             i++;
         }
-        /*    
+         /*   
         if(PD == 2)
             stampa_point_2d(this->m_data, peaks, gridPoints);*/
 
@@ -301,10 +295,13 @@ private:
         Eigen::VectorXd transformedQuery = m_h_sqrt_inv * pointToVector(x);
 
         double density = 0.0;
-        for (const auto& transformedPoint : m_transformedPoints) {
+
+        for (size_t i = 0; i < m_transformedPoints.size(); ++i) {
+            const Eigen::VectorXd& transformedPoint = m_transformedPoints[i];
             Eigen::VectorXd diff = transformedQuery - transformedPoint;
             density += gaussianKernel(diff);
         }
+
         density /= (m_transformedPoints.size() * m_h_det_sqrt);
         return density;
     }
@@ -332,25 +329,30 @@ private:
         int countCicle = 0;
         while (true) {
             std::cout<<"Counter: "<<countCicle<<std::endl;
-            //int i = 0;
-            //int totp = gridPoints.size();
-            for (const auto& point : gridPoints) {
-                double density = this->kdeValue(point);
-                densities.push_back(density);
-                //std::cout<<"Point " << i << "/" << totp << " : "<<point<<", density: "<< density << std::endl;
-                //i++;
+
+            densities.resize(gridPoints.size()); 
+            #pragma omp parallel for
+            for (size_t i = 0; i < gridPoints.size(); ++i) {
+                densities[i] = this->kdeValue(gridPoints[i]);
             }
 
-            //std::cout << "Densities computed. Size: " << densities.size() << "\n";
+            std::vector<std::vector<std::pair<Point<double, PD>, double>>> threadLocalMaxima(omp_get_max_threads());
 
-            //stampa_point_3d(gridPoints, densities);
+            #pragma omp parallel
+            {
+                int threadID = omp_get_thread_num();
+                auto& localMaxima = threadLocalMaxima[threadID]; 
 
-            // Identify local maxima in the grid
-            //std::cout << "Identifying local maxima...\n";
-            for (size_t i = 0; i < gridPoints.size(); ++i) {
-                if (isLocalMaximum(gridPoints, densities, i)) {
-                    maximaPD.emplace_back(gridPoints[i], densities[i]);
+                #pragma omp for
+                for (size_t i = 0; i < gridPoints.size(); ++i) {
+                    if (isLocalMaximum(gridPoints, densities, i)) {
+                        localMaxima.emplace_back(gridPoints[i], densities[i]);
+                    }
                 }
+            }
+
+            for (const auto& localMaxima : threadLocalMaxima) {
+                maximaPD.insert(maximaPD.end(), localMaxima.begin(), localMaxima.end());
             }
 
             //std::cout << "\nNumber of local maxima found: " << maximaPD.size() << "\n";

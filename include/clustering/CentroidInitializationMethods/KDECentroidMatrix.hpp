@@ -12,7 +12,7 @@
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 
 #define BANDWIDTHMETHODS 0
-#define RANGE_NUMBER_DIVISION 4
+#define RANGE_NUMBER_DIVISION 20
 #define NUMBER_RAY_STEP 3
 #define PDS 3
 
@@ -270,7 +270,8 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
 
         while (true) {
             std::cout<<"Counter: "<<countCicle<<std::endl;
-
+            
+            #pragma omp parallel for collapse(PDS)
             for (size_t x = 0; x < Xgrid; ++x) {
                 for (size_t y = 0; y < Ygrid; ++y) {
                     for (size_t z = 0; z < Zgrid; ++z) {
@@ -279,15 +280,29 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
                 }   
             }
 
-            for (size_t x = 0; x < Xgrid; ++x) {
-                for (size_t y = 0; y < Ygrid; ++y) {
-                    for (size_t z = 0; z < Zgrid; ++z) {
-                        if (isLocalMaximum(gridPoints, densities, x, y, z)) {
-                            maximaPD.emplace_back(gridPoints[x][y][z], densities[x][y][z]);
+            std::vector<std::vector<std::pair<Point<double, PDS>, double>>> threadLocalMaxima(omp_get_max_threads());
+
+            #pragma omp parallel
+            {
+                int threadID = omp_get_thread_num();
+                auto& localMaxima = threadLocalMaxima[threadID]; 
+
+                #pragma omp for collapse(PDS)
+                for (size_t x = 0; x < Xgrid; ++x) {
+                    for (size_t y = 0; y < Ygrid; ++y) {
+                        for (size_t z = 0; z < Zgrid; ++z) {
+                            if (isLocalMaximum(gridPoints, densities, x, y, z)) {
+                                localMaxima.emplace_back(gridPoints[x][y][z], densities[x][y][z]);
+                            }
                         }
                     }
                 }
             }
+
+            for (const auto& localMaxima : threadLocalMaxima) {
+                maximaPD.insert(maximaPD.end(), localMaxima.begin(), localMaxima.end());
+            }
+
         
 
             // Check if we need to adjust the bandwidth matrix
