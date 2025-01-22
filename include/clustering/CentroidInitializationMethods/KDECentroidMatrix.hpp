@@ -15,6 +15,7 @@
 #define RANGE_NUMBER_DIVISION 20
 #define NUMBER_RAY_STEP 3
 #define PDS 3
+#define M_PI 3.14159265358979323846
 
 using Grid3D = std::vector<std::vector<std::vector<Point<double, 3>>>>;
 using Densities3D = std::vector<std::vector<std::vector<double>>>;

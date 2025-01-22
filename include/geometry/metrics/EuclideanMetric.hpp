@@ -14,6 +14,7 @@
   void kmeans_cuda(int K, int dim, int numPoints, float *points, float *centroids, int *cluster_assignment, float threshold);
 #endif
 
+#define MIN_NUM_POINTS_CUDA 10000
 #define MAX_ITERATIONS 100
 
 /**
@@ -33,7 +34,7 @@ public:
                 // In cuda mode, the kdtree is not used
                 kdtree = nullptr;
             } else {
-                kdtree = new KdTree<PT, PD>(*data);
+                kdtree = new KdTree<PT, PD>(data);
             }
         #else
             kdtree = new KdTree<PT, PD>(data);
@@ -76,15 +77,17 @@ public:
     #ifdef USE_CUDA
     /** Kmeans on GPU */
     void fit_gpu() override {
+
+        int numClusters = this->centroids->size();
     
         // Convert the data to a flat array
-        float *data_flat = new float[data.size() * PD];
+        float *data_flat = new float[data->size() * PD];
         #pragma omp parallel for collapse(2)
-        for (int i = 0; i < data.size(); i++)
+        for (int i = 0; i < data->size(); i++)
         {
             for (int j = 0; j < PD; j++)
             {
-            data_flat[i * PD + j] = data[i].coordinates[j];
+            data_flat[i * PD + j] = data->at(i).coordinates[j];
             }
         }
 
@@ -94,14 +97,14 @@ public:
         {
             for (int j = 0; j < PD; j++)
             {
-            centroids_flat[i * PD + j] = centroids[i].coordinates[j];
+            centroids_flat[i * PD + j] = centroids->at(i).coordinates[j];
             }
         }
 
-        int *cluster_assignment = new int[data.size()];
+        int *cluster_assignment = new int[data->size()];
 
         // Call the CUDA kernel function
-        kmeans_cuda(numClusters, PD, data.size(), data_flat, centroids_flat, cluster_assignment, (float)treshold);
+        kmeans_cuda(numClusters, PD, data->size(), data_flat, centroids_flat, cluster_assignment, (float)treshold);
 
         // Convert the centroids back to the original format
         #pragma omp parallel for collapse(2)
@@ -109,16 +112,16 @@ public:
         {
             for (int j = 0; j < PD; j++)
             {
-            centroids[i].coordinates[j] = centroids_flat[i * PD + j];
+            centroids->at(i).coordinates[j] = centroids_flat[i * PD + j];
             }
         }
 
         // Convert the cluster assignments back to the original format
         #pragma omp parallel for
-        for (int i = 0; i < data.size(); i++) 
+        for (int i = 0; i < data->size(); i++) 
         {
-            std::shared_ptr<CentroidPoint<PT, PD>> centroid_ptr = std::make_shared<CentroidPoint<PT, PD>>(centroids[cluster_assignment[i]]);
-            data[i].setCentroid(centroid_ptr);
+            std::shared_ptr<CentroidPoint<PT, PD>> centroid_ptr = std::make_shared<CentroidPoint<PT, PD>>(this->centroids->at(cluster_assignment[i]));
+            data->at(i).setCentroid(centroid_ptr);
         }
     }
     #endif
