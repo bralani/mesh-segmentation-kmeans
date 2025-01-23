@@ -9,6 +9,7 @@
 
 #include "matplotlib-cpp/matplotlibcpp.h"
 #include "geometry/point/Point.hpp"
+#include "clustering/CentroidInitializationMethods/KernelFunction.hpp"
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 
 #define BANDWIDTHMETHODS 0
@@ -48,9 +49,6 @@ private:
     std::array<double, 3> m_range;
     std::array<double, 3> m_step;
     std::array<size_t, 3> m_numPoints;
-
-    // Gaussian kernel
-    double gaussianKernel(const Eigen::VectorXd& u);
 
     // Mean and standard deviation
     std::pair<double, double> computeMeanAndStdDev(int dim);
@@ -142,24 +140,6 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
         return grid; // Ritorna la griglia tridimensionale
     }
 
-
-
-    /* Multivariate Gaussian Kernel Function.
-    This function evaluates the Gaussian kernel at a given vector `u`.
-    The Gaussian kernel is used to compute the contribution of a data point
-    to the kernel density estimate (KDE3D). */
-    double KDE3D::gaussianKernel(const VectorXd& u) {
-        // Compute the squared norm (||u||^2)
-        double norm = u.squaredNorm();
-        
-        // Compute the normalization coefficient: 1 / (2 * PI)^(d/2)
-        double coeff = 1.0 / pow(2 * M_PI, PDS / 2.0);
-        
-        // Return the Gaussian kernel value: coeff * exp(-||u||^2 / 2)
-        return coeff * exp(-0.5 * norm);
-    }
-
-
     /* Calculation of Mean and Standard Deviation.
     This function computes the mean and standard deviation of the points in the dataset
     along a specific dimension `dim`.*/
@@ -240,8 +220,9 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
         double density = 0.0;
         for (const auto& transformedPoint : m_transformedPoints) {
             Eigen::VectorXd diff = transformedQuery - transformedPoint;
-            density += gaussianKernel(diff);
+            density += Kernel::gaussian(diff, 3);
         }
+
         density /= (m_transformedPoints.size() * m_h_det_sqrt);
         return density;
     }
