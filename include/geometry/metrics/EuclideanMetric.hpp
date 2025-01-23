@@ -41,9 +41,9 @@ public:
         #endif
     }
 
-    PT distanceTo(const Point<PT, PD> &a, const Point<PT, PD> &b) const
+    static PT distanceTo(const Point<PT, PD> &a, const Point<PT, PD> &b)
     {
-        if (a.coordinates.size() != a.coordinates.size())
+        if (a.coordinates.size() != b.coordinates.size())
         {
             throw std::invalid_argument("Points must have the same dimensionality");
         }

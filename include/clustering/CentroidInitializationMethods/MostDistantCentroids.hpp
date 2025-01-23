@@ -7,8 +7,10 @@
 #include "geometry/metrics/EuclideanMetric.hpp"
 #include "geometry/point/CentroidPoint.hpp"
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
-#include <random> // For random index generation
-#include <limits> // For std::numeric_limits
+#include <random> 
+#include <limits> 
+
+#define LIMIT_NUM_CENTROIDS 10
 
 template<std::size_t PD>
 class MostDistanceClass : public CentroidInitMethod<double, PD> {
@@ -23,9 +25,10 @@ public:
 
     void findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) override {
         EuclideanMetric<double, PD> metric(this->m_data, 1e-4);
-        int limit;
+        int limit = LIMIT_NUM_CENTROIDS;
+
         if (this->m_k == 0)
-            this->set_k(casualK(limit));
+            this->set_k(casualNumber(limit));
 
         // Generate a random index to select the first point
         std::random_device rd;
@@ -33,7 +36,7 @@ public:
         std::uniform_int_distribution<> dis(0, this->m_data.size() - 1);
 
         // Select the first point randomly
-        CentroidPoint tmpInitialCentroids( (this->m_data)[casualK(limit)] );
+        CentroidPoint tmpInitialCentroids( (this->m_data)[casualNumber(limit)] );
         centroids.push_back(tmpInitialCentroids);
 
         while (centroids.size() < this->m_k) {
@@ -63,9 +66,17 @@ public:
         }
     }
 
-    int casualK(int limit){
-        //DA FARE
-        return 0;
+    int casualNumber(int limit) {
+        if (limit <= 0) {
+            throw std::invalid_argument("Limit must be positive");
+        }
+
+        static std::random_device rd;  
+        static std::mt19937 gen(rd()); 
+
+        std::uniform_int_distribution<> dis(0, limit - 1);
+
+        return dis(gen);
     }
 };
 

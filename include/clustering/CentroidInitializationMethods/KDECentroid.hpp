@@ -127,9 +127,9 @@ private:
             centroids[i].setID(i);
             i++;
         }
-         /*   
-        if(PD == 2)
-            stampa_point_2d(this->m_data, peaks, gridPoints);*/
+           
+        //if(PD == 2)
+          //  stampa_point_2d(this->m_data, peaks, gridPoints);
 
         return;
     }
@@ -331,7 +331,7 @@ private:
                 maximaPD.insert(maximaPD.end(), localMaxima.begin(), localMaxima.end());
             }
 
-            //std::cout << "\nNumber of local maxima found: " << maximaPD.size() << "\n";
+            std::cout << "\nNumber of local maxima found: " << maximaPD.size() << "\n";
 
             // Check if we need to adjust the bandwidth matrix
             if (this->m_k != 0 && maximaPD.size() < this->m_k) {

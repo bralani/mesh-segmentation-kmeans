@@ -6,6 +6,7 @@
 #include <cmath>
 #include <Eigen/Dense>
 #include <stdexcept>
+#include <fstream>
 
 #include "matplotlib-cpp/matplotlibcpp.h"
 #include "geometry/point/Point.hpp"
@@ -71,10 +72,92 @@ private:
     // Check if a point is a local maximum
     bool isLocalMaximum(Grid3D& gridPoints, Densities3D& densities, size_t x, size_t y, size_t z);
 
+
+    double truncateToThreeDecimals(double value) {
+        return std::trunc(value * 1000.0) / 1000.0;
+    }
+    // Funzione per esportare i punti in un file CSV
+    void exportLabeledPointsToCSV(Grid3D grid3D, Densities3D densities3D) {
+        std::size_t Xgrid, Ygrid, Zgrid;
+        Xgrid = grid3D.size();
+        Ygrid = grid3D[0].size();
+        Zgrid = grid3D[0][0].size();
+        
+        std::ofstream file("Ex.csv");
+
+        if (!file.is_open()) {
+            cerr << "Errore nell'apertura del file!" << endl;
+            return;
+        }
+
+        // Scrivi l'intestazione
+        file << "x,y,z,label\n";
+
+        for (size_t x = 0; x < Xgrid; ++x) {
+            for (size_t y = 0; y < Ygrid; ++y) {
+                for (size_t z = 0; z < Zgrid; ++z) {
+                    file << truncateToThreeDecimals(grid3D[x][y][z].coordinates[0]) << "," 
+                        << truncateToThreeDecimals(grid3D[x][y][z].coordinates[1]) << "," 
+                        << truncateToThreeDecimals(grid3D[x][y][z].coordinates[2]) << "," 
+                        << truncateToThreeDecimals(densities3D[x][y][z] * 10000000) << "\n";
+                }
+            }
+        }
+
+        file.close();
+        cout << "Punti con etichette esportati in " << "Ex.csv" << endl;
+    }
+
+    void exportedMesh(std::vector<Point<double, 3>> points, string name_csv, std::vector<double> densities) {
+                
+        std::ofstream file(name_csv + ".csv");
+
+        if (!file.is_open()) {
+            cerr << "Errore nell'apertura del file!" << endl;
+            return;
+        }
+
+        // Scrivi l'intestazione
+        file << "x,y,z,label\n";
+        int i = 0;
+        for(auto& point : points){
+            file << truncateToThreeDecimals(point.coordinates[0]) << "," 
+                        << truncateToThreeDecimals(point.coordinates[1]) << "," 
+                        << truncateToThreeDecimals(point.coordinates[2]) << "," << densities[i] << "\n";
+            i++;
+        }
+
+        file.close();
+        cout << "Punti con etichette esportati in " << "csv" << endl;
+    }
+
+    void exportedMesh(std::vector<Point<double, 3>> points, string name_csv) {
+                
+        std::ofstream file(name_csv + ".csv");
+
+        if (!file.is_open()) {
+            cerr << "Errore nell'apertura del file!" << endl;
+            return;
+        }
+
+        // Scrivi l'intestazione
+        file << "x,y,z,label\n";
+        for(auto& point : points){
+            file << truncateToThreeDecimals(point.coordinates[0]) << "," 
+                        << truncateToThreeDecimals(point.coordinates[1]) << "," 
+                        << truncateToThreeDecimals(point.coordinates[2]) << "," << 0 << "\n";
+        }
+
+        file.close();
+        cout << "Punti con etichette esportati in " << "csv" << endl;
+    }
+
 };
 
 
 void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
+        //CSV for print
+        exportedMesh(this->m_data, "mesh");
 
         // Generate the grid points based on the calculated ranges and steps
         Grid3D gridPoints = generateGrid();
@@ -251,6 +334,7 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
         int countCicle = 0;
 
         while (true) {
+
             std::cout<<"Counter: "<<countCicle<<std::endl;
             
             #pragma omp parallel for collapse(PDS)
@@ -261,6 +345,8 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
                     }
                 }   
             }
+
+            exportLabeledPointsToCSV(gridPoints, densities);
 
             std::vector<std::vector<std::pair<Point<double, PDS>, double>>> threadLocalMaxima(omp_get_max_threads());
 
@@ -285,7 +371,14 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
                 maximaPD.insert(maximaPD.end(), localMaxima.begin(), localMaxima.end());
             }
 
-        
+            std::cout<<"Number of centroids (local maxima) found: "<<maximaPD.size()<<std::endl;
+            std::vector<Point<double, 3>> per_stampa;
+            std::vector<double> densities_per_stamp;
+            for(auto& point : maximaPD){
+                per_stampa.push_back(point.first);
+                densities_per_stamp.push_back(point.second);
+            }
+            exportedMesh(per_stampa, "localMaxima", densities_per_stamp);
 
             // Check if we need to adjust the bandwidth matrix
             if (this->m_k != 0 && maximaPD.size() < this->m_k) {

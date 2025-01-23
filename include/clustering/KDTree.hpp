@@ -10,6 +10,8 @@
 #include "geometry/point/Point.hpp"
 #include "geometry/point/CentroidPoint.hpp"
 #include "clustering/KDNode.hpp"
+#include "geometry/metrics/EuclideanMetric.hpp"
+#include "geometry/metrics/Metric.hpp"
 
 /**
  * Class template to represent a KD-Tree
@@ -31,6 +33,8 @@ public:
         return root;
     }
 
+    Point<PT, PD>& mostDistantFrom(Point<PT, PD> point,const std::unique_ptr<KdNode<PT, PD>> root, int depth);
+
 private:
     std::unique_ptr<KdNode<PT, PD>> root = nullptr; // Root node of the KD-tree
 
@@ -38,6 +42,13 @@ private:
     std::unique_ptr<KdNode<PT, PD>> buildTree(typename std::vector<Point<PT, PD>>::iterator begin,
                                               typename std::vector<Point<PT, PD>>::iterator end,
                                               int depth);
+
+    
+
+    Point<PT, PD> findCenter(const std::array<PT, PD>& cellMin, const std::array<PT, PD>& cellMax);
+    Point<PT, PD> &checkAlsoOtherSide(Point<PT, PD> point, double actualDistance, std::unique_ptr<KdNode<PT, PD>> root, int depth, Point<PT, PD>& actualPointMostDistant);
+    Point<PT, PD> mostDistantPointInNode(Point<PT, PD> point, std::unique_ptr<KdNode<PT, PD>> root);
+    PT distanceTo( Point<PT, PD> &a, Point<PT, PD> &b);
 };
 
 // Constructor: initializes the KD-tree by building it
@@ -110,6 +121,93 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT,PD>::buildTree(typename std::vector<Po
 
     return node;
 }
+
+//Finds the most distance point in the kdtree from point in input
+template <typename PT, std::size_t PD>
+Point<PT, PD>& KdTree<PT,PD>::mostDistantFrom(Point<PT, PD> point,const std::unique_ptr<KdNode<PT, PD>> root, int depth){
+    if (root->myPoint != nullptr) {
+        return *(root->myPoint);
+    }
+
+    int axis = depth % PD; 
+    Point<PT, PD>* tmpMostDistant = nullptr; 
+    double realDistance;
+    Point<PT, PD> centerA = findCenter(root->left->cellMin, root->left->cellMax);
+    Point<PT, PD> centerB = findCenter(root->right->cellMin, root->right->cellMax);
+    
+    double distanceA = distanceTo(point, centerA);
+    double distanceB =distanceTo(point, centerB);
+
+    if (distanceA > distanceB) {
+        tmpMostDistant = mostDistantFrom(point, root->left, depth + 1);
+        realDistance = distanceTo(*tmpMostDistant, point);
+        checkAlsoOtherSide(point, realDistance, root->right, depth, tmpMostDistant);
+    } else {
+        tmpMostDistant = mostDistantFrom(point, root->right, depth + 1);
+        realDistance = distanceTo(*tmpMostDistant, point);
+        checkAlsoOtherSide(point, realDistance, root->left, depth, tmpMostDistant);
+    }
+
+    return *tmpMostDistant;
+}
+
+template <typename PT, std::size_t PD>
+Point<PT, PD>& KdTree<PT,PD>::checkAlsoOtherSide(
+                    Point<PT, PD> point, 
+                    double actualDistance,
+                    std::unique_ptr<KdNode<PT, PD>> root, 
+                    int depth,
+                    Point<PT, PD>& actualPointMostDistant){
+
+    Point<PT,PD> mostDistantPoint = mostDistantPointInNode(point, root);
+    double distMax = distanceTo(point, mostDistantPoint);
+    
+    if(distMax > actualDistance){
+        Point<PT,PD>& tmpNewMostDistance = mostDistantFrom(point, root, depth);
+        if(actualDistance < distanceTo(tmpNewMostDistance, point))
+            (*actualPointMostDistant) = tmpNewMostDistance;
+    }
+}
+
+
+template <typename PT, std::size_t PD>
+Point<PT, PD> KdTree<PT,PD>::mostDistantPointInNode(Point<PT, PD> point, std::unique_ptr<KdNode<PT, PD>> root){
+    Point<PT, PD> mostDistantPoint;
+
+    for (std::size_t d = 0; d < PD; ++d) {
+        if( abs((root.cellMin[d] - point.coordinates[d])) < abs((root.cellMax[d] - point.coordinates[d])) )
+            mostDistantPoint.coordinates[d] = root.cellMax[d]; 
+        else
+            mostDistantPoint.coordinates[d] = root.cellMin[d];
+    }
+
+    return mostDistantPoint;
+}
+
+template <typename PT, std::size_t PD>
+Point<PT, PD> KdTree<PT, PD>::findCenter(const std::array<PT, PD>& cellMin, const std::array<PT, PD>& cellMax) {
+    Point<PT, PD> point;
+
+    for (std::size_t i = 0; i < PD; i++) {
+        point.coordinates[i] = cellMin[i] + (cellMax[i] - cellMin[i]) / 2.0;
+    }
+
+    return point;
+}
+
+
+template <typename PT, std::size_t PD>
+PT KdTree<PT, PD>::distanceTo( Point<PT, PD>& a,  Point<PT, PD>& b) {
+    if (a.coordinates.size() != b.coordinates.size()) {
+        throw std::invalid_argument("Points must have the same dimensionality");
+    }
+    PT sum = 0;
+    for (std::size_t i = 0; i < a.coordinates.size(); ++i) {
+        sum += std::pow(a.coordinates[i] - b.coordinates[i], 2);
+    }
+    return std::sqrt(sum);
+}
+
 
 #endif
 
