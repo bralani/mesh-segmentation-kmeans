@@ -4,8 +4,8 @@ project(Mesh_Viewer)
 set(CMAKE_CXX_STANDARD 20)
 
 # Specify the correct paths to GLFW
-set(GLFW_INCLUDE_DIR /usr/local/opt/glfw/include)
-set(GLFW_LIBRARY /usr/local/opt/glfw/lib/libglfw.dylib)
+set(GLFW_INCLUDE_DIR /opt/homebrew/opt/glfw/include)
+set(GLFW_LIBRARY /opt/homebrew/opt/glfw/lib/libglfw.dylib)
 
 set(Glad_DIR 3rdparty/glad/cmake)
 set(GLFW_DIR 3rdparty/glfw/cmake)
