@@ -257,13 +257,18 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 
 void cursor_position_callback(GLFWwindow *window, double x, double y)
 {
+    bool isImGuiActive = ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow) || ImGui::IsAnyItemHovered();
+
     bool pressed = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
-    if (camera != nullptr)
+    if (!isImGuiActive && camera != nullptr)
         camera->handleMouseInput(x, y, pressed);
 }
 
 void scroll_callback(GLFWwindow *window, double x, double y)
 {
+    if (ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow))
+        return;
+
     if (camera != nullptr)
         camera->handleScrollInput(y);
 }
