@@ -11,16 +11,16 @@
 
 #include "geometry/mesh/Mesh.hpp"
 #include "geometry/metrics/GeodesicMetric.hpp"
+#include "geometry/metrics/GeodesicHeatMetric.hpp"
 #include "clustering/KMeans.hpp"
 
-
-typedef GeodesicMetric<double, 3> MetricMeshSegmentation;
-
+template <class M>
 class MeshSegmentation
 {
 public:
     MeshSegmentation(Mesh* mesh, int clusters, double threshold, int num_initialization_method)
-    : kmeans(clusters, mesh->getMeshFacesPoints(), threshold, MetricMeshSegmentation(*mesh, threshold), num_initialization_method),
+    : metric(M(*mesh, threshold)),
+      kmeans(clusters, mesh->getMeshFacesPoints(), threshold, &metric, num_initialization_method),
       mesh(mesh) {}
 
     // Method to perform mesh segmentation (clustering on a 3D mesh)
@@ -28,11 +28,13 @@ public:
 
 private:
     Mesh* mesh;  // Pointer to the mesh
-    KMeans<double, 3, MetricMeshSegmentation> kmeans; // KMeans object
+    M metric;                   // Metric object 
+    KMeans<double, 3, M> kmeans; // KMeans object
 };
 
 /** Segment the 3D mesh by assigning points to the nearest centroids */
-void MeshSegmentation::fit()
+template <class M>
+void MeshSegmentation<M>::fit()
 {
     this->kmeans.fit();
 }

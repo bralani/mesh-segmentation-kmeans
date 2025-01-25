@@ -97,7 +97,7 @@ public:
         {
             for (int j = 0; j < PD; j++)
             {
-            centroids_flat[i * PD + j] = centroids->at(i).coordinates[j];
+                centroids_flat[i * PD + j] = centroids->at(i).coordinates[j];
             }
         }
 
@@ -112,11 +112,8 @@ public:
         {
             for (int j = 0; j < PD; j++)
             {
-            centroids->at(i).coordinates[j] = centroids_flat[i * PD + j];
+                centroids->at(i).coordinates[j] = centroids_flat[i * PD + j];
             }
-        }
-
-        // Convert the cluster assignments back to the original format
         #pragma omp parallel for
         for (int i = 0; i < data->size(); i++) 
         {

@@ -33,7 +33,8 @@ int main()
 
     std::cout << mesh << std::endl;
 
-    MeshSegmentation segmentation(&mesh, num_clusters, 1e-4, num_initialization_method);
+
+    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method);
 
     segmentation.fit();
 

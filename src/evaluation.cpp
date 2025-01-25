@@ -42,13 +42,15 @@ int main()
 
         int count = 0;
 
+        // take the time 
+        auto start = std::chrono::high_resolution_clock::now();
         for (const auto &entry : fs::directory_iterator(folderPath))
         {
           if (fs::is_regular_file(entry.status()))
           {
             int num_clusters = mesh2.createSegmentationFromSegFile(entry.path());
 
-            MeshSegmentation segmentation(&mesh, num_clusters, 1e-4);
+            MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, 2);
 
             segmentation.fit();
 
@@ -88,6 +90,11 @@ int main()
         cout << entry_ce << std::endl;
         cout << entry_hd << std::endl;
         cout << entry_ri << std::endl;
+
+        // take the time
+        auto finish = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsed = finish - start;
+        std::cout << "Elapsed time: " << elapsed.count() << " s\n";
 
       }
       else

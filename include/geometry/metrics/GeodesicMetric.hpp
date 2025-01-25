@@ -33,7 +33,7 @@ public:
         {
             const auto &centroid = this->centroids->at(centroidId);
             FaceId closestFaceId = findClosestFace(centroid);
-            std::vector<PT> current_distances = computeDijkstraDistances(closestFaceId);
+            std::vector<PT> current_distances = computeDistances(closestFaceId);
             this->distances[FaceId(centroidId)] = current_distances;
         }
     }
@@ -172,7 +172,7 @@ public:
         }
     #endif
 
-private:
+protected:
     Mesh *mesh;
     std::unordered_map<FaceId, std::vector<PT>> distances;
 
@@ -186,7 +186,7 @@ private:
         return std::sqrt(sum);
     }
 
-    std::vector<PT> computeDijkstraDistances(const FaceId startFace) const
+    virtual std::vector<PT> computeDistances(const FaceId startFace) const
     {
         // Initialize Dijkstra's algorithm
         std::vector<PT> curr_distances(mesh->numFaces()); // Minimum distance from startFace

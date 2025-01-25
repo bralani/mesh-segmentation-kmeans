@@ -13,6 +13,7 @@ set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_50") # Set GPU architecture (
 # Include csv-parser as a submodule
 include_directories(third_party/csv-parser/single_include)
 include_directories(${CMAKE_SOURCE_DIR}/third_party/eigen)
+include_directories(${CMAKE_SOURCE_DIR}/third_party/libigl/include)
 add_subdirectory(third_party/matplotlib-cpp)
 
 # Function to define an executable with common settings
@@ -22,10 +23,10 @@ function(add_kmeans_executable exe_name source_files cuda_files)
     if(CUDA_FOUND AND MSVC)
         add_definitions(-DUSE_CUDA)
         cuda_add_executable(${exe_name} ${source_files} ${cuda_files})
-        target_link_libraries(${exe_name} ${CUDA_LIBRARIES} matplotlib_cpp ${OpenMP_CXX_LIBRARIES})
+        target_link_libraries(${exe_name} ${CUDA_LIBRARIES} matplotlib_cpp OpenMP::OpenMP_CXX)
     else()
         add_executable(${exe_name} ${source_files})
-        target_link_libraries(${exe_name} matplotlib_cpp ${OpenMP_CXX_LIBRARIES})
+        target_link_libraries(${exe_name} matplotlib_cpp OpenMP::OpenMP_CXX)
     endif()
 
     target_compile_options(${exe_name} PRIVATE ${OpenMP_CXX_FLAGS})

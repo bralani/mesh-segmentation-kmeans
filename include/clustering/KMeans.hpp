@@ -36,7 +36,7 @@ public:
    * points: Vector of Points to be used in K-Means
    * dist: Function used as the distance metric between two points
    */
-  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M metric, int centroidsInitializationMethod)
+  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M* metric, int centroidsInitializationMethod)
       : numClusters(clusters), data(points), treshold(treshold), metric(metric)
   {
     initializeCentroids(centroidsInitializationMethod);
@@ -53,7 +53,7 @@ public:
   std::vector<Point<PT, PD>>& getPoints() { return data; }
 
 protected:
-  M metric;                                        // Distance metric function
+  M* metric;                                       // Distance metric function
   std::vector<Point<PT, PD>> data;                 // Data points
   std::vector<CentroidPoint<PT, PD>> centroids;    // Centroids of clusters
   PT treshold;
@@ -100,16 +100,16 @@ void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod)
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::fit()
 {
-  metric.setCentroids(centroids);
+  metric->setCentroids(centroids);
 
   #ifdef USE_CUDA
     if (data.size() > MIN_NUM_POINTS_CUDA) {
-      metric.fit_gpu();
+      metric->fit_gpu();
     } else {
-      metric.fit_cpu();
+      metric->fit_cpu();
     }
   #else
-    metric.fit_cpu();
+    metric->fit_cpu();
   #endif
 }
 
