@@ -24,6 +24,10 @@ int width = 1600, height = 900;
 float lastTime;
 Camera *camera = nullptr;
 
+bool showLoader = false;
+float loaderProgress = 0.0f;
+int inputValue = 0;
+
 // List of available models
 std::vector<std::string> modelPaths;
 
@@ -135,67 +139,13 @@ int main()
             ImGui_ImplGlfw_NewFrame();
             ImGui::NewFrame();
 
-            // ImGui Menu
-            ImGui::Begin("Model Selector");
+            // ImGui Model Viewer UI
+            ImGui::Begin("Model Viewer");
 
-            ImGui::Text("Select a Model to Load:");
-
-            if (ImGui::BeginTable("ModelGrid", 4, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg))
-            {
-                for (int i = 0; i < modelPaths.size(); ++i)
-                {
-                    // Start a new column
-                    ImGui::TableNextColumn();
-
-                    // Extract the file name from the path
-                    std::string fileName = std::filesystem::path(modelPaths[i]).filename().string();
-
-                    // Center the selectable button in the cell
-                    ImGui::SetCursorPosX(ImGui::GetCursorPosX() + (ImGui::GetColumnWidth() - 100) / 2); // Adjust width (100)
-
-                    // Create a selectable button with a fixed size for each file
-                    if (ImGui::Selectable(fileName.c_str(), selectedModelIndex == i, 0, ImVec2(100, 50)))
-                    {
-                        selectedModelIndex = i;
-                        selectedModelPath = modelPaths[i];
-                    }
-                }
-
-                ImGui::EndTable();
-            }
-
-            // Render Button
-            if (ImGui::Button("Render") && selectedModelIndex != -1)
-            {
-                // Load the selected model
-                if (currentModel)
-                {
-                    delete currentModel; // Unload the current model
-                    currentModel = nullptr;
-                }
-
-                camera->resetCamera();
-
-                currentModel = new Model(selectedModelPath, &program);
-                camera->positionBasedOnObject(*currentModel);
-                renderModel = true; // Trigger rendering
-            }
-
-            // Close Button
-            if (ImGui::Button("Close"))
-            {
-                shouldClose = true; // Signal to exit the application
-                glfwSetWindowShouldClose(window, true);
-            }
-
-            ImGui::End();
-
-            ImGui::Render();
-            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-            // Update and render the selected model
+            // If the model is rendered, show the model and control elements
             if (renderModel && currentModel)
             {
+                // Step 1: Render the model (existing rendering logic)
                 float nowTime = glfwGetTime();
                 float deltaTime = nowTime - lastTime;
                 lastTime = nowTime;
@@ -215,7 +165,102 @@ int main()
                 program.setVec3("light.diffuse", lightColor);
                 program.setVec3("light.specular", lightColor);
                 currentModel->draw();
+
+                // Step 2: Numerical Input for the task (e.g., number of iterations or parameters)
+                ImGui::InputInt("Enter Value", &inputValue);
+
+                // Step 3: Start Button to trigger loading process
+                if (ImGui::Button("Start"))
+                {
+                    showLoader = true;     // Show loader flag
+                    loaderProgress = 0.0f; // Reset progress
+                }
+
+                // Step 4: Back Button to return to model selection
+                if (ImGui::Button("Back"))
+                {
+                    renderModel = false;
+                    currentModel = nullptr;
+                    selectedModelIndex = -1;
+                    selectedModelPath.clear();
+                }
+
+                // Step 5: Show loader/progress bar while processing
+                if (showLoader)
+                {
+                    ImGui::Text("Processing...");
+
+                    // Show a progress bar
+                    ImGui::ProgressBar(loaderProgress, ImVec2(0.0f, 0.0f));
+
+                    if (loaderProgress < 1.0f)
+                    {
+                        loaderProgress += 0.01f;
+                    }
+                    else
+                    {
+                        showLoader = false;
+                    }
+                }
             }
+            else
+            {
+                // Model Selector UI (grid view or list view)
+                ImGui::Text("Select a Model to Load:");
+
+                if (ImGui::BeginTable("ModelGrid", 4, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg))
+                {
+                    for (int i = 0; i < modelPaths.size(); ++i)
+                    {
+                        // Start a new column
+                        ImGui::TableNextColumn();
+
+                        // Extract the file name from the path
+                        std::string fileName = std::filesystem::path(modelPaths[i]).filename().string();
+
+                        // Center the selectable button in the cell
+                        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + (ImGui::GetColumnWidth() - 100) / 2); // Adjust width (100)
+
+                        // Create a selectable button with a fixed size for each file
+                        if (ImGui::Selectable(fileName.c_str(), selectedModelIndex == i, 0, ImVec2(100, 50)))
+                        {
+                            selectedModelIndex = i;
+                            selectedModelPath = modelPaths[i];
+                        }
+                    }
+
+                    ImGui::EndTable();
+                }
+
+                // Render Button
+                if (ImGui::Button("Render") && selectedModelIndex != -1)
+                {
+                    // Load the selected model
+                    if (currentModel)
+                    {
+                        delete currentModel; // Unload the current model
+                        currentModel = nullptr;
+                    }
+
+                    camera->resetCamera();
+
+                    currentModel = new Model(selectedModelPath, &program);
+                    camera->positionBasedOnObject(*currentModel);
+                    renderModel = true; // Trigger rendering
+                }
+
+                // Close Button
+                if (ImGui::Button("Close"))
+                {
+                    shouldClose = true; // Signal to exit the application
+                    glfwSetWindowShouldClose(window, true);
+                }
+            }
+
+            ImGui::End();
+
+            ImGui::Render();
+            ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
             glfwSwapBuffers(window);
             glfwPollEvents();
