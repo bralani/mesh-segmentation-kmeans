@@ -27,6 +27,7 @@ public:
         EuclideanMetric<double, PD> metric(this->m_data, 1e-4);
         int limit = LIMIT_NUM_CENTROIDS;
 
+        //Generate a random number of centroids if necessary
         if (this->m_k == 0)
             this->set_k(casualNumber(limit));
 

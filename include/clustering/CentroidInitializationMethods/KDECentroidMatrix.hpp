@@ -12,6 +12,7 @@
 #include "geometry/point/Point.hpp"
 #include "clustering/CentroidInitializationMethods/KernelFunction.hpp"
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
+#include "clustering/CentroidInitializationMethods/MostDistantCentroids.hpp"
 
 #define BANDWIDTHMETHODS 0
 #define RANGE_NUMBER_DIVISION 20
@@ -67,7 +68,7 @@ private:
     Grid3D generateGrid();
 
     // Find local maxima in the grid
-    std::vector<Point<double, PDS>> findLocalMaxima(Grid3D& gridPoints);
+    void findLocalMaxima(Grid3D& gridPoints, std::vector<CentroidPoint<double, PDS>>& returnVec);
 
     // Check if a point is a local maximum
     bool isLocalMaximum(Grid3D& gridPoints, Densities3D& densities, size_t x, size_t y, size_t z);
@@ -155,7 +156,7 @@ private:
 };
 
 
-void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
+void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
         //CSV for print
         exportedMesh(this->m_data, "mesh");
 
@@ -163,15 +164,16 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
         Grid3D gridPoints = generateGrid();
 
         // Find the peaks (local maxima) in the grid
-        std::vector<Point<double, PDS>> peaks = findLocalMaxima(gridPoints);
+        findLocalMaxima(gridPoints, centroids);
 
-        int i = 0;
-        for (auto& p : peaks)
-        {
-            centroids.push_back(CentroidPoint<double, PDS>(p));
-            centroids[i].setID(i);
-            i++;
-        }
+        std::vector<Point<double, PDS>> per_stampa;
+            std::vector<double> densities_per_stamp;
+            for(auto& point : centroids){
+                per_stampa.push_back(point);
+                densities_per_stamp.push_back(0);
+            }
+        exportedMesh(per_stampa, "localMaxima", densities_per_stamp);
+        
         return;
 }
 
@@ -320,10 +322,9 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
     }
 
     // Find local maxima in the grid
-    std::vector<Point<double, PDS>> KDE3D::findLocalMaxima(Grid3D& gridPoints) {
+    void KDE3D::findLocalMaxima(Grid3D& gridPoints, std::vector<CentroidPoint<double, PDS>>& returnVec) {
         std::size_t Xgrid, Ygrid, Zgrid;
         std::vector<std::pair<Point<double, PDS>, double>> maximaPD;
-        std::vector<Point<double, PDS>> returnVec;
 
         Xgrid = gridPoints.size();
         Ygrid = gridPoints[0].size();
@@ -371,17 +372,8 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
                 maximaPD.insert(maximaPD.end(), localMaxima.begin(), localMaxima.end());
             }
 
-            std::cout<<"Number of centroids (local maxima) found: "<<maximaPD.size()<<std::endl;
-            std::vector<Point<double, 3>> per_stampa;
-            std::vector<double> densities_per_stamp;
-            for(auto& point : maximaPD){
-                per_stampa.push_back(point.first);
-                densities_per_stamp.push_back(point.second);
-            }
-            exportedMesh(per_stampa, "localMaxima", densities_per_stamp);
-
             // Check if we need to adjust the bandwidth matrix
-            if (this->m_k != 0 && maximaPD.size() < this->m_k) {
+            if (maximaPD.size() < this->m_k) {
                 
                 maximaPD.clear();
 
@@ -401,26 +393,31 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) {
 
             } else {
                 // Too many maxima or just enough
-                if (this->m_k != 0 && maximaPD.size() > this->m_k) {
-
-                    std::sort(maximaPD.begin(), maximaPD.end(),
-                            [](const auto& a, const auto& b) {
-                                return a.second > b.second;
-                            });
-
-                    maximaPD.resize(this->m_k);
+                if (maximaPD.size() > this->m_k) {
+                    std::vector<Point<double, PDS>> tmpCentroids;
+                    for (const auto& pair : maximaPD) {
+                        tmpCentroids.push_back(pair.first);
+                    }
+                    MostDistanceClass<PDS> mostDistanceClass(tmpCentroids, this->m_k);
+                    mostDistanceClass.findCentroid(returnVec);
+                    for(int i = 0; i<returnVec.size(); i++){
+                        returnVec[i].setID(i);
+                    }
+                    break;
                 }
 
                 // Copy the maxima to the return vector
+                int i = 0;
                 for (const auto& pair : maximaPD) {
-                    returnVec.push_back(pair.first);
-                }
+                    returnVec.push_back(CentroidPoint<double, PDS>(pair.first));
+                    returnVec[i].setID(i);
+                    i++;
+                } 
                 break;
             }
             countCicle++;
         }
-
-        return returnVec; // Return the list of local maxima
+        return ; 
     }
 
 

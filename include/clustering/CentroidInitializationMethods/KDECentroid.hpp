@@ -11,6 +11,7 @@
 #include "geometry/point/Point.hpp"
 #include "clustering/CentroidInitializationMethods/KernelFunction.hpp"
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
+#include "clustering/CentroidInitializationMethods/MostDistantCentroids.hpp"
 
 #define BANDWIDTHMETHODS 0
 #define RANGE_NUMBER_DIVISION 20
@@ -58,7 +59,7 @@ private:
     std::vector<Point<double, PD>> generateGrid();
 
     // Find local maxima
-    std::vector<Point<double, PD>> findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints);
+    void findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints, std::vector<CentroidPoint<double, PD>>& returnVec);
 
     // Check local maximum
     bool isLocalMaximum(const std::vector<Point<double, PD>>& gridPoints, const std::vector<double>& densities, size_t index);
@@ -118,15 +119,7 @@ private:
         vector<Point<double, PD>> gridPoints = generateGrid();
 
         // Find the peaks (local maxima) in the grid
-        std::vector<Point<double, PD>> peaks = findLocalMaxima(gridPoints);
-
-        int i = 0;
-        for (auto& p : peaks)
-        {
-            centroids.push_back(CentroidPoint<double, PD>(p));
-            centroids[i].setID(i);
-            i++;
-        }
+        findLocalMaxima(gridPoints, centroids);
            
         //if(PD == 2)
           //  stampa_point_2d(this->m_data, peaks, gridPoints);
@@ -294,14 +287,11 @@ private:
 
     // Find local maxima in the grid
     template<std::size_t PD>
-    std::vector<Point<double, PD>> KDE<PD>::findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints) {
+    void KDE<PD>::findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints, std::vector<CentroidPoint<double, PD>>& returnVec) {
 
         std::vector<std::pair<Point<double, PD>, double>> maximaPD;
         std::vector<double> densities;
-        std::vector<Point<double, PD>> returnVec;
 
-        //std::cout << "Starting findLocalMaxima...\n";
-        //std::cout << "Grid points size: " << gridPoints.size() << "\n";
         int countCicle = 0;
         while (true) {
             std::cout<<"Counter: "<<countCicle<<std::endl;
@@ -356,34 +346,31 @@ private:
                     m_transformedPoints.push_back(transformed);
                 }
 
-                //std::cout << "Bandwidth adjustment complete.\n";
-
             } else {
-                // Too many maxima or just enough
+                /// Too many maxima or just enough
                 if (this->m_k != 0 && maximaPD.size() > this->m_k) {
-                    //std::cout << "Too many local maxima. Selecting top " << this->m_k << " maxima...\n";
-
-                    std::sort(maximaPD.begin(), maximaPD.end(),
-                            [](const auto& a, const auto& b) {
-                                return a.second > b.second;
-                            });
-
-                    maximaPD.resize(this->m_k);
+                    std::vector<Point<double, PD>> tmpCentroids;
+                    for (const auto& pair : maximaPD) {
+                        tmpCentroids.push_back(pair.first);
+                    }
+                    MostDistanceClass<PD> mostDistanceClass(tmpCentroids, this->m_k);
+                    mostDistanceClass.findCentroid(returnVec);
+                    break;
                 }
 
                 // Copy the maxima to the return vector
-                //std::cout << "Finalizing local maxima selection...\n";
+                int i = 0;
                 for (const auto& pair : maximaPD) {
-                    returnVec.push_back(pair.first);
-                }
+                    returnVec.push_back(CentroidPoint<double, PD>(pair.first));
+                    returnVec[i].setID(i);
+                    i++;
+                } 
                 break;
             }
             countCicle++;
         }
 
-        //std::cout << "Local maxima search complete. Total maxima returned: " << returnVec.size() << "\n";
-
-        return returnVec; // Return the list of local maxima
+        return;
 }
 
 
