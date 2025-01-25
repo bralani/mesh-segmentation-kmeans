@@ -139,13 +139,29 @@ int main()
             ImGui::Begin("Model Selector");
 
             ImGui::Text("Select a Model to Load:");
-            for (int i = 0; i < modelPaths.size(); ++i)
+
+            if (ImGui::BeginTable("ModelGrid", 4, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg))
             {
-                if (ImGui::Selectable(modelPaths[i].c_str(), selectedModelIndex == i))
+                for (int i = 0; i < modelPaths.size(); ++i)
                 {
-                    selectedModelIndex = i;
-                    selectedModelPath = modelPaths[i]; // Store the selected path
+                    // Start a new column
+                    ImGui::TableNextColumn();
+
+                    // Extract the file name from the path
+                    std::string fileName = std::filesystem::path(modelPaths[i]).filename().string();
+
+                    // Center the selectable button in the cell
+                    ImGui::SetCursorPosX(ImGui::GetCursorPosX() + (ImGui::GetColumnWidth() - 100) / 2); // Adjust width (100)
+
+                    // Create a selectable button with a fixed size for each file
+                    if (ImGui::Selectable(fileName.c_str(), selectedModelIndex == i, 0, ImVec2(100, 50)))
+                    {
+                        selectedModelIndex = i;
+                        selectedModelPath = modelPaths[i];
+                    }
                 }
+
+                ImGui::EndTable();
             }
 
             // Render Button
