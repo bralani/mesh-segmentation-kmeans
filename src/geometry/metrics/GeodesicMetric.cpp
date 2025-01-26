@@ -1,5 +1,7 @@
 #include "geometry/metrics/GeodesicMetric.hpp"
 
+#define LIMIT_CONVERGENCE 200
+
 template <typename PT, std::size_t PD>
 GeodesicMetric<PT, PD>::GeodesicMetric(Mesh &mesh, double percentage_threshold)
     : mesh(&mesh)
@@ -15,6 +17,9 @@ void GeodesicMetric<PT, PD>::setup()
   {
     const auto &centroid = this->centroids->at(centroidId);
     FaceId closestFaceId = findClosestFace(centroid);
+    // set the coordinates of the centroid as the baricenter of the closest face
+    this->centroids->at(centroidId).coordinates = mesh->getFace(closestFaceId).baricenter.coordinates;
+    
     std::vector<PT> current_distances = computeDistances(closestFaceId);
     this->distances[FaceId(centroidId)] = current_distances;
   }
@@ -147,9 +152,9 @@ void GeodesicMetric<PT, PD>::fit_cpu()
     }
 
     iteration++;
-    if (iteration > 100)
+    if (iteration > LIMIT_CONVERGENCE)
     {
-      std::cerr << "Warning: K-Means did not converge after 100 iterations." << std::endl;
+      std::cerr << "Warning: K-Means did not converge after " << LIMIT_CONVERGENCE << " iterations." << std::endl;
       break;
     }
   }

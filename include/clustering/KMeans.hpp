@@ -96,8 +96,10 @@ void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod, i
       cim = new KDE(data, numClusters);
     else if(centroidsInitializationMethod == Enums::CentroidInit::MOSTDISTANT)
       cim = new MostDistanceClass(data, numClusters);
-    else 
-      cim = new KDE3D(data, numClusters);
+    else if constexpr (PD == 3)
+        cim = new KDE3D(data, numClusters);
+    else
+      cim = new RandomCentroidInit(data, numClusters);
     
     cim->findCentroid(this->centroids);
     std::cout << "Centroids: \n";
