@@ -22,7 +22,7 @@ int main()
     file_name = "../../resources/meshes/obj/" + file_name;
 
     int num_clusters;
-    cout << "Enter the number of clusters (parameter k): ";
+    cout << "Enter the number of clusters (parameter k, 0 if unknow): ";
     cin >> num_clusters;
 
     int num_initialization_method;
@@ -33,7 +33,13 @@ int main()
 
     std::cout << mesh << std::endl;
 
-    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method);
+    int num_k_init_method=0;
+    if(num_clusters == 0){
+      std::cout<<"Enter the method for k initialization (0: elbow, 1: kde): ";
+      cin >> num_k_init_method;
+    }
+
+    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method) ;
 
     segmentation.fit();
 
