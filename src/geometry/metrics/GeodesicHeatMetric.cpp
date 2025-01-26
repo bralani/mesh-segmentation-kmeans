@@ -26,8 +26,7 @@ GeodesicHeatMetric<PT, PD>::GeodesicHeatMetric(Mesh &mesh, double percentage_thr
         }
     }
 
-    double t = 0.5;
-    igl::heat_geodesics_precompute(V, F, t, data);
+    igl::heat_geodesics_precompute(V, F, data);
 }
 
 template <typename PT, std::size_t PD>
