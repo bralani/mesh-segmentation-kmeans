@@ -14,8 +14,6 @@
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 #include "clustering/CentroidInitializationMethods/MostDistantCentroids.hpp"
 
-#define BANDWIDTHMETHODS 0
-#define RANGE_NUMBER_DIVISION 20
 #define NUMBER_RAY_STEP 3
 #define PDS 3
 #ifndef M_PI
@@ -27,7 +25,6 @@ using Densities3D = std::vector<std::vector<std::vector<double>>>;
 
 namespace plt = matplotlibcpp;
 
-using namespace std;
 using namespace Eigen;
 
 class KDE3D : public CentroidInitMethod<double, 3> {
@@ -35,16 +32,19 @@ public:
 
     KDE3D(std::vector<Point<double, 3>>& data, int k) : CentroidInitMethod<double, 3>(data, k) {
         this->m_h = bandwidth_RuleOfThumb();
+        this->range_number_division = static_cast<int>(std::floor(std::cbrt(data.size())));
     }
 
     KDE3D(std::vector<Point<double, 3>>& data) : CentroidInitMethod<double, 3>(data) {
         this->m_h = bandwidth_RuleOfThumb();
+        this->range_number_division = static_cast<int>(std::floor(std::cbrt(data.size())));
     }
 
     void findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) override;
 
 private:
     int m_bandwidthMethods;
+    int range_number_division;
     std::size_t m_totalPoints;
     double m_h_det_sqrt;
     Eigen::MatrixXd m_h;
@@ -88,11 +88,6 @@ private:
         
         std::ofstream file("Ex.csv");
 
-        if (!file.is_open()) {
-            cerr << "Errore nell'apertura del file!" << endl;
-            return;
-        }
-
         // Scrivi l'intestazione
         file << "x,y,z,label\n";
 
@@ -108,17 +103,12 @@ private:
         }
 
         file.close();
-        cout << "Punti con etichette esportati in " << "Ex.csv" << endl;
+        std::cout << "Punti con etichette esportati in " << "Ex.csv" << std::endl;
     }
 
-    void exportedMesh(std::vector<Point<double, 3>> points, string name_csv, std::vector<double> densities) {
+    void exportedMesh(std::vector<Point<double, 3>> points, std::string name_csv, std::vector<double> densities) {
                 
         std::ofstream file(name_csv + ".csv");
-
-        if (!file.is_open()) {
-            cerr << "Errore nell'apertura del file!" << endl;
-            return;
-        }
 
         // Scrivi l'intestazione
         file << "x,y,z,label\n";
@@ -131,17 +121,12 @@ private:
         }
 
         file.close();
-        cout << "Punti con etichette esportati in " << "csv" << endl;
+        std::cout << "Punti con etichette esportati in " << "csv" << std::endl;
     }
 
-    void exportedMesh(std::vector<Point<double, 3>> points, string name_csv) {
+    void exportedMesh(std::vector<Point<double, 3>> points, std::string name_csv) {
                 
         std::ofstream file(name_csv + ".csv");
-
-        if (!file.is_open()) {
-            cerr << "Errore nell'apertura del file!" << endl;
-            return;
-        }
 
         // Scrivi l'intestazione
         file << "x,y,z,label\n";
@@ -152,7 +137,7 @@ private:
         }
 
         file.close();
-        cout << "Punti con etichette esportati in " << "csv" << endl;
+        std::cout << "Punti con etichette esportati in " << "csv" << std::endl;
     }
 
 };
@@ -184,10 +169,11 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
     each range is divided into steps. Each step in every dimension represents a point, 
     and this point will be used to calculate the density */
     Grid3D KDE3D::generateGrid() {
-
+        // Initialize min and max values for each dimension to extreme values
         std::array<double, 3> minValues = {std::numeric_limits<double>::max(), std::numeric_limits<double>::max(), std::numeric_limits<double>::max()};
         std::array<double, 3> maxValues = {std::numeric_limits<double>::lowest(), std::numeric_limits<double>::lowest(), std::numeric_limits<double>::lowest()};
 
+        // Find the minimum and maximum values for each dimension
         for (const auto& point : this->m_data) {
             for (size_t dim = 0; dim < PDS; ++dim) {
                 minValues[dim] = std::min(minValues[dim], point.coordinates[dim]);
@@ -195,13 +181,14 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
             }
         }
 
-        
+        // Compute the range, step size, and number of points for each dimension
         for (size_t dim = 0; dim < PDS; ++dim) {
-            m_range[dim] = maxValues[dim] - minValues[dim];
-            m_step[dim] = m_range[dim] / RANGE_NUMBER_DIVISION;
-            m_numPoints[dim] = static_cast<size_t>(m_range[dim] / m_step[dim]) + 1;
+            m_range[dim] = maxValues[dim] - minValues[dim]; // Range of values in the dimension
+            m_step[dim] = m_range[dim] / range_number_division; // Step size based on the division factor
+            m_numPoints[dim] = static_cast<size_t>(m_range[dim] / m_step[dim]) + 1; // Number of grid points in the dimension
         }
 
+        // Initialize a 3D grid structure with the computed number of points
         Grid3D grid(
             m_numPoints[0],
             std::vector<std::vector<Point<double, PDS>>>(
@@ -210,22 +197,26 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
             )
         );
 
+        // Fill the grid with points at regular intervals
         for (size_t x = 0; x < m_numPoints[0]; ++x) {
             for (size_t y = 0; y < m_numPoints[1]; ++y) {
                 for (size_t z = 0; z < m_numPoints[2]; ++z) {
                     Point<double, PDS> point;
 
+                    // Calculate the coordinates for the current grid point
                     point.coordinates[0] = minValues[0] + x * m_step[0];
                     point.coordinates[1] = minValues[1] + y * m_step[1];
                     point.coordinates[2] = minValues[2] + z * m_step[2];
 
+                    // Assign the point to the corresponding grid position
                     grid[x][y][z] = point;
                 }
             }
         }
 
-        return grid; // Ritorna la griglia tridimensionale
+        return grid; // Return the 3D grid structure
     }
+
 
     /* Calculation of Mean and Standard Deviation.
     This function computes the mean and standard deviation of the points in the dataset
@@ -325,6 +316,7 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
 
     // Find local maxima in the grid
     void KDE3D::findLocalMaxima(Grid3D& gridPoints, std::vector<CentroidPoint<double, PDS>>& returnVec) {
+        // Define grid dimensions
         std::size_t Xgrid, Ygrid, Zgrid;
         std::vector<std::pair<Point<double, PDS>, double>> maximaPD;
 
@@ -332,37 +324,41 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
         Ygrid = gridPoints[0].size();
         Zgrid = gridPoints[0][0].size();
 
+        // Initialize 3D density array
         Densities3D densities(Xgrid, std::vector<std::vector<double>>(Ygrid, std::vector<double>(Zgrid, 0.0)));
 
-        int countCicle = 0;
+        int countCicle = 0; // Counter for iterations
 
         while (true) {
+            std::cout << "Counter: " << countCicle << std::endl;
 
-            std::cout<<"Counter: "<<countCicle<<std::endl;
-            
+            // Compute KDE density for each grid point in parallel
             #pragma omp parallel for collapse(PDS)
             for (size_t x = 0; x < Xgrid; ++x) {
                 for (size_t y = 0; y < Ygrid; ++y) {
                     for (size_t z = 0; z < Zgrid; ++z) {
-                        densities[x][y][z] = kdeValue(gridPoints[x][y][z]); 
+                        densities[x][y][z] = kdeValue(gridPoints[x][y][z]);
                     }
-                }   
+                }
             }
 
+            // Export density values and points for debugging or visualization
             exportLabeledPointsToCSV(gridPoints, densities);
 
+            // Thread-local storage for local maxima
             std::vector<std::vector<std::pair<Point<double, PDS>, double>>> threadLocalMaxima(omp_get_max_threads());
 
+            // Find local maxima in parallel
             #pragma omp parallel
             {
                 int threadID = omp_get_thread_num();
-                auto& localMaxima = threadLocalMaxima[threadID]; 
+                auto& localMaxima = threadLocalMaxima[threadID]; // Access thread-local maxima vector
 
                 #pragma omp for collapse(PDS)
                 for (size_t x = 0; x < Xgrid; ++x) {
                     for (size_t y = 0; y < Ygrid; ++y) {
                         for (size_t z = 0; z < Zgrid; ++z) {
-                            if (isLocalMaximum(gridPoints, densities, x, y, z)) {
+                            if (isLocalMaximum(gridPoints, densities, x, y, z)) { // Check if current point is a local maximum
                                 localMaxima.emplace_back(gridPoints[x][y][z], densities[x][y][z]);
                             }
                         }
@@ -370,23 +366,24 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
                 }
             }
 
+            // Merge thread-local maxima into the global maxima vector
             for (const auto& localMaxima : threadLocalMaxima) {
                 maximaPD.insert(maximaPD.end(), localMaxima.begin(), localMaxima.end());
             }
 
-            // Check if we need to adjust the bandwidth matrix
+            // Check if bandwidth adjustment is necessary
             if (maximaPD.size() < this->m_k) {
-                
-                maximaPD.clear();
+                maximaPD.clear(); // Clear maxima to retry
 
-                // Reduce the bandwidth
+                // Reduce the bandwidth matrix (scale diagonals by 85%)
                 m_h.diagonal() *= 0.85;
 
-                // Recompute derived parameters
+                // Recompute derived parameters for the updated bandwidth
                 SelfAdjointEigenSolver<MatrixXd> solver(m_h);
                 this->m_h_sqrt_inv = solver.operatorInverseSqrt();
                 this->m_h_det_sqrt = sqrt(m_h.determinant());
 
+                // Update transformed points with new bandwidth
                 m_transformedPoints.clear();
                 for (const auto& xi : this->m_data) {
                     Eigen::VectorXd transformed = m_h_sqrt_inv * pointToVector(xi);
@@ -394,32 +391,36 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
                 }
 
             } else {
-                // Too many maxima or just enough
+                // If too many maxima or just enough
                 if (maximaPD.size() > this->m_k) {
                     std::vector<Point<double, PDS>> tmpCentroids;
                     for (const auto& pair : maximaPD) {
                         tmpCentroids.push_back(pair.first);
                     }
+
+                    // Use distance-based method to reduce maxima to m_k
                     MostDistanceClass<PDS> mostDistanceClass(tmpCentroids, this->m_k);
                     mostDistanceClass.findCentroid(returnVec);
-                    for(int i = 0; i<returnVec.size(); i++){
+
+                    // Assign unique IDs to centroids
+                    for (int i = 0; i < returnVec.size(); i++) {
                         returnVec[i].setID(i);
                     }
                     break;
                 }
 
-                // Copy the maxima to the return vector
+                // Copy local maxima directly into the return vector
                 int i = 0;
                 for (const auto& pair : maximaPD) {
                     returnVec.push_back(CentroidPoint<double, PDS>(pair.first));
-                    returnVec[i].setID(i);
+                    returnVec[i].setID(i); // Assign IDs to centroids
                     i++;
-                } 
+                }
                 break;
             }
             countCicle++;
         }
-        return ; 
+        return;
     }
 
 

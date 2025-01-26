@@ -13,12 +13,14 @@
 #include "geometry/point/CentroidPoint.hpp"
 #include "geometry/metrics/Metric.hpp"
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
-
 #include "clustering/CentroidInitializationMethods/KDECentroidMatrix.hpp"
 #include "clustering/CentroidInitializationMethods/KDECentroid.hpp"
 #include "clustering/CentroidInitializationMethods/RandomCentroids.hpp"
 #include "clustering/CentroidInitializationMethods/MostDistantCentroids.hpp"
-
+#include "clustering/CentroidInitializationMethods/kInitMethods.hpp"
+#include "clustering/CentroidInitializationMethods/Elbowmethod.hpp"
+#include "clustering/CentroidInitializationMethods/KDEKInitMehod.hpp"
+#include "clustering/CentroidInitializationMethods/SharedEnum.hpp"
 
 #include "matplotlib-cpp/matplotlibcpp.h"
 namespace plt = matplotlibcpp;
@@ -36,10 +38,10 @@ public:
    * points: Vector of Points to be used in K-Means
    * dist: Function used as the distance metric between two points
    */
-  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M* metric, int centroidsInitializationMethod)
+  KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, M* metric, int centroidsInitializationMethod, int kInitializationMethod)
       : numClusters(clusters), data(points), treshold(treshold), metric(metric)
   {
-    initializeCentroids(centroidsInitializationMethod);
+    initializeCentroids(centroidsInitializationMethod, kInitializationMethod);
   }
 
   // Destructor: deallocates the tree
@@ -52,6 +54,8 @@ public:
 
   std::vector<Point<PT, PD>>& getPoints() { return data; }
 
+  std::vector<CentroidPoint<PT, PD>>& getCentroids() { return centroids; }
+
 protected:
   M* metric;                                       // Distance metric function
   std::vector<Point<PT, PD>> data;                 // Data points
@@ -62,26 +66,35 @@ protected:
 private:
 
   // Method to extract randomly some initial clusters
-  void initializeCentroids(int centroidsInitializationMethod);
+  void initializeCentroids(int centroidsInitializationMethod, int kInitializationMethod);
   
 };
 
 /** Extracts randomly "numClusters" initial Centroids from the same data that were provided
  */
 template <typename PT, std::size_t PD, class M>
-void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod)
+void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod, int kInitializationMethod)
 {
     if (centroidsInitializationMethod < 0 || centroidsInitializationMethod > 3) {
         throw std::invalid_argument("Not a valid centroids initialization method!");
     }
+    
+    if(numClusters == 0){
+      Kinit<PT, PD, M>* kinit;
+      if(kInitializationMethod == Enums::KInit::ELBOW_METHOD)
+        kinit = new ElbowMethod<PT, PD, M>(*this);
+      else
+        kinit = new KDEMethod<PT, PD, M>(*this);
+      numClusters = kinit->findK();
+    }
 
     CentroidInitMethod<double, PD>* cim; 
 
-    if(centroidsInitializationMethod == 0)
+    if(centroidsInitializationMethod == Enums::CentroidInit::RANDOM)
       cim = new RandomCentroidInit(data, numClusters);
-    else if(centroidsInitializationMethod == 1)
+    else if(centroidsInitializationMethod == Enums::CentroidInit::KDE)
       cim = new KDE(data, numClusters);
-    else if(centroidsInitializationMethod == 2)
+    else if(centroidsInitializationMethod == Enums::CentroidInit::MOSTDISTANT)
       cim = new MostDistanceClass(data, numClusters);
     else 
       cim = new KDE3D(data, numClusters);

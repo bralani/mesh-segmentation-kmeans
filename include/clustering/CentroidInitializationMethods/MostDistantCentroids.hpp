@@ -1,8 +1,6 @@
 #ifndef MD_HPP
 #define MD_HPP
 
-
-#include "CentroidInitMethods.hpp"
 #include "geometry/point/Point.hpp"
 #include "geometry/metrics/EuclideanMetric.hpp"
 #include "geometry/point/CentroidPoint.hpp"
@@ -26,6 +24,7 @@ public:
     void findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) override {
         EuclideanMetric<double, PD> metric(this->m_data, 1e-4);
         int limit = LIMIT_NUM_CENTROIDS;
+        int index = 1;
 
         //Generate a random number of centroids if necessary
         if (this->m_k == 0)
@@ -37,7 +36,8 @@ public:
         std::uniform_int_distribution<> dis(0, this->m_data.size() - 1);
 
         // Select the first point randomly
-        CentroidPoint tmpInitialCentroids( (this->m_data)[casualNumber(limit)] );
+        CentroidPoint<double, PD> tmpInitialCentroids( (this->m_data)[casualNumber(limit)] );
+        tmpInitialCentroids.setID(0);
         centroids.push_back(tmpInitialCentroids);
 
         while (centroids.size() < this->m_k) {
@@ -63,7 +63,10 @@ public:
             }
 
             // Add the farthest point to the list of centroids
-            centroids.push_back(farthestPoint);
+            CentroidPoint<double, PD> c(farthestPoint);
+            c.setID(index);
+            index++;
+            centroids.push_back(c);
         }
     }
 

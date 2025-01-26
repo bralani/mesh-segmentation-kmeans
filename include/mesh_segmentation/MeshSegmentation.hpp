@@ -18,9 +18,9 @@ template <class M>
 class MeshSegmentation
 {
 public:
-    MeshSegmentation(Mesh* mesh, int clusters, double threshold, int num_initialization_method)
+    MeshSegmentation(Mesh* mesh, int clusters, double threshold, int num_initialization_method, int kInitializationMethod)
     : metric(M(*mesh, threshold)),
-      kmeans(clusters, mesh->getMeshFacesPoints(), threshold, &metric, num_initialization_method),
+      kmeans(clusters, mesh->getMeshFacesPoints(), threshold, &metric, num_initialization_method, kInitializationMethod),
       mesh(mesh) {}
 
     // Method to perform mesh segmentation (clustering on a 3D mesh)
