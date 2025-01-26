@@ -11,7 +11,6 @@
 
 #include "geometry/point/Point.hpp"
 #include "geometry/point/CentroidPoint.hpp"
-#include "geometry/metrics/Metric.hpp"
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 #include "clustering/CentroidInitializationMethods/KDECentroidMatrix.hpp"
 #include "clustering/CentroidInitializationMethods/KDECentroid.hpp"

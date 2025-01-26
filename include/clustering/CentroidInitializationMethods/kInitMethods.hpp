@@ -1,6 +1,12 @@
 #ifndef KINIT_HPP
 #define KINIT_HPP
 
+#include <cstddef> 
+
+#include "geometry/metrics/Metric.hpp"
+#include "geometry/metrics/GeodesicMetric.hpp"
+#include "geometry/metrics/GeodesicHeatMetric.hpp"
+#include "geometry/metrics/EuclideanMetric.hpp"
 
 template <typename PT, std::size_t PD, class M>
 class KMeans;

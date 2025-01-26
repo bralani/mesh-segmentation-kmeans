@@ -1,6 +1,9 @@
 #ifndef ELBOW
 #define ELBOW
 
+#include <cstddef> 
+#include "clustering/CentroidInitializationMethods/kInitMethods.hpp"
+
 // Forward declaration of KMeans to avoid cyclic dependencies
 template <typename PT, std::size_t PD, class M>
 class KMeans;

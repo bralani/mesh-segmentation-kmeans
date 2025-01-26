@@ -1,6 +1,8 @@
 #ifndef KDE_K_INIT
 #define KDE_K_INIT
 
+#include <cstddef> 
+
 // Forward declaration of KMeans to avoid cyclic dependencies
 template <typename PT, std::size_t PD, class M>
 class KMeans;
