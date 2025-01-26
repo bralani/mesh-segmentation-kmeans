@@ -27,7 +27,7 @@ int main()
         cin >> num_clusters;
 
         int num_initialization_method;
-        std::cout << "Enter the number of initialization method for centroids \n (0: random, 1: kernel density estimator, 2: most distant, 3: Static KDE - 3D point )" <<std::endl;
+        std::cout << "Enter the number of initialization method for centroids \n (0: random, 1: kernel density estimator, 2: most distant)" <<std::endl;
         cin >> num_initialization_method;
 
         // Reading from the file
@@ -45,7 +45,7 @@ int main()
         }
 
         EuclideanMetric<double, DIMENSION> metric(points, 1e-4);
-        KMeans<double, DIMENSION, EuclideanMetric<double, DIMENSION>> kmeans(num_clusters, points, 1e-4, metric, num_initialization_method);
+        KMeans<double, DIMENSION, EuclideanMetric<double, DIMENSION>> kmeans(num_clusters, points, 1e-4, &metric, num_initialization_method);
 
         kmeans.fit();
         kmeans.print();
