@@ -58,7 +58,9 @@ void populateModelPaths(const std::string &directory)
 
 int main()
 {
-    // Directory to search for .obj files
+    // Directory to search for .obj files from the main resource folder
+    // std::string modelsDirectory = "../../../resources/meshes/obj";
+
     std::string modelsDirectory = "../resource/meshes/obj";
 
     // Populate the modelPaths vector

@@ -80,6 +80,8 @@ Model::Model(const std::string &path, ShaderProgram *program) : program(program)
     auto defaultMaterial = new PhongMaterial(program, {defaultTexture}, 0, 0, 32.0f); // Default white material
     materials["default"] = defaultMaterial;
 
+    std::unordered_map<std::string, glm::vec3> meshNameToColor;
+
     for (const auto &_material : loader->LoadedMaterials)
     {
         std::cout << "Material Name: " << _material.name << "\n";
@@ -112,14 +114,33 @@ Model::Model(const std::string &path, ShaderProgram *program) : program(program)
     {
         Material *meshMaterial = nullptr;
 
+        std::cout << "Mesh Name: " << _mesh.MeshName << "\n";
+
+        // If this mesh name already has an assigned color, use it
+        if (meshNameToColor.find(_mesh.MeshName) == meshNameToColor.end())
+        {
+            // Generate a new color for this mesh name (you can change this color generation logic)
+            meshNameToColor[_mesh.MeshName] = glm::vec3(rand() % 256 / 255.0f, rand() % 256 / 255.0f, rand() % 256 / 255.0f);
+        }
+
+        glm::vec3 meshColor = meshNameToColor[_mesh.MeshName];
+
+        // Create a simple texture for the color (can replace with a more complex material setup)
+        unsigned char colorPixel[3] = {static_cast<unsigned char>(meshColor.r * 255),
+                                       static_cast<unsigned char>(meshColor.g * 255),
+                                       static_cast<unsigned char>(meshColor.b * 255)};
+        Texture2D *colorTexture = new Texture2D(colorPixel, 1, 1);
+
+        auto colorMaterial = new PhongMaterial(program, {colorTexture}, 0, 0, 32.0f);
+        // meshMaterial = colorMaterial;
+
         if (materials.contains(_mesh.MeshMaterial.name))
         {
             meshMaterial = materials[_mesh.MeshMaterial.name];
         }
         else
         {
-            std::cerr << "Warning: Missing material for mesh. Falling back to default material.\n";
-            meshMaterial = defaultMaterial;
+            meshMaterial = colorMaterial;
         }
 
         meshes.push_back(new Mesh(_mesh, meshMaterial));
