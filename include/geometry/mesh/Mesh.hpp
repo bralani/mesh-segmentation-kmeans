@@ -10,13 +10,12 @@
 #include <filesystem>
 
 // Typedefs for Mesh identifiers (VertId, EdgeId, FaceId)
-typedef unsigned int VertId;  // Alias for unsigned int
-typedef unsigned int EdgeId;  // Alias for unsigned int
-typedef unsigned int FaceId;  // Alias for unsigned int
+typedef unsigned int VertId; // Alias for unsigned int
+typedef unsigned int EdgeId; // Alias for unsigned int
+typedef unsigned int FaceId; // Alias for unsigned int
 
 #include "geometry/point/Point.hpp"
 #include "geometry/mesh/Face.hpp"
-
 
 class Mesh
 {
@@ -25,7 +24,7 @@ public:
   Mesh(const std::string path);
 
   // Create a segmentation from a .segm file and returns the number of clusters
-  int createSegmentationFromSegFile(const std::filesystem::path& path);
+  int createSegmentationFromSegFile(const std::filesystem::path &path);
 
   // Build the face adjacency
   void buildFaceAdjacency();
@@ -34,10 +33,14 @@ public:
   friend std::ostream &operator<<(std::ostream &os, const Mesh &graph);
 
   // Get the face cluster
-  const int getFaceCluster(FaceId face) const { 
-    try {
+  const int getFaceCluster(FaceId face) const
+  {
+    try
+    {
       return faceClusters.at(face);
-    } catch (const std::out_of_range& e) {
+    }
+    catch (const std::out_of_range &e)
+    {
       return -1;
     }
   }
@@ -46,33 +49,39 @@ public:
   void setFaceCluster(FaceId face, int cluster) { faceClusters[face] = cluster; }
 
   // Get the mesh faces as points
-  std::vector<Point<double, 3>> getMeshFacesPoints() {
+  std::vector<Point<double, 3>> getMeshFacesPoints()
+  {
     std::vector<Point<double, 3>> faces;
-    for (const auto& face : meshFaces)
+    for (const auto &face : meshFaces)
     {
       faces.push_back(face.baricenter);
     }
     return faces;
   }
 
-  Face getFace(FaceId face) const {
+  Face getFace(FaceId face) const
+  {
     return meshFaces[face];
   }
 
-  int numFaces() const {
+  int numFaces() const
+  {
     return meshFaces.size();
   }
 
-  std::vector<Point<double, 3>>& getVertices() {
+  std::vector<Point<double, 3>> &getVertices()
+  {
     return meshVertices;
   }
 
-  std::vector<FaceId> getFaceAdjacencyAt(FaceId id) const {
+  std::vector<FaceId> getFaceAdjacencyAt(FaceId id) const
+  {
     return faceAdjacency.at(id);
   }
 
-  void exportToObj(const std::string& filepath, int cluster);
+  void exportToObj(const std::string &filepath, int cluster);
 
+  void exportToGroupedObj(const std::string &filepath) const;
 
 private:
   std::vector<Point<double, 3>> meshVertices;

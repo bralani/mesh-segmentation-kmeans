@@ -1,7 +1,7 @@
 #include "objload.h"
 #include "geometry/mesh/Mesh.hpp"
-#include <fstream>  // For file output
-#include <sstream>  // For stringstream
+#include <fstream> // For file output
+#include <sstream> // For stringstream
 
 Mesh::Mesh(const std::string path)
 {
@@ -115,32 +115,86 @@ void Mesh::buildFaceAdjacency()
     faceAdjacency[face.baricenter.id] = std::vector<FaceId>(adjacentFacesSet.begin(), adjacentFacesSet.end());
   }
 }
-void Mesh::exportToObj(const std::string& filepath, int cluster) {
-    std::ofstream objFile(filepath);
-    
-    if (!objFile.is_open()) {
-        std::cerr << "Failed to open file: " << filepath << std::endl;
-        return;
+void Mesh::exportToObj(const std::string &filepath, int cluster)
+{
+  std::ofstream objFile(filepath);
+
+  if (!objFile.is_open())
+  {
+    std::cerr << "Failed to open file: " << filepath << std::endl;
+    return;
+  }
+
+  // Write the vertices to the file (in .obj format)
+  for (const auto &vertex : meshVertices)
+  {
+    objFile << "v " << vertex.coordinates[0] << " " << vertex.coordinates[1] << " " << vertex.coordinates[2] << std::endl;
+  }
+
+  for (FaceId faceId = 0; faceId < meshFaces.size(); ++faceId)
+  {
+    if (getFaceCluster(faceId) == cluster)
+    { // Check if the cluster ID is 0
+      const Face &face = meshFaces[faceId];
+
+      // Write the face in OBJ format (note that OBJ uses 1-based indexing)
+      objFile << "f";
+      for (const auto &vertId : face.vertices)
+      {
+        objFile << " " << (vertId + 1); // OBJ indices are 1-based
+      }
+      objFile << std::endl;
+    }
+  }
+
+  objFile.close();
+  std::cout << "Exported mesh to " << filepath << std::endl;
+}
+
+void Mesh::exportToGroupedObj(const std::string &filepath) const
+{
+  std::ofstream objFile(filepath);
+
+  if (!objFile.is_open())
+  {
+    std::cerr << "Failed to open file: " << filepath << std::endl;
+    return;
+  }
+
+  // Write the vertices to the file (in .obj format)
+  objFile << "# Vertices\n";
+  for (const auto &vertex : meshVertices)
+  {
+    objFile << "v " << vertex.coordinates[0] << " "
+            << vertex.coordinates[1] << " "
+            << vertex.coordinates[2] << std::endl;
+  }
+
+  // Initialize current cluster and group
+  int currentCluster = -1;
+
+  objFile << "# Faces grouped by clusters\n";
+  for (FaceId faceId = 0; faceId < meshFaces.size(); ++faceId)
+  {
+    int cluster = getFaceCluster(faceId);
+
+    // If cluster changes, write a new group
+    if (cluster != currentCluster)
+    {
+      currentCluster = cluster;
+      objFile << "\ng cluster_" << currentCluster << std::endl;
     }
 
-    // Write the vertices to the file (in .obj format)
-    for (const auto& vertex : meshVertices) {
-        objFile << "v " << vertex.coordinates[0] << " " << vertex.coordinates[1] << " " << vertex.coordinates[2] << std::endl;
+    // Write the face in OBJ format (note that OBJ uses 1-based indexing)
+    const Face &face = meshFaces[faceId];
+    objFile << "f";
+    for (const auto &vertId : face.vertices)
+    {
+      objFile << " " << (vertId + 1); // OBJ indices are 1-based
     }
+    objFile << std::endl;
+  }
 
-    for (FaceId faceId = 0; faceId < meshFaces.size(); ++faceId) {
-        if (getFaceCluster(faceId) == cluster) {  // Check if the cluster ID is 0
-            const Face& face = meshFaces[faceId];
-            
-            // Write the face in OBJ format (note that OBJ uses 1-based indexing)
-            objFile << "f";
-            for (const auto& vertId : face.vertices) {
-                objFile << " " << (vertId + 1);  // OBJ indices are 1-based
-            }
-            objFile << std::endl;
-        }
-    }
-
-    objFile.close();
-    std::cout << "Exported mesh to " << filepath << std::endl;
+  objFile.close();
+  std::cout << "Exported grouped mesh to " << filepath << std::endl;
 }

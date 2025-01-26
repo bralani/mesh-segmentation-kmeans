@@ -93,6 +93,13 @@
         "format": "cpp",
         "span": "cpp",
         "text_encoding": "cpp",
-        "core": "cpp"
+        "core": "cpp",
+        "any": "cpp",
+        "cfenv": "cpp",
+        "csetjmp": "cpp",
+        "regex": "cpp",
+        "scoped_allocator": "cpp",
+        "shared_mutex": "cpp",
+        "source_location": "cpp"
     }
 }
