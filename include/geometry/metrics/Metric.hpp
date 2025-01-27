@@ -7,7 +7,10 @@
 #include <cmath>
 #include <stdexcept>
 #include <optional>
+
 #include "geometry/point/CentroidPoint.hpp"
+#include "geometry/point/Point.hpp"
+
 
 /**
  * Abstract class representing a generic metric for calculating distances.

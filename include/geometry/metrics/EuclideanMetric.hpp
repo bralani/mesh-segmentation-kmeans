@@ -5,8 +5,9 @@
 #include <vector>
 #include <cmath>
 #include <stdexcept>
-#include "geometry/point/CentroidPoint.hpp"
+
 #include "clustering/KDTree.hpp"
+#include "geometry/metrics/Metric.hpp"
 
 #ifdef USE_CUDA
 // Dichiarazione della funzione kernel CUDA (definita in kmeans.cu)
