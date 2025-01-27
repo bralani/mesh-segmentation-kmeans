@@ -43,7 +43,14 @@ if(MSVC)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /openmp:llvm /openmp:experimental")
 endif()
 
-file(GLOB_RECURSE SOURCES "src/geometry/*.cpp" "src/clustering/CentroidInitializationMethods/*.cpp")
+file(GLOB_RECURSE SOURCES 
+    "src/geometry/*.cpp" 
+    "src/clustering/CentroidInitializationMethods/*.cpp" 
+    "src/clustering/*.cpp" 
+    "src/geometry/metrics/*.cpp"
+    "src/geometry/point/*.cpp"
+    "src/geometry/Mesh/*.cpp")
+
 
 # Define executables
 add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" "include/clustering/kmeans.cu")
