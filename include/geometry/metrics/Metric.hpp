@@ -1,3 +1,4 @@
+// metrics.hpp
 #ifndef METRICS_HPP
 #define METRICS_HPP
 
@@ -16,23 +17,19 @@ class Metric
 {
 public:
     // Default constructor with null centroids
-    Metric() : centroids(nullptr) {}
+    Metric();
 
     // Constructor to initialize centroids reference
-    explicit Metric(std::vector<CentroidPoint<PT, PD>> &centroids) : centroids(&centroids) {}
-
-public:
+    explicit Metric(std::vector<CentroidPoint<PT, PD>> &centroids);
 
     // Virtual destructor to ensure proper cleanup in derived classes
-    virtual ~Metric() = default;
+    virtual ~Metric();
 
     // Virtual function to setup the metric
     virtual void setup() = 0;
 
     // Set the centroids for the metric
-    void setCentroids(std::vector<CentroidPoint<PT, PD>> &centroids) {
-        this->centroids = &centroids;
-    }
+    void setCentroids(std::vector<CentroidPoint<PT, PD>> &centroids);
 
     // Fit the KMeans algorithm on the CPU or GPU
     virtual void fit_cpu() = 0;
@@ -46,5 +43,6 @@ protected:
     std::vector<CentroidPoint<PT, PD>> oldCentroids;
     std::vector<CentroidPoint<PT, PD>> *centroids; // Pointer to centroids
 };
+
 
 #endif
