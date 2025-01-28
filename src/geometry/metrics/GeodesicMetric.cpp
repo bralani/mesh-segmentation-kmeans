@@ -236,18 +236,7 @@ void GeodesicMetric<PT, PD>::fit_gpu()
 template <typename PT, std::size_t PD>
 void GeodesicMetric<PT, PD>::storeCentorids(){
   
-  std::vector<std::shared_ptr<Point<PT, PD>>> centroidPtrs;
-  for (const auto& centroid : *this->centroids) {
-    centroidPtrs.push_back(std::make_shared<CentroidPoint<PT, PD>>(centroid));
-  }
-  const size_t numFaces = mesh->numFaces();
-  for (FaceId faceId = 0; faceId < numFaces; ++faceId)
-  {
-    int centroidIndex = mesh->getFaceCluster(faceId);
-    Point<PT, PD> &baricenter = mesh->getFace(faceId).baricenter;
-    baricenter.centroid = centroidPtrs[centroidIndex];
-  }
-  return; 
+  //DO TO
 }
 
 // Explicit template instantiations
