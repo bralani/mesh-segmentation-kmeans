@@ -47,11 +47,7 @@ endif()
 
 file(GLOB_RECURSE SOURCES 
     "src/geometry/*.cpp" 
-    "src/clustering/CentroidInitializationMethods/*.cpp" 
     "src/clustering/*.cpp" 
-    "src/geometry/metrics/*.cpp"
-    "src/geometry/point/*.cpp"
-    "src/geometry/Mesh/*.cpp"
 )
 
 # Define executables
