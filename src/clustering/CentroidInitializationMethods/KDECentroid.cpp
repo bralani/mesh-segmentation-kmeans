@@ -225,7 +225,7 @@ class Kernel;
         for (size_t i = 0; i < m_transformedPoints.size(); ++i) {
             const Eigen::VectorXd& transformedPoint = m_transformedPoints[i];
             Eigen::VectorXd diff = transformedQuery - transformedPoint; // Compute the difference vector
-            density += Kernel::gaussian(diff, PD); // Accumulate Gaussian kernel values
+            density += Kernel::gaussian(diff); // Accumulate Gaussian kernel values
         }
 
         // Normalize the density using the determinant of the bandwidth matrix and the dataset size
@@ -347,7 +347,6 @@ class Kernel;
         double currentDensity = densities[index];       // Get the density of the current point
         std::vector<size_t> neighbors;                  // Vector to store indices of neighbors
         std::vector<double> offsets(PD, 0);             // Offsets initialized to 0
-        int test;
 
         // Generate neighbors for the current point
         generateNeighbors(gridPoints, gridPoints[index], 0, neighbors, offsets);

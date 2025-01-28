@@ -9,7 +9,7 @@ CentroidInitMethod<PT, PD>::CentroidInitMethod(std::vector<Point<PT, PD>>& data,
     : m_data(data), m_k(k) {}
 
 template <typename PT, std::size_t PD>
-void CentroidInitMethod<PT, PD>::set_k(int k) {
+void CentroidInitMethod<PT, PD>::set_k(std::size_t k) {
     m_k = k;
 }
 

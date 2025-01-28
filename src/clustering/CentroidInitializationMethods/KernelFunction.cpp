@@ -1,24 +1,24 @@
 #include "clustering/CentroidInitializationMethods/KernelFunction.hpp"
 
 // Gaussian Kernel
-double Kernel::gaussian(const VectorXd& u, int dimension) {
+double Kernel::gaussian(const VectorXd& u) {
     double norm = u.squaredNorm();
-    double coeff = 1.0 / std::pow(2 * M_PI, dimension / 2.0);
+    double coeff = 1.0 / std::pow(2 * M_PI, u.size() / 2.0);
     return coeff * std::exp(-0.5 * norm);
 }
 
 // Epanechnikov Kernel
-double Kernel::epanechnikov(const VectorXd& u, int dimension) {
+double Kernel::epanechnikov(const VectorXd& u) {
     double norm = u.squaredNorm();
     if (norm <= 1) {
-        double coeff = 0.75; // Adjust based on dimension if needed
+        double coeff = 0.75; 
         return coeff * (1 - norm);
     }
     return 0.0;
 }
 
 // Uniform Kernel
-double Kernel::uniform(const VectorXd& u, int dimension) {
+double Kernel::uniform(const VectorXd& u) {
     double norm = u.norm();
     if (norm <= 1) {
         return 0.5;
@@ -27,7 +27,7 @@ double Kernel::uniform(const VectorXd& u, int dimension) {
 }
 
 // Triangular Kernel
-double Kernel::triangular(const VectorXd& u, int dimension) {
+double Kernel::triangular(const VectorXd& u) {
     double norm = u.norm();
     if (norm <= 1) {
         return 1 - norm;
@@ -36,7 +36,7 @@ double Kernel::triangular(const VectorXd& u, int dimension) {
 }
 
 // Biweight Kernel
-double Kernel::biweight(const VectorXd& u, int dimension) {
+double Kernel::biweight(const VectorXd& u) {
     double norm = u.squaredNorm();
     if (norm <= 1) {
         double term = 1 - norm;
@@ -46,7 +46,7 @@ double Kernel::biweight(const VectorXd& u, int dimension) {
 }
 
 // Triweight Kernel
-double Kernel::triweight(const VectorXd& u, int dimension) {
+double Kernel::triweight(const VectorXd& u) {
     double norm = u.squaredNorm();
     if (norm <= 1) {
         double term = 1 - norm;
@@ -56,7 +56,7 @@ double Kernel::triweight(const VectorXd& u, int dimension) {
 }
 
 // Cosine Kernel
-double Kernel::cosine(const VectorXd& u, int dimension) {
+double Kernel::cosine(const VectorXd& u) {
     double norm = u.norm();
     if (norm <= 1) {
         return (M_PI / 4.0) * std::cos(M_PI * norm / 2.0);

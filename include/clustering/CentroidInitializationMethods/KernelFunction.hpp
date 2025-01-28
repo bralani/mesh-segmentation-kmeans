@@ -16,25 +16,25 @@ public:
     // Dichiarazioni delle funzioni per i diversi kernel
 
     // Gaussian Kernel
-    static double gaussian(const VectorXd& u, int dimension);
+    static double gaussian(const VectorXd& u);
 
     // Epanechnikov Kernel
-    static double epanechnikov(const VectorXd& u, int dimension);
+    static double epanechnikov(const VectorXd& u);
 
     // Uniform Kernel
-    static double uniform(const VectorXd& u, int dimension);
+    static double uniform(const VectorXd& u);
 
     // Triangular Kernel
-    static double triangular(const VectorXd& u, int dimension);
+    static double triangular(const VectorXd& u);
 
     // Biweight Kernel
-    static double biweight(const VectorXd& u, int dimension);
+    static double biweight(const VectorXd& u);
 
     // Triweight Kernel
-    static double triweight(const VectorXd& u, int dimension);
+    static double triweight(const VectorXd& u);
 
     // Cosine Kernel
-    static double cosine(const VectorXd& u, int dimension);
+    static double cosine(const VectorXd& u);
 };
 
 #endif

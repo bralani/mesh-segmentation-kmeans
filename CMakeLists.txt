@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(KMeans)
 
+# Set flags per il compilatore
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
 
 # Set the target architecture for macOS (arm64)
 set(CMAKE_OSX_ARCHITECTURES arm64)
@@ -11,15 +13,15 @@ find_package(CUDA)
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_50") # Set GPU architecture (adjust if necessary)
 
 # Include csv-parser as a submodule
-include_directories(third_party/csv-parser/single_include)
-include_directories(${CMAKE_SOURCE_DIR}/third_party/eigen)
-include_directories(${CMAKE_SOURCE_DIR}/third_party/libigl/include)
+include_directories(SYSTEM third_party/csv-parser/single_include)
+include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/eigen)
+include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/libigl/include)
 add_subdirectory(third_party/matplotlib-cpp)
+
+
 
 # Function to define an executable with common settings
 function(add_kmeans_executable exe_name source_files cuda_files)
-
-    # if cuda is found, add the executable with CUDA support
     if(CUDA_FOUND AND MSVC)
         add_definitions(-DUSE_CUDA)
         cuda_add_executable(${exe_name} ${source_files} ${cuda_files})
@@ -49,8 +51,8 @@ file(GLOB_RECURSE SOURCES
     "src/clustering/*.cpp" 
     "src/geometry/metrics/*.cpp"
     "src/geometry/point/*.cpp"
-    "src/geometry/Mesh/*.cpp")
-
+    "src/geometry/Mesh/*.cpp"
+)
 
 # Define executables
 add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" "include/clustering/kmeans.cu")

@@ -12,8 +12,8 @@
 template <typename PT, std::size_t PD>
 class Point {
 public:
-    int id;                                             // Unique identifier for the point
     std::array<PT, PD> coordinates;                     // Array to store the coordinates of the point
+    int id;                                             // Unique identifier for the point
     std::shared_ptr<Point<PT, PD>> centroid = nullptr;  // Optional pointer to the centroid of the point (if applicable)
     
     Point();  // Default constructor

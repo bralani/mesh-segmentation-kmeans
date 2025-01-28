@@ -59,10 +59,10 @@ public:
     
 protected:
     std::vector<Point<PT, PD>> m_data; ///< Dataset
-    int m_k = 0;                       ///< Number of clusters
+    std::size_t m_k = 0;                       ///< Number of clusters
 
     // Setter for `m_k`
-    void set_k(int k);
+    void set_k(std::size_t k);
 };
 
 

@@ -17,7 +17,7 @@ template <typename PT, std::size_t PD>
 void RandomCentroidInit<PT, PD>::findCentroid(std::vector<CentroidPoint<PT, PD>>& centroids) {
     std::random_device rd;         // Random device for seeding
     std::mt19937 gen(rd());        // Mersenne Twister generator
-    int datasize = this->m_data.size(); // Size of the dataset
+    std::size_t datasize = this->m_data.size(); // Size of the dataset
 
     // If the number of clusters is not set, randomly select a number between 1 and 10
     if (this->m_k == 0) {

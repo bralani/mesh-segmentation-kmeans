@@ -167,7 +167,7 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
         double density = 0.0;
         for (const auto& transformedPoint : m_transformedPoints) {
             Eigen::VectorXd diff = transformedQuery - transformedPoint;
-            density += Kernel::gaussian(diff, 3);
+            density += Kernel::gaussian(diff);
         }
 
         density /= (m_transformedPoints.size() * m_h_det_sqrt);
@@ -269,7 +269,7 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
                     mostDistanceClass.findCentroid(returnVec);
 
                     // Assign unique IDs to centroids
-                    for (int i = 0; i < returnVec.size(); i++) {
+                    for (std::size_t i = 0; i < returnVec.size(); i++) {
                         returnVec[i].setID(i);
                     }
                     break;

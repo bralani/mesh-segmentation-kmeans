@@ -197,7 +197,7 @@ bool EuclideanMetric<PT, PD>::checkConvergence(int iter) {
     if (this->oldCentroids.empty()) return false;
 
     PT dist = 0;
-    for (int i = 0; i < this->centroids->size(); i++) {
+    for (size_t i = 0; i < this->centroids->size(); i++) {
         dist += this->distanceTo((*this->centroids)[i], this->oldCentroids[i]);
     }
     dist = dist / this->centroids->size();

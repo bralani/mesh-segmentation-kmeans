@@ -1,9 +1,9 @@
 #include "clustering/KMeans.hpp"
 
 template <typename PT, std::size_t PD, class M>
-KMeans<PT, PD, M>::KMeans(int clusters, std::vector<Point<PT, PD>> points, PT treshold, 
+KMeans<PT, PD, M>::KMeans(std::size_t clusters, std::vector<Point<PT, PD>> points, PT treshold, 
                           M* metric, int centroidsInitializationMethod, int kInitializationMethod)
-    : numClusters(clusters), data(points), treshold(treshold), metric(metric) {
+    : metric(metric), data(points), treshold(treshold), numClusters(clusters)  {
     initializeCentroids(centroidsInitializationMethod, kInitializationMethod);
 } 
 

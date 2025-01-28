@@ -30,7 +30,7 @@ void MostDistanceClass<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>&
     tmpInitialCentroids.setID(0);
     centroids.push_back(tmpInitialCentroids);
 
-    while (centroids.size() < this->m_k) {
+    while (centroids.size() < (size_t)this->m_k ) {
         Point<double, PD> farthestPoint;
         double maxDistance = -std::numeric_limits<double>::infinity();
 
