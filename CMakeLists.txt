@@ -19,6 +19,13 @@ include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/libigl/include)
 add_subdirectory(third_party/matplotlib-cpp)
 
 
+# BENCHMARKING 
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
+#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
+set(BENCHMARK_ENABLE_TESTING OFF)  
+add_subdirectory(third_party/benchmark)
+
+
 
 # Function to define an executable with common settings
 function(add_kmeans_executable exe_name source_files cuda_files)
@@ -54,3 +61,7 @@ file(GLOB_RECURSE SOURCES
 add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" "include/clustering/kmeans.cu")
 add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;${SOURCES}" "include/clustering/kmeans.cu")
 add_kmeans_executable(evaluation "src/evaluation.cpp;${SOURCES}" "include/clustering/kmeans.cu")
+
+add_kmeans_executable(kmeans_benchmark "src/benchmark.cpp;${SOURCES}" "include/clustering/kmeans.cu")
+target_link_libraries(kmeans_benchmark benchmark::benchmark)
+
