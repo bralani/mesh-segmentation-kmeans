@@ -6,7 +6,7 @@ project(KMeans)
 
 # Set the target architecture for macOS (arm64)
 set(CMAKE_OSX_ARCHITECTURES arm64)
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # CUDA settings
 find_package(CUDA)
@@ -17,6 +17,7 @@ include_directories(SYSTEM third_party/csv-parser/single_include)
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/eigen)
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/libigl/include)
 add_subdirectory(third_party/matplotlib-cpp)
+add_subdirectory(src/model_renderer)
 
 
 # BENCHMARKING 
