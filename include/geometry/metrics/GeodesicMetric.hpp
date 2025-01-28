@@ -37,6 +37,8 @@ protected:
     double computeEuclideanDistance(const Point<PT, PD>& a, const Point<PT, PD>& b) const;
 
     virtual std::vector<PT> computeDistances(const FaceId startFace) const;
+
+    void storeCentorids() override ;
 };
 
 #endif // GEODESICMETRIC_HPP

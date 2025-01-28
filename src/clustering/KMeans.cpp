@@ -22,6 +22,7 @@ std::vector<CentroidPoint<PT, PD>>& KMeans<PT, PD, M>::getCentroids() {
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod, int kInitializationMethod)
 {
+    std::cout<<"Total points: " << data.size() << std::endl;
     if (centroidsInitializationMethod < 0 || centroidsInitializationMethod > 3) {
         throw std::invalid_argument("Not a valid centroids initialization method!");
     }
@@ -73,6 +74,7 @@ void KMeans<PT, PD, M>::fit()
   #else
     metric->fit_cpu();
   #endif
+  CentroidInitMethod<PT, PD>::exportedMesh(centroids, "CentroidsFix");
 }
 
 /** DEBUG FUNCTION */

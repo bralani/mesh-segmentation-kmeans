@@ -48,6 +48,7 @@ void EuclideanMetric<PT, PD>::fit_cpu() {
         setup();
         iter++;
     }
+
 }
 
 #ifdef USE_CUDA
@@ -203,7 +204,10 @@ bool EuclideanMetric<PT, PD>::checkConvergence(int iter) {
     return dist <= treshold;
 }
 
-
+template <typename PT, std::size_t PD>
+void EuclideanMetric<PT, PD>::storeCentorids() {
+    //Do nothings 
+}
 
 // Istanze esplicite
 template class EuclideanMetric<double, 2>;

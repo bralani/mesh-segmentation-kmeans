@@ -19,86 +19,17 @@ double KDE3D::truncateToThreeDecimals(double value) {
     return std::trunc(value * 1000.0) / 1000.0;
 }
 
-// Export labeled points and densities to a CSV file
-void KDE3D::exportLabeledPointsToCSV(Grid3D grid3D, Densities3D densities3D) {
-    std::size_t Xgrid = grid3D.size();
-    std::size_t Ygrid = grid3D[0].size();
-    std::size_t Zgrid = grid3D[0][0].size();
-    
-    std::ofstream file("Ex.csv");
-
-    // Write header
-    file << "x,y,z,label\n";
-
-    for (size_t x = 0; x < Xgrid; ++x) {
-        for (size_t y = 0; y < Ygrid; ++y) {
-            for (size_t z = 0; z < Zgrid; ++z) {
-                file << truncateToThreeDecimals(grid3D[x][y][z].coordinates[0]) << ","
-                     << truncateToThreeDecimals(grid3D[x][y][z].coordinates[1]) << ","
-                     << truncateToThreeDecimals(grid3D[x][y][z].coordinates[2]) << ","
-                     << truncateToThreeDecimals(densities3D[x][y][z] * 10000000) << "\n";
-            }
-        }
-    }
-
-    file.close();
-    std::cout << "Labeled points exported to Ex.csv" << std::endl;
-}
-
-// Export a mesh to a CSV file with densities
-void KDE3D::exportedMesh(std::vector<Point<double, 3>> points, std::string name_csv, std::vector<double> densities) {
-    std::ofstream file(name_csv + ".csv");
-
-    // Write header
-    file << "x,y,z,label\n";
-
-    int i = 0;
-    for (auto& point : points) {
-        file << truncateToThreeDecimals(point.coordinates[0]) << ","
-             << truncateToThreeDecimals(point.coordinates[1]) << ","
-             << truncateToThreeDecimals(point.coordinates[2]) << "," << densities[i] << "\n";
-        i++;
-    }
-
-    file.close();
-    std::cout << "Mesh with densities exported to " << name_csv << ".csv" << std::endl;
-}
-
-// Export a mesh to a CSV file without densities
-void KDE3D::exportedMesh(std::vector<Point<double, 3>> points, std::string name_csv) {
-    std::ofstream file(name_csv + ".csv");
-
-    // Write header
-    file << "x,y,z,label\n";
-
-    for (auto& point : points) {
-        file << truncateToThreeDecimals(point.coordinates[0]) << ","
-             << truncateToThreeDecimals(point.coordinates[1]) << ","
-             << truncateToThreeDecimals(point.coordinates[2]) << "," << 0 << "\n";
-    }
-
-    file.close();
-    std::cout << "Mesh exported to " << name_csv << ".csv" << std::endl;
-}
 
 void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
-        //CSV for print
-        exportedMesh(this->m_data, "mesh");
-
         // Generate the grid points based on the calculated ranges and steps
         Grid3D gridPoints = generateGrid();
 
         // Find the peaks (local maxima) in the grid
         findLocalMaxima(gridPoints, centroids);
 
-        std::vector<Point<double, PDS>> per_stampa;
-            std::vector<double> densities_per_stamp;
-            for(auto& point : centroids){
-                per_stampa.push_back(point);
-                densities_per_stamp.push_back(0);
-            }
-        exportedMesh(per_stampa, "localMaxima", densities_per_stamp);
-        
+        exportedMesh(this->m_data, "Mesh");
+        exportedMesh(centroids, "Centroids");
+
         return;
 }
 
@@ -279,9 +210,6 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
                     }
                 }
             }
-
-            // Export density values and points for debugging or visualization
-            exportLabeledPointsToCSV(gridPoints, densities);
 
             // Thread-local storage for local maxima
             std::vector<std::vector<std::pair<Point<double, PDS>, double>>> threadLocalMaxima(omp_get_max_threads());

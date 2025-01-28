@@ -45,6 +45,8 @@ protected:
     double threshold;
     std::vector<CentroidPoint<PT, PD>> oldCentroids;
     std::vector<CentroidPoint<PT, PD>> *centroids; // Pointer to centroids
+
+    virtual void storeCentorids() = 0 ;
 };
 
 

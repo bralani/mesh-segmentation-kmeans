@@ -158,7 +158,7 @@ void GeodesicMetric<PT, PD>::fit_cpu()
       break;
     }
   }
-
+  storeCentorids();
   std::cout << "K-Means converged after " << iteration << " iterations." << std::endl;
 }
 
@@ -232,6 +232,23 @@ void GeodesicMetric<PT, PD>::fit_gpu()
   // GPU implementation placeholder
 }
 #endif
+
+template <typename PT, std::size_t PD>
+void GeodesicMetric<PT, PD>::storeCentorids(){
+  
+  std::vector<std::shared_ptr<Point<PT, PD>>> centroidPtrs;
+  for (const auto& centroid : *this->centroids) {
+    centroidPtrs.push_back(std::make_shared<CentroidPoint<PT, PD>>(centroid));
+  }
+  const size_t numFaces = mesh->numFaces();
+  for (FaceId faceId = 0; faceId < numFaces; ++faceId)
+  {
+    int centroidIndex = mesh->getFaceCluster(faceId);
+    Point<PT, PD> &baricenter = mesh->getFace(faceId).baricenter;
+    baricenter.centroid = centroidPtrs[centroidIndex];
+  }
+  return; 
+}
 
 // Explicit template instantiations
 template class GeodesicMetric<double, 3>;

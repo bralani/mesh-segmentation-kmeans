@@ -54,6 +54,8 @@ void MostDistanceClass<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>&
         index++;
         centroids.push_back(c);
     }
+    this->exportedMesh(this->m_data, "Mesh");
+    this->exportedMesh(centroids, "Centroids");
 }
 
 template<std::size_t PD>

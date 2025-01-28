@@ -46,6 +46,7 @@ private:
     bool isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zStar, const KdNode<PT, PD> &node);
     void assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, const std::shared_ptr<CentroidPoint<PT, PD>> &centroid);
     bool checkConvergence(int iter);
+    void storeCentorids() override;
 };
 
 #endif

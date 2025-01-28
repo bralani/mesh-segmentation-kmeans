@@ -2,6 +2,7 @@
 #define CENTROID_INIT_METHOD_HPP
 
 #include <vector>
+#include <fstream>
 #include <cstddef>
 #include "geometry/point/Point.hpp"
 #include "geometry/point/CentroidPoint.hpp"
@@ -35,6 +36,27 @@ public:
      */
     virtual void findCentroid(std::vector<CentroidPoint<PT, PD>>& centroids) = 0;
 
+    /**
+     * @brief a mesh to a CSV file without densities
+     * @param points vector of points to export
+     * @param name_csv name of the file csv
+     */
+    static void exportedMesh(std::vector<Point<PT, PD>> points, std::string name_csv);
+
+    /**
+     * @brief a mesh to a CSV file without densities
+     * @param points vector of points to export
+     * @param name_csv name of the file csv
+     */
+    static void exportedMesh(std::vector<CentroidPoint<PT, PD>> points, std::string name_csv);
+
+
+    /**
+     * @brief It truncates double value for small cv
+     * @param value value to be truncated
+     */
+    static double truncateToThreeDecimals(double value);
+    
 protected:
     std::vector<Point<PT, PD>> m_data; ///< Dataset
     int m_k = 0;                       ///< Number of clusters

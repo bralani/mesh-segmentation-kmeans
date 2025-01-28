@@ -45,6 +45,9 @@ void RandomCentroidInit<PT, PD>::findCentroid(std::vector<CentroidPoint<PT, PD>>
         centroids[i].setID(i); // Assign a unique ID to the centroid
         i++;
     }
+
+    this->exportedMesh(this->m_data, "Mesh");
+    this->exportedMesh(centroids, "Centroids");
 }
 
 template class RandomCentroidInit<double, 2>;

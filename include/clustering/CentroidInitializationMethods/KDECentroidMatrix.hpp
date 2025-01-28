@@ -35,11 +35,6 @@ public:
 
     void findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) override;
 
-    // Function declarations
-    void exportLabeledPointsToCSV(Grid3D grid3D, Densities3D densities3D);
-    void exportedMesh(std::vector<Point<double, 3>> points, std::string name_csv, std::vector<double> densities);
-    void exportedMesh(std::vector<Point<double, 3>> points, std::string name_csv);
-
 private:
     double truncateToThreeDecimals(double value);
     int m_bandwidthMethods;
