@@ -77,7 +77,7 @@ add_executable(${PROJECT_NAME}
         ${IMGUI_SRC}
         ${THIRD_PARTY_DIR}/stb/stb_image.h
         main.cpp
-        shader.h
+        shader.hpp
         shader.cpp
         material.hpp
         material.cpp

@@ -5,14 +5,16 @@
 #ifndef MESH_VIEWER_MATERIAL_H
 #define MESH_VIEWER_MATERIAL_H
 
-#include "shader.h"
+#include "shader.hpp"
 
 class Texture2D;
 
 class Material;
 
-class Texture2D {
+class Texture2D
+{
     friend Material;
+
 public:
     Texture2D() {}
 
@@ -30,7 +32,8 @@ protected:
     int width, height;
 };
 
-class Material {
+class Material
+{
 public:
     Material() {}
 
@@ -46,7 +49,8 @@ protected:
     std::vector<Texture2D *> textures;
 };
 
-class PhongMaterial : public Material {
+class PhongMaterial : public Material
+{
 public:
     PhongMaterial() {}
 
@@ -59,4 +63,4 @@ protected:
     float shininess;
 };
 
-#endif //MESH_VIEWER_MATERIAL_H
+#endif // MESH_VIEWER_MATERIAL_H

@@ -13,7 +13,7 @@
 #include <plog/Log.h>
 #include <plog/Initializers/RollingFileInitializer.h>
 
-#include "shader.h"
+#include "shader.hpp"
 #include "mesh.h"
 #include "camera.hpp"
 #include "imgui.h"

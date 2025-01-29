@@ -2,12 +2,14 @@
 // Created by pisaarca on 2025/1/10.
 //
 
-#include "shader.h"
+#include "shader.hpp"
 
 #include <glm/gtc/matrix_inverse.hpp>
 
-Shader::Shader(const std::string &path, GLenum type) {
-    if (!std::filesystem::exists(path)) {
+Shader::Shader(const std::string &path, GLenum type)
+{
+    if (!std::filesystem::exists(path))
+    {
         PLOG_FATAL << "Shader Compile Error: file not found";
         std::throw_with_nested("file not found");
     }
@@ -23,7 +25,8 @@ Shader::Shader(const std::string &path, GLenum type) {
     glCompileShader(glShader);
     GLint status;
     glGetShaderiv(glShader, GL_COMPILE_STATUS, &status);
-    if (status == GL_FALSE) {
+    if (status == GL_FALSE)
+    {
         char infoLog[512];
         glGetShaderInfoLog(glShader, 512, nullptr, infoLog);
         PLOG_FATAL << "Shader Compile Error: " << infoLog;
@@ -31,11 +34,13 @@ Shader::Shader(const std::string &path, GLenum type) {
     }
 }
 
-Shader::~Shader() {
+Shader::~Shader()
+{
     glDeleteShader(glShader);
     GLint status;
     glGetShaderiv(glShader, GL_DELETE_STATUS, &status);
-    if (status == GL_FALSE) {
+    if (status == GL_FALSE)
+    {
         char infoLog[512];
         glGetShaderInfoLog(glShader, 512, nullptr, infoLog);
         PLOG_FATAL << "Shader Delete Error: " << infoLog;
@@ -43,12 +48,15 @@ Shader::~Shader() {
     }
 }
 
-ShaderProgram::ShaderProgram(const Shader &vertex, const Shader &fragment) {
-    if (vertex.glShaderType != GL_VERTEX_SHADER) {
+ShaderProgram::ShaderProgram(const Shader &vertex, const Shader &fragment)
+{
+    if (vertex.glShaderType != GL_VERTEX_SHADER)
+    {
         PLOG_FATAL << "Shader Type Error: " + std::to_string(vertex.glShader) + " is not a vertex shader";
         std::throw_with_nested(std::to_string(vertex.glShader) + " is not a vertex shader");
     }
-    if (fragment.glShaderType != GL_FRAGMENT_SHADER) {
+    if (fragment.glShaderType != GL_FRAGMENT_SHADER)
+    {
         PLOG_FATAL << "Shader Type Error: " + std::to_string(fragment.glShader) + " is not a fragment shader";
         std::throw_with_nested(std::to_string(fragment.glShader) + " is not a fragment shader");
     }
@@ -58,7 +66,8 @@ ShaderProgram::ShaderProgram(const Shader &vertex, const Shader &fragment) {
     glLinkProgram(glProgram);
     GLint status;
     glGetProgramiv(glProgram, GL_LINK_STATUS, &status);
-    if (status == GL_FALSE) {
+    if (status == GL_FALSE)
+    {
         char infoLog[512];
         glGetProgramInfoLog(glProgram, 512, nullptr, infoLog);
         PLOG_FATAL << "Program Link Error: " << infoLog;
@@ -66,15 +75,16 @@ ShaderProgram::ShaderProgram(const Shader &vertex, const Shader &fragment) {
     }
 }
 
-ShaderProgram::ShaderProgram(const std::string &vertexPath, const std::string &fragmentPath) :
-        ShaderProgram(Shader(vertexPath, GL_VERTEX_SHADER),
-                      Shader(fragmentPath, GL_FRAGMENT_SHADER)) {}
+ShaderProgram::ShaderProgram(const std::string &vertexPath, const std::string &fragmentPath) : ShaderProgram(Shader(vertexPath, GL_VERTEX_SHADER),
+                                                                                                             Shader(fragmentPath, GL_FRAGMENT_SHADER)) {}
 
-ShaderProgram::~ShaderProgram() {
+ShaderProgram::~ShaderProgram()
+{
     glDeleteProgram(glProgram);
     GLint status;
     glGetProgramiv(glProgram, GL_DELETE_STATUS, &status);
-    if (status == GL_FALSE) {
+    if (status == GL_FALSE)
+    {
         char infoLog[512];
         glGetProgramInfoLog(glProgram, 512, nullptr, infoLog);
         PLOG_FATAL << "Program Delete Error: " << infoLog;
@@ -82,11 +92,13 @@ ShaderProgram::~ShaderProgram() {
     }
 }
 
-void ShaderProgram::use() const {
+void ShaderProgram::use() const
+{
     glUseProgram(glProgram);
 }
 
-void ShaderProgram::setMVPMatrices(const glm::mat4 &model, const glm::mat4 &view, const glm::mat4 &projection) {
+void ShaderProgram::setMVPMatrices(const glm::mat4 &model, const glm::mat4 &view, const glm::mat4 &projection)
+{
     setMat4("model", model);
     setMat4("view", view);
     setMat4("projection", projection);
