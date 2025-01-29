@@ -49,6 +49,23 @@ set(IMGUI_SRC
         ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
 
+# Define the paths
+set(SHADER_DIR ${CMAKE_SOURCE_DIR}/src/model_renderer/shader)
+set(MODEL_DIR ${CMAKE_SOURCE_DIR}/resources/meshes/obj)
+
+# Pass paths to C++ code
+add_definitions(
+    -DSHADER_DIR="${SHADER_DIR}"
+    -DMODEL_DIR="${MODEL_DIR}"
+)
+
+# Define the input and output files for the configuration
+configure_file(
+    ${CMAKE_SOURCE_DIR}/config/config.h.in  # Input file
+    ${CMAKE_BINARY_DIR}/config.h           # Output file
+    @ONLY                                     # Only replace the variables in the file
+)
+
 # Add executable
 add_executable(${PROJECT_NAME}
         ${GLAD_SRC}

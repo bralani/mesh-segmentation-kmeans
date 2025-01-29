@@ -19,6 +19,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "config.h"
 
 int width = 1600, height = 900;
 float lastTime;
@@ -59,9 +60,7 @@ void populateModelPaths(const std::string &directory)
 int main()
 {
     // Directory to search for .obj files from the main resource folder
-    // std::string modelsDirectory = "../../../resources/meshes/obj";
-
-    std::string modelsDirectory = "/Users/pisaarca/Workspace/16-kmeans-16-kmeans/resources/meshes/obj";
+    std::string modelsDirectory = MODEL_DIR;
 
     // Populate the modelPaths vector
     populateModelPaths(modelsDirectory);
@@ -110,7 +109,7 @@ int main()
 
     std::cout << "Hello" << std::endl;
 
-    ShaderProgram program("/Users/pisaarca/Workspace/16-kmeans-16-kmeans/src/model_renderer/shader/common.vert", "/Users/pisaarca/Workspace/16-kmeans-16-kmeans/src/model_renderer/shader/phong.frag");
+    ShaderProgram program(SHADER_DIR "/common.vert", SHADER_DIR "/phong.frag");
 
     // Variables for model selection
     int selectedModelIndex = -1; // Default: no model selected

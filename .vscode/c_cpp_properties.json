@@ -10,7 +10,8 @@
                 "${workspaceFolder}/third_party/glm",
                 "${workspaceFolder}/third_party/plog/include",
                 "${workspaceFolder}/third_party/glad/include",
-                "${workspaceFolder}/third_party/glfw/include"
+                "${workspaceFolder}/third_party/glfw/include",
+                "${workspaceFolder}/build"
             ],
             "defines": [],
             "cStandard": "c17",
