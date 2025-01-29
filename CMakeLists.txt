@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(KMeans)
 
-# Set flags per il compilatore
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Werror")
-
 # Set the target architecture for macOS (arm64)
 set(CMAKE_OSX_ARCHITECTURES arm64)
 set(CMAKE_CXX_STANDARD 20)
@@ -19,14 +16,9 @@ include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/libigl/include)
 add_subdirectory(third_party/matplotlib-cpp)
 add_subdirectory(src/model_renderer)
 
-
 # BENCHMARKING 
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
-#set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
 set(BENCHMARK_ENABLE_TESTING OFF)  
 add_subdirectory(third_party/benchmark)
-
-
 
 # Function to define an executable with common settings
 function(add_kmeans_executable exe_name source_files cuda_files)

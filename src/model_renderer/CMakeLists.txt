@@ -9,15 +9,12 @@ set(GLFW_LIBRARY /opt/homebrew/opt/glfw/lib/libglfw.dylib)
 
 set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/third_party)
 
-message(STATUS "Third-party directory: ${THIRD_PARTY_DIR}")
-
 set(Glad_DIR ${THIRD_PARTY_DIR}/glad/cmake)
 set(GLFW_DIR ${THIRD_PARTY_DIR}/glfw/cmake)
 set(glm_DIR ${THIRD_PARTY_DIR}/glm/cmake/glm)
 
 # Find OpenGL and GLFW via CMake
 find_package(OpenGL REQUIRED)
-# find_package(Glad REQUIRED)
 find_package(glm REQUIRED)
 
 # Add glad source files to the project
@@ -52,11 +49,9 @@ set(IMGUI_SRC
         ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
 
-message(STATUS "GLAD_SRC: ${GLAD_SRC}")
-
 # Add executable
 add_executable(${PROJECT_NAME}
-        ${GLAD_SRC}   # Use GLAD_SRC variable here instead of Glad_SOURCE
+        ${GLAD_SRC}
         ${IMGUI_SRC}
         ${THIRD_PARTY_DIR}/stb/stb_image.h
         main.cpp
@@ -73,8 +68,7 @@ add_executable(${PROJECT_NAME}
 # Link libraries correctly
 target_link_libraries(${PROJECT_NAME} PRIVATE ${OPENGL_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${GLFW_LIBRARY})
-# target_link_libraries(${PROJECT_NAME} PRIVATE glad)  # Link against glad
-target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm)  # Link against glm
+target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm) 
 
 # Handle platform-specific definitions
 if(WIN32)
