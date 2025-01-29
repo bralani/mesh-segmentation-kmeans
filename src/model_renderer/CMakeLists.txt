@@ -79,7 +79,7 @@ add_executable(${PROJECT_NAME}
         main.cpp
         shader.h
         shader.cpp
-        material.h
+        material.hpp
         material.cpp
         mesh.h
         mesh.cpp

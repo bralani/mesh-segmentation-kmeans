@@ -13,7 +13,7 @@
 #endif
 #include <glad/glad.h>
 
-#include "material.h"
+#include "material.hpp"
 
 namespace objl
 {
