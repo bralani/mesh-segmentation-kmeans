@@ -14,7 +14,7 @@
 #include <plog/Initializers/RollingFileInitializer.h>
 
 #include "shader.hpp"
-#include "mesh.h"
+#include "mesh.hpp"
 #include "camera.hpp"
 #include "imgui.h"
 #include "imgui_impl_glfw.h"

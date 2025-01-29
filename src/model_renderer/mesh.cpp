@@ -2,7 +2,7 @@
 // Created by pisaarca on 2025/1/10.
 //
 
-#include "mesh.h"
+#include "mesh.hpp"
 
 #include <OBJ_Loader.h>
 

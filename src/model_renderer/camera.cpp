@@ -7,7 +7,7 @@
 #include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "mesh.h"
+#include "mesh.hpp"
 
 static constexpr float cameraMouseSpeed = 0.05f,
                        cameraKeyboardSpeed = 10.0f,

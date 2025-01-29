@@ -7,7 +7,7 @@
 
 #include <glm/glm.hpp>
 
-#include "mesh.h"
+#include "mesh.hpp"
 
 class Camera
 {
