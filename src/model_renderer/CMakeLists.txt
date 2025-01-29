@@ -66,6 +66,11 @@ configure_file(
     @ONLY                                     # Only replace the variables in the file
 )
 
+# If config.h is generated in the build directory, include it explicitly
+if(EXISTS ${CMAKE_BINARY_DIR}/config.h)
+    include_directories(${CMAKE_BINARY_DIR})
+endif()
+
 # Add executable
 add_executable(${PROJECT_NAME}
         ${GLAD_SRC}

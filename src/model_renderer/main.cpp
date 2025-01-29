@@ -19,7 +19,7 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "config.h"
+#include <config.h>
 
 int width = 1600, height = 900;
 float lastTime;
