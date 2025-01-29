@@ -107,8 +107,6 @@ int main()
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    std::cout << "Hello" << std::endl;
-
     ShaderProgram program(SHADER_DIR "/common.vert", SHADER_DIR "/phong.frag");
 
     // Variables for model selection

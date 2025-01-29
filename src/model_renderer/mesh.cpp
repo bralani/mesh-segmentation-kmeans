@@ -114,8 +114,6 @@ Model::Model(const std::string &path, ShaderProgram *program) : program(program)
     {
         Material *meshMaterial = nullptr;
 
-        std::cout << "Mesh Name: " << _mesh.MeshName << "\n";
-
         // If this mesh name already has an assigned color, use it
         if (meshNameToColor.find(_mesh.MeshName) == meshNameToColor.end())
         {
