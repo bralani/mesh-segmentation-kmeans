@@ -83,7 +83,7 @@ add_executable(${PROJECT_NAME}
         material.cpp
         mesh.h
         mesh.cpp
-        camera.h
+        camera.hpp
         camera.cpp
 )
 

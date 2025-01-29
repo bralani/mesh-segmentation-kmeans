@@ -2,7 +2,7 @@
 // Created by pisaarca on 2025/1/14.
 //
 
-#include "camera.h"
+#include "camera.hpp"
 
 #include <GLFW/glfw3.h>
 #include <glm/gtc/matrix_transform.hpp>
