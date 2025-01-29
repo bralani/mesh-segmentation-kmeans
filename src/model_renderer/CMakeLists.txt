@@ -7,9 +7,13 @@ set(CMAKE_CXX_STANDARD 20)
 set(GLFW_INCLUDE_DIR /opt/homebrew/opt/glfw/include)
 set(GLFW_LIBRARY /opt/homebrew/opt/glfw/lib/libglfw.dylib)
 
-set(Glad_DIR 3rdparty/glad/cmake)
-set(GLFW_DIR 3rdparty/glfw/cmake)
-set(glm_DIR 3rdparty/glm/cmake/glm)
+set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/third_party)
+
+message(STATUS "Third-party directory: ${THIRD_PARTY_DIR}")
+
+set(Glad_DIR ${THIRD_PARTY_DIR}/glad/cmake)
+set(GLFW_DIR ${THIRD_PARTY_DIR}/glfw/cmake)
+set(glm_DIR ${THIRD_PARTY_DIR}/glm/cmake/glm)
 
 # Find OpenGL and GLFW via CMake
 find_package(OpenGL REQUIRED)
@@ -17,22 +21,23 @@ find_package(OpenGL REQUIRED)
 find_package(glm REQUIRED)
 
 # Add glad source files to the project
-set(GLAD_SRC 3rdparty/glad/src/glad.c)
+set(GLAD_SRC ${THIRD_PARTY_DIR}/glad/src/glad.c)
 
 # Add the glad include directory
-include_directories(3rdparty/glad/include)
+include_directories(${THIRD_PARTY_DIR}/glad/include)
 
 # Add other include directories
 include_directories(${OPENGL_INCLUDE_DIRS})
 include_directories(${Glad_INCLUDE_DIRS})
 include_directories(${GLFW_INCLUDE_DIR})
 include_directories(${glm_INCLUDE_DIRS})
-include_directories(3rdparty/plog/include)
-include_directories(3rdparty/obj-loader)
-include_directories(3rdparty/stb)
+include_directories(${THIRD_PARTY_DIR}/plog/include)
+include_directories(${THIRD_PARTY_DIR}/obj-loader)
+include_directories(${THIRD_PARTY_DIR}/stb)
+include_directories(${THIRD_PARTY_DIR}/glm)
 
 # Include ImGui
-set(IMGUI_DIR 3rdparty/imgui)
+set(IMGUI_DIR ${THIRD_PARTY_DIR}/imgui)
 include_directories(${IMGUI_DIR})
 include_directories(${IMGUI_DIR}/backends)
 
@@ -47,20 +52,22 @@ set(IMGUI_SRC
         ${IMGUI_DIR}/backends/imgui_impl_opengl3.cpp
 )
 
+message(STATUS "GLAD_SRC: ${GLAD_SRC}")
+
 # Add executable
 add_executable(${PROJECT_NAME}
         ${GLAD_SRC}   # Use GLAD_SRC variable here instead of Glad_SOURCE
         ${IMGUI_SRC}
-        3rdparty/stb/stb_image.h
-        src/main.cpp
-        src/shader.h
-        src/shader.cpp
-        src/material.h
-        src/material.cpp
-        src/mesh.h
-        src/mesh.cpp
-        src/camera.h
-        src/camera.cpp
+        ${THIRD_PARTY_DIR}/stb/stb_image.h
+        main.cpp
+        shader.h
+        shader.cpp
+        material.h
+        material.cpp
+        mesh.h
+        mesh.cpp
+        camera.h
+        camera.cpp
 )
 
 # Link libraries correctly
@@ -75,6 +82,8 @@ if(WIN32)
 elseif(APPLE)
         add_definitions(-DPLATFORM_MACOS)
 endif()
+
+set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 
 # Copy GLFW DLL if necessary (Windows)
 file(COPY ${GLFW_DLL} DESTINATION ${CMAKE_BINARY_DIR})

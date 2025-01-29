@@ -61,7 +61,7 @@ int main()
     // Directory to search for .obj files from the main resource folder
     // std::string modelsDirectory = "../../../resources/meshes/obj";
 
-    std::string modelsDirectory = "../resource/meshes/obj";
+    std::string modelsDirectory = "/Users/pisaarca/Workspace/16-kmeans-16-kmeans/resources/meshes/obj";
 
     // Populate the modelPaths vector
     populateModelPaths(modelsDirectory);
@@ -104,10 +104,13 @@ int main()
     // ImGui Initialization
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
+
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    ShaderProgram program("../src/shader/common.vert", "../src/shader/phong.frag");
+    std::cout << "Hello" << std::endl;
+
+    ShaderProgram program("/Users/pisaarca/Workspace/16-kmeans-16-kmeans/src/model_renderer/shader/common.vert", "/Users/pisaarca/Workspace/16-kmeans-16-kmeans/src/model_renderer/shader/phong.frag");
 
     // Variables for model selection
     int selectedModelIndex = -1; // Default: no model selected
