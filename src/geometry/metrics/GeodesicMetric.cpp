@@ -1,13 +1,15 @@
 #include "geometry/metrics/GeodesicMetric.hpp"
 
-#define LIMIT_CONVERGENCE 200
+#define LIMIT_CONVERGENCE 2000
 
 template <typename PT, std::size_t PD>
-GeodesicMetric<PT, PD>::GeodesicMetric(Mesh &mesh, double percentage_threshold)
+GeodesicMetric<PT, PD>::GeodesicMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data)
     : mesh(&mesh)
 {
   this->threshold = percentage_threshold;
+  this->data = data;
 }
+
 
 template <typename PT, std::size_t PD>
 void GeodesicMetric<PT, PD>::setup()
@@ -158,7 +160,8 @@ void GeodesicMetric<PT, PD>::fit_cpu()
       break;
     }
   }
-  storeCentorids();
+  storeCentroids();
+  this->oldPoints = 1;
   std::cout << "K-Means converged after " << iteration << " iterations." << std::endl;
 }
 
@@ -229,15 +232,38 @@ std::vector<PT> GeodesicMetric<PT, PD>::computeDistances(const FaceId startFace)
 template <typename PT, std::size_t PD>
 void GeodesicMetric<PT, PD>::fit_gpu()
 {
-  // GPU implementation placeholder
+  // GPU implementation placeholder, storeCentroids , oldPoints
 }
 #endif
 
 template <typename PT, std::size_t PD>
-void GeodesicMetric<PT, PD>::storeCentorids(){
-  
-  //DO TO
+void GeodesicMetric<PT, PD>::storeCentroids(){
+  const size_t numFaces = mesh->numFaces();
+  for (FaceId faceId = 0; faceId < numFaces; ++faceId)
+  {
+    int centroidIndex = mesh->getFaceCluster(faceId);
+    Point<PT, PD>& baricenter = mesh->getFaceCopy(faceId).baricenter;
+    CentroidPoint<PT, PD>& c = (this->centroids)->at(centroidIndex);
+    baricenter.setCentroid(c);
+  }
 }
+
+template <typename PT, std::size_t PD>
+std::vector<Point<PT, PD>>& GeodesicMetric<PT, PD>::getPoints(){
+  //if(this->oldPoints == 1){
+    (this->data).clear();
+    const size_t numFaces = mesh->numFaces();
+    std::cout<<"Num points: " << numFaces <<std::endl;
+    for (FaceId faceId = 0; faceId < numFaces; ++faceId)
+    {
+      Point<PT, PD>& baricenter = mesh->getFaceCopy(faceId).baricenter;
+      this->data.push_back(baricenter);
+    }
+    this->oldPoints = 0;
+  //}
+  return this->data;
+}
+
 
 // Explicit template instantiations
 template class GeodesicMetric<double, 3>;

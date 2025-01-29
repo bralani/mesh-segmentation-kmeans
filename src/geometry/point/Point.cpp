@@ -127,6 +127,11 @@ void Point<PT, PD>::print() const {
     std::cout << " Point ID: " << id;
 }
 
+template <typename PT, std::size_t PD>
+void Point<PT, PD>::setCentroid(const Point<PT, PD>& point) {
+        centroid = std::make_shared<Point<PT, PD>>(point);
+}
+
 // Explicit template instantiation
 template class Point<double, 3>;
 template class Point<double, 2>;

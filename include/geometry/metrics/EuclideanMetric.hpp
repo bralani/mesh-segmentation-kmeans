@@ -24,7 +24,7 @@ template <typename PT, std::size_t PD>
 class EuclideanMetric : public Metric<PT, PD>
 {
 public:
-    EuclideanMetric(std::vector<Point<PT, PD>> &data, double threshold);
+    EuclideanMetric(std::vector<Point<PT, PD>> data, double threshold);
 
     static PT distanceTo(const Point<PT, PD> &a, const Point<PT, PD> &b);
 
@@ -35,8 +35,9 @@ public:
     void fit_gpu() override;
 #endif
 
+    std::vector<Point<PT, PD>>& getPoints() override;
+
 private:
-    std::vector<Point<PT, PD>> *data;
     double treshold;
     KdTree<PT, PD> *kdtree;
 
@@ -46,7 +47,7 @@ private:
     bool isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zStar, const KdNode<PT, PD> &node);
     void assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, const std::shared_ptr<CentroidPoint<PT, PD>> &centroid);
     bool checkConvergence(int iter);
-    void storeCentorids() override;
+    void storeCentroids() override;
 };
 
 #endif

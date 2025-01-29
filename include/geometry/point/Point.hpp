@@ -48,6 +48,8 @@ public:
         return os;
     }
 
+    void setCentroid(const Point<PT, PD>& point) ;
+
     virtual ~Point() = default;  // Virtual destructor
 };
 

@@ -2,20 +2,27 @@
 
 // Costruttore
 template <typename PT, std::size_t PD>
-EuclideanMetric<PT, PD>::EuclideanMetric(std::vector<Point<PT, PD>> &data, double threshold) {
-    this->data = &data;
+EuclideanMetric<PT, PD>::EuclideanMetric(std::vector<Point<PT, PD>> data, double threshold) {
+    this->data = data;
     this->treshold = threshold;
 
-#ifdef USE_CUDA
-    if (data.size() > MIN_NUM_POINTS_CUDA) {
-        kdtree = nullptr;
-    } else {
+    #ifdef USE_CUDA
+        if (data.size() > MIN_NUM_POINTS_CUDA) {
+            kdtree = nullptr;
+        } else {
+            kdtree = new KdTree<PT, PD>(data);
+        }
+    #else
         kdtree = new KdTree<PT, PD>(data);
-    }
-#else
-    kdtree = new KdTree<PT, PD>(data);
-#endif
+    #endif
+}    
+
+template<typename PT, std::size_t PD>
+std::vector<Point<PT, PD>>& EuclideanMetric<PT, PD>::getPoints(){
+    return this->data;
 }
+
+
 
 // Calcola la distanza euclidea tra due punti
 template <typename PT, std::size_t PD>
@@ -57,7 +64,7 @@ template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::fit_gpu() {
     int numClusters = this->centroids->size();
 
-    float *data_flat = new float[data->size() * PD];
+    float *data_flat = new float[data.size() * PD];
     #pragma omp parallel for collapse(2)
     for (int i = 0; i < data->size(); i++) {
         for (int j = 0; j < PD; j++) {
@@ -73,14 +80,14 @@ void EuclideanMetric<PT, PD>::fit_gpu() {
         }
     }
 
-    int *cluster_assignment = new int[data->size()];
+    int *cluster_assignment = new int[data.size()];
 
-    kmeans_cuda(numClusters, PD, data->size(), data_flat, centroids_flat, cluster_assignment, (float)treshold);
+    kmeans_cuda(numClusters, PD, data.size(), data_flat, centroids_flat, cluster_assignment, (float)treshold);
 
     #pragma omp parallel for
-    for (int i = 0; i < data->size(); i++) {
+    for (int i = 0; i < data.size(); i++) {
         std::shared_ptr<CentroidPoint<PT, PD>> centroid_ptr = std::make_shared<CentroidPoint<PT, PD>>(this->centroids->at(cluster_assignment[i]));
-        data->at(i).setCentroid(centroid_ptr);
+        data.at(i).setCentroid(centroid_ptr);
     }
 
     delete[] data_flat;
@@ -205,7 +212,7 @@ bool EuclideanMetric<PT, PD>::checkConvergence(int iter) {
 }
 
 template <typename PT, std::size_t PD>
-void EuclideanMetric<PT, PD>::storeCentorids() {
+void EuclideanMetric<PT, PD>::storeCentroids() {
     //Do nothings 
 }
 

@@ -1,15 +1,15 @@
 #include "clustering/KMeans.hpp"
 
 template <typename PT, std::size_t PD, class M>
-KMeans<PT, PD, M>::KMeans(std::size_t clusters, std::vector<Point<PT, PD>> points, PT treshold, 
+KMeans<PT, PD, M>::KMeans(std::size_t clusters, PT treshold, 
                           M* metric, int centroidsInitializationMethod, int kInitializationMethod)
-    : metric(metric), data(points), treshold(treshold), numClusters(clusters)  {
+    : metric(metric), treshold(treshold), numClusters(clusters)  {
     initializeCentroids(centroidsInitializationMethod, kInitializationMethod);
 } 
 
 template <typename PT, std::size_t PD, class M>
 std::vector<Point<PT, PD>>& KMeans<PT, PD, M>::getPoints() {
-    return data;
+    return metric->getPoints();
 }
 
 template <typename PT, std::size_t PD, class M>
@@ -22,7 +22,6 @@ std::vector<CentroidPoint<PT, PD>>& KMeans<PT, PD, M>::getCentroids() {
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod, int kInitializationMethod)
 {
-    std::cout<<"Total points: " << data.size() << std::endl;
     if (centroidsInitializationMethod < 0 || centroidsInitializationMethod > 3) {
         throw std::invalid_argument("Not a valid centroids initialization method!");
     }
@@ -38,25 +37,20 @@ void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod, i
 
     CentroidInitMethod<double, PD>* cim; 
 
+    auto& points = metric->getPoints();
+
     if(centroidsInitializationMethod == Enums::CentroidInit::RANDOM)
-      cim = new RandomCentroidInit(data, numClusters);
+      cim = new RandomCentroidInit(points, numClusters);
     else if(centroidsInitializationMethod == Enums::CentroidInit::KDE)
-      cim = new KDE(data, numClusters);
+      cim = new KDE(points, numClusters);
     else if(centroidsInitializationMethod == Enums::CentroidInit::MOSTDISTANT)
-      cim = new MostDistanceClass(data, numClusters);
+      cim = new MostDistanceClass(points, numClusters);
     else if constexpr (PD == 3)
-        cim = new KDE3D(data, numClusters);
+        cim = new KDE3D(points, numClusters);
     else
-      cim = new RandomCentroidInit(data, numClusters);
+      cim = new RandomCentroidInit(points, numClusters);
     
     cim->findCentroid(this->centroids);
-    std::cout << "Centroids: \n";
-    for (auto &p : centroids)
-    {
-      p.print();
-      std::cout << "\n";
-    }
-
 }
 
 /** Fits the KMeans algorithm to the data */
@@ -66,7 +60,7 @@ void KMeans<PT, PD, M>::fit()
   metric->setCentroids(centroids);
 
   #ifdef USE_CUDA
-    if (data.size() > MIN_NUM_POINTS_CUDA) {
+    if (metric->getPoints().size() > MIN_NUM_POINTS_CUDA) {
       metric->fit_gpu();
     } else {
       metric->fit_cpu();
@@ -92,6 +86,8 @@ void KMeans<PT, PD, M>::print()
   std::cout << "-----------------------" << std::endl;
   std::cout << "Points: \n";
 
+  auto& points = metric->getPoints();
+
   // Color map based on the centroid index
   std::vector<std::string> colors = {"r", "g", "b", "y", "m", "c", "k", "orange", "purple", "brown"};
 
@@ -99,7 +95,7 @@ void KMeans<PT, PD, M>::print()
   std::vector<std::vector<double>> x_points_per_centroid(centroids.size());
   std::vector<std::vector<double>> y_points_per_centroid(centroids.size());
 
-  for (auto &p : data)
+  for (auto &p : points)
   {
     p.print();
     if (p.centroid != nullptr) // Check if a centroid is set
@@ -107,8 +103,6 @@ void KMeans<PT, PD, M>::print()
       std::cout << " -> Centroid: ";
       p.centroid->print();
 
-      // Find the index of the corresponding centroid
-      // Assuming Point<PT, PD> is compatible with CentroidPoint<PT, PD>
       auto centroid_candidate = CentroidPoint<PT, PD>(*p.centroid); // Convert Point to CentroidPoint
       auto it = std::find(centroids.begin(), centroids.end(), centroid_candidate);
 

@@ -1,8 +1,8 @@
 #include "geometry/metrics/GeodesicHeatMetric.hpp"
 
 template <typename PT, std::size_t PD>
-GeodesicHeatMetric<PT, PD>::GeodesicHeatMetric(Mesh &mesh, double percentage_threshold)
-    : GeodesicMetric<PT, PD>(mesh, percentage_threshold)
+GeodesicHeatMetric<PT, PD>::GeodesicHeatMetric(Mesh &mesh, double percentage_threshold,  std::vector<Point<PT, PD>> data)
+    : GeodesicMetric<PT, PD>(mesh, percentage_threshold, data)
 {
     const std::vector<Point<double, 3>> vertices = mesh.getVertices();
     Eigen::MatrixXd V(vertices.size(), 3);
@@ -26,7 +26,7 @@ GeodesicHeatMetric<PT, PD>::GeodesicHeatMetric(Mesh &mesh, double percentage_thr
         }
     }
 
-    igl::heat_geodesics_precompute(V, F, data);
+    igl::heat_geodesics_precompute(V, F, data_heat);
 }
 
 template <typename PT, std::size_t PD>
@@ -35,7 +35,7 @@ std::vector<PT> GeodesicHeatMetric<PT, PD>::computeDistances(const FaceId startF
     Eigen::VectorXi gamma(1); 
     gamma << this->mesh->getFace(startFace).vertices[0];
     Eigen::VectorXd dist;
-    igl::heat_geodesics_solve(data, gamma, dist);
+    igl::heat_geodesics_solve(data_heat, gamma, dist);
 
     std::vector<PT> distFaces(this->mesh->numFaces());
     #pragma omp parallel for

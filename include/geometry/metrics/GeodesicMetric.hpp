@@ -19,7 +19,7 @@ template <typename PT, std::size_t PD>
 class GeodesicMetric : public Metric<PT, PD>
 {
 public:
-    GeodesicMetric(Mesh &mesh, double percentage_threshold);
+    GeodesicMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data);
 
     void setup() override;
     void fit_cpu() override;
@@ -30,15 +30,18 @@ public:
 
     FaceId findClosestFace(const Point<PT, PD> &centroid) const;
 
+    std::vector<Point<PT, PD>>& getPoints() override;
+
 protected:
     Mesh *mesh;
     std::unordered_map<FaceId, std::vector<PT>> distances;
+    int oldPoints = 0;
 
     double computeEuclideanDistance(const Point<PT, PD>& a, const Point<PT, PD>& b) const;
 
     virtual std::vector<PT> computeDistances(const FaceId startFace) const;
 
-    void storeCentorids() override ;
+    void storeCentroids() override ;
 };
 
 #endif // GEODESICMETRIC_HPP

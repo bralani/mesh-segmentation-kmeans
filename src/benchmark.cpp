@@ -32,7 +32,7 @@ static void BM_MeshSegmentation(benchmark::State& state) {
         MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(
             &mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method
         );
-        benchmark::DoNotOptimize(segmentation);  // Evita ottimizzazioni del compilatore
+        benchmark::DoNotOptimize(segmentation); 
     }
 
     state.SetComplexityN(n);

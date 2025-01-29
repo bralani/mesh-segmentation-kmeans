@@ -39,7 +39,7 @@ void CentroidInitMethod<PT, PD>::exportedMesh(std::vector<Point<PT, PD>> points,
     }
 
     file.close();
-    std::cout << "Mesh exported to " << name_csv << ".csv" << std::endl;
+    //std::cout << "Mesh exported to " << name_csv << ".csv" << std::endl;
 }
 
 template <typename PT, std::size_t PD>

@@ -15,11 +15,11 @@ template <typename PT, std::size_t PD>
 class GeodesicHeatMetric : public GeodesicMetric<PT, PD>
 {
 public:
-    GeodesicHeatMetric(Mesh &mesh, double percentage_threshold);
+    GeodesicHeatMetric(Mesh &mesh, double percentage_threshold,  std::vector<Point<PT, PD>> data);
 
 protected:
     // Heat geodesics data
-    igl::HeatGeodesicsData<PT> data;
+    igl::HeatGeodesicsData<PT> data_heat;
 
     std::vector<PT> computeDistances(const FaceId startFace) const override;
 };

@@ -38,7 +38,7 @@ public:
      * points: Vector of Points to be used in K-Means
      * dist: Function used as the distance metric between two points
      */
-    KMeans(std::size_t clusters, std::vector<Point<PT, PD>> points, PT treshold, M* metric, 
+    KMeans(std::size_t clusters, PT treshold, M* metric, 
            int centroidsInitializationMethod, int kInitializationMethod);
 
     // Destructor: deallocates the tree
@@ -57,7 +57,6 @@ public:
     std::vector<CentroidPoint<PT, PD>>& getCentroids();
 protected:
   M* metric;                                       // Distance metric function
-  std::vector<Point<PT, PD>> data;                 // Data points
   PT treshold;
   std::size_t numClusters;                                 // Number of clusters
   std::vector<CentroidPoint<PT, PD>> centroids;    // Centroids of clusters

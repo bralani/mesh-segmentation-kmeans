@@ -25,6 +25,9 @@ public:
     // Constructor to initialize centroids reference
     explicit Metric(std::vector<CentroidPoint<PT, PD>> &centroids);
 
+    // Constructor to initialize centroids reference
+    explicit Metric(std::vector<CentroidPoint<PT, PD>> &centroids, std::vector<Point<PT, PD>> data);
+
     // Virtual destructor to ensure proper cleanup in derived classes
     virtual ~Metric();
 
@@ -37,6 +40,12 @@ public:
     // Fit the KMeans algorithm on the CPU or GPU
     virtual void fit_cpu() = 0;
 
+    //set points 
+    void setPoints(std::vector<Point<PT, PD>> data);
+
+    //get points
+    virtual std::vector<Point<PT, PD>>& getPoints() = 0;
+
     #ifdef USE_CUDA
         virtual void fit_gpu() = 0;
     #endif
@@ -45,8 +54,9 @@ protected:
     double threshold;
     std::vector<CentroidPoint<PT, PD>> oldCentroids;
     std::vector<CentroidPoint<PT, PD>> *centroids; // Pointer to centroids
+    std::vector<Point<PT, PD>> data;
 
-    virtual void storeCentorids() = 0 ;
+    virtual void storeCentroids() = 0 ;
 };
 
 
