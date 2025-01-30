@@ -12,7 +12,9 @@
                 "${workspaceFolder}/third_party/glad/include",
                 "${workspaceFolder}/third_party/glfw/include",
                 "${workspaceFolder}/build",
-                "${workspaceFolder}/third_party/obj-loader"
+                "${workspaceFolder}/third_party/obj-loader",
+                "${workspaceFolder}/src/model_renderer/include",
+                "${workspaceFolder}/third_party/libigl/include"
             ],
             "defines": [],
             "cStandard": "c17",
