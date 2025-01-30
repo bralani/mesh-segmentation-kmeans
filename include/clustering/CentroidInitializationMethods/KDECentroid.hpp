@@ -36,6 +36,7 @@ public:
     int findLocalWithoutRestriction();
 
 private:
+    int m_ray;
     int m_bandwidthMethods;
     int range_number_division;
     std::size_t m_totalPoints;

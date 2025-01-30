@@ -32,12 +32,13 @@ template<typename PT, std::size_t PD, class M>
 int KDEMethod<PT, PD, M>::findK() {
     // Retrieve the points from the KMeans object
     std::vector<Point<PT, PD>> points = (this->m_kMeans).getPoints();
-
+    std::cout << "Searching K with KDE...";
     // Create a KDE object using the retrieved points
     KDE kde(points);
-
+    int k = kde.findLocalWithoutRestriction();
+    std::cout<< "Optimal is " << k << std::endl;
     // Use KDE to find the optimal number of clusters without restrictions
-    return kde.findLocalWithoutRestriction();
+    return k;
 }
 
 #endif

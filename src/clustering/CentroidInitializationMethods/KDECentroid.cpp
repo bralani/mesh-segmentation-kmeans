@@ -1,6 +1,12 @@
 #include <cstddef>
 #include "clustering/CentroidInitializationMethods/KDECentroid.hpp"
 
+#define RAY_MAX 8
+#define RAY_MIN 4
+
+#define RAY_OUT_RANGE_MAX 55644
+#define RAY_OUT_RANGE_MIN 2682
+
 template <typename PT, std::size_t PD>
 class CentroidPoint ;
 
@@ -16,6 +22,7 @@ class Kernel;
         : CentroidInitMethod<double, PD>(data, k) {
         this->m_h = bandwidth_RuleOfThumb();
         this->range_number_division = static_cast<int>(std::floor(std::cbrt(data.size())));
+        this->m_ray = RAY_MIN + (data.size() - RAY_OUT_RANGE_MIN) * (RAY_MAX - RAY_MIN) / (RAY_OUT_RANGE_MAX - RAY_OUT_RANGE_MIN);
     }
 
     // Constructor without k
@@ -24,6 +31,7 @@ class Kernel;
         : CentroidInitMethod<double, PD>(data) {
         this->m_h = bandwidth_RuleOfThumb();
         this->range_number_division = static_cast<int>(std::floor(std::cbrt(data.size())));
+        this->m_ray = RAY_MIN + (data.size() - RAY_OUT_RANGE_MIN) * (RAY_MAX - RAY_MIN) / (RAY_OUT_RANGE_MAX - RAY_OUT_RANGE_MIN);
     }
     
     // Find peaks
@@ -103,7 +111,7 @@ class Kernel;
         for (size_t dim = 0; dim < PD; ++dim) {
             m_range.push_back(maxValues[dim] - minValues[dim]);
             m_step.push_back(m_range[dim] / range_number_division); 
-            m_rs.push_back(m_step[dim] * NUMBER_RAY_STEP);
+            m_rs.push_back(m_step[dim] * this->m_ray);
         }    
 
         // Compute the total number of points

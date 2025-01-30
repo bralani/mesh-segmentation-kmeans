@@ -4,6 +4,12 @@
 #include <cstddef> 
 #include "clustering/CentroidInitializationMethods/kInitMethods.hpp"
 
+#define MAX_FACES 55644
+#define MIN_FACES 2682
+
+#define OUT_RANGE_MAX 500
+#define OUT_RANGE_MIN 50
+
 // Forward declaration of KMeans to avoid cyclic dependencies
 template <typename PT, std::size_t PD, class M>
 class KMeans;
@@ -31,51 +37,40 @@ private:
 // Implementation of the findK method
 template<typename PT, std::size_t PD, class M>
 int ElbowMethod<PT, PD, M>::findK() {
-    int range = 100;
+
     int k = 1; // Start with k = 1 cluster
     double epsilon = 1e-2; // Convergence threshold for WCSS change
     int optimalK = 0; // Variable to store the optimal number of clusters
 
     // Retrieve the points from KMeans
     std::vector<Point<PT, PD>> points = (this->m_kMeans).getPoints();
-    
+    int range = OUT_RANGE_MIN + (points.size() - MIN_FACES) * (OUT_RANGE_MAX - OUT_RANGE_MIN) / (MAX_FACES - MIN_FACES);
     std::cout << "Start searching k...\n";
 
     while (true) { // Infinite loop to incrementally search for the optimal k
 
-        // Initialize centroids using the most distant class method
         MostDistanceClass mdc(points, k); 
-        // Get centroids from KMeans
         std::vector<CentroidPoint<PT, PD>>& pointerCentroids = (this->m_kMeans).getCentroids();
-        // Find centroids using the current method
         mdc.findCentroid(pointerCentroids);
-        // Fit the KMeans model to the data
         (this->m_kMeans).fit();
         points = (this->m_kMeans).getPoints();
-        
-        std::cout << "End fitting with k = " << k << "\n"; 
+        double sum = 0; 
 
-        double sum = 0; // Accumulate the sum of distances for WCSS
-
-        // Calculate the sum of squared distances between points and their centroids
         for (const Point<double, PD>& d : points) {
             Point<PT, PD> centroidTmp = *(d.centroid);
             sum += EuclideanMetric<PT, PD>::distanceTo(d, centroidTmp);
         }
 
         std::cout << "K: " << k << ", WCSS: " << sum << std::endl;
-        (this->wcss).push_back(sum); // Store the WCSS value for this k
+        (this->wcss).push_back(sum); 
 
-        // If k > 2, check for convergence based on the relative change in WCSS
-        if (k > 1) {
-            if (std::abs(wcss[k-2] - wcss[k-1]) <= range) { // Convergence condition
-                optimalK = k; // Store the optimal k
-                break; // Exit the loop
-            }
+        if (k > 2 && (std::abs(wcss[k-2] - wcss[k-1]) <= range || wcss[k-2] < wcss[k-1] )) { 
+            optimalK = k; 
+            break; 
         }
 
         (this->m_kMeans).resetCentroids();
-        k++; // Increment k for the next iteration
+        k++; 
     }
     return optimalK; // Return the optimal number of clusters
 }
