@@ -31,7 +31,7 @@ private:
 // Implementation of the findK method
 template<typename PT, std::size_t PD, class M>
 int ElbowMethod<PT, PD, M>::findK() {
-
+    int range = 100;
     int k = 1; // Start with k = 1 cluster
     double epsilon = 1e-2; // Convergence threshold for WCSS change
     int optimalK = 0; // Variable to store the optimal number of clusters
@@ -68,7 +68,7 @@ int ElbowMethod<PT, PD, M>::findK() {
 
         // If k > 2, check for convergence based on the relative change in WCSS
         if (k > 1) {
-            if (std::abs(wcss[k-2] - wcss[k-1]) <= 100) { // Convergence condition
+            if (std::abs(wcss[k-2] - wcss[k-1]) <= range) { // Convergence condition
                 optimalK = k; // Store the optimal k
                 break; // Exit the loop
             }
