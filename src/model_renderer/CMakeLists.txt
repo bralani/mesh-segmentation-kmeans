@@ -77,13 +77,9 @@ add_executable(${PROJECT_NAME}
         ${IMGUI_SRC}
         ${THIRD_PARTY_DIR}/stb/stb_image.h
         main.cpp
-        shader.hpp
         shader.cpp
-        material.hpp
         material.cpp
-        mesh.hpp
         mesh.cpp
-        camera.hpp
         camera.cpp
 )
 
@@ -91,6 +87,7 @@ add_executable(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE ${OPENGL_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${GLFW_LIBRARY})
 target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm) 
+target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 # Handle platform-specific definitions
 if(WIN32)
