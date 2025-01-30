@@ -53,6 +53,13 @@ void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod, i
     cim->findCentroid(this->centroids);
 }
 
+template <typename PT, std::size_t PD, class M>
+void KMeans<PT, PD, M>::resetCentroids(){
+  centroids.clear();
+  centroids.shrink_to_fit();
+  (this->metric)->resetCentroids();
+}
+
 /** Fits the KMeans algorithm to the data */
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::fit()

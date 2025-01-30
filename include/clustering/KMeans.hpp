@@ -55,6 +55,8 @@ public:
 
     // Get the centroids of the clusters
     std::vector<CentroidPoint<PT, PD>>& getCentroids();
+
+    void resetCentroids();
 protected:
   M* metric;                                       // Distance metric function
   PT treshold;

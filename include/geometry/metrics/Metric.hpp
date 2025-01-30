@@ -50,6 +50,8 @@ public:
         virtual void fit_gpu() = 0;
     #endif
 
+    void resetCentroids();
+
 protected:
     double threshold;
     std::vector<CentroidPoint<PT, PD>> oldCentroids;

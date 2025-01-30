@@ -74,6 +74,7 @@ int ElbowMethod<PT, PD, M>::findK() {
             }
         }
 
+        (this->m_kMeans).resetCentroids();
         k++; // Increment k for the next iteration
     }
     return optimalK; // Return the optimal number of clusters

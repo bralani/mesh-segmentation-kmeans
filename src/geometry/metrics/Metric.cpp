@@ -27,5 +27,14 @@ void Metric<PT, PD>::setCentroids(std::vector<CentroidPoint<PT, PD>> &centroids)
     this->centroids = &centroids;
 }
 
+template <typename PT, std::size_t PD>
+void Metric<PT, PD>::resetCentroids() {
+    oldCentroids.clear();
+    oldCentroids.shrink_to_fit();
+    for(Point<PT, PD> &p : this->data){
+        p.centroid.reset();
+    }
+}
+
 template class Metric<double, 2>;
 template class Metric<double, 3>;
