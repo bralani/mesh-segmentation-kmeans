@@ -22,41 +22,44 @@ namespace objl
     class Loader;
 }
 
-class Mesh
+namespace meshviewer
 {
-public:
-    Mesh() : indexSize(0), vertices(nullptr), indices(nullptr), glVAO(0), glVBO(0), glEBO(0), material(nullptr) {}
-
-    Mesh(const objl::Mesh &mesh, Material *material);
-
-    virtual ~Mesh();
-
-    virtual void draw() const;
-
-    // Get the number of vertices (assuming it's based on the vertices array)
-    [[nodiscard]] size_t getVertexCount() const
+    class Mesh
     {
-        return indexSize; // Assuming indexSize reflects the number of vertices in your case
-    }
+    public:
+        Mesh() : indexSize(0), vertices(nullptr), indices(nullptr), glVAO(0), glVBO(0), glEBO(0), material(nullptr) {}
 
-    // Get a specific vertex at the given index
-    // Assuming the vertices array is structured in a way that each vertex is a set of floats (e.g., x, y, z)
-    [[nodiscard]] float *getVertex(const size_t index) const
-    {
-        if (index < indexSize)
+        Mesh(const objl::Mesh &mesh, Material *material);
+
+        virtual ~Mesh();
+
+        virtual void draw() const;
+
+        // Get the number of vertices (assuming it's based on the vertices array)
+        [[nodiscard]] size_t getVertexCount() const
         {
-            return &vertices[index * 3]; // Assuming each vertex has 3 components (x, y, z)
+            return indexSize; // Assuming indexSize reflects the number of vertices in your case
         }
-        return nullptr; // Return nullptr if the index is out of bounds
-    }
 
-protected:
-    int indexSize;
-    float *vertices;
-    unsigned int *indices;
-    GLuint glVAO, glVBO, glEBO;
-    Material *material;
-};
+        // Get a specific vertex at the given index
+        // Assuming the vertices array is structured in a way that each vertex is a set of floats (e.g., x, y, z)
+        [[nodiscard]] float *getVertex(const size_t index) const
+        {
+            if (index < indexSize)
+            {
+                return &vertices[index * 3]; // Assuming each vertex has 3 components (x, y, z)
+            }
+            return nullptr; // Return nullptr if the index is out of bounds
+        }
+
+    protected:
+        int indexSize;
+        float *vertices;
+        unsigned int *indices;
+        GLuint glVAO, glVBO, glEBO;
+        Material *material;
+    };
+}
 
 class Model
 {
@@ -77,7 +80,7 @@ protected:
     loadTexture(const std::string &path);
 
     objl::Loader *loader = nullptr;
-    std::vector<Mesh *> meshes;
+    std::vector<meshviewer::Mesh *> meshes;
     ShaderProgram *program = nullptr;
     std::unordered_map<std::string, Texture2D *> textures;
     Texture2D *defaultTexture = nullptr;

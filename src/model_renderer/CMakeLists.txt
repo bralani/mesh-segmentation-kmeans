@@ -20,24 +20,6 @@ find_package(glm REQUIRED)
 # Add glad source files to the project
 set(GLAD_SRC ${THIRD_PARTY_DIR}/glad/src/glad.c)
 
-# Add the glad include directory
-include_directories(${THIRD_PARTY_DIR}/glad/include)
-
-# Add other include directories
-include_directories(${OPENGL_INCLUDE_DIRS})
-include_directories(${Glad_INCLUDE_DIRS})
-include_directories(${GLFW_INCLUDE_DIR})
-include_directories(${glm_INCLUDE_DIRS})
-include_directories(${THIRD_PARTY_DIR}/plog/include)
-include_directories(${THIRD_PARTY_DIR}/obj-loader)
-include_directories(${THIRD_PARTY_DIR}/stb)
-include_directories(${THIRD_PARTY_DIR}/glm)
-
-# Include ImGui
-set(IMGUI_DIR ${THIRD_PARTY_DIR}/imgui)
-include_directories(${IMGUI_DIR})
-include_directories(${IMGUI_DIR}/backends)
-
 # Add ImGui source files
 set(IMGUI_SRC
         ${IMGUI_DIR}/imgui.cpp
@@ -71,24 +53,6 @@ if(EXISTS ${CMAKE_BINARY_DIR}/config.h)
     include_directories(${CMAKE_BINARY_DIR})
 endif()
 
-# Add executable
-add_executable(${PROJECT_NAME}
-        ${GLAD_SRC}
-        ${IMGUI_SRC}
-        ${THIRD_PARTY_DIR}/stb/stb_image.h
-        main.cpp
-        shader.cpp
-        material.cpp
-        mesh.cpp
-        camera.cpp
-)
-
-# Link libraries correctly
-target_link_libraries(${PROJECT_NAME} PRIVATE ${OPENGL_LIBRARIES})
-target_link_libraries(${PROJECT_NAME} PRIVATE ${GLFW_LIBRARY})
-target_link_libraries(${PROJECT_NAME} PRIVATE glm::glm) 
-target_include_directories(${PROJECT_NAME} PRIVATE include)
-
 # Handle platform-specific definitions
 if(WIN32)
         add_definitions(-DPLATFORM_WINDOWS)
@@ -100,3 +64,36 @@ set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 
 # Copy GLFW DLL if necessary (Windows)
 file(COPY ${GLFW_DLL} DESTINATION ${CMAKE_BINARY_DIR})
+
+
+
+add_library(model_renderer STATIC 
+        ${GLAD_SRC}
+        ${IMGUI_SRC}
+        ${THIRD_PARTY_DIR}/stb/stb_image.h
+        render.cpp
+        shader.cpp
+        material.cpp
+        mesh.cpp
+        camera.cpp
+)
+target_link_libraries(model_renderer INTERFACE ${OPENGL_LIBRARIES})
+target_link_libraries(model_renderer INTERFACE ${GLFW_LIBRARY})
+target_link_libraries(model_renderer INTERFACE glm::glm) 
+target_include_directories(model_renderer PUBLIC include/)
+target_include_directories(model_renderer INTERFACE ${THIRD_PARTY_DIR}/glad/include)
+
+# Add other include directories
+target_include_directories(model_renderer INTERFACE ${OPENGL_INCLUDE_DIRS})
+target_include_directories(model_renderer INTERFACE ${Glad_INCLUDE_DIRS})
+target_include_directories(model_renderer INTERFACE ${GLFW_INCLUDE_DIR})
+target_include_directories(model_renderer INTERFACE ${glm_INCLUDE_DIRS})
+target_include_directories(model_renderer INTERFACE ${THIRD_PARTY_DIR}/plog/include)
+target_include_directories(model_renderer INTERFACE ${THIRD_PARTY_DIR}/obj-loader)
+target_include_directories(model_renderer INTERFACE ${THIRD_PARTY_DIR}/stb)
+target_include_directories(model_renderer INTERFACE ${THIRD_PARTY_DIR}/glm)
+
+# Include ImGui
+target_include_directories(model_renderer INTERFACE ${IMGUI_DIR})
+target_include_directories(model_renderer INTERFACE ${IMGUI_DIR}/backends)
+

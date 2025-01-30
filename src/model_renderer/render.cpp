@@ -57,7 +57,7 @@ void populateModelPaths(const std::string &directory)
     }
 }
 
-int main()
+void render()
 {
     // Directory to search for .obj files from the main resource folder
     std::string modelsDirectory = MODEL_DIR;
@@ -85,7 +85,7 @@ int main()
     {
         std::cerr << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
-        return -1;
+        return;
     }
     glfwMakeContextCurrent(window);
 
@@ -93,7 +93,7 @@ int main()
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cerr << "Failed to initialize GLAD" << std::endl;
-        return -1;
+        return;
     }
 
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
@@ -307,7 +307,7 @@ int main()
         std::cerr << "Unknown error during cleanup!" << std::endl;
     }
 
-    return 0;
+    return;
 }
 
 // Callback implementations (unchanged)

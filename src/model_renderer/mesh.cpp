@@ -6,7 +6,7 @@
 
 #include <OBJ_Loader.h>
 
-Mesh::Mesh(const objl::Mesh &mesh, Material *material) : indexSize(mesh.Indices.size()), material(material)
+meshviewer::Mesh::Mesh(const objl::Mesh &mesh, Material *material) : indexSize(mesh.Indices.size()), material(material)
 {
     vertices = new float[8 * mesh.Vertices.size()];
     indices = new unsigned int[mesh.Indices.size()];
@@ -33,7 +33,7 @@ Mesh::Mesh(const objl::Mesh &mesh, Material *material) : indexSize(mesh.Indices.
     glBindVertexArray(0);
 }
 
-Mesh::~Mesh()
+meshviewer::Mesh::~Mesh()
 {
     glDeleteBuffers(1, &glVBO);
     glDeleteBuffers(1, &glEBO);
@@ -43,7 +43,7 @@ Mesh::~Mesh()
     delete[] indices;
 }
 
-void Mesh::draw() const
+void meshviewer::Mesh::draw() const
 {
     if (material == nullptr)
     {
@@ -141,7 +141,7 @@ Model::Model(const std::string &path, ShaderProgram *program) : program(program)
             meshMaterial = colorMaterial;
         }
 
-        meshes.push_back(new Mesh(_mesh, meshMaterial));
+        meshes.push_back(new meshviewer::Mesh(_mesh, meshMaterial));
     }
 }
 
