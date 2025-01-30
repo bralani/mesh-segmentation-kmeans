@@ -61,7 +61,7 @@ add_definitions(
 
 # Define the input and output files for the configuration
 configure_file(
-    ${CMAKE_SOURCE_DIR}/config/config.h.in  # Input file
+    config/config.h.in  # Input file
     ${CMAKE_BINARY_DIR}/config.h           # Output file
     @ONLY                                     # Only replace the variables in the file
 )
