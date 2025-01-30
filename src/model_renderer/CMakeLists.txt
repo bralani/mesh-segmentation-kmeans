@@ -20,6 +20,24 @@ find_package(glm REQUIRED)
 # Add glad source files to the project
 set(GLAD_SRC ${THIRD_PARTY_DIR}/glad/src/glad.c)
 
+# Add the glad include directory
+include_directories(${THIRD_PARTY_DIR}/glad/include)
+
+# Add other include directories
+include_directories(${OPENGL_INCLUDE_DIRS})
+include_directories(${Glad_INCLUDE_DIRS})
+include_directories(${GLFW_INCLUDE_DIR})
+include_directories(${glm_INCLUDE_DIRS})
+include_directories(${THIRD_PARTY_DIR}/plog/include)
+include_directories(${THIRD_PARTY_DIR}/obj-loader)
+include_directories(${THIRD_PARTY_DIR}/stb)
+include_directories(${THIRD_PARTY_DIR}/glm)
+
+# Include ImGui
+set(IMGUI_DIR ${THIRD_PARTY_DIR}/imgui)
+include_directories(${IMGUI_DIR})
+include_directories(${IMGUI_DIR}/backends)
+
 # Add ImGui source files
 set(IMGUI_SRC
         ${IMGUI_DIR}/imgui.cpp
