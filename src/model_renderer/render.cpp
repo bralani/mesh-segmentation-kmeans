@@ -236,28 +236,45 @@ void Render::start()
                 // Model Selector UI (grid view or list view)
                 ImGui::Text("Select a Model to Load:");
 
-                if (ImGui::BeginTable("ModelGrid", 4, ImGuiTableFlags_Borders | ImGuiTableFlags_RowBg))
+                // Search box for filtering models
+                static char searchBuffer[128] = "";
+                ImGui::InputText("Search", searchBuffer, IM_ARRAYSIZE(searchBuffer));
+
+                // Filtered model paths based on the search query
+                std::vector<std::string> filteredModelPaths;
+                for (const auto &modelPath : modelPaths)
                 {
-                    for (int i = 0; i < modelPaths.size(); ++i)
+                    std::string fileName = std::filesystem::path(modelPath).filename().string();
+                    if (strstr(fileName.c_str(), searchBuffer)) // Case-insensitive search
                     {
-                        // Start a new column
-                        ImGui::TableNextColumn();
+                        filteredModelPaths.push_back(modelPath);
+                    }
+                }
+                // Dropdown list for selecting a model
+                std::string currentModelName = selectedModelIndex != -1 ? std::filesystem::path(selectedModelPath).filename().string() : "";
+                const char *currentModelNameCStr = currentModelName.empty() ? "Select a model" : currentModelName.c_str();
 
-                        // Extract the file name from the path
-                        std::string fileName = std::filesystem::path(modelPaths[i]).filename().string();
+                if (ImGui::BeginCombo("Models", currentModelNameCStr))
+                {
+                    for (int i = 0; i < filteredModelPaths.size(); ++i)
+                    {
+                        const bool isSelected = (selectedModelIndex == i);
+                        std::string fileName = std::filesystem::path(filteredModelPaths[i]).filename().string();
 
-                        // Center the selectable button in the cell
-                        ImGui::SetCursorPosX(ImGui::GetCursorPosX() + (ImGui::GetColumnWidth() - 100) / 2); // Adjust width (100)
-
-                        // Create a selectable button with a fixed size for each file
-                        if (ImGui::Selectable(fileName.c_str(), selectedModelIndex == i, 0, ImVec2(100, 50)))
+                        if (ImGui::Selectable(fileName.c_str(), isSelected))
                         {
                             selectedModelIndex = i;
-                            selectedModelPath = modelPaths[i];
+                            selectedModelPath = filteredModelPaths[i];
+                        }
+
+                        // Highlight the selected item
+                        if (isSelected)
+                        {
+                            ImGui::SetItemDefaultFocus();
                         }
                     }
 
-                    ImGui::EndTable();
+                    ImGui::EndCombo();
                 }
 
                 // Render Button
