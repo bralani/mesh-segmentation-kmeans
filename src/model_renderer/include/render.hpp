@@ -5,6 +5,24 @@
 #ifndef RENDER_HPP
 #define RENDER_HPP
 
-void render();
+#include <functional>
+#include <string>
 
-#endif //RENDER_HPP
+class Render
+{
+public:
+    // Constructor accepting a reference-based callback function
+    explicit Render(std::function<void(Render &, const std::string &)> segmentationCallback);
+
+    // Starts the rendering loop
+    void start();
+
+    // Render a specific file
+    void renderFile(const std::string &fileName);
+
+private:
+    std::function<void(Render &, const std::string &)> segmentationCallback;
+    std::string currentFile;
+};
+
+#endif // RENDER_HPP

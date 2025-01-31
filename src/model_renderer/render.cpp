@@ -20,6 +20,7 @@
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include <config.h>
+#include "render.hpp"
 
 int width = 1600, height = 900;
 float lastTime;
@@ -28,6 +29,8 @@ Camera *camera = nullptr;
 bool showLoader = false;
 float loaderProgress = 0.0f;
 int inputValue = 0;
+
+bool renderModel = false;
 
 // List of available models
 std::vector<std::string> modelPaths;
@@ -57,7 +60,17 @@ void populateModelPaths(const std::string &directory)
     }
 }
 
-void render()
+Render::Render(std::function<void(Render &, const std::string &)> segmentationCallback)
+    : segmentationCallback(std::move(segmentationCallback)) {}
+
+void Render::renderFile(const std::string &fileName)
+{
+    currentFile = fileName;
+    renderModel = true; // Switch UI to render state
+    std::cout << "Rendering segmented file: " << fileName << std::endl;
+}
+
+void Render::start()
 {
     // Directory to search for .obj files from the main resource folder
     std::string modelsDirectory = MODEL_DIR;
@@ -113,7 +126,6 @@ void render()
     int selectedModelIndex = -1; // Default: no model selected
     std::string selectedModelPath;
     Model *currentModel = nullptr; // Pointer to the currently loaded model
-    bool renderModel = false;      // Flag to trigger rendering after selection
 
     camera = new ModelRotationCamera({0.0f, 10.0f, 0.0f}, 20.0f);
     camera->setCenter(glm::vec3(0.0f, 0.0f, 0.0f));

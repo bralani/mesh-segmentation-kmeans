@@ -4,6 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/include",
+                "${workspaceFolder}/include/mesh_segmentation",
                 "${workspaceFolder}/third_party",
                 "${workspaceFolder}/third_party/imgui/backends",
                 "${workspaceFolder}/third_party/imgui",
