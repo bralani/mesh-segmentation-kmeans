@@ -22,7 +22,6 @@ public:
 
 private:
     std::function<void(Render &, const std::string &)> segmentationCallback;
-    std::string currentFile;
 };
 
 #endif // RENDER_HPP

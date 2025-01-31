@@ -34,6 +34,7 @@ bool renderModel = false;
 
 // List of available models
 std::vector<std::string> modelPaths;
+std::string selectedModelPath;
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void cursor_position_callback(GLFWwindow *window, double x, double y);
@@ -65,7 +66,7 @@ Render::Render(std::function<void(Render &, const std::string &)> segmentationCa
 
 void Render::renderFile(const std::string &fileName)
 {
-    currentFile = fileName;
+    selectedModelPath = fileName;
     renderModel = true; // Switch UI to render state
     std::cout << "Rendering segmented file: " << fileName << std::endl;
 }
@@ -123,8 +124,7 @@ void Render::start()
     ShaderProgram program(SHADER_DIR "/common.vert", SHADER_DIR "/phong.frag");
 
     // Variables for model selection
-    int selectedModelIndex = -1; // Default: no model selected
-    std::string selectedModelPath;
+    int selectedModelIndex = -1;   // Default: no model selected
     Model *currentModel = nullptr; // Pointer to the currently loaded model
 
     camera = new ModelRotationCamera({0.0f, 10.0f, 0.0f}, 20.0f);
@@ -188,6 +188,7 @@ void Render::start()
                 {
                     showLoader = true;     // Show loader flag
                     loaderProgress = 0.0f; // Reset progress
+                    segmentationCallback(*this, selectedModelPath);
                 }
 
                 // Step 4: Back Button to return to model selection

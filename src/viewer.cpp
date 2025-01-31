@@ -19,6 +19,8 @@ void segmentationCallback(Render &render, const std::string &fileName)
     int num_initialization_method = 2;
     int num_k_init_method = 0;
 
+    std::cout << "Selected model path: " << fileName << std::endl;
+
     Mesh mesh(fileName);
     MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method);
     segmentation.fit();
@@ -39,7 +41,7 @@ void segmentationCallback(Render &render, const std::string &fileName)
 int main()
 {
 
-  string file_name = "../../resources/meshes/obj/1.obj";
+  string file_name = "../../resources/meshes/obj_test/1.obj";
 
   Render render(segmentationCallback);
   render.start();
