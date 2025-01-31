@@ -18,13 +18,15 @@ public:
     // Starts the rendering loop
     void start();
 
-    void loadAndRenderModel(const std::string &modelPath, ShaderProgram *program);
+    void loadAndRenderModel(const std::string &modelPath);
 
     // Render a specific file
     void renderFile(const std::string &fileName);
 
 private:
     std::function<void(Render &, const std::string &)> segmentationCallback;
+
+    ShaderProgram *program;
 };
 
 #endif // RENDER_HPP

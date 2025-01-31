@@ -66,7 +66,7 @@ void populateModelPaths(const std::string &directory)
 }
 
 Render::Render(std::function<void(Render &, const std::string &)> segmentationCallback)
-    : segmentationCallback(std::move(segmentationCallback)) // Initialize shader program here
+    : segmentationCallback(std::move(segmentationCallback))
 {
     std::cout << "Shader program initialized!" << std::endl;
 }
@@ -76,7 +76,7 @@ void Render::renderFile(const std::string &fileName)
     selectedModelPath = fileName;
     renderModel = true; // Switch UI to render state
 
-    // loadAndRenderModel(selectedModelPath, &program);
+    loadAndRenderModel(selectedModelPath);
 
     std::cout << "Rendering segmented file: " << fileName << std::endl;
 }
@@ -131,7 +131,7 @@ void Render::start()
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    ShaderProgram program(SHADER_DIR "/common.vert", SHADER_DIR "/phong.frag");
+    program = new ShaderProgram(SHADER_DIR "/common.vert", SHADER_DIR "/phong.frag");
 
     camera = new ModelRotationCamera({0.0f, 10.0f, 0.0f}, 20.0f);
     camera->setCenter(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -178,12 +178,16 @@ void Render::start()
                 glm::mat4 projection = glm::perspective(glm::radians(camera->getFOV()),
                                                         (float)width / height, 0.1f, 100.0f);
 
-                program.setMVPMatrices(model, view, projection);
-                program.setVec3("eyePos", camera->getPosition());
-                program.setVec3("light.position", lightPos);
-                program.setVec3("light.ambient", lightAmbient);
-                program.setVec3("light.diffuse", lightColor);
-                program.setVec3("light.specular", lightColor);
+                if (program)
+                {
+                    program->setMVPMatrices(model, view, projection);
+                    program->setVec3("eyePos", camera->getPosition());
+                    program->setVec3("light.position", lightPos);
+                    program->setVec3("light.ambient", lightAmbient);
+                    program->setVec3("light.diffuse", lightColor);
+                    program->setVec3("light.specular", lightColor);
+                }
+
                 currentModel->draw();
 
                 // Step 2: Numerical Input for the task (e.g., number of iterations or parameters)
@@ -256,7 +260,7 @@ void Render::start()
                 // Render Button
                 if (ImGui::Button("Render") && (selectedModelIndex != -1 || (!selectedModelPath.empty())))
                 {
-                    loadAndRenderModel(selectedModelPath, &program);
+                    loadAndRenderModel(selectedModelPath);
                 }
 
                 // Close Button
@@ -318,7 +322,7 @@ void Render::start()
     return;
 }
 
-void Render::loadAndRenderModel(const std::string &modelPath, ShaderProgram *program)
+void Render::loadAndRenderModel(const std::string &modelPath)
 {
     if (currentModel)
     {
