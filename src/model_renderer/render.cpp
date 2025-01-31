@@ -208,6 +208,9 @@ void Render::start()
                     currentModel = nullptr;
                     selectedModelIndex = -1;
                     selectedModelPath.clear();
+
+                    modelPaths.clear();            // Clear the current list
+                    populateModelPaths(MODEL_DIR); // Reload models in the table on back
                 }
 
                 // Step 5: Show loader/progress bar while processing
