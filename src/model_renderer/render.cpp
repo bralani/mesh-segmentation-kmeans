@@ -65,7 +65,7 @@ void populateModelPaths(const std::string &directory)
     }
 }
 
-Render::Render(std::function<void(Render &, const std::string &)> segmentationCallback)
+Render::Render(std::function<void(Render &, const std::string &, int, int, int)> segmentationCallback)
     : segmentationCallback(std::move(segmentationCallback))
 {
     std::cout << "Shader program initialized!" << std::endl;
@@ -199,7 +199,7 @@ void Render::start()
                 // Initialization method dropdown
                 const char *initMethods[] = {"Random", "Kernel Density Estimator", "Most Distant", "Static KDE - 3D Point"};
                 static int num_initialization_method = -1; // To store the selected initialization method
-
+                static int num_k_init_method = 0;          // To store the selected k initialization method
                 ImGui::Text("Select Initialization Method for Centroids:");
 
                 if (ImGui::BeginCombo("Initialization Method", num_initialization_method == -1 ? "Select" : initMethods[num_initialization_method]))
@@ -225,7 +225,6 @@ void Render::start()
                 if (inputValue == 0)
                 {
                     const char *kInitMethods[] = {"Elbow", "KDE"};
-                    static int num_k_init_method = 0; // To store the selected k initialization method
 
                     ImGui::Text("Select Method for k Initialization:");
                     if (ImGui::BeginCombo("k Initialization Method", kInitMethods[num_k_init_method]))
@@ -251,9 +250,23 @@ void Render::start()
                 // Step 3: Start Button to trigger loading process
                 if (ImGui::Button("Start"))
                 {
-                    showLoader = true;     // Show loader flag
-                    loaderProgress = 0.0f; // Reset progress
-                    segmentationCallback(*this, selectedModelPath);
+
+                    if (num_initialization_method == -1)
+                    {
+                        ImGui::Text("Please select an initialization method for centroids.");
+                    }
+                    else if (inputValue == 0 && num_k_init_method == -1)
+                    {
+                        ImGui::Text("Please select a method for k initialization.");
+                    }
+                    else
+                    {
+                        showLoader = true;     // Show loader flag
+                        loaderProgress = 0.0f; // Reset progress
+
+                        // Call the segmentation callback with the necessary parameters
+                        segmentationCallback(*this, selectedModelPath, num_initialization_method, num_k_init_method, inputValue);
+                    }
                 }
 
                 // Step 4: Back Button to return to model selection
@@ -411,7 +424,6 @@ void Render::loadAndRenderModel(const std::string &modelPath)
     camera->positionBasedOnObject(*currentModel);
 
     renderModel = true; // Ensure rendering is triggered
-    std::cout << "Loaded and rendering model: " << modelPath << std::endl;
 }
 
 // Callback implementations (unchanged)

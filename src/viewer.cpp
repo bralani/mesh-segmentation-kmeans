@@ -11,15 +11,14 @@
 
 using namespace std;
 
-void segmentationCallback(Render &render, const std::string &fileName)
+void segmentationCallback(Render &render, const std::string &fileName, int num_initialization_method, int num_k_init_method, int num_clusters)
 {
   try
   {
-    int num_clusters = 3;
-    int num_initialization_method = 2;
-    int num_k_init_method = 0;
-
     std::cout << "Selected model path: " << fileName << std::endl;
+    std::cout << "Number of clusters: " << num_clusters << std::endl;
+    std::cout << "Initialisation Methos: " << num_initialization_method << std::endl;
+    std::cout << "Key Init method: " << num_k_init_method << std::endl;
 
     Mesh mesh(fileName);
     MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method);
