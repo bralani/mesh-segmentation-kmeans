@@ -191,7 +191,62 @@ void Render::start()
                 currentModel->draw();
 
                 // Step 2: Numerical Input for the task (e.g., number of iterations or parameters)
+
+                ImGui::Text("Enter the number of clusters (parameter k, 0 if unknow)");
+
                 ImGui::InputInt("Enter Value", &inputValue);
+
+                // Initialization method dropdown
+                const char *initMethods[] = {"Random", "Kernel Density Estimator", "Most Distant", "Static KDE - 3D Point"};
+                static int num_initialization_method = -1; // To store the selected initialization method
+
+                ImGui::Text("Select Initialization Method for Centroids:");
+
+                if (ImGui::BeginCombo("Initialization Method", num_initialization_method == -1 ? "Select" : initMethods[num_initialization_method]))
+                {
+                    for (int i = 0; i < IM_ARRAYSIZE(initMethods); ++i)
+                    {
+                        bool isSelected = (num_initialization_method == i);
+                        if (ImGui::Selectable(initMethods[i], isSelected))
+                        {
+                            num_initialization_method = i; // Store the selected index
+                        }
+
+                        if (isSelected)
+                        {
+                            ImGui::SetItemDefaultFocus(); // Set the default focus on the selected item
+                        }
+                    }
+
+                    ImGui::EndCombo();
+                }
+
+                // Method for 'k' initialization, shown only if num_clusters == 0
+                if (inputValue == 0)
+                {
+                    const char *kInitMethods[] = {"Elbow", "KDE"};
+                    static int num_k_init_method = 0; // To store the selected k initialization method
+
+                    ImGui::Text("Select Method for k Initialization:");
+                    if (ImGui::BeginCombo("k Initialization Method", kInitMethods[num_k_init_method]))
+                    {
+                        for (int i = 0; i < IM_ARRAYSIZE(kInitMethods); ++i)
+                        {
+                            bool isSelected = (num_k_init_method == i);
+                            if (ImGui::Selectable(kInitMethods[i], isSelected))
+                            {
+                                num_k_init_method = i; // Store the selected index
+                            }
+
+                            if (isSelected)
+                            {
+                                ImGui::SetItemDefaultFocus(); // Set the default focus on the selected item
+                            }
+                        }
+
+                        ImGui::EndCombo();
+                    }
+                }
 
                 // Step 3: Start Button to trigger loading process
                 if (ImGui::Button("Start"))
