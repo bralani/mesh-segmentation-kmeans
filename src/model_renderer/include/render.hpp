@@ -5,6 +5,7 @@
 #ifndef RENDER_HPP
 #define RENDER_HPP
 
+#include "shader.hpp"
 #include <functional>
 #include <string>
 
@@ -16,6 +17,8 @@ public:
 
     // Starts the rendering loop
     void start();
+
+    void loadAndRenderModel(const std::string &modelPath, ShaderProgram *program);
 
     // Render a specific file
     void renderFile(const std::string &fileName);

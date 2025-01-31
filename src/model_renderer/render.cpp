@@ -36,6 +36,10 @@ bool renderModel = false;
 std::vector<std::string> modelPaths;
 std::string selectedModelPath;
 
+// Variables for model selection
+int selectedModelIndex = -1;   // Default: no model selected
+Model *currentModel = nullptr; // Pointer to the currently loaded model
+
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void cursor_position_callback(GLFWwindow *window, double x, double y);
 void scroll_callback(GLFWwindow *window, double x, double y);
@@ -62,12 +66,18 @@ void populateModelPaths(const std::string &directory)
 }
 
 Render::Render(std::function<void(Render &, const std::string &)> segmentationCallback)
-    : segmentationCallback(std::move(segmentationCallback)) {}
+    : segmentationCallback(std::move(segmentationCallback)) // Initialize shader program here
+{
+    std::cout << "Shader program initialized!" << std::endl;
+}
 
 void Render::renderFile(const std::string &fileName)
 {
     selectedModelPath = fileName;
     renderModel = true; // Switch UI to render state
+
+    // loadAndRenderModel(selectedModelPath, &program);
+
     std::cout << "Rendering segmented file: " << fileName << std::endl;
 }
 
@@ -122,10 +132,6 @@ void Render::start()
     ImGui_ImplOpenGL3_Init("#version 330");
 
     ShaderProgram program(SHADER_DIR "/common.vert", SHADER_DIR "/phong.frag");
-
-    // Variables for model selection
-    int selectedModelIndex = -1;   // Default: no model selected
-    Model *currentModel = nullptr; // Pointer to the currently loaded model
 
     camera = new ModelRotationCamera({0.0f, 10.0f, 0.0f}, 20.0f);
     camera->setCenter(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -248,20 +254,9 @@ void Render::start()
                 }
 
                 // Render Button
-                if (ImGui::Button("Render") && selectedModelIndex != -1)
+                if (ImGui::Button("Render") && (selectedModelIndex != -1 || (!selectedModelPath.empty())))
                 {
-                    // Load the selected model
-                    if (currentModel)
-                    {
-                        delete currentModel; // Unload the current model
-                        currentModel = nullptr;
-                    }
-
-                    camera->resetCamera();
-
-                    currentModel = new Model(selectedModelPath, &program);
-                    camera->positionBasedOnObject(*currentModel);
-                    renderModel = true; // Trigger rendering
+                    loadAndRenderModel(selectedModelPath, &program);
                 }
 
                 // Close Button
@@ -321,6 +316,23 @@ void Render::start()
     }
 
     return;
+}
+
+void Render::loadAndRenderModel(const std::string &modelPath, ShaderProgram *program)
+{
+    if (currentModel)
+    {
+        delete currentModel; // Unload previous model
+        currentModel = nullptr;
+    }
+
+    camera->resetCamera();
+
+    currentModel = new Model(modelPath, program);
+    camera->positionBasedOnObject(*currentModel);
+
+    renderModel = true; // Ensure rendering is triggered
+    std::cout << "Loaded and rendering model: " << modelPath << std::endl;
 }
 
 // Callback implementations (unchanged)
