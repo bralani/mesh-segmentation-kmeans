@@ -51,11 +51,11 @@ file(GLOB_RECURSE SOURCES
 )
 
 # Define executables
-add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" "include/clustering/kmeans.cu")
-add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;${SOURCES}" "include/clustering/kmeans.cu")
-add_kmeans_executable(evaluation "src/evaluation.cpp;${SOURCES}" "include/clustering/kmeans.cu")
-add_kmeans_executable(viewer "src/viewer.cpp;${SOURCES}" "include/clustering/kmeans.cu")
+add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
+add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
+add_kmeans_executable(evaluation "src/evaluation.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
+add_kmeans_executable(viewer "src/viewer.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
 
-add_kmeans_executable(kmeans_benchmark "src/benchmark.cpp;${SOURCES}" "include/clustering/kmeans.cu")
+add_kmeans_executable(kmeans_benchmark "src/benchmark.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
 target_link_libraries(kmeans_benchmark benchmark::benchmark)
 

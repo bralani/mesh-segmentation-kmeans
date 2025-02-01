@@ -84,12 +84,15 @@ void kmeans_cuda(int K, int dim, int numPoints, float *points, float *centroids,
 
     for (int iter = 0; iter < MAX_ITER; ++iter) {
         kMeansClusterAssignment<<<blocks_points, TPB>>>(d_datapoints, d_clust_assn, d_centroids, numPoints, K, dim);
+        cudaDeviceSynchronize();
 
         cudaMemset(d_centroid_sums, 0, K * dim * sizeof(float));
         cudaMemset(d_clust_sizes, 0, K * sizeof(int));
 
         kMeansCentroidSum<<<blocks_points, TPB>>>(d_datapoints, d_clust_assn, d_centroid_sums, d_clust_sizes, numPoints, K, dim);
+        cudaDeviceSynchronize();
         kMeansCentroidUpdate<<<blocks_clusters, TPB>>>(d_centroids, d_centroid_sums, d_clust_sizes, K, dim);
+        cudaDeviceSynchronize();
     }
 
     cudaMemcpy(centroids, d_centroids, K * dim * sizeof(float), cudaMemcpyDeviceToHost);

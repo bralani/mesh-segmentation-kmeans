@@ -15,6 +15,19 @@
 #include "geometry/metrics/Metric.hpp"
 #include "geometry/point/CentroidPoint.hpp"
 
+#ifdef USE_CUDA
+void kmeans_cuda_geodesic(
+    int N,
+    int K,
+    int dim,
+    std::vector<float>& h_faceBaricenter, 
+    std::vector<float>& h_centroids,
+    std::vector<int>&   h_faceCluster,
+    const std::vector<std::vector<int>>& adjacency,
+    float threshold
+);
+#endif
+
 template <typename PT, std::size_t PD>
 class GeodesicMetric : public Metric<PT, PD>
 {

@@ -21,7 +21,6 @@ void GeodesicMetric<PT, PD>::setup()
     FaceId closestFaceId = findClosestFace(centroid);
     // set the coordinates of the centroid as the baricenter of the closest face
     this->centroids->at(centroidId).coordinates = mesh->getFace(closestFaceId).baricenter.coordinates;
-    
     std::vector<PT> current_distances = computeDistances(closestFaceId);
     this->distances[FaceId(centroidId)] = current_distances;
   }
@@ -232,7 +231,89 @@ std::vector<PT> GeodesicMetric<PT, PD>::computeDistances(const FaceId startFace)
 template <typename PT, std::size_t PD>
 void GeodesicMetric<PT, PD>::fit_gpu()
 {
-  // GPU implementation placeholder, storeCentroids , oldPoints
+  std::cout << "[GeodesicMetric::fit_gpu] starting GPU K-Means..." << std::endl;
+  if (this->centroids->empty())
+  {
+    throw std::runtime_error("Centroids not set!");
+  }
+
+  // Build face adjacency on CPU
+  mesh->buildFaceAdjacency();
+
+  int numFaces = mesh->numFaces();
+  int numCentroids = static_cast<int>(this->centroids->size());
+  int dim = static_cast<int>(PD);
+
+  //  Prepare host arrays
+  //      face baricenters
+  std::vector<float> h_faceBaricenter(numFaces * dim);
+  for (int f = 0; f < numFaces; f++)
+  {
+    for (int d = 0; d < dim; d++)
+    {
+      h_faceBaricenter[f * dim + d] = static_cast<float>(
+          mesh->getFace(f).baricenter.coordinates[d]);
+    }
+  }
+
+  //     adjacency
+  std::vector<std::vector<int>> adjacency(numFaces);
+  for (int f = 0; f < numFaces; f++)
+  {
+    const auto &neigh = mesh->getFaceAdjacencyAt(f);
+    adjacency[f].reserve(neigh.size());
+    for (auto nf : neigh)
+    {
+      adjacency[f].push_back(static_cast<int>(nf));
+    }
+  }
+
+  //     centroids
+  std::vector<float> h_centroids(numCentroids * dim);
+  for (int c = 0; c < numCentroids; c++)
+  {
+    for (int d = 0; d < dim; d++)
+    {
+      h_centroids[c * dim + d] =
+          static_cast<float>(this->centroids->at(c).coordinates[d]);
+    }
+  }
+
+  // face cluster assignment (to be filled by the GPU routine)
+  std::vector<int> h_faceCluster(numFaces, -1);
+
+  // We'll pick a threshold from our class
+  float localThreshold = static_cast<float>(this->threshold);
+
+  kmeans_cuda_geodesic(
+      numFaces,
+      numCentroids,
+      dim,
+      h_faceBaricenter, // in
+      h_centroids,      // in/out
+      h_faceCluster,    // out
+      adjacency,        // adjacency
+      localThreshold   // threshold
+  );
+
+  for (int c = 0; c < numCentroids; c++)
+  {
+    for (int d = 0; d < dim; d++)
+    {
+      this->centroids->at(c).coordinates[d] =
+          static_cast<PT>(h_centroids[c * dim + d]);
+    }
+  }
+
+  //     face cluster
+  for (int f = 0; f < numFaces; f++)
+  {
+    mesh->setFaceCluster(f, h_faceCluster[f]);
+  }
+
+  // store or print
+  this->storeCentroids();
+  std::cout << "[GeodesicMetric::fit_gpu] finished after GPU K-Means.\n";
 }
 #endif
 
