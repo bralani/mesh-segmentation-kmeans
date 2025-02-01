@@ -100,9 +100,6 @@
         "regex": "cpp",
         "scoped_allocator": "cpp",
         "shared_mutex": "cpp",
-        "source_location": "cpp",
-        "hash_map": "cpp",
-        "ranges": "cpp",
-        "alignedvector3": "cpp"
+        "source_location": "cpp"
     }
 }

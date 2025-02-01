@@ -20,7 +20,7 @@ int main()
         cin >> file_name;
 
         // Append file_name to /app/resources/
-        std::string full_path = "../../resources/" + file_name;
+        std::string full_path = "/app/resources/" + file_name;
 
         int num_clusters;
         cout << "Enter the number of clusters (parameter k): ";
