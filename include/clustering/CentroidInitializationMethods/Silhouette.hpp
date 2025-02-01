@@ -70,28 +70,33 @@ double SilhouetteMethod<PT, PD, M>::computeSilhouetteScore(int k) {
     double totalScore = 0.0;
     int numPoints = points.size();
 
+    #pragma omp parallel for reduction(+:totalScore)
     for (int i = 0; i < numPoints; ++i) {
         double a = 0.0, c = 0.0;
         int countA = 0, countC = 0;
 
         // a(i) is the average distance between i and all the other data points in the cluster to which i belongs.
-        for (countA = 0; countA < numPoints; ++countA) {
-            if(i != countA &&  *(points[countA].centroid) == *(points[i].centroid) ){
-                a += EuclideanMetric<PT, PD>::distanceTo(points[countA], points[i]);
+        for (int j = 0; j < numPoints; ++j) {
+            if(i != j &&  *(points[j].centroid) == *(points[i].centroid) ){
+                a += EuclideanMetric<PT, PD>::distanceTo(points[j], points[i]);
+                countA++;
             }
         }
         if (countA > 0) a /= countA;
 
-        //b(i) is the average distance from i to all clusters to which i does not belong.
-        for (countC = 0; countC < pointerCentroids.size(); ++countC) {
-            if( pointerCentroids[countC] != *(points[i].centroid) ){
-                c += EuclideanMetric<PT, PD>::distanceTo( pointerCentroids[countC] , points[i]);
+        //c(i) is the average distance from i to all clusters to which i does not belong.
+        for (int j = 0; j < pointerCentroids.size(); ++j) {
+            if( pointerCentroids[j] != *(points[i].centroid) ){
+                c += EuclideanMetric<PT, PD>::distanceTo( pointerCentroids[j] , points[i]);
+                countC++;
             }
         }
         if (countC > 0) c /= countC;
         
         // S(i) is the silhouette coefficient of the data point i.
-        totalScore += (c - a) / std::max(a, c);
+        if (a > 0 || c > 0) {
+            totalScore += (c - a) / std::max(a, c);
+        }
     }
 
     return totalScore / numPoints;

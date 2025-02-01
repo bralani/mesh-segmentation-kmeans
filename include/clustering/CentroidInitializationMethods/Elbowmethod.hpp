@@ -57,9 +57,10 @@ int ElbowMethod<PT, PD, M>::findK() {
         points = (this->m_kMeans).getPoints();
         double sum = 0; 
 
-        for (const Point<double, PD>& d : points) {
-            Point<PT, PD> centroidTmp = *(d.centroid);
-            sum += std::pow(EuclideanMetric<PT, PD>::distanceTo(d, centroidTmp), 2);
+        #pragma omp parallel for reduction(+:sum)
+        for (size_t i = 0; i < points.size(); ++i) {
+            Point<PT, PD> centroidTmp = *(points[i].centroid);
+            sum += std::pow(EuclideanMetric<PT, PD>::distanceTo(points[i], centroidTmp), 2);
         }
 
         std::cout << "K: " << k << ", WCSS: " << sum << std::endl;
