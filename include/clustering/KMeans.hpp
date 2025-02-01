@@ -20,6 +20,7 @@
 #include "clustering/CentroidInitializationMethods/kInitMethods.hpp"
 #include "clustering/CentroidInitializationMethods/Elbowmethod.hpp"
 #include "clustering/CentroidInitializationMethods/KDEKInitMehod.hpp"
+#include "clustering/CentroidInitializationMethods/Silhouette.hpp"
 #include "clustering/CentroidInitializationMethods/SharedEnum.hpp"
 
 #include "matplotlib-cpp/matplotlibcpp.h"

@@ -7,7 +7,8 @@ class Enums {
 public:
     enum class KInit {
         ELBOW_METHOD,
-        KDE_METHOD
+        KDE_METHOD,
+        SILHOUETTE_METHOD
     };
 
     enum class CentroidInit {
@@ -21,6 +22,7 @@ public:
         switch (kInit) {
             case KInit::ELBOW_METHOD: return "Elbow Method";
             case KInit::KDE_METHOD: return "KDE Method";
+            case KInit::SILHOUETTE_METHOD: return "Silhouett Method";
             default: return "Unknown KInit Method";
         }
     }
