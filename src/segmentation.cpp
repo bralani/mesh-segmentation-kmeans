@@ -35,7 +35,7 @@ int main()
 
     int num_k_init_method=0;
     if(num_clusters == 0){
-      std::cout<<"Enter the method for k initialization (0: elbow, 1: kde): ";
+      std::cout<<"Enter the method for k initialization (0: elbow, 1: kde, 2: Silhouette): ";
       cin >> num_k_init_method;
     }
 

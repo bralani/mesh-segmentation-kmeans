@@ -334,7 +334,7 @@ std::vector<Point<PT, PD>>& GeodesicMetric<PT, PD>::getPoints(){
   //if(this->oldPoints == 1){
     (this->data).clear();
     const size_t numFaces = mesh->numFaces();
-    std::cout<<"Num points: " << numFaces <<std::endl;
+    //std::cout<<"Num points: " << numFaces <<std::endl;
     for (FaceId faceId = 0; faceId < numFaces; ++faceId)
     {
       Point<PT, PD>& baricenter = mesh->getFaceCopy(faceId).baricenter;

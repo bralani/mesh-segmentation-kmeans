@@ -8,7 +8,9 @@
         "type": "cppdbg",
         "request": "launch",
         "program": "${workspaceFolder}/executable",
-        "args": [],  // Puoi aggiungere qui gli argomenti necessari
+        "args": [        "-Wall",
+        "-Wextra",
+        "-Werror",],  // Puoi aggiungere qui gli argomenti necessari
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
         "environment": [],
