@@ -60,6 +60,12 @@ void KMeans<PT, PD, M>::resetCentroids(){
   (this->metric)->resetCentroids();
 }
 
+
+template <typename PT, std::size_t PD, class M>
+void KMeans<PT, PD, M>::setNumClusters(std::size_t numC){
+  this->numClusters = numC;
+}
+
 /** Fits the KMeans algorithm to the data */
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::fit()

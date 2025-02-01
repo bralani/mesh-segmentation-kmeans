@@ -8,7 +8,7 @@
 #define MIN_FACES 2682
 
 #define OUT_RANGE_MAX 500
-#define OUT_RANGE_MIN 50
+#define OUT_RANGE_MIN 75
 
 // Forward declaration of KMeans to avoid cyclic dependencies
 template <typename PT, std::size_t PD, class M>
@@ -52,13 +52,14 @@ int ElbowMethod<PT, PD, M>::findK() {
         MostDistanceClass mdc(points, k); 
         std::vector<CentroidPoint<PT, PD>>& pointerCentroids = (this->m_kMeans).getCentroids();
         mdc.findCentroid(pointerCentroids);
+        (this->m_kMeans).setNumClusters(static_cast<std::size_t>(k));
         (this->m_kMeans).fit();
         points = (this->m_kMeans).getPoints();
         double sum = 0; 
 
         for (const Point<double, PD>& d : points) {
             Point<PT, PD> centroidTmp = *(d.centroid);
-            sum += EuclideanMetric<PT, PD>::distanceTo(d, centroidTmp);
+            sum += std::pow(EuclideanMetric<PT, PD>::distanceTo(d, centroidTmp), 2);
         }
 
         std::cout << "K: " << k << ", WCSS: " << sum << std::endl;

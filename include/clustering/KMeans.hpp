@@ -57,6 +57,8 @@ public:
     std::vector<CentroidPoint<PT, PD>>& getCentroids();
 
     void resetCentroids();
+
+    void setNumClusters(std::size_t numC);
 protected:
   M* metric;                                       // Distance metric function
   PT treshold;

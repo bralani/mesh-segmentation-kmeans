@@ -1,6 +1,6 @@
 #include "geometry/metrics/GeodesicMetric.hpp"
 
-#define LIMIT_CONVERGENCE 2000
+#define LIMIT_CONVERGENCE 200
 
 template <typename PT, std::size_t PD>
 GeodesicMetric<PT, PD>::GeodesicMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data)
