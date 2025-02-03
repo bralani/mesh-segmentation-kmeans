@@ -30,22 +30,40 @@ void MostDistanceClass<PD>::findCentroid(std::vector<CentroidPoint<double, PD>>&
     tmpInitialCentroids.setID(0);
     centroids.push_back(tmpInitialCentroids);
 
-    while (centroids.size() < (size_t)this->m_k ) {
+    while (centroids.size() < (size_t)this->m_k) {
         Point<double, PD> farthestPoint;
         double maxDistance = -std::numeric_limits<double>::infinity();
 
-        for (const auto& point : this->m_data) {
-            double minDistance = std::numeric_limits<double>::infinity();
-            for (const auto& centroid : centroids) {
-                double distance = metric.distanceTo(point, centroid);
-                if (distance < minDistance) {
-                    minDistance = distance;
+        #pragma omp parallel
+        {
+            Point<double, PD> localFarthestPoint;
+            double localMaxDistance = -std::numeric_limits<double>::infinity();
+
+            #pragma omp for nowait
+            for (size_t i = 0; i < this->m_data.size(); ++i) {
+                const auto& point = this->m_data[i];
+                double minDistance = std::numeric_limits<double>::infinity();
+
+                for (const auto& centroid : centroids) {
+                    double distance = metric.distanceTo(point, centroid);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                    }
+                }
+
+                if (minDistance > localMaxDistance) {
+                    localMaxDistance = minDistance;
+                    localFarthestPoint = point;
                 }
             }
 
-            if (minDistance > maxDistance) {
-                maxDistance = minDistance;
-                farthestPoint = point;
+            // Riduzione manuale per trovare il punto più lontano
+            #pragma omp critical
+            {
+                if (localMaxDistance > maxDistance) {
+                    maxDistance = localMaxDistance;
+                    farthestPoint = localFarthestPoint;
+                }
             }
         }
 
