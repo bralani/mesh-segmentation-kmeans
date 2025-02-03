@@ -44,6 +44,21 @@ bool CentroidPoint<PT, PD>::operator==(const CentroidPoint<PT, PD> &other) const
     return true; // If coordinates are the same (integer part), return true
 }
 
+template <typename PT, std::size_t PD>
+bool CentroidPoint<PT, PD>::operator==(const Point<PT, PD> &other) const
+{
+    // Compare the integer part of the coordinates
+    for (std::size_t i = 0; i < PD; ++i)
+    {
+        if (std::floor(this->coordinates[i]) != std::floor(other.coordinates[i]))
+        {
+            return false; // Coordinates differ in their integer part
+        }
+    }
+
+    return true; // If coordinates are the same (integer part), return true
+}
+
 // Explicit template instantiation
 template class CentroidPoint<double, 3>;
 template class CentroidPoint<double, 2>;
