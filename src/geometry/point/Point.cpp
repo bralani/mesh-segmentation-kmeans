@@ -84,6 +84,15 @@ Point<PT, PD> Point<PT, PD>::operator/(const Point<PT, PD>& other) const {
 }
 
 template <typename PT, std::size_t PD>
+Point<PT, PD> Point<PT, PD>::operator/(double div) const {
+    Point<PT, PD> result;
+    for (std::size_t i = 0; i < PD; ++i) {
+        result.coordinates[i] = this->coordinates[i] / div;
+    }
+    return result;
+}
+
+template <typename PT, std::size_t PD>
 Point<PT, PD> Point<PT, PD>::vectorSum(typename std::vector<Point<PT, PD>>::iterator begin,
                                        typename std::vector<Point<PT, PD>>::iterator end) {
     Point<PT, PD> sum;

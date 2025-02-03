@@ -17,6 +17,8 @@ struct Face
   std::vector<VertId> vertices;
   double area;
   Point<double, 3> baricenter;
+  Point<double, 3> normal;
+
 
   Face(const std::vector<VertId>& vertices, const std::vector<Point<double, 3>>& meshVertices, FaceId id)
       : vertices(vertices)
@@ -28,6 +30,9 @@ struct Face
 
     Point<double, 3> e1 = v1 - v0;
     Point<double, 3> e2 = v2 - v0;
+
+    normal = e1.cross(e2);
+    normal = normal / normal.norm();
 
     Point<double, 3> cross = e1.cross(e2);
     area = 0.5 * cross.norm();

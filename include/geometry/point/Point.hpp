@@ -30,6 +30,8 @@ public:
     virtual Point<PT, PD> operator+(const Point<PT, PD>& other) const;  // Addition operator
     Point<PT, PD> operator-(const Point<PT, PD>& other) const;  // Subtraction operator
     Point<PT, PD> operator/(const Point<PT, PD>& other) const;  // Division operator
+    Point<PT, PD> operator/(double div) const;  // Division operator
+
 
     static Point<PT, PD> vectorSum(typename std::vector<Point<PT, PD>>::iterator begin,
                                    typename std::vector<Point<PT, PD>>::iterator end);
