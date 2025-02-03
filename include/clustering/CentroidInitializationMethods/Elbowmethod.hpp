@@ -4,11 +4,7 @@
 #include <cstddef> 
 #include "clustering/CentroidInitializationMethods/kInitMethods.hpp"
 
-#define MAX_FACES 55644
-#define MIN_FACES 2682
-
-#define OUT_RANGE_MAX 500
-#define OUT_RANGE_MIN 75
+#define MAX_CLUSTER 10
 
 // Forward declaration of KMeans to avoid cyclic dependencies
 template <typename PT, std::size_t PD, class M>
@@ -44,10 +40,9 @@ int ElbowMethod<PT, PD, M>::findK() {
 
     // Retrieve the points from KMeans
     std::vector<Point<PT, PD>> points = (this->m_kMeans).getPoints();
-    int range = OUT_RANGE_MIN + (points.size() - MIN_FACES) * (OUT_RANGE_MAX - OUT_RANGE_MIN) / (MAX_FACES - MIN_FACES);
     std::cout << "Start searching k...\n";
 
-    while (true) { // Infinite loop to incrementally search for the optimal k
+    for(int i = 0; i < MAX_CLUSTER ; i++) { // Infinite loop to incrementally search for the optimal k
 
         MostDistanceClass mdc(points, k); 
         std::vector<CentroidPoint<PT, PD>>& pointerCentroids = (this->m_kMeans).getCentroids();
@@ -66,14 +61,24 @@ int ElbowMethod<PT, PD, M>::findK() {
         std::cout << "K: " << k << ", WCSS: " << sum << std::endl;
         (this->wcss).push_back(sum); 
 
-        if (k > 2 && (std::abs(wcss[k-2] - wcss[k-1]) <= range || wcss[k-2] < wcss[k-1] )) { 
-            optimalK = k; 
-            break; 
-        }
+        if(i > 1 && wcss[i-1] > wcss[i-2])
+            break;
 
         (this->m_kMeans).resetCentroids();
         k++; 
     }
+
+    double maxCurvature = -std::numeric_limits<double>::max();
+
+    for (size_t k = 1; k < wcss.size() - 1; ++k) {
+        double secondDerivative = wcss[k - 1] - 2 * wcss[k] + wcss[k + 1];
+
+        if (std::abs(secondDerivative) > maxCurvature) {
+            maxCurvature = std::abs(secondDerivative);
+            optimalK = k + 1; 
+        }
+    }
+
     return optimalK; // Return the optimal number of clusters
 }
 
