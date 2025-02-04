@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <render.hpp>
+#include <filesystem>
 
 #include "mesh_segmentation/MeshSegmentation.hpp"
 #include "geometry/metrics/EuclideanMetric.hpp"
@@ -10,6 +11,7 @@
 #define DIMENSION 2
 
 using namespace std;
+namespace fs = std::filesystem;
 
 void segmentationCallback(Render &render, const std::string &fileName, int num_initialization_method, int num_k_init_method, int num_clusters, double threshold)
 {
@@ -25,7 +27,36 @@ void segmentationCallback(Render &render, const std::string &fileName, int num_i
     MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, num_initialization_method, num_k_init_method);
     segmentation.fit();
 
-    std::string outputFile = fileName.substr(0, fileName.find_last_of('.')) + "_segmented.obj";
+    // Extract filename without extension
+    size_t lastDot = fileName.find_last_of('.');
+    std::string baseName = (lastDot == std::string::npos) ? fileName : fileName.substr(0, lastDot);
+    std::string extension = (lastDot == std::string::npos) ? "" : fileName.substr(lastDot);
+
+    std::string suffix = "_segmented";
+    if (baseName.size() >= suffix.size() && baseName.substr(baseName.size() - suffix.size()) == suffix)
+    {
+      std::cout << "File already contains '_segmented', keeping original name." << std::endl;
+    }
+    else
+    {
+      baseName += suffix;
+    }
+
+    std::string outputFile = baseName + extension;
+
+    try
+    {
+      if (fs::exists(outputFile))
+      {
+        fs::remove(outputFile);
+        std::cout << "Previous segmented file deleted: " << outputFile << std::endl;
+      }
+    }
+    catch (const fs::filesystem_error &fsErr)
+    {
+      std::cerr << "Filesystem error while deleting: " << fsErr.what() << std::endl;
+    }
+
     mesh.exportToGroupedObj(outputFile);
     std::cout << "Segmented mesh saved to: " << outputFile << std::endl;
 
