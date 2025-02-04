@@ -11,17 +11,18 @@
 
 using namespace std;
 
-void segmentationCallback(Render &render, const std::string &fileName, int num_initialization_method, int num_k_init_method, int num_clusters)
+void segmentationCallback(Render &render, const std::string &fileName, int num_initialization_method, int num_k_init_method, int num_clusters, double threshold)
 {
   try
   {
     std::cout << "Selected model path: " << fileName << std::endl;
     std::cout << "Number of clusters: " << num_clusters << std::endl;
-    std::cout << "Initialisation Methos: " << num_initialization_method << std::endl;
+    std::cout << "Initialisation Method: " << num_initialization_method << std::endl;
     std::cout << "Key Init method: " << num_k_init_method << std::endl;
+    std::cout << "Threshold value: " << threshold << std::endl;
 
     Mesh mesh(fileName);
-    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method);
+    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, num_initialization_method, num_k_init_method);
     segmentation.fit();
 
     std::string outputFile = fileName.substr(0, fileName.find_last_of('.')) + "_segmented.obj";

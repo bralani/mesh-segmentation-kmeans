@@ -29,6 +29,7 @@ Camera *camera = nullptr;
 bool showLoader = false;
 float loaderProgress = 0.0f;
 int inputValue = 0;
+double threshold = 0.05;
 
 bool renderModel = false;
 
@@ -65,7 +66,7 @@ void populateModelPaths(const std::string &directory)
     }
 }
 
-Render::Render(std::function<void(Render &, const std::string &, int, int, int)> segmentationCallback)
+Render::Render(std::function<void(Render &, const std::string &, int, int, int, double)> segmentationCallback)
     : segmentationCallback(std::move(segmentationCallback))
 {
     std::cout << "Shader program initialized!" << std::endl;
@@ -194,7 +195,18 @@ void Render::start()
 
                 ImGui::Text("Enter the number of clusters (parameter k, 0 if unknow)");
 
-                ImGui::InputInt("Enter Value", &inputValue);
+                // Input field with range enforcement
+                if (ImGui::InputInt("Enter Value", &inputValue))
+                {
+                    inputValue = std::clamp(inputValue, 0, 10);
+                }
+
+                ImGui::Text("Enter the threshold value");
+
+                if (ImGui::InputDouble("Enter Threshold", &threshold, 0.01, 0.1, "%.2f"))
+                {
+                    threshold = std::max(threshold, 0.05);
+                }
 
                 // Initialization method dropdown
                 const char *initMethods[] = {"Random", "Kernel Density Estimator", "Most Distant", "Static KDE - 3D Point"};
@@ -265,7 +277,7 @@ void Render::start()
                         loaderProgress = 0.0f; // Reset progress
 
                         // Call the segmentation callback with the necessary parameters
-                        segmentationCallback(*this, selectedModelPath, num_initialization_method, num_k_init_method, inputValue);
+                        segmentationCallback(*this, selectedModelPath, num_initialization_method, num_k_init_method, inputValue, threshold);
                     }
                 }
 
