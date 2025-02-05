@@ -55,6 +55,8 @@ protected:
     virtual std::vector<PT> computeDistances(const FaceId startFace) const;
 
     void storeCentroids() override ;
+
+    double dihedralAngle(const Face& f1,const Face& f2);
 };
 
 #endif // GEODESICMETRIC_HPP

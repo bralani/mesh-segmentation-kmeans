@@ -10,6 +10,20 @@ GeodesicMetric<PT, PD>::GeodesicMetric(Mesh &mesh, double percentage_threshold, 
   this->data = data;
 }
 
+template <typename PT, std::size_t PD>
+double GeodesicMetric<PT, PD>::dihedralAngle(const Face& f1,const Face& f2){
+  Point<PT, PD> n1 = f1.normal;
+  Point<PT, PD> n2 = f2.normal;
+
+  double result = n1.coordinates[0] * n2.coordinates[0] + 
+    n1.coordinates[1] * n2.coordinates[1] + 
+    n1.coordinates[2] * n2.coordinates[2];
+  result = result / (n1.norm() * n2.norm() );
+  result = std::acos(result);
+
+  return result;
+}
+
 
 template <typename PT, std::size_t PD>
 void GeodesicMetric<PT, PD>::setup()
