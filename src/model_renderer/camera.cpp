@@ -8,6 +8,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "mesh.hpp"
+#include <iostream>
 
 static constexpr float cameraMouseSpeed = 0.05f,
                        cameraKeyboardSpeed = 10.0f,
@@ -47,6 +48,8 @@ void Camera::handleMouseInput(float x, float y, bool pressed)
 
 void Camera::handleKeyboardInput(int key, float deltaTime)
 {
+    std::cout << "Handling keyboard" << std::endl;
+
     if (key == GLFW_KEY_S)
     {
         position += up * cameraKeyboardSpeed * deltaTime; // Move right
@@ -83,8 +86,8 @@ void Camera::handleScrollInput(float y)
 
 void Camera::updateViewMatrix()
 {
-    // Assuming you have a lookAt function to update the view matrix
-    viewMatrix = glm::lookAt(position, position, up);
+    glm::vec3 target = position + front;
+    viewMatrix = glm::lookAt(position, target, up);
 }
 
 void Camera::setPosition(const glm::vec3 &newPosition)
@@ -93,17 +96,31 @@ void Camera::setPosition(const glm::vec3 &newPosition)
     updateViewMatrix(); // Update the view matrix when the position changes
 }
 
+void Camera::setFov(float newFov)
+{
+    // Ensure the FOV is within a reasonable range
+    fov = glm::clamp(newFov, 20.0f, 100.0f);
+
+    std::cout << "Updated FOV: " << fov << std::endl;
+}
+
+float calculateCameraDistance(const glm::vec3 &objectSize, float factor = 1.5f)
+{
+    float diagonal = glm::length(objectSize); // Calculate diagonal using glm::length for the bounding box
+    return diagonal * factor;
+}
+
 void Camera::positionBasedOnObject(const Model &model)
 {
     // Calculate the bounding box size of the object
     glm::vec3 objectSize = model.getBoundingBoxSize();
-    glm::vec3 objectCenter = glm::vec3(0.0f); // Assuming the object is centered at the origin
+    glm::vec3 objectCenter = model.getBoundingBoxCenter();
 
     // Determine a distance to position the camera
-    float distance = std::max(objectSize.x, objectSize.y) * 1.5f;
+    float cameraDistance = std::max(objectSize.x, objectSize.y) * 1.5f;
 
     // Set the camera's position
-    glm::vec3 cameraPosition = objectCenter + glm::vec3(0.0f, 0.0f, distance); // Adjusting along z-axis
+    glm::vec3 cameraPosition = objectCenter + glm::vec3(0.0f, 0.0f, cameraDistance); // Adjusting along z-axis
 
     this->setPosition(cameraPosition); // Assuming the camera has a setPosition function
 }
@@ -159,16 +176,23 @@ void ModelRotationCamera::handleKeyboardInput(int key, float deltaTime)
     center = position + front * distance;
 }
 
+void ModelRotationCamera::positionBasedOnObject(const Model &model)
+{
+    glm::vec3 objectSize = model.getBoundingBoxSize();
+    distance = calculateCameraDistance(objectSize);
+
+    std::cout << "Distance calculated: " << distance << std::endl;
+}
+
 void ModelRotationCamera::handleScrollInput(float y)
 {
     distance -= y * modelRotationCameraScrollSpeed;
-    distance = std::fmax(std::fmin(distance, 100.0f), 0.1f); // Clamp distance to avoid negative values
+    // distance = std::fmax(std::fmin(distance, 100.0f), 0.1f); // Clamp distance to avoid negative values
     position = center - front * distance;
 }
 
 void ModelRotationCamera::setCenter(const glm::vec3 &newCenter)
 {
     center = newCenter;
-    // Update position to maintain distance from the new center
     position = center - front * distance;
 }

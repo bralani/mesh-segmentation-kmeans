@@ -172,8 +172,10 @@ void Render::start()
                 lastTime = nowTime;
                 handle_keyboard(window, deltaTime);
 
-                camera->setCenter(glm::vec3(0.0f, 0.0f, 0.0f));
                 glm::vec3 modelCenter = currentModel->getBoundingBoxCenter();
+
+                camera->setCenter(glm::vec3(-modelCenter.x, -modelCenter.y, -modelCenter.z));
+
                 glm::mat4 model = glm::translate(glm::identity<glm::mat4>(), -modelCenter);
                 glm::mat4 view = camera->getViewMatrix();
                 glm::mat4 projection = glm::perspective(glm::radians(camera->getFOV()),
@@ -395,7 +397,6 @@ void Render::start()
 
     try
     {
-        // Cleanup
         if (currentModel)
             delete currentModel;
         delete camera;
@@ -438,7 +439,6 @@ void Render::loadAndRenderModel(const std::string &modelPath)
     renderModel = true; // Ensure rendering is triggered
 }
 
-// Callback implementations (unchanged)
 void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 {
     ::width = width;

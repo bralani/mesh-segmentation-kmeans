@@ -32,6 +32,8 @@ public:
 
     void setPosition(const glm::vec3 &newPosition);
 
+    void setFov(float newFov);
+
     virtual void handleMouseInput(float x, float y, bool pressed);
 
     virtual void handleKeyboardInput(int key, float deltaTime);
@@ -42,7 +44,7 @@ public:
 
     void resetCamera();
 
-    void positionBasedOnObject(const Model &model);
+    virtual void positionBasedOnObject(const Model &model);
 
     virtual void setCenter(const glm::vec3 &newCenter) {
 
@@ -77,6 +79,8 @@ public:
     void handleKeyboardInput(int key, float deltaTime) override;
 
     void handleScrollInput(float y) override;
+
+    void positionBasedOnObject(const Model &model) override;
 
     void setCenter(const glm::vec3 &newCenter) override;
 

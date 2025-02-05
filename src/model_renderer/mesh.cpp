@@ -181,6 +181,9 @@ void Model::draw() const
 
 glm::vec3 Model::getBoundingBoxCenter() const
 {
+    if (meshes.empty())
+        return glm::vec3(0.0f);
+
     glm::vec3 minBounds = glm::vec3(INFINITY);
     glm::vec3 maxBounds = glm::vec3(-INFINITY);
 
