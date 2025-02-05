@@ -92,6 +92,7 @@ void KMeans<PT, PD, M>::fit()
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::print()
 {
+  std::cout << "Fitting phase terminated"<<std::endl;
   std::cout << "-----------------------" << std::endl;
   std::cout << "Centroids: \n";
   for (auto &p : centroids)
@@ -142,7 +143,7 @@ void KMeans<PT, PD, M>::print()
     }
     std::cout << "\n";
   }
-
+  /*
   try
   {
     // Plot the points for each centroid with its associated color
@@ -178,6 +179,7 @@ void KMeans<PT, PD, M>::print()
     std::cerr << "Error: " << e.what() << '\n';
     return;
   }
+  */
 }
 
 template class KMeans<double, 2, EuclideanMetric<double, 2>>;

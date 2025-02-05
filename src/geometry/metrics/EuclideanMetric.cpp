@@ -7,13 +7,13 @@ EuclideanMetric<PT, PD>::EuclideanMetric(std::vector<Point<PT, PD>> data, double
     this->treshold = threshold;
 
     #ifdef USE_CUDA
-        if (data.size() > MIN_NUM_POINTS_CUDA) {
+        if (this->data.size() > MIN_NUM_POINTS_CUDA) {
             kdtree = nullptr;
         } else {
-            kdtree = new KdTree<PT, PD>(data);
+            kdtree = new KdTree<PT, PD>(this->data);
         }
     #else
-        kdtree = new KdTree<PT, PD>(data);
+        kdtree = new KdTree<PT, PD>(this->data);
     #endif
 }    
 
@@ -55,7 +55,6 @@ void EuclideanMetric<PT, PD>::fit_cpu() {
         setup();
         iter++;
     }
-
 }
 
 #ifdef USE_CUDA

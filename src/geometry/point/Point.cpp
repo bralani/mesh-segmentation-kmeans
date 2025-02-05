@@ -129,11 +129,6 @@ void Point<PT, PD>::print() const {
         if (i < PD - 1) std::cout << ", ";
     }
     std::cout << ")";
-    if (centroid != nullptr) {
-        std::cout << " -> Centroid: ";
-        centroid->print();
-    }
-    std::cout << " Point ID: " << id;
 }
 
 template <typename PT, std::size_t PD>
