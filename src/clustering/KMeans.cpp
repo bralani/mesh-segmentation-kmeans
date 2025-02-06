@@ -25,37 +25,38 @@ void KMeans<PT, PD, M>::initializeCentroids(int centroidsInitializationMethod, i
     if (centroidsInitializationMethod < 0 || centroidsInitializationMethod > 3) {
         throw std::invalid_argument("Not a valid centroids initialization method!");
     }
-    
-    if(numClusters == 0){
-      Kinit<PT, PD, M>* kinit;
-      if(kInitializationMethod == Enums::KInit::ELBOW_METHOD)
-        kinit = new ElbowMethod<PT, PD, M>(*this);
-      else if(kInitializationMethod == Enums::KInit::KDE_METHOD)
-        kinit = new KDEMethod<PT, PD, M>(*this);
-      else if(kInitializationMethod == Enums::KInit::SILHOUETTE_METHOD)
-        kinit = new SilhouetteMethod<PT, PD, M>(*this);
-      else
-        throw std::invalid_argument("Invalid k initialization method");
-      numClusters = kinit->findK();
+
+    if (numClusters == 0) {
+        std::unique_ptr<Kinit<PT, PD, M>> kinit;
+
+        if (kInitializationMethod == Enums::KInit::ELBOW_METHOD)
+            kinit = std::make_unique<ElbowMethod<PT, PD, M>>(*this);
+        else if (kInitializationMethod == Enums::KInit::KDE_METHOD)
+            kinit = std::make_unique<KDEMethod<PT, PD, M>>(*this);
+        else if (kInitializationMethod == Enums::KInit::SILHOUETTE_METHOD)
+            kinit = std::make_unique<SilhouetteMethod<PT, PD, M>>(*this);
+        else
+            throw std::invalid_argument("Invalid k initialization method");
+
+        numClusters = kinit->findK();  // `unique_ptr` dealloca automaticamente alla fine del blocco
     }
 
-    CentroidInitMethod<double, PD>* cim; 
-
+    std::unique_ptr<CentroidInitMethod<double, PD>> cim;
     auto& points = metric->getPoints();
 
-    if(centroidsInitializationMethod == Enums::CentroidInit::RANDOM)
-      cim = new RandomCentroidInit(points, numClusters);
-    else if(centroidsInitializationMethod == Enums::CentroidInit::KDE)
-      cim = new KDE(points, numClusters);
-    else if(centroidsInitializationMethod == Enums::CentroidInit::MOSTDISTANT)
-      cim = new MostDistanceClass(points, numClusters);
+    if (centroidsInitializationMethod == Enums::CentroidInit::RANDOM)
+        cim = std::make_unique<RandomCentroidInit<PT, PD>>(points, numClusters);
+    else if (centroidsInitializationMethod == Enums::CentroidInit::KDE)
+        cim = std::make_unique<KDE<PD>>(points, numClusters);
+    else if (centroidsInitializationMethod == Enums::CentroidInit::MOSTDISTANT)
+        cim = std::make_unique<MostDistanceClass<PD>>(points, numClusters);
     else if constexpr (PD == 3)
-        cim = new KDE3D(points, numClusters);
+        cim = std::make_unique<KDE3D>(points, numClusters);
     else
-      throw std::invalid_argument("Invalid centroids initialization method");
-    
+        throw std::invalid_argument("Invalid centroids initialization method");
+
     cim->findCentroid(this->centroids);
-}
+} 
 
 template <typename PT, std::size_t PD, class M>
 void KMeans<PT, PD, M>::resetCentroids(){

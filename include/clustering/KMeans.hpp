@@ -2,6 +2,7 @@
 #define K_MEANS_HPP
 
 #include <iostream>
+#include <memory>
 #include <vector>
 #include <string>
 #include <cmath>
