@@ -41,7 +41,7 @@ static void BM_MeshSegmentation(benchmark::State& state) {
     state.SetComplexityN(n);
 
     // Stampa a video con informazioni dettagliate
-    if (state.thread_index == 0) {  
+    if (state.thread_index() == 0) {  
         std::cout << "File: " << file_name
                   << ", Threads: " << num_threads
                   << ", Mesh Faces Points: " << n

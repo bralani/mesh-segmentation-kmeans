@@ -20,6 +20,8 @@ int main()
 {
   try
   {
+    int num_initialization_method = 0;
+    int num_k_init_method = 0;
     string id;
     cout << "Enter the ID of the mesh file: ";
     cin >> id;
@@ -50,7 +52,7 @@ int main()
           {
             int num_clusters = mesh2.createSegmentationFromSegFile(entry.path());
 
-            MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, 2);
+            MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method) ;
 
             segmentation.fit();
 
