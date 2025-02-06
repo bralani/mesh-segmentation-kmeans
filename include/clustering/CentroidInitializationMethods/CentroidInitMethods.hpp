@@ -41,14 +41,14 @@ public:
      * @param points vector of points to export
      * @param name_csv name of the file csv
      */
-    static void exportedMesh(std::vector<Point<PT, PD>> points, std::string name_csv);
+    static void exportedMesh(const std::vector<Point<PT, PD>>& points,const std::string& name_csv);
 
     /**
      * @brief a mesh to a CSV file without densities
      * @param points vector of points to export
      * @param name_csv name of the file csv
      */
-    static void exportedMesh(std::vector<CentroidPoint<PT, PD>> points, std::string name_csv);
+    static void exportedMesh(const std::vector<CentroidPoint<PT, PD>>& points,const std::string& name_csv);
 
 
     /**

@@ -19,7 +19,7 @@ double CentroidInitMethod<PT, PD>::truncateToThreeDecimals(double value) {
 }
 
 template <typename PT, std::size_t PD>
-void CentroidInitMethod<PT, PD>::exportedMesh(std::vector<Point<PT, PD>> points, std::string name_csv){
+void CentroidInitMethod<PT, PD>::exportedMesh(const std::vector<Point<PT, PD>>& points,const std::string& name_csv){
     std::ofstream file(name_csv + ".csv");
 
     // Write header 
@@ -43,9 +43,9 @@ void CentroidInitMethod<PT, PD>::exportedMesh(std::vector<Point<PT, PD>> points,
 }
 
 template <typename PT, std::size_t PD>
-void CentroidInitMethod<PT, PD>::exportedMesh(std::vector<CentroidPoint<PT, PD>> points, std::string name_csv){
+void CentroidInitMethod<PT, PD>::exportedMesh(const std::vector<CentroidPoint<PT, PD>>& points,const std::string& name_csv){
     std::vector<Point<PT, PD>> tmpPoints;
-    for(CentroidPoint<PT, PD>& c : points){
+    for(const CentroidPoint<PT, PD>& c : points){
         Point<PT, PD> p(c.coordinates);
         tmpPoints.push_back(p);
     }

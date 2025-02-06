@@ -51,6 +51,7 @@ class Kernel;
         //Necessary declaration
         std::vector<std::pair<Point<double, PD>, double>> maximaPD;
         std::vector<double> densities;
+        std::vector<double> offsets(PD, 0); 
 
         // Generate the grid points based on the calculated ranges and steps
         std::vector<Point<double, PD>> gridPoints = generateGrid();  
@@ -74,7 +75,8 @@ class Kernel;
 
             #pragma omp for
             for (size_t i = 0; i < gridPoints.size(); ++i) {
-                if (isLocalMaximum(gridPoints, densities, i)) { // Check if the current point is a local maximum
+                offsets.clear();
+                if (isLocalMaximum(gridPoints, densities, i, offsets )) { // Check if the current point is a local maximum
                     localMaxima.emplace_back(gridPoints[i], densities[i]); // Add it to the local maxima
                 }
             }
@@ -258,13 +260,15 @@ class Kernel;
     void KDE<PD>::findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints, std::vector<CentroidPoint<double, PD>>& returnVec) {
         std::vector<std::pair<Point<double, PD>, double>> maximaPD;
         std::vector<double> densities(gridPoints.size()); 
+        std::vector<double> offsets(PD, 0); 
+        std::size_t gridPointsSize = gridPoints.size();
 
         int countCicle = 0;
         while (true) {
             std::cout << "Counter: " << countCicle << std::endl;
 
             #pragma omp parallel for
-            for (size_t i = 0; i < gridPoints.size(); ++i) {
+            for (size_t i = 0; i < gridPointsSize; ++i) {
                 densities[i] = this->kdeValue(gridPoints[i]);
             }
 
@@ -276,8 +280,9 @@ class Kernel;
                 auto& localMaxima = threadLocalMaxima[threadID];
 
                 #pragma omp for
-                for (size_t i = 0; i < gridPoints.size(); ++i) {
-                    if (isLocalMaximum(gridPoints, densities, i)) {
+                for (size_t i = 0; i < gridPointsSize; ++i) {
+                    offsets.clear();
+                    if (isLocalMaximum(gridPoints, densities, i, offsets)) {
                         localMaxima.emplace_back(gridPoints[i], densities[i]);
                     }
                 }
@@ -332,10 +337,10 @@ class Kernel;
 
     // Check if a point is a local maximum
     template<std::size_t PD>
-    bool KDE<PD>::isLocalMaximum(const std::vector<Point<double, PD>>& gridPoints, const std::vector<double>& densities, size_t index) {
+    bool KDE<PD>::isLocalMaximum(const std::vector<Point<double, PD>>& gridPoints, const std::vector<double>& densities, size_t index,
+                    std::vector<double> offsets ) {
         double currentDensity = densities[index];       // Get the density of the current point
         std::vector<size_t> neighbors;                  // Vector to store indices of neighbors
-        std::vector<double> offsets(PD, 0);             // Offsets initialized to 0
 
         // Generate neighbors for the current point
         generateNeighbors(gridPoints, gridPoints[index], 0, neighbors, offsets);
