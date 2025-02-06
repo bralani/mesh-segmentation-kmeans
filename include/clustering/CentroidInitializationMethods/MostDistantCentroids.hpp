@@ -21,8 +21,6 @@ public:
 
     void findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) override;
 
-private:
-    int casualNumber(int limit);
 };
 
 

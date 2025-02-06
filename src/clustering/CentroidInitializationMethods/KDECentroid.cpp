@@ -121,23 +121,22 @@ class Kernel;
         }
 
         // Initialize the grid vector to store points
-        std::vector<Point<double, PD>> grid;
-        grid.reserve(m_totalPoints);
+        std::vector<Point<double, PD>> grid(m_totalPoints);  // Allocazione diretta
 
+        #pragma omp parallel for
         for (size_t i = 0; i < m_totalPoints; ++i) {
             Point<double, PD> point;
             size_t index = i;
 
-            // Compute the coordinates for the current point
             for (size_t dim = 0; dim < PD; ++dim) {
                 size_t offset = index % (static_cast<size_t>(m_range[dim] / m_step[dim]) + 1);
                 point.coordinates[dim] = minValues[dim] + offset * m_step[dim];
                 index /= static_cast<size_t>(m_range[dim] / m_step[dim]) + 1;
             }
 
-            // Add the point to the grid
-            grid.push_back(point);
+            grid[i] = point;  // Scriviamo direttamente in un vettore pre-allocato
         }
+
 
         return grid; // Return the generated grid
     }
@@ -257,72 +256,58 @@ class Kernel;
     // Find local maxima in the grid
     template<std::size_t PD>
     void KDE<PD>::findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints, std::vector<CentroidPoint<double, PD>>& returnVec) {
-        // Store the local maxima with their densities
         std::vector<std::pair<Point<double, PD>, double>> maximaPD;
-        std::vector<double> densities;
+        std::vector<double> densities(gridPoints.size()); 
 
-        int countCicle = 0; // Counter for the number of iterations
+        int countCicle = 0;
         while (true) {
             std::cout << "Counter: " << countCicle << std::endl;
 
-            // Resize the density vector to match the number of grid points
-            densities.resize(gridPoints.size());
-
-            // Compute KDE density for each grid point in parallel
             #pragma omp parallel for
             for (size_t i = 0; i < gridPoints.size(); ++i) {
                 densities[i] = this->kdeValue(gridPoints[i]);
             }
 
-            // Thread-local storage for maxima to avoid race conditions
             std::vector<std::vector<std::pair<Point<double, PD>, double>>> threadLocalMaxima(omp_get_max_threads());
 
-            // Identify local maxima in parallel
             #pragma omp parallel
             {
-                int threadID = omp_get_thread_num(); // Get the thread ID
-                auto& localMaxima = threadLocalMaxima[threadID]; // Access the thread's local maxima storage
+                int threadID = omp_get_thread_num();
+                auto& localMaxima = threadLocalMaxima[threadID];
 
                 #pragma omp for
                 for (size_t i = 0; i < gridPoints.size(); ++i) {
-                    if (isLocalMaximum(gridPoints, densities, i)) { // Check if the current point is a local maximum
-                        localMaxima.emplace_back(gridPoints[i], densities[i]); // Add it to the local maxima
+                    if (isLocalMaximum(gridPoints, densities, i)) {
+                        localMaxima.emplace_back(gridPoints[i], densities[i]);
                     }
                 }
             }
 
-            // Merge thread-local maxima into the global maxima vector
             for (const auto& localMaxima : threadLocalMaxima) {
                 maximaPD.insert(maximaPD.end(), localMaxima.begin(), localMaxima.end());
             }
 
             std::cout << "\nNumber of local maxima found: " << maximaPD.size() << "\n";
-            
-            // Check if we need to adjust the bandwidth matrix
+
             if (this->m_k != 0 && maximaPD.size() < this->m_k) {
-                // Not enough local maxima, adjust the bandwidth matrix
-                densities.clear();
                 maximaPD.clear();
 
-                // Reduce the bandwidth matrix diagonal by 15%
                 m_h.diagonal() *= 0.85;
 
-                // Recompute derived parameters
                 SelfAdjointEigenSolver<MatrixXd> solver(m_h);
                 this->m_h_sqrt_inv = solver.operatorInverseSqrt();
                 this->m_h_det_sqrt = sqrt(m_h.determinant());
 
-                // Recompute transformed points
-                m_transformedPoints.clear();
-                for (const auto& xi : this->m_data) {
-                    Eigen::VectorXd transformed = m_h_sqrt_inv * pointToVector(xi);
-                    m_transformedPoints.push_back(transformed);
+                m_transformedPoints.resize(this->m_data.size());
+                #pragma omp parallel for
+                for (size_t i = 0; i < this->m_data.size(); ++i) {
+                    m_transformedPoints[i] = m_h_sqrt_inv * pointToVector(this->m_data[i]);
                 }
+
             } else {
-                // Enough or too many maxima found
                 if (this->m_k != 0 && maximaPD.size() > this->m_k) {
-                    // Reduce the number of maxima to m_k using a distance-based method
                     std::vector<Point<double, PD>> tmpCentroids;
+                    tmpCentroids.reserve(maximaPD.size());
                     for (const auto& pair : maximaPD) {
                         tmpCentroids.push_back(pair.first);
                     }
@@ -331,21 +316,18 @@ class Kernel;
                     break;
                 }
 
-                // Copy the maxima to the return vector
+                returnVec.reserve(maximaPD.size());
                 int i = 0;
                 for (const auto& pair : maximaPD) {
-                    returnVec.push_back(CentroidPoint<double, PD>(pair.first)); // Create CentroidPoint
-                    returnVec[i].setID(i); // Assign an ID to each centroid
+                    returnVec.emplace_back(pair.first);
+                    returnVec[i].setID(i);
                     i++;
                 }
                 break;
             }
             countCicle++;
         }
-
-        return;
     }
-
 
 
     // Check if a point is a local maximum
