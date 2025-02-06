@@ -173,6 +173,7 @@ void Render::start()
                 handle_keyboard(window, deltaTime);
 
                 glm::vec3 modelCenter = currentModel->getBoundingBoxCenter();
+                glm::vec3 modelSize = currentModel->getBoundingBoxSize();
 
                 if (shouldSetCamera)
                 {
@@ -181,8 +182,10 @@ void Render::start()
                 }
 
                 glm::mat4 model = glm::translate(glm::identity<glm::mat4>(), -modelCenter);
+                float diagonal = glm::length(modelSize);
+
                 glm::mat4 projection = glm::perspective(glm::radians(camera->getFOV()),
-                                                        (float)width / height, 0.1f, 100.0f);
+                                                        (float)width / height, std::max(0.1f, diagonal / 100.0f), diagonal * 10.0f);
 
                 if (program)
                 {
