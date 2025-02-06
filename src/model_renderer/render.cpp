@@ -32,6 +32,7 @@ int inputValue = 0;
 double threshold = 0.05;
 
 bool renderModel = false;
+bool shouldSetCamera = false;
 
 // List of available models
 std::vector<std::string> modelPaths;
@@ -75,7 +76,6 @@ Render::Render(std::function<void(Render &, const std::string &, int, int, int, 
 void Render::renderFile(const std::string &fileName)
 {
     selectedModelPath = fileName;
-    renderModel = true; // Switch UI to render state
 
     loadAndRenderModel(selectedModelPath);
 
@@ -174,16 +174,19 @@ void Render::start()
 
                 glm::vec3 modelCenter = currentModel->getBoundingBoxCenter();
 
-                camera->setCenter(glm::vec3(-modelCenter.x, -modelCenter.y, -modelCenter.z));
+                if (shouldSetCamera)
+                {
+                    camera->setCenter(glm::vec3(-modelCenter.x, -modelCenter.y, -modelCenter.z));
+                    shouldSetCamera = false;
+                }
 
                 glm::mat4 model = glm::translate(glm::identity<glm::mat4>(), -modelCenter);
-                glm::mat4 view = camera->getViewMatrix();
                 glm::mat4 projection = glm::perspective(glm::radians(camera->getFOV()),
                                                         (float)width / height, 0.1f, 100.0f);
 
                 if (program)
                 {
-                    program->setMVPMatrices(model, view, projection);
+                    program->setMVPMatrices(model, camera->getViewMatrix(), projection);
                     program->setVec3("eyePos", camera->getPosition());
                     program->setVec3("light.position", lightPos);
                     program->setVec3("light.ambient", lightAmbient);
@@ -436,7 +439,8 @@ void Render::loadAndRenderModel(const std::string &modelPath)
     currentModel = new Model(modelPath, program);
     camera->positionBasedOnObject(*currentModel);
 
-    renderModel = true; // Ensure rendering is triggered
+    shouldSetCamera = true;
+    renderModel = true;
 }
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height)

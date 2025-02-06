@@ -48,8 +48,6 @@ void Camera::handleMouseInput(float x, float y, bool pressed)
 
 void Camera::handleKeyboardInput(int key, float deltaTime)
 {
-    std::cout << "Handling keyboard" << std::endl;
-
     if (key == GLFW_KEY_S)
     {
         position += up * cameraKeyboardSpeed * deltaTime; // Move right
