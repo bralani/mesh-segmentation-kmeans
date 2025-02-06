@@ -144,6 +144,8 @@ void Render::start()
         lightAmbient(1.0f, 1.0f, 1.0f);
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
 
     bool shouldClose = false;
 
@@ -152,7 +154,7 @@ void Render::start()
         while (!glfwWindowShouldClose(window) && !shouldClose)
         {
             // Clear the screen
-            glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+            glClearColor(0.85f, 0.85, 0.85, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             // ImGui Frame Initialization
