@@ -19,7 +19,7 @@ struct Light {
     vec3 specular;
 };
 
-const float gamma = 2.2;
+const float gamma = 1.8;
 
 uniform vec3 eyePos;
 uniform Material material;

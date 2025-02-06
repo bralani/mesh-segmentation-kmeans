@@ -140,8 +140,9 @@ void Render::start()
     lastTime = glfwGetTime();
 
     glm::vec3 lightPos(0.0f, 10.0f, 5.0f),
-        lightColor(3.0f, 3.0f, 1.0f),
-        lightAmbient(1.0f, 1.0f, 1.0f);
+        lightDiffuse(1.2f, 1.2f, 1.2f),
+        lightSpecular(2.0f, 2.0f, 2.0f),
+        lightAmbient(0.3f, 0.3f, 0.3f);
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -195,8 +196,9 @@ void Render::start()
                     program->setVec3("eyePos", camera->getPosition());
                     program->setVec3("light.position", lightPos);
                     program->setVec3("light.ambient", lightAmbient);
-                    program->setVec3("light.diffuse", lightColor);
-                    program->setVec3("light.specular", lightColor);
+                    program->setVec3("light.diffuse", lightDiffuse);
+                    program->setVec3("light.specular", lightSpecular);
+                    program->setFloat("material.shininess", 64.0f);
                 }
 
                 currentModel->draw();
