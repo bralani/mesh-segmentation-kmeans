@@ -30,8 +30,8 @@ class CentroidPoint;
 
 class KDE3D : public CentroidInitMethod<double, 3> {
 public:
-    KDE3D(std::vector<Point<double, 3>>& data, int k);
-    KDE3D(std::vector<Point<double, 3>>& data);
+    KDE3D(const std::vector<Point<double, 3>>& data, int k);
+    KDE3D(const std::vector<Point<double, 3>>& data);
 
     void findCentroid(std::vector<CentroidPoint<double, 3>>& centroids) override;
 
@@ -64,10 +64,10 @@ private:
     Grid3D generateGrid();
 
     // Find local maxima in the grid
-    void findLocalMaxima(Grid3D& gridPoints, std::vector<CentroidPoint<double, PDS>>& returnVec);
+    void findLocalMaxima(const Grid3D& gridPoints, std::vector<CentroidPoint<double, PDS>>& returnVec);
 
     // Check if a point is a local maximum
-    bool isLocalMaximum(Grid3D& gridPoints, Densities3D& densities, size_t x, size_t y, size_t z);
+    bool isLocalMaximum(const Grid3D& gridPoints,const Densities3D& densities, size_t x, size_t y, size_t z);
 };
 
 #endif // KDE3D_HPP

@@ -1,11 +1,11 @@
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 
 template <typename PT, std::size_t PD>
-CentroidInitMethod<PT, PD>::CentroidInitMethod(std::vector<Point<PT, PD>>& data)
+CentroidInitMethod<PT, PD>::CentroidInitMethod(const std::vector<Point<PT, PD>>& data)
     : m_data(data), m_k(0) {}
 
 template <typename PT, std::size_t PD>
-CentroidInitMethod<PT, PD>::CentroidInitMethod(std::vector<Point<PT, PD>>& data, int k)
+CentroidInitMethod<PT, PD>::CentroidInitMethod(const std::vector<Point<PT, PD>>& data, int k)
     : m_data(data), m_k(k) {}
 
 template <typename PT, std::size_t PD>

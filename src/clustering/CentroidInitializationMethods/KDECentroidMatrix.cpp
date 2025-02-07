@@ -1,14 +1,14 @@
 #include "clustering/CentroidInitializationMethods/KDECentroidMatrix.hpp"
 
 // Constructor with k
-KDE3D::KDE3D(std::vector<Point<double, 3>>& data, int k)
+KDE3D::KDE3D(const std::vector<Point<double, 3>>& data, int k)
     : CentroidInitMethod<double, 3>(data, k) {
     this->m_h = bandwidth_RuleOfThumb();
     this->range_number_division = static_cast<int>(std::floor(std::cbrt(data.size())));
 }
 
 // Constructor without k
-KDE3D::KDE3D(std::vector<Point<double, 3>>& data)
+KDE3D::KDE3D(const std::vector<Point<double, 3>>& data)
     : CentroidInitMethod<double, 3>(data) {
     this->m_h = bandwidth_RuleOfThumb();
     this->range_number_division = static_cast<int>(std::floor(std::cbrt(data.size())));
@@ -185,7 +185,7 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
     }
 
     // Find local maxima in the grid
-    void KDE3D::findLocalMaxima(Grid3D& gridPoints, std::vector<CentroidPoint<double, PDS>>& returnVec) {
+    void KDE3D::findLocalMaxima(const Grid3D& gridPoints, std::vector<CentroidPoint<double, PDS>>& returnVec) {
         // Define grid dimensions
         std::size_t Xgrid, Ygrid, Zgrid;
         std::vector<std::pair<Point<double, PDS>, double>> maximaPD;
@@ -292,7 +292,7 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
 
 
     // Check if a point is a local maximum
-    bool KDE3D::isLocalMaximum(Grid3D& gridPoints, Densities3D& densities, size_t x,size_t y,size_t z) {
+    bool KDE3D::isLocalMaximum(const Grid3D& gridPoints,const Densities3D& densities, size_t x,size_t y,size_t z) {
         double currentDensity = densities[x][y][z];
         for (int dx = -NUMBER_RAY_STEP; dx <= NUMBER_RAY_STEP; ++dx) {
             for (int dy = -NUMBER_RAY_STEP; dy <= NUMBER_RAY_STEP; ++dy) {

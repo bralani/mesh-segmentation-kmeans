@@ -22,10 +22,10 @@ template <typename PT, std::size_t PD>
 class RandomCentroidInit : public CentroidInitMethod<PT, PD> {
 public:
     // Constructor with both data and the number of clusters
-    RandomCentroidInit(std::vector<Point<PT, PD>>& data, int k);
+    RandomCentroidInit(const std::vector<Point<PT, PD>>& data, int k);
 
     // Constructor with only data; the number of clusters will be determined later
-    RandomCentroidInit(std::vector<Point<PT, PD>>& data);
+    RandomCentroidInit(const std::vector<Point<PT, PD>>& data);
 
     // Method to randomly find initial centroids
     void findCentroid(std::vector<CentroidPoint<PT, PD>>& centroids) override;

@@ -16,8 +16,8 @@ class Point;
 template<std::size_t PD>
 class MostDistanceClass : public CentroidInitMethod<double, PD> {
 public:
-    MostDistanceClass(std::vector<Point<double, PD>>& data, int k);
-    MostDistanceClass(std::vector<Point<double, PD>>& data);
+    MostDistanceClass(const std::vector<Point<double, PD>>& data, int k);
+    MostDistanceClass(const std::vector<Point<double, PD>>& data);
 
     void findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) override;
 

@@ -2,13 +2,13 @@
 #include "geometry/metrics/EuclideanMetric.hpp"
 
 template<std::size_t PD>
-MostDistanceClass<PD>::MostDistanceClass(std::vector<Point<double, PD>>& data, int k)
+MostDistanceClass<PD>::MostDistanceClass(const std::vector<Point<double, PD>>& data, int k)
     : CentroidInitMethod<double, PD>(data, k) {
     // Costruttore
 }
 
 template<std::size_t PD>
-MostDistanceClass<PD>::MostDistanceClass(std::vector<Point<double, PD>>& data)
+MostDistanceClass<PD>::MostDistanceClass(const std::vector<Point<double, PD>>& data)
     : CentroidInitMethod<double, PD>(data) {
     // Costruttore
 }

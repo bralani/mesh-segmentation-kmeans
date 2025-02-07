@@ -6,11 +6,11 @@
 #include <numeric>
 
 template <typename PT, std::size_t PD>
-RandomCentroidInit<PT, PD>::RandomCentroidInit(std::vector<Point<PT, PD>>& data, int k)
+RandomCentroidInit<PT, PD>::RandomCentroidInit(const std::vector<Point<PT, PD>>& data, int k)
     : CentroidInitMethod<PT, PD>(data, k) {}
 
 template <typename PT, std::size_t PD>
-RandomCentroidInit<PT, PD>::RandomCentroidInit(std::vector<Point<PT, PD>>& data)
+RandomCentroidInit<PT, PD>::RandomCentroidInit(const std::vector<Point<PT, PD>>& data)
     : CentroidInitMethod<PT, PD>(data) {}
 
 template <typename PT, std::size_t PD>

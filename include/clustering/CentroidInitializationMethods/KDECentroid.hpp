@@ -26,10 +26,10 @@ template<std::size_t PD>
 class KDE : public CentroidInitMethod<double, PD> {
 public:
     // Constructor with k
-    KDE(std::vector<Point<double, PD>>& data, int k);
+    KDE(const std::vector<Point<double, PD>>& data, int k);
 
     // Constructor without k
-    KDE(std::vector<Point<double, PD>>& data);
+    KDE(const std::vector<Point<double, PD>>& data);
 
     void findCentroid(std::vector<CentroidPoint<double, PD>>& centroids) override;
 

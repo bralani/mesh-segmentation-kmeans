@@ -21,14 +21,14 @@ public:
      * @brief Constructor: Initialize centroids using the dataset.
      * @param data The dataset from which to initialize centroids.
      */
-    explicit CentroidInitMethod(std::vector<Point<PT, PD>>& data);
+    explicit CentroidInitMethod(const std::vector<Point<PT, PD>>& data);
 
     /**
      * @brief Constructor: Initialize centroids using the dataset and the number of clusters.
      * @param data The dataset from which to initialize centroids.
      * @param k The number of centroids to initialize.
      */
-    explicit CentroidInitMethod(std::vector<Point<PT, PD>>& data, int k);
+    explicit CentroidInitMethod(const std::vector<Point<PT, PD>>& data, int k);
 
     /**
      * @brief Abstract method to find a centroid given a set of centroids.

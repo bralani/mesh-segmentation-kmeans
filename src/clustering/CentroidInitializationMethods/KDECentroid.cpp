@@ -17,7 +17,7 @@ class Kernel;
 
     // Constructor with k
     template<std::size_t PD>
-    KDE<PD>::KDE(std::vector<Point<double, PD>>& data, int k) 
+    KDE<PD>::KDE(const std::vector<Point<double, PD>>& data, int k) 
         : CentroidInitMethod<double, PD>(data, k) {
         this->m_h = bandwidth_RuleOfThumb();
         this->range_number_division = std::max(RANGE_MIN, static_cast<int>(std::floor(std::cbrt(data.size()))));
@@ -26,7 +26,7 @@ class Kernel;
 
     // Constructor without k
     template<std::size_t PD>
-    KDE<PD>::KDE(std::vector<Point<double, PD>>& data) 
+    KDE<PD>::KDE(const std::vector<Point<double, PD>>& data) 
         : CentroidInitMethod<double, PD>(data) {
         this->m_h = bandwidth_RuleOfThumb();
         this->range_number_division = std::max(RANGE_MIN, static_cast<int>(std::floor(std::cbrt(data.size()))));
@@ -186,7 +186,7 @@ class Kernel;
             // Compute the mean and standard deviation for the current dimension
             auto [mean, stdDev] = computeMeanAndStdDev(i);
             // Rule of Thumb formula: h_ii = stdDev * n^(-1/(d+4)) * (4 / d + 2)
-            bandwidths[i].noalias() = stdDev * pow(n, -1.0 / (d + 4)) * pow(4.0 / (d + 2), 1.0 / (d + 4));
+            bandwidths[i] = stdDev * pow(n, -1.0 / (d + 4)) * pow(4.0 / (d + 2), 1.0 / (d + 4));
         }
 
         // Create a diagonal matrix from the squared bandwidth values
