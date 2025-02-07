@@ -165,8 +165,9 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
         Eigen::VectorXd transformedQuery = m_h_sqrt_inv * pointToVector(x);
 
         double density = 0.0;
-        for (const auto& transformedPoint : m_transformedPoints) {
-            Eigen::VectorXd diff = transformedQuery - transformedPoint;
+        Eigen::VectorXd diff(PDS);
+        for (size_t i = 0; i < m_transformedPoints.size(); ++i) {
+            diff.noalias() = transformedQuery - m_transformedPoints[i];
             density += Kernel::gaussian(diff);
         }
 

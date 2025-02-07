@@ -186,7 +186,7 @@ class Kernel;
             // Compute the mean and standard deviation for the current dimension
             auto [mean, stdDev] = computeMeanAndStdDev(i);
             // Rule of Thumb formula: h_ii = stdDev * n^(-1/(d+4)) * (4 / d + 2)
-            bandwidths[i] = stdDev * pow(n, -1.0 / (d + 4)) * pow(4.0 / (d + 2), 1.0 / (d + 4));
+            bandwidths[i].noalias() = stdDev * pow(n, -1.0 / (d + 4)) * pow(4.0 / (d + 2), 1.0 / (d + 4));
         }
 
         // Create a diagonal matrix from the squared bandwidth values
@@ -231,10 +231,10 @@ class Kernel;
         double density = 0.0; // Initialize the density value to 0
 
         // Iterate through all transformed points in the dataset
+        Eigen::VectorXd diff(PD);
         for (size_t i = 0; i < m_transformedPoints.size(); ++i) {
-            const Eigen::VectorXd& transformedPoint = m_transformedPoints[i];
-            Eigen::VectorXd diff = transformedQuery - transformedPoint; // Compute the difference vector
-            density += Kernel::gaussian(diff); // Accumulate Gaussian kernel values
+            diff.noalias() = transformedQuery - m_transformedPoints[i];
+            density += Kernel::gaussian(diff);
         }
 
         // Normalize the density using the determinant of the bandwidth matrix and the dataset size
