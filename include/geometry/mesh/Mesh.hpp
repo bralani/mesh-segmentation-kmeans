@@ -59,7 +59,7 @@ public:
     return faces;
   }
 
-  Face& getFace(FaceId face)
+  Face &getFace(FaceId face)
   {
     return meshFaces[face];
   }
@@ -82,6 +82,21 @@ public:
   void exportToObj(const std::string &filepath, int cluster);
 
   void exportToGroupedObj(const std::string &filepath) const;
+
+  std::vector<Point<double, 3>> getMeshVertices()
+  {
+    return meshVertices;
+  }
+
+  std::unordered_map<FaceId, std::vector<FaceId>> getFaceAdjacency()
+  {
+    return faceAdjacency;
+  }
+
+  std::vector<Face> getMeshFaces()
+  {
+    return meshFaces;
+  }
 
 private:
   std::vector<Point<double, 3>> meshVertices;

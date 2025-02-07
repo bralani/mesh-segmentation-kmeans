@@ -15,7 +15,8 @@
                 "${workspaceFolder}/build",
                 "${workspaceFolder}/third_party/obj-loader",
                 "${workspaceFolder}/src/model_renderer/include",
-                "${workspaceFolder}/third_party/libigl/include"
+                "${workspaceFolder}/third_party/libigl/include",
+                "${workspaceFolder}/include/geometry"
             ],
             "defines": [],
             "cStandard": "c17",

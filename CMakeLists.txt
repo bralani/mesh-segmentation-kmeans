@@ -59,3 +59,4 @@ add_kmeans_executable(viewer "src/viewer.cpp;${SOURCES}" "include/clustering/kme
 add_kmeans_executable(kmeans_benchmark "src/benchmark.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
 target_link_libraries(kmeans_benchmark benchmark::benchmark)
 
+add_subdirectory(tests)
