@@ -1,33 +1,20 @@
-# Use a lightweight base image with C++ and Python preinstalled
-FROM ubuntu:22.04
+# Use Ubuntu as the base image
+FROM ubuntu:latest
 
-# Set environment variables to prevent interactive prompts during installation
+# Set non-interactive mode to prevent prompts
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install required system packages
+# Install necessary packages
 RUN apt-get update && apt-get install -y \
-    build-essential \
     cmake \
-    python3 \
-    python3-dev \
-    python3-pip \
+    g++ \
+    make \
     git \
-    && apt-get clean
+    ninja-build \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install Python libraries for matplotlibcpp
-RUN python3 -m pip install numpy matplotlib
+# Set the working directory inside the container
+WORKDIR /workspace
 
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy your project files into the container
-COPY . /app
-
-# Build the project
-RUN [ -d build ] && rm -rf build || true && \
-    mkdir build && cd build && \
-    cmake .. && \
-    cmake --build . --config Release
-
-# Set the default command to execute the compiled binary
-CMD ["./build/bin/k_means"]
+# Default command (can be overridden)
+CMD ["/bin/bash"]

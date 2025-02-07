@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  cpp_project:
+    build: .
+    container_name: cpp_dev
+    volumes:
+      - .:/workspace  # Sync main project folder with the container
+    working_dir: /workspace
+    tty: true
