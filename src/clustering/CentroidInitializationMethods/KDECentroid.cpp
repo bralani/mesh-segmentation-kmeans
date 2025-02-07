@@ -51,7 +51,6 @@ class Kernel;
         //Necessary declaration
         std::vector<std::pair<Point<double, PD>, double>> maximaPD;
         std::vector<double> densities;
-        std::vector<double> offsets(PD, 0); 
 
         // Generate the grid points based on the calculated ranges and steps
         std::vector<Point<double, PD>> gridPoints = generateGrid();  
@@ -73,10 +72,12 @@ class Kernel;
             int threadID = omp_get_thread_num(); // Get the thread ID
             auto& localMaxima = threadLocalMaxima[threadID]; // Access the thread's local maxima storage
 
+            std::vector<std::vector<std::size_t>> neighborsParallel(omp_get_max_threads());
+            std::vector<std::vector<double>> offsetsParallel(omp_get_max_threads());
+
             #pragma omp for
             for (size_t i = 0; i < gridPoints.size(); ++i) {
-                offsets.clear();
-                if (isLocalMaximum(gridPoints, densities, i, offsets )) { // Check if the current point is a local maximum
+                if (isLocalMaximum(gridPoints, densities, i, neighborsParallel[omp_get_thread_num()], offsetsParallel[omp_get_thread_num()])) { // Check if the current point is a local maximum
                     localMaxima.emplace_back(gridPoints[i], densities[i]); // Add it to the local maxima
                 }
             }
@@ -260,19 +261,19 @@ class Kernel;
     void KDE<PD>::findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints, std::vector<CentroidPoint<double, PD>>& returnVec) {
         std::vector<std::pair<Point<double, PD>, double>> maximaPD;
         std::vector<double> densities(gridPoints.size()); 
-        std::vector<double> offsets(PD, 0); 
-        std::size_t gridPointsSize = gridPoints.size();
 
         int countCicle = 0;
         while (true) {
             std::cout << "Counter: " << countCicle << std::endl;
 
             #pragma omp parallel for
-            for (size_t i = 0; i < gridPointsSize; ++i) {
+            for (size_t i = 0; i < gridPoints.size(); ++i) {
                 densities[i] = this->kdeValue(gridPoints[i]);
             }
 
             std::vector<std::vector<std::pair<Point<double, PD>, double>>> threadLocalMaxima(omp_get_max_threads());
+            std::vector<std::vector<std::size_t>> neighborsParallel(omp_get_max_threads());
+            std::vector<std::vector<double>> offsetsParallel(omp_get_max_threads()); 
 
             #pragma omp parallel
             {
@@ -280,9 +281,8 @@ class Kernel;
                 auto& localMaxima = threadLocalMaxima[threadID];
 
                 #pragma omp for
-                for (size_t i = 0; i < gridPointsSize; ++i) {
-                    offsets.clear();
-                    if (isLocalMaximum(gridPoints, densities, i, offsets)) {
+                for (size_t i = 0; i < gridPoints.size(); ++i) {
+                    if (isLocalMaximum(gridPoints, densities, i, neighborsParallel[omp_get_thread_num()], offsetsParallel[omp_get_thread_num()])) {
                         localMaxima.emplace_back(gridPoints[i], densities[i]);
                     }
                 }
@@ -337,16 +337,19 @@ class Kernel;
 
     // Check if a point is a local maximum
     template<std::size_t PD>
-    bool KDE<PD>::isLocalMaximum(const std::vector<Point<double, PD>>& gridPoints, const std::vector<double>& densities, size_t index,
-                    std::vector<double> offsets ) {
+    bool KDE<PD>::isLocalMaximum(const std::vector<Point<double, PD>>& gridPoints, const std::vector<double>& densities, size_t index, 
+            std::vector<std::size_t>& neighborsParallel, std::vector<double>& offsetsParallel) {
+
         double currentDensity = densities[index];       // Get the density of the current point
-        std::vector<size_t> neighbors;                  // Vector to store indices of neighbors
+
+        neighborsParallel.clear();
+        offsetsParallel.resize(PD, 0);
 
         // Generate neighbors for the current point
-        generateNeighbors(gridPoints, gridPoints[index], 0, neighbors, offsets);
+        generateNeighbors(gridPoints, gridPoints[index], 0, neighborsParallel, offsetsParallel);
 
         // Compare the density of the current point with its neighbors, 
-        for (const auto& neighborIndex : neighbors) {
+        for (const auto& neighborIndex : neighborsParallel) {
             if (densities[neighborIndex] > currentDensity) {
                 return false; // Not a local maximum
             }
