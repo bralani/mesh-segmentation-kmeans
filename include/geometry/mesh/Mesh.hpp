@@ -59,12 +59,7 @@ public:
     return faces;
   }
 
-  Face getFace(FaceId face)
-  {
-    return meshFaces[face];
-  }
-
-  Face& getFaceCopy(FaceId face)
+  Face& getFace(FaceId face)
   {
     return meshFaces[face];
   }

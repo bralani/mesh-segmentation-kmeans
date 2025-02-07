@@ -337,7 +337,7 @@ void GeodesicMetric<PT, PD>::storeCentroids(){
   for (FaceId faceId = 0; faceId < numFaces; ++faceId)
   {
     int centroidIndex = mesh->getFaceCluster(faceId);
-    Point<PT, PD>& baricenter = mesh->getFaceCopy(faceId).baricenter;
+    Point<PT, PD>& baricenter = mesh->getFace(faceId).baricenter;
     CentroidPoint<PT, PD>& c = (this->centroids)->at(centroidIndex);
     baricenter.setCentroid(c);
   }
@@ -351,7 +351,7 @@ std::vector<Point<PT, PD>>& GeodesicMetric<PT, PD>::getPoints(){
     std::cout<<"Num points: " << numFaces <<std::endl;
     for (FaceId faceId = 0; faceId < numFaces; ++faceId)
     {
-      Point<PT, PD>& baricenter = mesh->getFaceCopy(faceId).baricenter;
+      Point<PT, PD>& baricenter = mesh->getFace(faceId).baricenter;
       this->data.push_back(baricenter);
     }
     this->oldPoints = 0;
