@@ -76,3 +76,16 @@ k-means/
 ├── README.md         # Project documentation
 └── kmeans.cpp        # Main implementation of K-means algorithm
 ```
+
+### 5. How to run tests
+
+```bash
+brew install lcov #MacOS
+sudo apt install lcov #Ubuntu
+brew install ninja
+
+# Verify installation
+lcov --version
+genhtml --version
+
+```
