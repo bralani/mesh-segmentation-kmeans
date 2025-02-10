@@ -1,57 +1,97 @@
-# K-Means Clustering Hands-On
+<img src="docs/img/logo.jpg" alt="logo" width="600px"/>
 
-Welcome to the **K-Means Clustering Hands-On** project! This repository provides an interactive and educational implementation of the **K-means clustering algorithm**. It's designed to help you understand how the algorithm works and experiment with clustering data.
-
-## Introduction to K-Means Clustering
-
-The **K-Means clustering algorithm** is a popular unsupervised machine learning method used to group data into clusters based on their features. It's widely used in various fields, including image processing, market segmentation, and bioinformatics.
-
-### How It Works
-1. **Initialization**: The algorithm starts by selecting `K` initial centroids, which can be chosen randomly or using specific strategies.
-2. **Assignment Step**: Each data point is assigned to the nearest centroid, forming clusters.
-3. **Update Step**: The centroids are recalculated as the mean of all data points assigned to them.
-4. **Iteration**: Steps 2 and 3 are repeated until centroids stabilize (i.e., do not change significantly) or a maximum number of iterations is reached.
-
-K-Means aims to minimize the **intra-cluster variance**, ensuring that data points within a cluster are as close as possible to their centroid. While simple and efficient, the algorithm may converge to a local minimum and can be sensitive to the initial placement of centroids.
+# Mesh Segmentation with K-Means
+ This repository provides an interactive implementation of **mesh segmentation**, leveraging the **K-Means clustering algorithm**. You can use this project to segment 3D meshes efficiently while still having the flexibility to apply K-Means clustering independently.
 
 ## Features
-
-- **Hands-On K-Means Implementation**: Learn how the K-means clustering algorithm works step-by-step.
-- **Modular Design**: Easily configurable parameters for customization.
-- **Simple Setup**: Get started with minimal configuration.
-- **Visualizations**: View clustering results and centroids.
+- Flexible K-Means Usage: The K-Means implementation can also be used separately for general clustering tasks, offering versatility.
+- Mesh Segmentation Using Dijkstra's Algorithm: Utilize Dijkstra's algorithm for an alternative segmentation method, focusing on shortest paths within the mesh.
+- Mesh Segmentation Using Heat Equation: Segment 3D models based on the heat equation, providing a smooth and efficient way to divide the mesh into distinct regions.
+- Centroid Initialization Methods: Support for various initialization techniques, including random, most distant points, and density-based approaches to improve clustering results.
+- Automatic K-Detection: Automatically determine the optimal number of clusters using methods like silhouette scores and the elbow method.
+- Mesh Exporting: Export segmented meshes for further analysis or processing in different formats.
+- Visualization Tools: View segmented meshes in an interactive window with color-coded clusters, making it easier to interpret the results visually.
+- Parallel Processing: Utilize OpenMP to improve performance by parallelizing tasks.
+- GPU Implementation for K-Means: Accelerate the K-Means algorithm with GPU implementations for each of its steps, ensuring faster computations on large datasets.
 
 ## Requirements
-To run the project, you need the following tools and libraries:
-- **C++ Compiler**: To compile and run the source code.
-- **CMake**: To build the project.
-- **Python with matplotlib**: To generate plots in 2D.
-- **OpenMP**: For parallel processing.
-- **Meshlib**: To load 3D models. Please install the release build following this guide: [https://meshlib.io/documentation/MeshLibCppSetupGuide.html](https://meshlib.io/documentation/MeshLibCppSetupGuide.html).
-- **Docker**: To run the project in a container (optional).
 
-## Data
-In order to run the project, you must download the 3D dataset from the following [link](https://polimi365-my.sharepoint.com/:u:/g/personal/10978268_polimi_it/EZKJJOmNr_REh4EHY5Tln7QBmNEsD940wz2wfekhq0LguA?e=noOjtN), unzip it and place it in the `resources` folder.
+To run the project, ensure you have the following dependencies installed:
+
+On macOS you can install the dependencies using [Homebrew](https://brew.sh/). On Linux, you can use `apt-get` to install the dependencies. On Windows, you can download the dependencies from their official websites.
+
+1) C++ Compiler
+    - macOS: Clang (we have used Clang 15.0.0)
+    - Linux: GCC (we have used GCC 14.2.0)
+    - Windows: MSVC 2019 or later
+2) CMake
+    - macOS:
+      ```bash
+      brew install cmake
+      ```
+    - Linux:
+      ```bash
+      sudo apt-get install cmake
+      ```
+    - Windows:
+      Download and install from the [official website](https://cmake.org/download/). Ensure it's added to the system PATH.
+3) OpenMP
+    - macOS:
+      ```bash
+      brew install libomp
+      ```
+    - Linux:
+      ```bash
+      sudo apt-get install libomp-dev
+      ```
+    - Windows:
+      OpenMP is included in MSVC by default.
+
+4) Viewer dependencies (optional but strongly recommended):
+- OpenGL, GLM, GLFW
+    - macOS:
+      ```bash
+      brew install glfw glm
+      ```
+    - Linux:
+      ```bash
+      sudo apt update
+      sudo apt install libgl1-mesa-dev libglu1-mesa-dev
+      sudo apt install libglfw3-dev
+      sudo apt install libglm-dev
+      ```
+    - Windows:
+      ```bash
+      git clone https://github.com/microsoft/vcpkg.git
+      cd vcpkg
+      ./bootstrap-vcpkg.bat
+      vcpkg install opengl glfw3 glm
+      ```
+
+5) GPU CUDA only for Windows MSVC (Optional):
+    - Ensure you have MSVC 2019 or later installed.
+    - Download and install CUDA Toolkit from the [official website](https://developer.nvidia.com/cuda-downloads).
+    - Verify installation:
+      ```bash
+      nvcc --version
+      ```
 
 ## Setup and Installation
 
-Follow these steps to get the project up and running:
+Follow these steps to build and run the project:
 
-### 1. Clone the repository
-
+### 1. Clone the Repository
 ```bash
-git clone <repository-url>
-cd <repository-folder>
+git clone https://github.com/AMSC-24-25/16-kmeans-16-kmeans.git
+cd 16-kmeans-16-kmeans
 ```
 
-
-### 2. Initialize and update submodules
-
+### 2. Download and install dependencies
 ```bash
 git submodule update --init --recursive
 ```
 
-### 3. Build the project
+### 3. Build the Project
 ```bash
 mkdir build
 cd build
@@ -59,14 +99,41 @@ cmake ..
 make
 ```
 
-### 4. Docker commands
+## Dataset
+
+To run the project, download the required 3D dataset from the following [link](https://polimi365-my.sharepoint.com/:u:/g/personal/10978268_polimi_it/EZKJJOmNr_REh4EHY5Tln7QBmNEsD940wz2wfekhq0LguA?e=noOjtN). Unzip the files and place them in the `resources` folder. The folder structure should look like this:
 ```bash
-#From the main folder
-docker build -t kmeans-plot . # To build the image, you may need to use "sudo"
-docker run --rm -it -v $(pwd)/output:/app/output kmeans-plot # to run the image and store the plot, you may need to use "sudo"
+root/
+├── build/
+├── docs/
+├── include/   
+├── output/           
+├── resources/        
+│   ├── meshes/
+│       ├── obj/
+│       │   ├── *.obj
+│       ├── seg/
+│           ├── *.seg
+├── src/     
+├── tests/
+├── third_party/
+```
+The dataset contains 400 3D models in OBJ format, along with their corresponding segmentation files. The segmentation files are in the `.seg` format, where each line corresponds to a face and its cluster index. There are multiple `.seg` files for each 3D model, each representing a different segmentation from a different human annotator. The dataset has been obtained from the [Princeton Segmentation Benchmark](http://segeval.cs.princeton.edu/).
+
+## Running with Docker
+```bash
+# From the main folder
+docker build -t mesh-segmentation .  # Build the Docker image
+docker run --rm -it -v $(pwd)/output:/app/output mesh-segmentation  # Run the container
 ```
 
-### 4. Project Structure
+## Getting started
+
+Once the project is built, you can run the segmentation tool with:
+```bash
+./build/segmentation <path-to-mesh-file> <number-of-clusters>
+```
+Example:
 ```bash
 k-means/
 ├── data/             # Folder for datasets (optional)
