@@ -63,11 +63,11 @@ template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::fit_gpu() {
     int numClusters = this->centroids->size();
 
-    float *data_flat = new float[data.size() * PD];
+    float *data_flat = new float[this->data.size() * PD];
     #pragma omp parallel for collapse(2)
-    for (int i = 0; i < data->size(); i++) {
+    for (int i = 0; i < this->data.size(); i++) {
         for (int j = 0; j < PD; j++) {
-            data_flat[i * PD + j] = data->at(i).coordinates[j];
+            data_flat[i * PD + j] = this->data.at(i).coordinates[j];
         }
     }
 
@@ -75,18 +75,18 @@ void EuclideanMetric<PT, PD>::fit_gpu() {
     #pragma omp parallel for collapse(2)
     for (int i = 0; i < numClusters; i++) {
         for (int j = 0; j < PD; j++) {
-            centroids_flat[i * PD + j] = centroids->at(i).coordinates[j];
+            centroids_flat[i * PD + j] = this->centroids->at(i).coordinates[j];
         }
     }
 
-    int *cluster_assignment = new int[data.size()];
+    int *cluster_assignment = new int[this->data.size()];
 
-    kmeans_cuda(numClusters, PD, data.size(), data_flat, centroids_flat, cluster_assignment, (float)treshold);
+    kmeans_cuda(numClusters, PD, this->data.size(), data_flat, centroids_flat, cluster_assignment, (float)treshold);
 
     #pragma omp parallel for
-    for (int i = 0; i < data.size(); i++) {
+    for (int i = 0; i < this->data.size(); i++) {
         std::shared_ptr<CentroidPoint<PT, PD>> centroid_ptr = std::make_shared<CentroidPoint<PT, PD>>(this->centroids->at(cluster_assignment[i]));
-        data.at(i).setCentroid(centroid_ptr);
+        this->data.at(i).setCentroid(centroid_ptr);
     }
 
     delete[] data_flat;
