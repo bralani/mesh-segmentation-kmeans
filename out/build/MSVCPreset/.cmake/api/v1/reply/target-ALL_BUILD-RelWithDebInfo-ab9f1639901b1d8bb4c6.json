@@ -1,0 +1,39 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"third_party/benchmark/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "benchmark_main::@27580315aaf28f4a2bec"
+		},
+		{
+			"id" : "benchmark::@27580315aaf28f4a2bec"
+		},
+		{
+			"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df"
+		}
+	],
+	"id" : "ALL_BUILD::@8ffed400b92ab2b01493",
+	"isGeneratorProvided" : true,
+	"name" : "ALL_BUILD",
+	"paths" : 
+	{
+		"build" : "third_party/benchmark",
+		"source" : "third_party/benchmark"
+	},
+	"sources" : [],
+	"type" : "UTILITY"
+}

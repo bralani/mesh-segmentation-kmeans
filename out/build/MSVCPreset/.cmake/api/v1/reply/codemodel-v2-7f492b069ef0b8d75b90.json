@@ -1,0 +1,1856 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						5
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2,
+						5,
+						13,
+						16,
+						17,
+						20,
+						30
+					]
+				},
+				{
+					"build" : "third_party/matplotlib-cpp",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.matplotlib-cpp-Debug-7999980f93bad6224b76.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "third_party/matplotlib-cpp",
+					"targetIndexes" : 
+					[
+						4,
+						6,
+						7,
+						8,
+						11,
+						12,
+						14,
+						15,
+						18,
+						21,
+						23,
+						24,
+						25,
+						26,
+						27,
+						29,
+						31
+					]
+				},
+				{
+					"build" : "src/model_renderer",
+					"jsonFile" : "directory-src.model_renderer-Debug-fcf060882329bd2c77b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "src/model_renderer",
+					"targetIndexes" : 
+					[
+						3,
+						22
+					]
+				},
+				{
+					"build" : "third_party/benchmark",
+					"childIndexes" : 
+					[
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.benchmark-Debug-75bc2a1c5a0dabac44ba.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "third_party/benchmark",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "third_party/benchmark/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.benchmark.src-Debug-c5d08642038728704f3e.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "third_party/benchmark/src",
+					"targetIndexes" : 
+					[
+						9,
+						10
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-Debug-70e4927a02b591d5c1f8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						1,
+						19,
+						28
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "KMeans",
+					"targetIndexes" : 
+					[
+						2,
+						5,
+						13,
+						16,
+						17,
+						20,
+						30
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "matplotlib_cpp",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4,
+						6,
+						7,
+						8,
+						11,
+						12,
+						14,
+						15,
+						18,
+						21,
+						23,
+						24,
+						25,
+						26,
+						27,
+						29,
+						31
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "Mesh_Viewer",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3,
+						22
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3,
+						4
+					],
+					"name" : "benchmark",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						9,
+						10
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "KMeansTests",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						19,
+						28
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@8ffed400b92ab2b01493",
+					"jsonFile" : "target-ALL_BUILD-Debug-ab9f1639901b1d8bb4c6.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "ALL_BUILD::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-ALL_BUILD-Debug-d8d6d6de54acf6d2e12d.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Debug-d0f95e1e6a0aa60e4d9c.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@17a8cca424b976289952",
+					"jsonFile" : "target-ALL_BUILD-Debug-5802a26156591a62de4b.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@c7f826c731235b5b4400",
+					"jsonFile" : "target-ALL_BUILD-Debug-ca6900d7866eee65c384.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Debug-b9463c7517f9d41521ca.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "animation::@c7f826c731235b5b4400",
+					"jsonFile" : "target-animation-Debug-6bcc3b600c20602fc98d.json",
+					"name" : "animation",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "bar::@c7f826c731235b5b4400",
+					"jsonFile" : "target-bar-Debug-9e79ee915b1a705df8ae.json",
+					"name" : "bar",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "basic::@c7f826c731235b5b4400",
+					"jsonFile" : "target-basic-Debug-1e42f0d5644d10ce1e56.json",
+					"name" : "basic",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "benchmark::@27580315aaf28f4a2bec",
+					"jsonFile" : "target-benchmark-Debug-f01be960c228fb92e2e7.json",
+					"name" : "benchmark",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "benchmark_main::@27580315aaf28f4a2bec",
+					"jsonFile" : "target-benchmark_main-Debug-520572ef860f9cf4ba6c.json",
+					"name" : "benchmark_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "colorbar::@c7f826c731235b5b4400",
+					"jsonFile" : "target-colorbar-Debug-b7c6c0049d95d7ad25b3.json",
+					"name" : "colorbar",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "contour::@c7f826c731235b5b4400",
+					"jsonFile" : "target-contour-Debug-79c506f579263f699d48.json",
+					"name" : "contour",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "evaluation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-evaluation-Debug-d5320eb9dc845525b28e.json",
+					"name" : "evaluation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "fill::@c7f826c731235b5b4400",
+					"jsonFile" : "target-fill-Debug-702b7f6a2a8e781017c3.json",
+					"name" : "fill",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "fill_inbetween::@c7f826c731235b5b4400",
+					"jsonFile" : "target-fill_inbetween-Debug-5bcf42317d1fc2011336.json",
+					"name" : "fill_inbetween",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "k_means::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-k_means-Debug-3c8200ca3d2f556f340b.json",
+					"name" : "k_means",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "kmeans_benchmark::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-kmeans_benchmark-Debug-d06c4d32d96082f7b368.json",
+					"name" : "kmeans_benchmark",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "lines3d::@c7f826c731235b5b4400",
+					"jsonFile" : "target-lines3d-Debug-d12c91eb73d6c92357f3.json",
+					"name" : "lines3d",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "mesh_lib::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-mesh_lib-Debug-636e7245d30a7e41d51c.json",
+					"name" : "mesh_lib",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mesh_segmentation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mesh_segmentation-Debug-4ceb48c0493339e066a5.json",
+					"name" : "mesh_segmentation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "minimal::@c7f826c731235b5b4400",
+					"jsonFile" : "target-minimal-Debug-8115ff7bd7e304148816.json",
+					"name" : "minimal",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "model_renderer::@17a8cca424b976289952",
+					"jsonFile" : "target-model_renderer-Debug-5e6fe16615657cfda801.json",
+					"name" : "model_renderer",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "modern::@c7f826c731235b5b4400",
+					"jsonFile" : "target-modern-Debug-24df5929b66756fc9f9a.json",
+					"name" : "modern",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "nonblock::@c7f826c731235b5b4400",
+					"jsonFile" : "target-nonblock-Debug-5cd35b14562960797e9c.json",
+					"name" : "nonblock",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "spy::@c7f826c731235b5b4400",
+					"jsonFile" : "target-spy-Debug-602ce57560e79dba2290.json",
+					"name" : "spy",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "subplot2grid::@c7f826c731235b5b4400",
+					"jsonFile" : "target-subplot2grid-Debug-bf3e5aa00027e66d7dc2.json",
+					"name" : "subplot2grid",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "surface::@c7f826c731235b5b4400",
+					"jsonFile" : "target-surface-Debug-bf92ec41e8364411aa42.json",
+					"name" : "surface",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "test_kmeans::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_kmeans-Debug-6ab5e3706a44d5251934.json",
+					"name" : "test_kmeans",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "update::@c7f826c731235b5b4400",
+					"jsonFile" : "target-update-Debug-af16d88ac360f1dc80bf.json",
+					"name" : "update",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "viewer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-viewer-Debug-988ae061e2bc3b6b73c9.json",
+					"name" : "viewer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "xkcd::@c7f826c731235b5b4400",
+					"jsonFile" : "target-xkcd-Debug-897f7a5bd9efc2f5efba.json",
+					"name" : "xkcd",
+					"projectIndex" : 1
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						5
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2,
+						5,
+						13,
+						16,
+						17,
+						20,
+						30
+					]
+				},
+				{
+					"build" : "third_party/matplotlib-cpp",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.matplotlib-cpp-Release-7999980f93bad6224b76.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "third_party/matplotlib-cpp",
+					"targetIndexes" : 
+					[
+						4,
+						6,
+						7,
+						8,
+						11,
+						12,
+						14,
+						15,
+						18,
+						21,
+						23,
+						24,
+						25,
+						26,
+						27,
+						29,
+						31
+					]
+				},
+				{
+					"build" : "src/model_renderer",
+					"jsonFile" : "directory-src.model_renderer-Release-fcf060882329bd2c77b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "src/model_renderer",
+					"targetIndexes" : 
+					[
+						3,
+						22
+					]
+				},
+				{
+					"build" : "third_party/benchmark",
+					"childIndexes" : 
+					[
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.benchmark-Release-75bc2a1c5a0dabac44ba.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "third_party/benchmark",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "third_party/benchmark/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.benchmark.src-Release-49e2058482563766224d.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "third_party/benchmark/src",
+					"targetIndexes" : 
+					[
+						9,
+						10
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-Release-70e4927a02b591d5c1f8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						1,
+						19,
+						28
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "KMeans",
+					"targetIndexes" : 
+					[
+						2,
+						5,
+						13,
+						16,
+						17,
+						20,
+						30
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "matplotlib_cpp",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4,
+						6,
+						7,
+						8,
+						11,
+						12,
+						14,
+						15,
+						18,
+						21,
+						23,
+						24,
+						25,
+						26,
+						27,
+						29,
+						31
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "Mesh_Viewer",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3,
+						22
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3,
+						4
+					],
+					"name" : "benchmark",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						9,
+						10
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "KMeansTests",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						19,
+						28
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@8ffed400b92ab2b01493",
+					"jsonFile" : "target-ALL_BUILD-Release-ab9f1639901b1d8bb4c6.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "ALL_BUILD::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-ALL_BUILD-Release-d8d6d6de54acf6d2e12d.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Release-d0f95e1e6a0aa60e4d9c.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@17a8cca424b976289952",
+					"jsonFile" : "target-ALL_BUILD-Release-5802a26156591a62de4b.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@c7f826c731235b5b4400",
+					"jsonFile" : "target-ALL_BUILD-Release-ca6900d7866eee65c384.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Release-b9463c7517f9d41521ca.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "animation::@c7f826c731235b5b4400",
+					"jsonFile" : "target-animation-Release-727c4c1c048813f933ab.json",
+					"name" : "animation",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "bar::@c7f826c731235b5b4400",
+					"jsonFile" : "target-bar-Release-6b47c16d0592a3327cc3.json",
+					"name" : "bar",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "basic::@c7f826c731235b5b4400",
+					"jsonFile" : "target-basic-Release-43da618a71b4f9510465.json",
+					"name" : "basic",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "benchmark::@27580315aaf28f4a2bec",
+					"jsonFile" : "target-benchmark-Release-332a8efb648ca44ff2cb.json",
+					"name" : "benchmark",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "benchmark_main::@27580315aaf28f4a2bec",
+					"jsonFile" : "target-benchmark_main-Release-d6df782c4d60d5f0de0c.json",
+					"name" : "benchmark_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "colorbar::@c7f826c731235b5b4400",
+					"jsonFile" : "target-colorbar-Release-c5a9c98de7b44df8cfd8.json",
+					"name" : "colorbar",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "contour::@c7f826c731235b5b4400",
+					"jsonFile" : "target-contour-Release-b400c7fec6772732a1f4.json",
+					"name" : "contour",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "evaluation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-evaluation-Release-992c9ac675c4e5ad09b7.json",
+					"name" : "evaluation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "fill::@c7f826c731235b5b4400",
+					"jsonFile" : "target-fill-Release-0cc5d8d8e24dc69839dc.json",
+					"name" : "fill",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "fill_inbetween::@c7f826c731235b5b4400",
+					"jsonFile" : "target-fill_inbetween-Release-f95b1cc3c61246d8d2c1.json",
+					"name" : "fill_inbetween",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "k_means::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-k_means-Release-32695d6b96b97807ce77.json",
+					"name" : "k_means",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "kmeans_benchmark::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-kmeans_benchmark-Release-89f63f30ca0254516c4f.json",
+					"name" : "kmeans_benchmark",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "lines3d::@c7f826c731235b5b4400",
+					"jsonFile" : "target-lines3d-Release-21170086bdeabb9ac294.json",
+					"name" : "lines3d",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "mesh_lib::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-mesh_lib-Release-896181da88ef12b9ca27.json",
+					"name" : "mesh_lib",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mesh_segmentation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mesh_segmentation-Release-1cfdba387e587da5da13.json",
+					"name" : "mesh_segmentation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "minimal::@c7f826c731235b5b4400",
+					"jsonFile" : "target-minimal-Release-53c91f3bb92d7b7d3018.json",
+					"name" : "minimal",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "model_renderer::@17a8cca424b976289952",
+					"jsonFile" : "target-model_renderer-Release-8192649b1418328d6050.json",
+					"name" : "model_renderer",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "modern::@c7f826c731235b5b4400",
+					"jsonFile" : "target-modern-Release-08e5083f71e908c7099e.json",
+					"name" : "modern",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "nonblock::@c7f826c731235b5b4400",
+					"jsonFile" : "target-nonblock-Release-aef111a95b67e7a972f8.json",
+					"name" : "nonblock",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "spy::@c7f826c731235b5b4400",
+					"jsonFile" : "target-spy-Release-03975f1c9f14f79bd1ae.json",
+					"name" : "spy",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "subplot2grid::@c7f826c731235b5b4400",
+					"jsonFile" : "target-subplot2grid-Release-1e0647bfe8bc4d29e1ad.json",
+					"name" : "subplot2grid",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "surface::@c7f826c731235b5b4400",
+					"jsonFile" : "target-surface-Release-2e3f62ca9d40e6743c0d.json",
+					"name" : "surface",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "test_kmeans::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_kmeans-Release-890dc94a6f648df6a86e.json",
+					"name" : "test_kmeans",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "update::@c7f826c731235b5b4400",
+					"jsonFile" : "target-update-Release-c9e616d55fe5ea0b7a49.json",
+					"name" : "update",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "viewer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-viewer-Release-9239bde76592909b9a75.json",
+					"name" : "viewer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "xkcd::@c7f826c731235b5b4400",
+					"jsonFile" : "target-xkcd-Release-3671a4e6e6d0b31ca2d2.json",
+					"name" : "xkcd",
+					"projectIndex" : 1
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						5
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-MinSizeRel-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2,
+						5,
+						13,
+						16,
+						17,
+						20,
+						30
+					]
+				},
+				{
+					"build" : "third_party/matplotlib-cpp",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.matplotlib-cpp-MinSizeRel-7999980f93bad6224b76.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "third_party/matplotlib-cpp",
+					"targetIndexes" : 
+					[
+						4,
+						6,
+						7,
+						8,
+						11,
+						12,
+						14,
+						15,
+						18,
+						21,
+						23,
+						24,
+						25,
+						26,
+						27,
+						29,
+						31
+					]
+				},
+				{
+					"build" : "src/model_renderer",
+					"jsonFile" : "directory-src.model_renderer-MinSizeRel-fcf060882329bd2c77b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "src/model_renderer",
+					"targetIndexes" : 
+					[
+						3,
+						22
+					]
+				},
+				{
+					"build" : "third_party/benchmark",
+					"childIndexes" : 
+					[
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.benchmark-MinSizeRel-75bc2a1c5a0dabac44ba.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "third_party/benchmark",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "third_party/benchmark/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.benchmark.src-MinSizeRel-f589c377a72cd9ec689b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "third_party/benchmark/src",
+					"targetIndexes" : 
+					[
+						9,
+						10
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-MinSizeRel-70e4927a02b591d5c1f8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						1,
+						19,
+						28
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "KMeans",
+					"targetIndexes" : 
+					[
+						2,
+						5,
+						13,
+						16,
+						17,
+						20,
+						30
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "matplotlib_cpp",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4,
+						6,
+						7,
+						8,
+						11,
+						12,
+						14,
+						15,
+						18,
+						21,
+						23,
+						24,
+						25,
+						26,
+						27,
+						29,
+						31
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "Mesh_Viewer",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3,
+						22
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3,
+						4
+					],
+					"name" : "benchmark",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						9,
+						10
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "KMeansTests",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						19,
+						28
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@8ffed400b92ab2b01493",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-ab9f1639901b1d8bb4c6.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "ALL_BUILD::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-d8d6d6de54acf6d2e12d.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-d0f95e1e6a0aa60e4d9c.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@17a8cca424b976289952",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-5802a26156591a62de4b.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@c7f826c731235b5b4400",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-ca6900d7866eee65c384.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-MinSizeRel-b9463c7517f9d41521ca.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "animation::@c7f826c731235b5b4400",
+					"jsonFile" : "target-animation-MinSizeRel-882893cd522ee017a7bf.json",
+					"name" : "animation",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "bar::@c7f826c731235b5b4400",
+					"jsonFile" : "target-bar-MinSizeRel-3507131986cb3291f398.json",
+					"name" : "bar",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "basic::@c7f826c731235b5b4400",
+					"jsonFile" : "target-basic-MinSizeRel-f5f617b0e6246f427425.json",
+					"name" : "basic",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "benchmark::@27580315aaf28f4a2bec",
+					"jsonFile" : "target-benchmark-MinSizeRel-96e492a35d1a884a08a7.json",
+					"name" : "benchmark",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "benchmark_main::@27580315aaf28f4a2bec",
+					"jsonFile" : "target-benchmark_main-MinSizeRel-3b57996055601781feba.json",
+					"name" : "benchmark_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "colorbar::@c7f826c731235b5b4400",
+					"jsonFile" : "target-colorbar-MinSizeRel-f7cbfb33e5d379df7a66.json",
+					"name" : "colorbar",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "contour::@c7f826c731235b5b4400",
+					"jsonFile" : "target-contour-MinSizeRel-616791f636d936f256f8.json",
+					"name" : "contour",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "evaluation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-evaluation-MinSizeRel-eeebdeeec1d8d573cb95.json",
+					"name" : "evaluation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "fill::@c7f826c731235b5b4400",
+					"jsonFile" : "target-fill-MinSizeRel-e38187e056448edf4207.json",
+					"name" : "fill",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "fill_inbetween::@c7f826c731235b5b4400",
+					"jsonFile" : "target-fill_inbetween-MinSizeRel-b69bfc15172f632bc2bf.json",
+					"name" : "fill_inbetween",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "k_means::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-k_means-MinSizeRel-48cc4d3d86300b1771db.json",
+					"name" : "k_means",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "kmeans_benchmark::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-kmeans_benchmark-MinSizeRel-5d6e5bd26a09e4c64713.json",
+					"name" : "kmeans_benchmark",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "lines3d::@c7f826c731235b5b4400",
+					"jsonFile" : "target-lines3d-MinSizeRel-8aa0d1964bda52dd2c9d.json",
+					"name" : "lines3d",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "mesh_lib::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-mesh_lib-MinSizeRel-4dab9b17631a933e717f.json",
+					"name" : "mesh_lib",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mesh_segmentation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mesh_segmentation-MinSizeRel-0a80ecb002c8e8b384e8.json",
+					"name" : "mesh_segmentation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "minimal::@c7f826c731235b5b4400",
+					"jsonFile" : "target-minimal-MinSizeRel-4c4039f0c196152d61a9.json",
+					"name" : "minimal",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "model_renderer::@17a8cca424b976289952",
+					"jsonFile" : "target-model_renderer-MinSizeRel-58c3b496d6532540fcbe.json",
+					"name" : "model_renderer",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "modern::@c7f826c731235b5b4400",
+					"jsonFile" : "target-modern-MinSizeRel-47945cf50f45c4b7cbe9.json",
+					"name" : "modern",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "nonblock::@c7f826c731235b5b4400",
+					"jsonFile" : "target-nonblock-MinSizeRel-84245aacf5289ce36ec0.json",
+					"name" : "nonblock",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "spy::@c7f826c731235b5b4400",
+					"jsonFile" : "target-spy-MinSizeRel-83983b6935fc4c24a149.json",
+					"name" : "spy",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "subplot2grid::@c7f826c731235b5b4400",
+					"jsonFile" : "target-subplot2grid-MinSizeRel-f2798152aaf7bba6c0a4.json",
+					"name" : "subplot2grid",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "surface::@c7f826c731235b5b4400",
+					"jsonFile" : "target-surface-MinSizeRel-b8df8b61761ee4afc368.json",
+					"name" : "surface",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "test_kmeans::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_kmeans-MinSizeRel-f14338a0a8c58172393a.json",
+					"name" : "test_kmeans",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "update::@c7f826c731235b5b4400",
+					"jsonFile" : "target-update-MinSizeRel-b4caf4b0d85f8aab5004.json",
+					"name" : "update",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "viewer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-viewer-MinSizeRel-d26b0df6551fe274c987.json",
+					"name" : "viewer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "xkcd::@c7f826c731235b5b4400",
+					"jsonFile" : "target-xkcd-MinSizeRel-9f8785f4f2fe49eeb14c.json",
+					"name" : "xkcd",
+					"projectIndex" : 1
+				}
+			]
+		},
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						5
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2,
+						5,
+						13,
+						16,
+						17,
+						20,
+						30
+					]
+				},
+				{
+					"build" : "third_party/matplotlib-cpp",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.matplotlib-cpp-RelWithDebInfo-7999980f93bad6224b76.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.8"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "third_party/matplotlib-cpp",
+					"targetIndexes" : 
+					[
+						4,
+						6,
+						7,
+						8,
+						11,
+						12,
+						14,
+						15,
+						18,
+						21,
+						23,
+						24,
+						25,
+						26,
+						27,
+						29,
+						31
+					]
+				},
+				{
+					"build" : "src/model_renderer",
+					"jsonFile" : "directory-src.model_renderer-RelWithDebInfo-fcf060882329bd2c77b4.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "src/model_renderer",
+					"targetIndexes" : 
+					[
+						3,
+						22
+					]
+				},
+				{
+					"build" : "third_party/benchmark",
+					"childIndexes" : 
+					[
+						4
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.benchmark-RelWithDebInfo-75bc2a1c5a0dabac44ba.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 3,
+					"source" : "third_party/benchmark",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "third_party/benchmark/src",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-third_party.benchmark.src-RelWithDebInfo-2ccd3d12085110d2e708.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.13"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 3,
+					"source" : "third_party/benchmark/src",
+					"targetIndexes" : 
+					[
+						9,
+						10
+					]
+				},
+				{
+					"build" : "tests",
+					"jsonFile" : "directory-tests-RelWithDebInfo-70e4927a02b591d5c1f8.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 4,
+					"source" : "tests",
+					"targetIndexes" : 
+					[
+						1,
+						19,
+						28
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "KMeans",
+					"targetIndexes" : 
+					[
+						2,
+						5,
+						13,
+						16,
+						17,
+						20,
+						30
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "matplotlib_cpp",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						4,
+						6,
+						7,
+						8,
+						11,
+						12,
+						14,
+						15,
+						18,
+						21,
+						23,
+						24,
+						25,
+						26,
+						27,
+						29,
+						31
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "Mesh_Viewer",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						3,
+						22
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						3,
+						4
+					],
+					"name" : "benchmark",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						9,
+						10
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						5
+					],
+					"name" : "KMeansTests",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						19,
+						28
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 3,
+					"id" : "ALL_BUILD::@8ffed400b92ab2b01493",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-ab9f1639901b1d8bb4c6.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "ALL_BUILD::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-d8d6d6de54acf6d2e12d.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-d0f95e1e6a0aa60e4d9c.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ALL_BUILD::@17a8cca424b976289952",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-5802a26156591a62de4b.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ALL_BUILD::@c7f826c731235b5b4400",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-ca6900d7866eee65c384.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-RelWithDebInfo-b9463c7517f9d41521ca.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "animation::@c7f826c731235b5b4400",
+					"jsonFile" : "target-animation-RelWithDebInfo-4d62602e2a3f25cd8450.json",
+					"name" : "animation",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "bar::@c7f826c731235b5b4400",
+					"jsonFile" : "target-bar-RelWithDebInfo-28c4550acd5d7a21b597.json",
+					"name" : "bar",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "basic::@c7f826c731235b5b4400",
+					"jsonFile" : "target-basic-RelWithDebInfo-6bf813db88287292a033.json",
+					"name" : "basic",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "benchmark::@27580315aaf28f4a2bec",
+					"jsonFile" : "target-benchmark-RelWithDebInfo-efec8bdb181b50ad3cba.json",
+					"name" : "benchmark",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "benchmark_main::@27580315aaf28f4a2bec",
+					"jsonFile" : "target-benchmark_main-RelWithDebInfo-682b29ad8b381ba7ba59.json",
+					"name" : "benchmark_main",
+					"projectIndex" : 3
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "colorbar::@c7f826c731235b5b4400",
+					"jsonFile" : "target-colorbar-RelWithDebInfo-953e33207e910e4bfbad.json",
+					"name" : "colorbar",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "contour::@c7f826c731235b5b4400",
+					"jsonFile" : "target-contour-RelWithDebInfo-0f86e7b1a9c0f175d1ee.json",
+					"name" : "contour",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "evaluation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-evaluation-RelWithDebInfo-2a66162454ca22bf6980.json",
+					"name" : "evaluation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "fill::@c7f826c731235b5b4400",
+					"jsonFile" : "target-fill-RelWithDebInfo-5519e9f97fa64984d070.json",
+					"name" : "fill",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "fill_inbetween::@c7f826c731235b5b4400",
+					"jsonFile" : "target-fill_inbetween-RelWithDebInfo-e25f1f5f55372f585619.json",
+					"name" : "fill_inbetween",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "k_means::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-k_means-RelWithDebInfo-241892603710e9740cb8.json",
+					"name" : "k_means",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "kmeans_benchmark::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-kmeans_benchmark-RelWithDebInfo-a41de20ee5fa794fd266.json",
+					"name" : "kmeans_benchmark",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "lines3d::@c7f826c731235b5b4400",
+					"jsonFile" : "target-lines3d-RelWithDebInfo-a20b0bd21e7f75c29728.json",
+					"name" : "lines3d",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "mesh_lib::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-mesh_lib-RelWithDebInfo-8cfcf77480c3a8c5ad55.json",
+					"name" : "mesh_lib",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "mesh_segmentation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-mesh_segmentation-RelWithDebInfo-6ccc8e360aa12db9ab6d.json",
+					"name" : "mesh_segmentation",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "minimal::@c7f826c731235b5b4400",
+					"jsonFile" : "target-minimal-RelWithDebInfo-b7bffbc4e2fce346133b.json",
+					"name" : "minimal",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "model_renderer::@17a8cca424b976289952",
+					"jsonFile" : "target-model_renderer-RelWithDebInfo-39481841d1681448cabe.json",
+					"name" : "model_renderer",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "modern::@c7f826c731235b5b4400",
+					"jsonFile" : "target-modern-RelWithDebInfo-e46843f8cc2c12c5c0d7.json",
+					"name" : "modern",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "nonblock::@c7f826c731235b5b4400",
+					"jsonFile" : "target-nonblock-RelWithDebInfo-eb4bd26ef1d8cdb0d8f4.json",
+					"name" : "nonblock",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "spy::@c7f826c731235b5b4400",
+					"jsonFile" : "target-spy-RelWithDebInfo-b397486ea31d00a4480b.json",
+					"name" : "spy",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "subplot2grid::@c7f826c731235b5b4400",
+					"jsonFile" : "target-subplot2grid-RelWithDebInfo-2f5efb42023e53855e2b.json",
+					"name" : "subplot2grid",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "surface::@c7f826c731235b5b4400",
+					"jsonFile" : "target-surface-RelWithDebInfo-21ea23f08b222ead6191.json",
+					"name" : "surface",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "test_kmeans::@a44f0ac069e85531cdee",
+					"jsonFile" : "target-test_kmeans-RelWithDebInfo-97939af7f5fc477f02da.json",
+					"name" : "test_kmeans",
+					"projectIndex" : 4
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "update::@c7f826c731235b5b4400",
+					"jsonFile" : "target-update-RelWithDebInfo-c1ec72b18989a54cb2d1.json",
+					"name" : "update",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "viewer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-viewer-RelWithDebInfo-b1bba93b7972d33352f8.json",
+					"name" : "viewer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "xkcd::@c7f826c731235b5b4400",
+					"jsonFile" : "target-xkcd-RelWithDebInfo-5dcdc44b587c8977b657.json",
+					"name" : "xkcd",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset",
+		"source" : "C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

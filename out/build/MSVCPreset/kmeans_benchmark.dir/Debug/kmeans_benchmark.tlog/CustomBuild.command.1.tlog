@@ -1,0 +1,74 @@
+^C:\USERS\ANTOJ\DESKTOP\TONIO\POLIMI\AMSC\16-KMEANS-16-KMEANS\OUT\BUILD\MSVCPRESET\CMAKEFILES\B9019839973BCF41C07838FD8BC47715\KMEANS_BENCHMARK_GENERATED_KMEANS.CU.OBJ.RULE
+setlocal
+cd C:\Users\antoj\Desktop\Tonio\polimi\amsc\16-kmeans-16-kmeans\out\build\MSVCPreset\CMakeFiles\kmeans_benchmark.dir\include\clustering
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/kmeans_benchmark.dir/include/clustering/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D "CCBIN:PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools/MSVC/14.42.34433/bin/Hostx64/x64" -D build_configuration:STRING=Debug -D generated_file:STRING=C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/kmeans_benchmark.dir/include/clustering/Debug/kmeans_benchmark_generated_kmeans.cu.obj -D generated_cubin_file:STRING=C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/kmeans_benchmark.dir/include/clustering/Debug/kmeans_benchmark_generated_kmeans.cu.obj.cubin.txt -P C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/kmeans_benchmark.dir/include/clustering/kmeans_benchmark_generated_kmeans.cu.obj.Debug.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ANTOJ\DESKTOP\TONIO\POLIMI\AMSC\16-KMEANS-16-KMEANS\OUT\BUILD\MSVCPRESET\CMAKEFILES\B9019839973BCF41C07838FD8BC47715\KMEANS_BENCHMARK_GENERATED_KMEANS_GEODESIC.CU.OBJ.RULE
+setlocal
+cd C:\Users\antoj\Desktop\Tonio\polimi\amsc\16-kmeans-16-kmeans\out\build\MSVCPreset\CMakeFiles\kmeans_benchmark.dir\include\clustering
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/kmeans_benchmark.dir/include/clustering/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D "CCBIN:PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools/MSVC/14.42.34433/bin/Hostx64/x64" -D build_configuration:STRING=Debug -D generated_file:STRING=C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/kmeans_benchmark.dir/include/clustering/Debug/kmeans_benchmark_generated_kmeans_geodesic.cu.obj -D generated_cubin_file:STRING=C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/kmeans_benchmark.dir/include/clustering/Debug/kmeans_benchmark_generated_kmeans_geodesic.cu.obj.cubin.txt -P C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/kmeans_benchmark.dir/include/clustering/kmeans_benchmark_generated_kmeans_geodesic.cu.obj.Debug.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ANTOJ\DESKTOP\TONIO\POLIMI\AMSC\16-KMEANS-16-KMEANS\INCLUDE\CLUSTERING\KMEANS.CU
+setlocal
+cd C:\Users\antoj\Desktop\Tonio\polimi\amsc\16-kmeans-16-kmeans\out\build\MSVCPreset\CMakeFiles\k_means.dir\include\clustering
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/k_means.dir/include/clustering/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D "CCBIN:PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools/MSVC/14.42.34433/bin/Hostx64/x64" -D build_configuration:STRING=Debug -D generated_file:STRING=C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/k_means.dir/include/clustering/Debug/k_means_generated_kmeans.cu.obj -D generated_cubin_file:STRING=C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/k_means.dir/include/clustering/Debug/k_means_generated_kmeans.cu.obj.cubin.txt -P C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/k_means.dir/include/clustering/k_means_generated_kmeans.cu.obj.Debug.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ANTOJ\DESKTOP\TONIO\POLIMI\AMSC\16-KMEANS-16-KMEANS\INCLUDE\CLUSTERING\KMEANS_GEODESIC.CU
+setlocal
+cd C:\Users\antoj\Desktop\Tonio\polimi\amsc\16-kmeans-16-kmeans\out\build\MSVCPreset\CMakeFiles\k_means.dir\include\clustering
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/k_means.dir/include/clustering/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -D verbose:BOOL=OFF -D "CCBIN:PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools/MSVC/14.42.34433/bin/Hostx64/x64" -D build_configuration:STRING=Debug -D generated_file:STRING=C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/k_means.dir/include/clustering/Debug/k_means_generated_kmeans_geodesic.cu.obj -D generated_cubin_file:STRING=C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/k_means.dir/include/clustering/Debug/k_means_generated_kmeans_geodesic.cu.obj.cubin.txt -P C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/k_means.dir/include/clustering/k_means_generated_kmeans_geodesic.cu.obj.Debug.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\ANTOJ\DESKTOP\TONIO\POLIMI\AMSC\16-KMEANS-16-KMEANS\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans -BC:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset --check-stamp-file C:/Users/antoj/Desktop/Tonio/polimi/amsc/16-kmeans-16-kmeans/out/build/MSVCPreset/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
