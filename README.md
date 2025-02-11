@@ -65,8 +65,17 @@ On macOS you can install the dependencies using [Homebrew](https://brew.sh/). On
       git clone https://github.com/microsoft/vcpkg.git
       cd vcpkg
       ./bootstrap-vcpkg.bat
+      ```
+      From now on, consider C:/path/to/vcpkg as your right path to vcpkg, and replace in each occurrence.
+      Then, run these commands in terminal:
+      ```bash
+      $env:VCPKG_ROOT = "C:/path/to/vcpkg"
+      $env:PATH = "$env:VCPKG_ROOT;$env:PATH"
       vcpkg install opengl glfw3 glm
       ```
+      Then, go to `./src/model_renderer/CMakeLists.txt` and replace the two variables `GLFW_INCLUDE_DIR` and `GLFW_LIBRARY` with:
+      - `GLFW_INCLUDE_DIR: C:/path/to/vcpkg/packages/glfw3_x64-windows/include`
+      - `GLFW_LIBRARY: C:/path/to/vcpkg/packages/glfw3_x64-windows/lib/glfw3dll.lib`
 
 5) GPU CUDA only for Windows MSVC (Optional):
     - Ensure you have MSVC 2019 or later installed.
