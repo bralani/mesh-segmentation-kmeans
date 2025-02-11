@@ -6,8 +6,6 @@
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/include/mesh_segmentation",
                 "${workspaceFolder}/third_party",
-                "${workspaceFolder}/third_party/glfw",
-                "${workspaceFolder}/third_party/glad",
                 "${workspaceFolder}/third_party/imgui/backends",
                 "${workspaceFolder}/third_party/imgui",
                 "${workspaceFolder}/third_party/glm",
