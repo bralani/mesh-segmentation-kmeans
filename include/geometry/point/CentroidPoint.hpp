@@ -20,6 +20,8 @@ public:
     void normalize();
     bool operator==(const CentroidPoint<PT, PD> &other) const;
     bool operator==(const Point<PT, PD> &other) const;
+    bool operator!=(const CentroidPoint<PT, PD> &other) const;
+    bool operator!=(const Point<PT, PD> &other) const;
 
     virtual ~CentroidPoint() = default;
 };
