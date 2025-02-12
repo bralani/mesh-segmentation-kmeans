@@ -126,31 +126,137 @@ static void dijkstraCPU(
     }
 }
 
+__global__ void findClosestFaceKernel(
+    const float* d_faceBaricenter, // Array of face barycenters [N * dim]
+    int N,                         // Total number of faces
+    int dim,                       // Dimension (e.g. 3 for 3D)
+    const float* d_centroid,       // Pointer to centroid coordinates (array of length dim)
+    float* d_blockMinDistances,    // Output: minimum squared distance per block
+    int* d_blockMinIndices         // Output: corresponding face index per block
+)
+{
+    // Allocate shared memory: first blockDim.x floats for distances,
+    // then blockDim.x ints for indices.
+    extern __shared__ char sharedMem[];
+    float* s_dist = reinterpret_cast<float*>(sharedMem);
+    int* s_idx = reinterpret_cast<int*>(sharedMem + blockDim.x * sizeof(float));
+
+    int tid = threadIdx.x;
+    int idx = blockIdx.x * blockDim.x + tid;
+
+    // Initialize best distance to a large value.
+    float bestDist = FLT_MAX;
+    int bestIdx = -1;
+
+    if (idx < N) {
+        float dist = 0.0f;
+        // Compute squared Euclidean distance between the face barycenter and the centroid.
+        for (int d = 0; d < dim; d++) {
+            float diff = d_faceBaricenter[idx * dim + d] - d_centroid[d];
+            dist += diff * diff;
+        }
+        bestDist = dist;
+        bestIdx = idx;
+    }
+
+    s_dist[tid] = bestDist;
+    s_idx[tid] = bestIdx;
+    __syncthreads();
+
+    // Reduction in shared memory.
+    for (unsigned int s = blockDim.x / 2; s > 0; s >>= 1) {
+        if (tid < s) {
+            if (s_dist[tid + s] < s_dist[tid]) {
+                s_dist[tid] = s_dist[tid + s];
+                s_idx[tid] = s_idx[tid + s];
+            }
+        }
+        __syncthreads();
+    }
+
+    // Write the block's result to global memory.
+    if (tid == 0) {
+        d_blockMinDistances[blockIdx.x] = s_dist[0];
+        d_blockMinIndices[blockIdx.x] = s_idx[0];
+    }
+}
+
+// Host function to find the closest face index for a given centroid using the GPU.
+int findClosestFaceGPU(const float* d_faceBaricenter, int N, int dim, const float* d_centroid) {
+    int threadsPerBlock = 256;
+    int numBlocks = (N + threadsPerBlock - 1) / threadsPerBlock;
+
+    // Allocate memory for block-level results on the device.
+    float* d_blockMinDistances;
+    int* d_blockMinIndices;
+    cudaMalloc(&d_blockMinDistances, numBlocks * sizeof(float));
+    cudaMalloc(&d_blockMinIndices, numBlocks * sizeof(int));
+
+    // Calculate shared memory size: each block uses threadsPerBlock * (sizeof(float) + sizeof(int)).
+    size_t sharedMemSize = threadsPerBlock * (sizeof(float) + sizeof(int));
+
+    // Launch the kernel.
+    findClosestFaceKernel<<<numBlocks, threadsPerBlock, sharedMemSize>>>(
+        d_faceBaricenter,
+        N,
+        dim,
+        d_centroid,
+        d_blockMinDistances,
+        d_blockMinIndices
+    );
+    cudaDeviceSynchronize();
+
+    // Copy the block-level results back to host.
+    std::vector<float> h_blockMinDistances(numBlocks);
+    std::vector<int> h_blockMinIndices(numBlocks);
+    cudaMemcpy(h_blockMinDistances.data(), d_blockMinDistances, numBlocks * sizeof(float), cudaMemcpyDeviceToHost);
+    cudaMemcpy(h_blockMinIndices.data(), d_blockMinIndices, numBlocks * sizeof(int), cudaMemcpyDeviceToHost);
+
+    // Free device memory for block results.
+    cudaFree(d_blockMinDistances);
+    cudaFree(d_blockMinIndices);
+
+    // Final reduction on host.
+    float bestDist = FLT_MAX;
+    int bestIdx = -1;
+    for (int i = 0; i < numBlocks; i++) {
+        if (h_blockMinDistances[i] < bestDist) {
+            bestDist = h_blockMinDistances[i];
+            bestIdx = h_blockMinIndices[i];
+        }
+    }
+    return bestIdx;
+}
+
 static void setupGeodesicDistances(
     float* d_distances,                   // [K*N] device memory
     std::vector<float>& outDistancesHost, // [K*N], reused each iteration
-    const std::vector<float>& faceBaricenter, // [N*dim]
+    const float* d_faceBaricenter,        // device pointer to face barycenters
+    const std::vector<float>& h_faceBaricenter, // host copy of face barycenters [N*dim]
     const std::vector<std::vector<int>>& adjacency,
     int N,
     int K,
-    int dim
+    int dim,
+    const float* d_centroids              // device pointer to centroids [K*dim]
 )
 {
+    for (int c = 0; c < K; c++){
+        // For the current centroid, compute the closest face index using the GPU.
+        // d_centroids + c*dim points to the centroid 'c'.
+        int startFace = findClosestFaceGPU(d_faceBaricenter, N, dim, d_centroids + c * dim);
 
-    for(int c=0; c<K; c++){
-        int startFace = c; // or some "closestFaceId[c]"
+        // Compute geodesic distances from the chosen startFace using the CPU Dijkstra.
         std::vector<float> distC(N);
-        dijkstraCPU(startFace, N, adjacency, faceBaricenter, dim, distC);
-        for(int f=0; f<N; f++){
-            outDistancesHost[c*N + f] = distC[f];
+        dijkstraCPU(startFace, N, adjacency, h_faceBaricenter, dim, distC);
+
+        // Store the distances in the temporary host array.
+        for (int f = 0; f < N; f++){
+            outDistancesHost[c * N + f] = distC[f];
         }
     }
 
-    // outDistancesHost => d_distances (device)
-    cudaMemcpy(d_distances,
-               outDistancesHost.data(),
-               K*N*sizeof(float),
-               cudaMemcpyHostToDevice);
+    // Copy the computed distances from host to device.
+    cudaMemcpy(d_distances, outDistancesHost.data(), K * N * sizeof(float), cudaMemcpyHostToDevice);
 }
 
 
@@ -208,11 +314,13 @@ void kmeans_cuda_geodesic(
         setupGeodesicDistances(
             d_distances,
             tempHostDistances,
-            h_faceBaricenter,
+            d_faceBaricenter,  // device pointer to face barycenters
+            h_faceBaricenter,  // host copy of face barycenters
             adjacency,
             N,
             K,
-            dim
+            dim,
+            d_centroids        // device pointer to centroids
         );
 
         // cluster assignment on GPU
