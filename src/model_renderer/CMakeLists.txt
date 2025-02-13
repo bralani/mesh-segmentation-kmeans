@@ -81,7 +81,11 @@ endif()
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
 
 # Copy GLFW DLL if necessary (Windows)
-file(COPY ${GLFW_DLL} DESTINATION ${CMAKE_BINARY_DIR})
+if(WIN32)
+        set(GLFW_DLL ${GLFW_INCLUDE_DIR}/../bin)
+        set(ENV{PATH} "$ENV{PATH};${GLFW_DLL}")
+endif()
+
 
 
 
