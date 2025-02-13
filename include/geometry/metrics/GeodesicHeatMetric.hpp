@@ -8,7 +8,17 @@
 #include <cassert>
 #include "geometry/mesh/Mesh.hpp"
 #include "geometry/metrics/GeodesicMetric.hpp"
+
+#ifdef WIN32
+    #include <windows.h>
+    #undef max
+    #undef min
+#endif
 #include <igl/heat_geodesics.h>
+#ifdef WIN32
+    #undef max
+    #undef min
+#endif
 
 // Forward declaration of the template class
 template <typename PT, std::size_t PD>
