@@ -4,8 +4,8 @@ project(Mesh_Viewer)
 set(CMAKE_CXX_STANDARD 20)
 
 # Specify the correct paths to GLFW
-set(GLFW_INCLUDE_DIR /opt/homebrew/opt/glfw/include)
-set(GLFW_LIBRARY /opt/homebrew/opt/glfw/lib/libglfw.dylib)
+set(GLFW_INCLUDE_DIR /opt/homebrew/opt/glfw/include CACHE PATH "Path to GLFW include directory")
+set(GLFW_LIBRARY /opt/homebrew/opt/glfw/lib/libglfw.dylib CACHE FILEPATH "Path to GLFW library")
 
 set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/third_party)
 
@@ -79,16 +79,6 @@ elseif(APPLE)
 endif()
 
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
-
-# Copy GLFW DLL if necessary (Windows)
-if(WIN32)
-        set(GLFW_DLL ${GLFW_INCLUDE_DIR}/../bin)
-        set(ENV{PATH} "$ENV{PATH};${GLFW_DLL}")
-endif()
-
-
-
-
 add_library(model_renderer STATIC 
         ${GLAD_SRC}
         ${IMGUI_SRC}

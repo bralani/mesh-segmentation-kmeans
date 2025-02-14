@@ -3,20 +3,23 @@ project(KMeans)
 
 # Set the target architecture for macOS (arm64)
 set(CMAKE_OSX_ARCHITECTURES arm64)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 enable_testing()
 
 # CUDA settings
-find_package(CUDA)
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_50") # Set GPU architecture (adjust if necessary)
+find_package(CUDAToolkit)
 
 # Include csv-parser as a submodule
 include_directories(SYSTEM third_party/csv-parser/single_include)
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/eigen)
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/libigl/include)
 add_subdirectory(third_party/matplotlib-cpp)
-add_subdirectory(src/model_renderer)
+
+find_package(OpenGL)
+if (OPENGL_FOUND)
+    add_subdirectory(src/model_renderer)
+endif()
 
 # BENCHMARKING 
 set(BENCHMARK_ENABLE_TESTING OFF)  
@@ -56,7 +59,16 @@ file(GLOB_RECURSE SOURCES
 add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
 add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
 add_kmeans_executable(evaluation "src/evaluation.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
-add_kmeans_executable(viewer "src/viewer.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
+
+if (OPENGL_FOUND)
+    add_kmeans_executable(viewer "src/viewer.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
+    if(WIN32)
+            add_custom_command(TARGET viewer POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${GLFW_INCLUDE_DIR}/../bin/glfw3.dll"
+                    $<TARGET_FILE_DIR:viewer>)
+    endif()
+endif()
 
 add_kmeans_executable(kmeans_benchmark "src/benchmark.cpp;${SOURCES}" "include/clustering/kmeans.cu;include/clustering/kmeans_geodesic.cu")
 target_link_libraries(kmeans_benchmark benchmark::benchmark)
