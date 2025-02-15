@@ -57,6 +57,8 @@ protected:
     void storeCentroids() override ;
 
     double dihedralAngle(const Face& f1,const Face& f2);
+
+    bool checkConvergence(int iter);
 };
 
 #endif // GEODESICMETRIC_HPP

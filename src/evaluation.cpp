@@ -12,108 +12,96 @@
 namespace plt = matplotlibcpp;
 namespace fs = std::filesystem;
 
-#define DIMENSION 2
-
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
-  try
-  {
-    int num_initialization_method = 0;
-    int num_k_init_method = 0;
-    string id;
-    cout << "Enter the ID of the mesh file: ";
-    cin >> id;
-
-    std::cout << std::endl;
-
-    string file_name = "/Users/matteobalice/Desktop/16-kmeans-16-kmeans/resources/meshes/obj/" + id + ".obj";
-    Mesh mesh(file_name);
-    Mesh mesh2(file_name);
-
-    // read all segmentations from
-    string folderPath = "/Users/matteobalice/Desktop/16-kmeans-16-kmeans/resources/meshes/seg/" + id + "/";
+    if (argc < 4) {
+        cerr << "Usage: " << argv[0] << " <mesh_id> <num_initialization_method> <num_k_init_method>" << endl;
+        return 1;
+    }
+    
     try
     {
-      if (fs::exists(folderPath) && fs::is_directory(folderPath))
-      {
-        Entry_CE entry_ce;
-        Entry_HD entry_hd;
-        Entry_RI entry_ri;
+        string id = argv[1];
+        int num_initialization_method = stoi(argv[2]);
+        int num_k_init_method = stoi(argv[3]);
 
-        int count = 0;
-
-        // take the time 
-        auto start = std::chrono::high_resolution_clock::now();
-        for (const auto &entry : fs::directory_iterator(folderPath))
+        string file_name = "/Users/matteobalice/Desktop/16-kmeans-16-kmeans/resources/meshes/obj/" + id + ".obj";
+        string folderPath = "/Users/matteobalice/Desktop/16-kmeans-16-kmeans/resources/meshes/seg/" + id + "/";
+        
+        if (fs::exists(folderPath) && fs::is_directory(folderPath))
         {
-          if (fs::is_regular_file(entry.status()))
-          {
-            int num_clusters = mesh2.createSegmentationFromSegFile(entry.path());
+            Mesh mesh(file_name);
+            Mesh mesh2(file_name);
 
-            MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method) ;
+            Entry_CE entry_ce;
+            Entry_HD entry_hd;
+            Entry_RI entry_ri;
+            int count = 0;
+            
+            auto start = std::chrono::high_resolution_clock::now();
+            for (const auto &entry : fs::directory_iterator(folderPath))
+            {
+                if (fs::is_regular_file(entry.status()))
+                {
+                    int num_clusters = mesh2.createSegmentationFromSegFile(entry.path());
+                    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 0.05, num_initialization_method, num_k_init_method);
 
-            segmentation.fit();
+                    segmentation.fit();
 
-            Segmentation s1(&mesh, num_clusters);
-            Segmentation s2(&mesh2, num_clusters);
+                    Segmentation s1(&mesh, num_clusters);
+                    Segmentation s2(&mesh2, num_clusters);
 
-            // Call evaluation methods
-            struct Entry_CE* tempConsistency = EvaluateConsistencyError(&s1, &s2);
-            struct Entry_HD* tempHamming = EvaluateHammingDistance(&s1, &s2);
-            struct Entry_RI* tempRI = EvaluateRandIndex(&s1, &s2);
+                    Entry_CE* tempConsistency = EvaluateConsistencyError(&s1, &s2);
+                    Entry_HD* tempHamming = EvaluateHammingDistance(&s1, &s2);
+                    Entry_RI* tempRI = EvaluateRandIndex(&s1, &s2);
 
-            entry_ce.GCE += tempConsistency->GCE;
-            entry_ce.LCE += tempConsistency->LCE;
-            entry_ce.GCEa += tempConsistency->GCEa;
-            entry_ce.LCEa += tempConsistency->LCEa;
+                    entry_ce.GCE += tempConsistency->GCE;
+                    entry_ce.LCE += tempConsistency->LCE;
+                    entry_ce.GCEa += tempConsistency->GCEa;
+                    entry_ce.LCEa += tempConsistency->LCEa;
 
-            entry_hd.distance += tempHamming->distance;
-            entry_hd.missingRate += tempHamming->missingRate;
-            entry_hd.falseAlarmRate += tempHamming->falseAlarmRate;
+                    entry_hd.distance += tempHamming->distance;
+                    entry_hd.missingRate += tempHamming->missingRate;
+                    entry_hd.falseAlarmRate += tempHamming->falseAlarmRate;
 
-            entry_ri.RI += tempRI->RI;
-            count++;
-          }
+                    entry_ri.RI += tempRI->RI;
+                    count++;
+                }
+            }
+
+            if (count > 0) {
+                entry_ce.GCE /= count;
+                entry_ce.LCE /= count;
+                entry_ce.GCEa /= count;
+                entry_ce.LCEa /= count;
+
+                entry_hd.distance /= count;
+                entry_hd.missingRate /= count;
+                entry_hd.falseAlarmRate /= count;
+
+                entry_ri.RI /= count;
+            }
+
+            cout << entry_ce << endl;
+            cout << entry_hd << endl;
+            cout << entry_ri << endl;
+
+            auto finish = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> elapsed = finish - start;
+            cout << "Elapsed time: " << elapsed.count() << " s" << endl;
         }
-
-        entry_ce.GCE /= count;
-        entry_ce.LCE /= count;
-        entry_ce.GCEa /= count;
-        entry_ce.LCEa /= count;
-
-        entry_hd.distance /= count;
-        entry_hd.missingRate /= count;
-        entry_hd.falseAlarmRate /= count;
-
-        entry_ri.RI /= count;
-
-        cout << entry_ce << std::endl;
-        cout << entry_hd << std::endl;
-        cout << entry_ri << std::endl;
-
-        // take the time
-        auto finish = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> elapsed = finish - start;
-        std::cout << "Elapsed time: " << elapsed.count() << " s\n";
-
-      }
-      else
-      {
-        std::cout << "Provided path is not a directory or does not exist!" << std::endl;
-      }
+        else
+        {
+            cerr << "Provided path is not a directory or does not exist!" << endl;
+        }
     }
-    catch (const std::exception &e)
+    catch (const exception &e)
     {
-      std::cout << "Error: " << e.what() << std::endl;
+        cerr << "Error: " << e.what() << endl;
+        return 1;
     }
 
     return 0;
-  }
-  catch (const std::exception &e)
-  {
-    std::cerr << "Error: " << e.what() << '\n';
-    return 1;
-  }
 }

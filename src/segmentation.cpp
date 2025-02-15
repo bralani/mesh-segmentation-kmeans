@@ -8,8 +8,6 @@
 
 namespace plt = matplotlibcpp;
 
-#define DIMENSION 2
-
 using namespace std;
 
 int main()
@@ -19,7 +17,8 @@ int main()
     string file_name;
     cout << "Enter the name of the mesh file: ";
     cin >> file_name;
-    file_name = "../../resources/meshes/obj/" + file_name;
+    file_name = std::string(ROOT_FOLDER) + "/resources/meshes/obj/" + file_name + ".obj";
+
 
     int num_clusters;
     cout << "Enter the number of clusters (parameter k, 0 if unknow): ";
@@ -38,7 +37,7 @@ int main()
       cin >> num_k_init_method;
     }
 
-    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method) ;
+    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, 0.05, num_initialization_method, num_k_init_method) ;
 
     segmentation.fit();
 

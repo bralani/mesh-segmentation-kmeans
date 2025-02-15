@@ -60,7 +60,6 @@ struct Entry_CE* EvaluateConsistencyError(Segmentation *s1, Segmentation *s2)
       AreaIntersection[a * nSeg2 + b] += s1->getMesh()->getFace(face).getArea();
     }
 
-
     // get normalized set/area differences
     // faces in segments[i] does not necessarily have the segment id i
     double *nSegFaces1 = new double[nSeg1];
@@ -70,28 +69,53 @@ struct Entry_CE* EvaluateConsistencyError(Segmentation *s1, Segmentation *s2)
 
     for (i = 0; i < nSeg1; i++)
     {
-      FaceId f = s1->getSegments()[i].getFaces()[0];
-      int segId = s1->getMesh()->getFaceCluster(f);
-      nSegFaces1[segId] = s1->getSegments()[i].getFaces().size();
-      areaSeg1[segId] = s1->getSegments()[i].getArea();
+      if (s1->getSegments()[i].getFaces().size() == 0)
+      {
+        nSegFaces1[i] = s1->getSegments()[i].getFaces().size();
+        areaSeg1[i] = s1->getSegments()[i].getArea();
+      } else {
+        FaceId f = s1->getSegments()[i].getFaces()[0];
+        int segId = s1->getMesh()->getFaceCluster(f);
+        nSegFaces1[segId] = s1->getSegments()[i].getFaces().size();
+        areaSeg1[segId] = s1->getSegments()[i].getArea();
+      }
     }
     for (i = 0; i < nSeg2; i++)
     {
-      FaceId f = s2->getSegments()[i].getFaces()[0];
-      int segId = s2->getMesh()->getFaceCluster(f);
-      nSegFaces2[segId] = s2->getSegments()[i].getFaces().size();
-      areaSeg2[segId] = s2->getSegments()[i].getArea();
+      if (s2->getSegments()[i].getFaces().size() == 0) {
+        nSegFaces2[i] = s2->getSegments()[i].getFaces().size();
+        areaSeg2[i] = s2->getSegments()[i].getArea();
+      } else {
+        FaceId f = s2->getSegments()[i].getFaces()[0];
+        int segId = s2->getMesh()->getFaceCluster(f);
+        nSegFaces2[segId] = s2->getSegments()[i].getFaces().size();
+        areaSeg2[segId] = s2->getSegments()[i].getArea();
+      }
     }
-    
 
     for (i = 0; i < nSeg1; i++)
     {
       for (j = 0; j < nSeg2; j++)
       {
-        SetDifference12[i * nSeg2 + j] = 1 - Intersection[i * nSeg2 + j] / nSegFaces1[i];
-        SetDifference21[j * nSeg1 + i] = 1 - Intersection[i * nSeg2 + j] / nSegFaces2[j];
-        AreaDifference12[i * nSeg2 + j] = 1 - AreaIntersection[i * nSeg2 + j] / areaSeg1[i];
-        AreaDifference21[j * nSeg1 + i] = 1 - AreaIntersection[i * nSeg2 + j] / areaSeg2[j];
+        if (nSegFaces1[i] != 0)
+            SetDifference12[i * nSeg2 + j] = 1 - Intersection[i * nSeg2 + j] / nSegFaces1[i];
+        else
+            SetDifference12[i * nSeg2 + j] = 1;
+
+        if (nSegFaces2[j] != 0)
+            SetDifference21[j * nSeg1 + i] = 1 - Intersection[i * nSeg2 + j] / nSegFaces2[j];
+        else
+            SetDifference21[j * nSeg1 + i] = 1;
+
+        if (areaSeg1[i] != 0)
+            AreaDifference12[i * nSeg2 + j] = 1 - AreaIntersection[i * nSeg2 + j] / areaSeg1[i];
+        else
+            AreaDifference12[i * nSeg2 + j] = 1;
+
+        if (areaSeg2[j] != 0)
+            AreaDifference21[j * nSeg1 + i] = 1 - AreaIntersection[i * nSeg2 + j] / areaSeg2[j];
+        else
+            AreaDifference21[j * nSeg1 + i] = 1;
       }
     }
 

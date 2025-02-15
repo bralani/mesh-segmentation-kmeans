@@ -1,6 +1,6 @@
 #include "geometry/metrics/GeodesicMetric.hpp"
 
-#define LIMIT_CONVERGENCE 200
+#define MAX_ITERATIONS 200
 
 template <typename PT, std::size_t PD>
 GeodesicMetric<PT, PD>::GeodesicMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data)
@@ -160,22 +160,28 @@ void GeodesicMetric<PT, PD>::fit_cpu()
       this->centroids->at(i).coordinates = newCentroids[i].coordinates;
     }
 
-    double curr_perc = static_cast<double>(numChanged) / numFaces;
-    if (curr_perc > this->threshold)
-    {
-      hasConverged = false;
-    }
-
+    hasConverged = checkConvergence(iteration);
+    this->oldCentroids = *this->centroids;
     iteration++;
-    if (iteration > LIMIT_CONVERGENCE)
-    {
-      std::cerr << "Warning: K-Means did not converge after " << LIMIT_CONVERGENCE << " iterations." << std::endl;
-      break;
-    }
   }
   storeCentroids();
   this->oldPoints = 1;
   std::cout << "K-Means converged after " << iteration << " iterations." << std::endl;
+}
+
+// Controlla la convergenza
+template <typename PT, std::size_t PD>
+bool GeodesicMetric<PT, PD>::checkConvergence(int iter) {
+    if (iter > MAX_ITERATIONS) return true;
+
+    if (this->oldCentroids.empty()) return false;
+
+    PT dist = 0;
+    for (size_t i = 0; i < this->centroids->size(); i++) {
+        dist += this->computeEuclideanDistance((*this->centroids)[i], this->oldCentroids[i]);
+    }
+    dist = dist / this->centroids->size();
+    return dist <= this->threshold;
 }
 
 template <typename PT, std::size_t PD>
