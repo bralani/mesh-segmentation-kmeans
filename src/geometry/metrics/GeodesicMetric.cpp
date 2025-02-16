@@ -11,24 +11,71 @@ GeodesicMetric<PT, PD>::GeodesicMetric(Mesh &mesh, double percentage_threshold, 
 }
 
 template <typename PT, std::size_t PD>
-double GeodesicMetric<PT, PD>::dihedralAngle(const Face& f1,const Face& f2){
-  Point<PT, PD> n1 = f1.normal;
-  Point<PT, PD> n2 = f2.normal;
+double GeodesicMetric<PT, PD>::setupAvg(){
+  
+  double result = 0.0;
+  int totalPairs = 0;
+  int dimension = mesh->numFaces();
 
-  double result = n1.coordinates[0] * n2.coordinates[0] + 
-    n1.coordinates[1] * n2.coordinates[1] + 
-    n1.coordinates[2] * n2.coordinates[2];
-  result = result / (n1.norm() * n2.norm() );
-  result = std::acos(result);
+  for (FaceId faceId = 0; faceId < dimension; ++faceId) {
+      FaceId currentId = faceId;
+      const auto& currFace = mesh->getFace(currentId);
+      const auto& currBaricenter = currFace.baricenter; 
 
-  return result;
+      const std::vector<FaceId>& adjacentFaces = mesh->getFaceAdjacencyAt(currentId); 
+
+      for (size_t faceIdy = 0; faceIdy < adjacentFaces.size(); ++faceIdy) {
+          if (currentId < adjacentFaces[faceIdy]) { 
+              const auto& adjFace = mesh->getFace(adjacentFaces[faceIdy]); 
+              const auto& adjBaricenter = adjFace.baricenter; 
+
+              double distance = computeEuclideanDistance(currBaricenter, adjBaricenter);
+              result += distance;
+              totalPairs++;
+          }
+      }
+  }
+
+  return result/totalPairs;
+}
+
+template <typename PT, std::size_t PD>
+double GeodesicMetric<PT, PD>::dihedralAngle(const Face& f1, const Face& f2) const {
+    // Compute the normal vectors of the two faces
+    Point<PT, PD> n1 = f1.normal;
+    Point<PT, PD> n2 = f2.normal;
+
+    // Compute the dot product of the normal vectors
+    double dot_product = n1.coordinates[0] * n2.coordinates[0] + 
+                         n1.coordinates[1] * n2.coordinates[1] + 
+                         n1.coordinates[2] * n2.coordinates[2];
+
+    // Compute the norms (magnitudes) of the normal vectors
+    double norm1 = n1.norm();
+    double norm2 = n2.norm();
+
+    // Compute the cosine of the dihedral angle using the dot product formula
+    double cos_theta = dot_product / (norm1 * norm2);
+
+    // Ensure the cosine value is within the valid range [-1, 1] to prevent errors
+    if (std::abs(cos_theta) > 1.0) {
+        cos_theta /= std::abs(cos_theta);
+    }
+
+    // Compute the dihedral angle in radians
+    double theta = std::acos(cos_theta);
+
+    // Return the weighted sine of the angle, scaled by avgDistances
+    return std::sin(theta) * this->avgDistances;
 }
 
 
 template <typename PT, std::size_t PD>
 void GeodesicMetric<PT, PD>::setup()
 {
-#pragma omp parallel for
+  this->avgDistances = setupAvg();
+  std::cout << "AVG: " << this->avgDistances << std::endl;
+  #pragma omp parallel for
   for (int centroidId = 0; centroidId < this->centroids->size(); ++centroidId)
   {
     const auto &centroid = this->centroids->at(centroidId);
@@ -233,7 +280,7 @@ std::vector<PT> GeodesicMetric<PT, PD>::computeDistances(const FaceId startFace)
       // Compute distance between baricenters
       const auto &currentBaricenter = mesh->getFace(currentFace).baricenter;
       const auto &neighborBaricenter = neighborFace.baricenter;
-      PT weight = computeEuclideanDistance(currentBaricenter, neighborBaricenter);
+      PT weight = computeEuclideanDistance(currentBaricenter, neighborBaricenter) + dihedralAngle(mesh->getFace(currentFace), neighborFace);
 
       // Update the distance if a shorter path is found
       if (curr_distances[currentFace] + weight < curr_distances[neighbor])

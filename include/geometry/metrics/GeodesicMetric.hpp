@@ -49,6 +49,7 @@ protected:
     Mesh *mesh;
     std::unordered_map<FaceId, std::vector<PT>> distances;
     int oldPoints = 0;
+    double avgDistances; 
 
     double computeEuclideanDistance(const Point<PT, PD>& a, const Point<PT, PD>& b) const;
 
@@ -56,7 +57,9 @@ protected:
 
     void storeCentroids() override ;
 
-    double dihedralAngle(const Face& f1,const Face& f2);
+    double dihedralAngle(const Face& f1,const Face& f2) const;
+
+    double setupAvg();
 
     bool checkConvergence(int iter);
 };
