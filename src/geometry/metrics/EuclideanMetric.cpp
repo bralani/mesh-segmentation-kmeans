@@ -1,6 +1,6 @@
 #include "geometry/metrics/EuclideanMetric.hpp"
 
-// Constructor
+// Costruttore
 template <typename PT, std::size_t PD>
 EuclideanMetric<PT, PD>::EuclideanMetric(std::vector<Point<PT, PD>> data, double threshold) {
     this->data = data;
@@ -15,32 +15,16 @@ EuclideanMetric<PT, PD>::EuclideanMetric(std::vector<Point<PT, PD>> data, double
     #else
         kdtree = new KdTree<PT, PD>(this->data);
     #endif
-}
-
-template <typename PT, std::size_t PD>
-EuclideanMetric<PT, PD>::EuclideanMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data)
-: mesh(&mesh)
-{
-    this->treshold = percentage_threshold;
-    this->data = data;
-    
-    #ifdef USE_CUDA
-        if (this->data.size() > MIN_NUM_POINTS_CUDA) {
-            kdtree = nullptr;
-        } else {
-            kdtree = new KdTree<PT, PD>(this->data);
-        }
-    #else
-        kdtree = new KdTree<PT, PD>(this->data);
-    #endif
-}
+}    
 
 template<typename PT, std::size_t PD>
 std::vector<Point<PT, PD>>& EuclideanMetric<PT, PD>::getPoints(){
     return this->data;
 }
 
-// Calculating the Euclidean distance between two points
+
+
+// Calcola la distanza euclidea tra due punti
 template <typename PT, std::size_t PD>
 PT EuclideanMetric<PT, PD>::distanceTo(const Point<PT, PD> &a, const Point<PT, PD> &b) {
     if (a.coordinates.size() != b.coordinates.size()) {
@@ -53,11 +37,13 @@ PT EuclideanMetric<PT, PD>::distanceTo(const Point<PT, PD> &a, const Point<PT, P
     return std::sqrt(sum);
 }
 
-// Setup method (does nothing for this metric)
+// Metodo setup (non fa nulla per questa metrica)
 template <typename PT, std::size_t PD>
-void EuclideanMetric<PT, PD>::setup() {}
+void EuclideanMetric<PT, PD>::setup() {
+    // Metodo vuoto
+}
 
-// Execute clustering on CPU
+// Esegue il clustering su CPU
 template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::fit_cpu() {
     bool convergence = false;
@@ -69,13 +55,10 @@ void EuclideanMetric<PT, PD>::fit_cpu() {
         setup();
         iter++;
     }
-
-    updateFaceClusters();
-    storeCentroids();
 }
 
 #ifdef USE_CUDA
-// Execute clustering on GPU (if CUDA is enabled)
+// Esegue il clustering su GPU (se CUDA è abilitato)
 template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::fit_gpu() {
     int numClusters = this->centroids->size();
@@ -112,7 +95,7 @@ void EuclideanMetric<PT, PD>::fit_gpu() {
 }
 #endif
 
-// Filter the data
+// Filtra i dati
 template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::filter() {
     std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> centersPointers;
@@ -132,7 +115,7 @@ void EuclideanMetric<PT, PD>::filter() {
     }
 }
 
-// Recursively filter the data
+// Metodo ricorsivo per il filtraggio
 template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &node, const std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, int depth) {
     if (!node) return;
@@ -168,7 +151,7 @@ void EuclideanMetric<PT, PD>::filterRecursive(std::unique_ptr<KdNode<PT, PD>> &n
     }
 }
 
-// Find the closest candidate
+// Trova il candidato più vicino
 template <typename PT, std::size_t PD>
 std::shared_ptr<CentroidPoint<PT, PD>> EuclideanMetric<PT, PD>::findClosestCandidate(const std::vector<std::shared_ptr<CentroidPoint<PT, PD>>> &candidates, const Point<PT, PD> &target) {
     auto closest = candidates[0];
@@ -184,7 +167,7 @@ std::shared_ptr<CentroidPoint<PT, PD>> EuclideanMetric<PT, PD>::findClosestCandi
     return closest;
 }
 
-// Check if a point is farther than another
+// Verifica se un punto è più lontano di un altro
 template <typename PT, std::size_t PD>
 bool EuclideanMetric<PT, PD>::isFarther(const Point<PT, PD> &z, const Point<PT, PD> &zStar, const KdNode<PT, PD> &node) {
     Point<PT, PD> u = z - zStar;
@@ -200,7 +183,7 @@ bool EuclideanMetric<PT, PD>::isFarther(const Point<PT, PD> &z, const Point<PT, 
     return distZ > distZStar;
 }
 
-// Assign a centroid to the leaf nodes
+// Assegna un centroid ai nodi foglia
 template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, const std::shared_ptr<CentroidPoint<PT, PD>> &centroid) {
     if (!node->left && !node->right) {
@@ -212,7 +195,7 @@ void EuclideanMetric<PT, PD>::assignCentroid(std::unique_ptr<KdNode<PT, PD>> &no
     assignCentroid(node->right, centroid);
 }
 
-// Check if the centroids have converged
+// Controlla la convergenza
 template <typename PT, std::size_t PD>
 bool EuclideanMetric<PT, PD>::checkConvergence(int iter) {
     if (iter > MAX_ITERATIONS) return true;
@@ -229,54 +212,9 @@ bool EuclideanMetric<PT, PD>::checkConvergence(int iter) {
 
 template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::storeCentroids() {
-    if (mesh == nullptr) return;
-    
-    std::unordered_set<int> uniqueClusters;
-    const size_t numFaces = mesh->numFaces();
-    for (FaceId faceId = 0; faceId < numFaces; ++faceId)
-    {
-        int centroidIndex = mesh->getFaceCluster(faceId);
-        // Check if the cluster is valid: greater or equal to 0 and less than the size of the centroids vector
-        if (centroidIndex < 0 || static_cast<size_t>(centroidIndex) >= this->centroids->size()) {
-            std::cerr << "Warning: Face " << faceId << " has not a valid cluster (" << centroidIndex << "). Skipping." << std::endl;
-            continue;
-        }
-        Point<PT, PD>& baricenter = mesh->getFace(faceId).baricenter;
-        CentroidPoint<PT, PD>& c = (this->centroids)->at(centroidIndex);
-        baricenter.setCentroid(c);
-    }
-
+    //Do nothings 
 }
 
-template <>
-void EuclideanMetric<double, 2>::storeCentroids() {}
-
-template <typename PT, std::size_t PD>
-void EuclideanMetric<PT, PD>::updateFaceClusters() {
-    const size_t numFaces = mesh->numFaces();
-    const size_t numCentroids = this->centroids->size();
-    
-    // For each face, find the closest centroid based on the euclidean distance
-    for (FaceId faceId = 0; faceId < numFaces; ++faceId) {
-        double minDistance = std::numeric_limits<double>::max();
-        int closestCentroid = -1;
-        const Point<PT, PD>& faceCenter = mesh->getFace(faceId).baricenter;
-        
-        for (size_t i = 0; i < numCentroids; ++i) {
-            double distance = this->distanceTo(faceCenter, (*this->centroids)[i]);
-            if (distance < minDistance) {
-                minDistance = distance;
-                closestCentroid = static_cast<int>(i);
-            }
-        }
-        
-        mesh->setFaceCluster(faceId, closestCentroid);
-    }
-}
-
-template <>
-void EuclideanMetric<double, 2>::updateFaceClusters() {}
-
-// Explicit template instantiations
+// Istanze esplicite
 template class EuclideanMetric<double, 2>;
 template class EuclideanMetric<double, 3>;
