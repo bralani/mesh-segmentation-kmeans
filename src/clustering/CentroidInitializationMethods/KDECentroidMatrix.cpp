@@ -1,5 +1,9 @@
 #include "clustering/CentroidInitializationMethods/KDECentroidMatrix.hpp"
 
+#define RAY_MIN 3
+#define RANGE_MIN 9
+
+
 // Constructor with k
 KDE3D::KDE3D(const std::vector<Point<double, 3>>& data, int k)
     : CentroidInitMethod<double, 3>(data, k) {
@@ -243,7 +247,7 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
                 maximaPD.clear(); // Clear maxima to retry
 
                 // Reduce the bandwidth matrix (scale diagonals by 85%)
-                m_h.diagonal() *= 0.85;
+                m_h.diagonal() *= 0.40;
 
                 // Recompute derived parameters for the updated bandwidth
                 SelfAdjointEigenSolver<MatrixXd> solver(m_h);
@@ -294,9 +298,9 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
     // Check if a point is a local maximum
     bool KDE3D::isLocalMaximum(const Grid3D& gridPoints,const Densities3D& densities, size_t x,size_t y,size_t z) {
         double currentDensity = densities[x][y][z];
-        for (int dx = -NUMBER_RAY_STEP; dx <= NUMBER_RAY_STEP; ++dx) {
-            for (int dy = -NUMBER_RAY_STEP; dy <= NUMBER_RAY_STEP; ++dy) {
-                for (int dz = -NUMBER_RAY_STEP; dz <= NUMBER_RAY_STEP; ++dz) {
+        for (int dx = -RAY_MIN; dx <= RAY_MIN; ++dx) {
+            for (int dy = -RAY_MIN; dy <= RAY_MIN; ++dy) {
+                for (int dz = -RAY_MIN; dz <= RAY_MIN; ++dz) {
 
                     if (dx == 0 && dy == 0 && dz == 0) {
                         continue;

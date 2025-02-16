@@ -12,8 +12,6 @@
 #include "clustering/CentroidInitializationMethods/MostDistantCentroids.hpp"
 #include "clustering/CentroidInitializationMethods/KernelFunction.hpp"
 
-#define NUMBER_RAY_STEP 3
-
 using namespace Eigen;
 
 template <typename PT, std::size_t PD>

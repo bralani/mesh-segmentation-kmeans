@@ -74,7 +74,6 @@ template <typename PT, std::size_t PD>
 void GeodesicMetric<PT, PD>::setup()
 {
   this->avgDistances = setupAvg();
-  std::cout << "AVG: " << this->avgDistances << std::endl;
   #pragma omp parallel for
   for (int centroidId = 0; centroidId < this->centroids->size(); ++centroidId)
   {

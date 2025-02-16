@@ -3,9 +3,17 @@ project(Mesh_Viewer)
 
 set(CMAKE_CXX_STANDARD 20)
 
-# Specify the correct paths to GLFW
-set(GLFW_INCLUDE_DIR /opt/homebrew/opt/glfw/include CACHE PATH "Path to GLFW include directory")
-set(GLFW_LIBRARY /opt/homebrew/opt/glfw/lib/libglfw.dylib CACHE FILEPATH "Path to GLFW library")
+message(STATUS "Detected OS: ${CMAKE_SYSTEM_NAME}")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    set(GLFW_INCLUDE_DIR /usr/include/GLFW )
+    set(GLFW_LIBRARY /usr/lib/x86_64-linux-gnu/libglfw.so )
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(GLFW_INCLUDE_DIR /opt/homebrew/opt/glfw/include CACHE PATH "Path to GLFW include directory")
+    set(GLFW_LIBRARY /opt/homebrew/opt/glfw/lib/libglfw.dylib CACHE FILEPATH "Path to GLFW library")
+else()
+    message(FATAL_ERROR "Unsupported OS: ${CMAKE_SYSTEM_NAME}")
+endif()
+
 
 set(THIRD_PARTY_DIR ${CMAKE_SOURCE_DIR}/third_party)
 

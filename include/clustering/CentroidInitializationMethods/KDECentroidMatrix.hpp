@@ -12,7 +12,6 @@
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 #include "clustering/CentroidInitializationMethods/MostDistantCentroids.hpp"
 
-#define NUMBER_RAY_STEP 3
 #define PDS 3
 #ifndef M_PI
 #define M_PI 3.14159265358979323846

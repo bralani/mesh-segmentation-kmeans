@@ -1,10 +1,8 @@
 #include <cstddef>
 #include "clustering/CentroidInitializationMethods/KDECentroid.hpp"
 
-
-#define RAY_MIN 4
+#define RAY_MIN 3
 #define RANGE_MIN 9
-
 
 template <typename PT, std::size_t PD>
 class CentroidPoint ;
@@ -297,7 +295,7 @@ class Kernel;
             if (this->m_k != 0 && maximaPD.size() < this->m_k) {
                 maximaPD.clear();
 
-                m_h.diagonal() *= 0.85;
+                m_h.diagonal() *= 0.40;
 
                 SelfAdjointEigenSolver<MatrixXd> solver(m_h);
                 this->m_h_sqrt_inv = solver.operatorInverseSqrt();
