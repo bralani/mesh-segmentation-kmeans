@@ -29,7 +29,6 @@ find_package(OpenGL)
 find_package(glm)
 
 # checks for libraries
-
 if(NOT OPENGL_FOUND)
     message(WARNING "OpenGL library not found, cannot import model_renderer")
 
