@@ -8,6 +8,7 @@
 
 #include "clustering/KDTree.hpp"
 #include "geometry/metrics/Metric.hpp"
+#include "geometry/mesh/Mesh.hpp"
 
 #ifdef USE_CUDA
 // Dichiarazione della funzione kernel CUDA (definita in kmeans.cu)
@@ -26,6 +27,8 @@ class EuclideanMetric : public Metric<PT, PD>
 public:
     EuclideanMetric(std::vector<Point<PT, PD>> data, double threshold);
 
+    EuclideanMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data);
+
     static PT distanceTo(const Point<PT, PD> &a, const Point<PT, PD> &b);
 
     void setup() override;
@@ -38,6 +41,7 @@ public:
     std::vector<Point<PT, PD>>& getPoints() override;
 
 private:
+    Mesh *mesh;
     double treshold;
     KdTree<PT, PD> *kdtree;
 
@@ -48,6 +52,7 @@ private:
     void assignCentroid(std::unique_ptr<KdNode<PT, PD>> &node, const std::shared_ptr<CentroidPoint<PT, PD>> &centroid);
     bool checkConvergence(int iter);
     void storeCentroids() override;
+    void updateFaceClusters();
 };
 
 #endif
