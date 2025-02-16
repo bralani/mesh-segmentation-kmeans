@@ -24,9 +24,6 @@
 #include "clustering/CentroidInitializationMethods/Silhouette.hpp"
 #include "clustering/CentroidInitializationMethods/SharedEnum.hpp"
 
-#include "matplotlib-cpp/matplotlibcpp.h"
-namespace plt = matplotlibcpp;
-
 #define MIN_NUM_POINTS_CUDA 10000
 
 /** Class implementing the K-Means algorithm using a Kd-Tree data structure

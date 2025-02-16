@@ -9,7 +9,6 @@
 #include "mesh_segmentation/evaluation/RandIndex.hpp"
 #include "geometry/metrics/EuclideanMetric.hpp"
 
-namespace plt = matplotlibcpp;
 namespace fs = std::filesystem;
 
 using namespace std;

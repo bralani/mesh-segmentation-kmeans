@@ -6,8 +6,6 @@
 #include "geometry/metrics/EuclideanMetric.hpp"
 #include "geometry/metrics/GeodesicMetric.hpp"
 
-namespace plt = matplotlibcpp;
-
 using namespace std;
 
 int main()
