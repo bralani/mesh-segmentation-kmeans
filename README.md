@@ -149,26 +149,3 @@ Once the project is built, you can run the segmentation tool with:
 ```bash
 ./build/segmentation <path-to-mesh-file> <number-of-clusters>
 ```
-Example:
-```bash
-k-means/
-├── data/             # Folder for datasets (optional)
-├── build/            # Build artifacts (created after compilation)
-├── src/              # Source code for the project
-├── Makefile    # Build configuration for CMake
-├── README.md         # Project documentation
-└── kmeans.cpp        # Main implementation of K-means algorithm
-```
-
-### 5. How to run tests
-
-```bash
-brew install lcov #MacOS
-sudo apt install lcov #Ubuntu
-brew install ninja
-
-# Verify installation
-lcov --version
-genhtml --version
-
-```
