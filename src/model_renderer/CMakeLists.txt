@@ -59,7 +59,7 @@ set(IMGUI_SRC
 
 # Define the paths
 set(SHADER_DIR ${CMAKE_SOURCE_DIR}/src/model_renderer/shader)
-set(MODEL_DIR ${CMAKE_SOURCE_DIR}/resources/meshes/obj_test)
+set(MODEL_DIR ${CMAKE_SOURCE_DIR}/resources/meshes/obj)
 
 # Pass paths to C++ code
 add_definitions(
