@@ -1,5 +1,8 @@
 <img src="docs/img/logo.jpg" alt="logo" width="600px"/>
 
+
+![example workflow](https://github.com/AMSC-24-25/16-kmeans-16-kmeans/actions/workflows/ci.yml/badge.svg?event=push)
+
 # Mesh Segmentation with K-Means
  This repository provides an interactive implementation of **mesh segmentation**, leveraging the **K-Means clustering algorithm**. You can use this project to segment 3D meshes efficiently while still having the flexibility to apply K-Means clustering independently.
 
