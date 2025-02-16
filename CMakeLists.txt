@@ -6,6 +6,7 @@ set(CMAKE_OSX_ARCHITECTURES arm64)
 set(CMAKE_CXX_STANDARD 17)
 
 enable_testing()
+add_definitions(-DROOT_FOLDER=\"${CMAKE_SOURCE_DIR}\")
 
 # CUDA settings
 find_package(CUDAToolkit)
