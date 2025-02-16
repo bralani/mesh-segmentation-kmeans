@@ -3,18 +3,21 @@
 #define RAY_MIN 3
 #define RANGE_MIN 9
 
+template <std::size_t PD>
+class KDEBase;
+
 
 // Constructor with k
 KDE3D::KDE3D(const std::vector<Point<double, 3>>& data, int k)
     : CentroidInitMethod<double, 3>(data, k) {
-    this->m_h = bandwidth_RuleOfThumb();
+    m_h = bandwidth_RuleOfThumb(this->m_data);
     this->range_number_division = static_cast<int>(std::floor(std::cbrt(data.size())));
 }
 
 // Constructor without k
 KDE3D::KDE3D(const std::vector<Point<double, 3>>& data)
     : CentroidInitMethod<double, 3>(data) {
-    this->m_h = bandwidth_RuleOfThumb();
+    m_h = bandwidth_RuleOfThumb(this->m_data);
     this->range_number_division = static_cast<int>(std::floor(std::cbrt(data.size())));
 }
 
@@ -31,8 +34,8 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
         // Find the peaks (local maxima) in the grid
         findLocalMaxima(gridPoints, centroids);
 
-        exportedMesh(this->m_data, "Mesh");
-        exportedMesh(centroids, "Centroids");
+        //exportedMesh(this->m_data, "Mesh");
+        //exportedMesh(centroids, "Centroids");
 
         return;
 }
@@ -91,102 +94,7 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
     }
 
 
-    /* Calculation of Mean and Standard Deviation.
-    This function computes the mean and standard deviation of the points in the dataset
-    along a specific dimension `dim`.*/
-    std::pair<double, double> KDE3D::computeMeanAndStdDev(int dim) {
-        double sum = 0.0, sumSquares = 0.0; // Initialize sum and sum of squares
-        int n = (this->m_data).size(); // Number of points in the dataset
 
-        // Iterate over all points and compute the sum and sum of squares for the given dimension
-        // A possible alternative cloud be use a reduce pattern
-        for (const auto& point : this->m_data) {
-            double value = point.coordinates[dim]; // Extract the value in the specified dimension
-            sum += value;
-            sumSquares += value * value;
-        }
-
-        // Compute the mean
-        double mean = sum / n;
-
-        // Compute the variance
-        double variance = (sumSquares / n) - (mean * mean);
-
-        // Compute the standard deviation (square root of variance)
-        double stdDev = sqrt(variance);
-
-        return {mean, stdDev}; // Return the results as a pair
-    }
-
-    /* Calculation of the bandwidth matrix using the Rule of Thumb method.
-    This method estimates the bandwidth for each dimension based on the 
-    standard deviation of the data and the number of points. */
-    Eigen::MatrixXd KDE3D::bandwidth_RuleOfThumb() {
-        int n = (this->m_data).size(); // Number of points in the dataset
-
-        VectorXd bandwidths(PDS); // Vector to store the bandwidths for each dimension
-        for (int i = 0; i < PDS; ++i) {
-            // Compute the mean and standard deviation for the current dimension
-            auto [mean, stdDev] = computeMeanAndStdDev(i);
-            // Rule of Thumb formula: h_ii = stdDev * n^(-1/(d+4)) * (4 / d + 2)
-            bandwidths[i] = stdDev * pow(n, -1.0 / (PDS + 4)) * pow(4.0 / (PDS + 2), 1.0 / (PDS + 4));
-        }
-
-        // Create a diagonal matrix from the squared bandwidth values
-        MatrixXd bandwidthMatrix = bandwidths.array().square().matrix().asDiagonal();
-
-        // Compute necessary components for KDE3D
-        SelfAdjointEigenSolver<MatrixXd> solver(bandwidthMatrix);
-        this->m_h_sqrt_inv = solver.operatorInverseSqrt();                  // Inverse square root of the bandwidth matrix
-        this->m_h_det_sqrt = sqrt(bandwidthMatrix.determinant());           // Square root of the determinant of the bandwidth matrix
-        m_transformedPoints.clear();
-        for (const auto& xi : this->m_data) {
-            Eigen::VectorXd transformed = m_h_sqrt_inv * pointToVector(xi);
-            m_transformedPoints.push_back(transformed);
-        }
-        return bandwidthMatrix; // Return the bandwidth matrix
-    }
-
-
-
-    /* This defines the actual function. "x" is the independent variable, and "data" 
-       represents the set of points required for the calculation.
-       It simply computes the kernel density estimate (KDE3D) for the given input. 
-        * f(x) = (1 / (n * h)) * Σ K((x - x_i) / h) for i = 1 to n
-        * 
-        * Where:
-        * - f(x): The estimated density at point x.
-        * - n: The total number of data points.
-        * - h: The bandwidth (or smoothing parameter) controlling the kernel's width.
-        * - x_i: The i-th data point in the dataset.
-        * - K(u): The kernel function, typically a symmetric and normalized function.
-     */
-    double KDE3D::kdeValue(const Point<double, PDS>& x) {
-        if (m_h.rows() == 0 || m_h.cols() == 0) {
-            throw std::runtime_error("Bandwidth matrix is not initialized.");
-        }
-       
-        Eigen::VectorXd transformedQuery = m_h_sqrt_inv * pointToVector(x);
-
-        double density = 0.0;
-        Eigen::VectorXd diff(PDS);
-        for (size_t i = 0; i < m_transformedPoints.size(); ++i) {
-            diff.noalias() = transformedQuery - m_transformedPoints[i];
-            density += Kernel::gaussian(diff);
-        }
-
-        density /= (m_transformedPoints.size() * m_h_det_sqrt);
-        return density;
-    }
-
-    /* Converte un Point in un VectorXd */
-    Eigen::VectorXd KDE3D::pointToVector(const Point<double, PDS>& point) {
-        VectorXd vec(PDS);
-        for (std::size_t i = 0; i < PDS; ++i) {
-            vec[i] = point.coordinates[i];
-        }
-        return vec;
-    }
 
     // Find local maxima in the grid
     void KDE3D::findLocalMaxima(const Grid3D& gridPoints, std::vector<CentroidPoint<double, PDS>>& returnVec) {
@@ -251,13 +159,13 @@ void KDE3D::findCentroid(std::vector<CentroidPoint<double, PDS>>& centroids) {
 
                 // Recompute derived parameters for the updated bandwidth
                 SelfAdjointEigenSolver<MatrixXd> solver(m_h);
-                this->m_h_sqrt_inv = solver.operatorInverseSqrt();
-                this->m_h_det_sqrt = sqrt(m_h.determinant());
+                m_h_sqrt_inv = solver.operatorInverseSqrt();
+                m_h_det_sqrt = sqrt(m_h.determinant());
 
                 // Update transformed points with new bandwidth
                 m_transformedPoints.clear();
                 for (const auto& xi : this->m_data) {
-                    Eigen::VectorXd transformed = m_h_sqrt_inv * pointToVector(xi);
+                    Eigen::VectorXd transformed = m_h_sqrt_inv * this->pointToVector(xi);
                     m_transformedPoints.push_back(transformed);
                 }
 

@@ -1,6 +1,7 @@
 #include <cstddef>
 #include "clustering/CentroidInitializationMethods/KDECentroid.hpp"
 
+
 #define RAY_MIN 3
 #define RANGE_MIN 9
 
@@ -10,6 +11,9 @@ class CentroidPoint ;
 template<std::size_t PD>
 class MostDistanceClass;
 
+template <std::size_t PD>
+class KDEBase;
+
 class Kernel; 
 
 
@@ -17,7 +21,7 @@ class Kernel;
     template<std::size_t PD>
     KDE<PD>::KDE(const std::vector<Point<double, PD>>& data, int k) 
         : CentroidInitMethod<double, PD>(data, k) {
-        this->m_h = bandwidth_RuleOfThumb();
+        this->m_h = this->bandwidth_RuleOfThumb(this->m_data);
         this->range_number_division = std::max(RANGE_MIN, static_cast<int>(std::floor(std::cbrt(data.size()))));
         this->m_ray = RAY_MIN ; //+ (data.size() - RAY_OUT_RANGE_MIN) * (RAY_MAX - RAY_MIN) / (RAY_OUT_RANGE_MAX - RAY_OUT_RANGE_MIN);
     }
@@ -26,7 +30,7 @@ class Kernel;
     template<std::size_t PD>
     KDE<PD>::KDE(const std::vector<Point<double, PD>>& data) 
         : CentroidInitMethod<double, PD>(data) {
-        this->m_h = bandwidth_RuleOfThumb();
+        this->m_h = this->bandwidth_RuleOfThumb(this->m_data);
         this->range_number_division = std::max(RANGE_MIN, static_cast<int>(std::floor(std::cbrt(data.size()))));
         this->m_ray = RAY_MIN; //+ (data.size() - RAY_OUT_RANGE_MIN) * (RAY_MAX - RAY_MIN) / (RAY_OUT_RANGE_MAX - RAY_OUT_RANGE_MIN);
     }
@@ -40,6 +44,9 @@ class Kernel;
 
         // Find the peaks (local maxima) in the grid
         findLocalMaxima(gridPoints, centroids);
+
+        //exportedMesh(this->m_data, "Mesh");
+        //exportedMesh(centroids, "Centroids");
            
         return;
     }
@@ -143,117 +150,6 @@ class Kernel;
     }
 
 
-    /* Calculation of Mean and Standard Deviation.
-    This function computes the mean and standard deviation of the points in the dataset
-    along a specific dimension `dim`.*/
-    template<std::size_t PD>
-    std::pair<double, double> KDE<PD>::computeMeanAndStdDev(int dim) {
-        double sum = 0.0, sumSquares = 0.0; // Initialize sum and sum of squares
-        int n = (this->m_data).size(); // Number of points in the dataset
-
-        // Iterate over all points and compute the sum and sum of squares for the given dimension
-        // A possible alternative cloud be use a reduce pattern
-        for (const auto& point : this->m_data) {
-            double value = point.coordinates[dim]; // Extract the value in the specified dimension
-            sum += value;
-            sumSquares += value * value;
-        }
-
-        // Compute the mean
-        double mean = sum / n;
-
-        // Compute the variance
-        double variance = (sumSquares / n) - (mean * mean);
-
-        // Compute the standard deviation (square root of variance)
-        double stdDev = sqrt(variance);
-
-        return {mean, stdDev}; // Return the results as a pair
-    }
-
-    /* Calculation of the bandwidth matrix using the Rule of Thumb method.
-    This method estimates the bandwidth for each dimension based on the 
-    standard deviation of the data and the number of points. */
-    template<std::size_t PD>
-    Eigen::MatrixXd KDE<PD>::bandwidth_RuleOfThumb() {
-        int n = (this->m_data).size(); // Number of points in the dataset
-        int d = PD;          // Dimensionality of the data
-
-        VectorXd bandwidths(d); // Vector to store the bandwidths for each dimension
-        for (int i = 0; i < d; ++i) {
-            // Compute the mean and standard deviation for the current dimension
-            auto [mean, stdDev] = computeMeanAndStdDev(i);
-            // Rule of Thumb formula: h_ii = stdDev * n^(-1/(d+4)) * (4 / d + 2)
-            bandwidths[i] = stdDev * pow(n, -1.0 / (d + 4)) * pow(4.0 / (d + 2), 1.0 / (d + 4));
-        }
-
-        // Create a diagonal matrix from the squared bandwidth values
-        MatrixXd bandwidthMatrix = bandwidths.array().square().matrix().asDiagonal();
-
-        // Compute necessary components for KDE
-        SelfAdjointEigenSolver<MatrixXd> solver(bandwidthMatrix);
-        this->m_h_sqrt_inv = solver.operatorInverseSqrt();                  // Inverse square root of the bandwidth matrix
-        this->m_h_det_sqrt = sqrt(bandwidthMatrix.determinant());           // Square root of the determinant of the bandwidth matrix
-        m_transformedPoints.clear();
-        for (const auto& xi : this->m_data) {
-            Eigen::VectorXd transformed = m_h_sqrt_inv * pointToVector(xi);
-            m_transformedPoints.push_back(transformed);
-        }
-        return bandwidthMatrix; // Return the bandwidth matrix
-    }
-
-
-
-    /* This defines the actual function. "x" is the independent variable, and "data" 
-       represents the set of points required for the calculation.
-       It simply computes the kernel density estimate (KDE) for the given input. 
-        * f(x) = (1 / (n * h)) * Σ K((x - x_i) / h) for i = 1 to n
-        * 
-        * Where:
-        * - f(x): The estimated density at point x.
-        * - n: The total number of data points.
-        * - h: The bandwidth (or smoothing parameter) controlling the kernel's width.
-        * - x_i: The i-th data point in the dataset.
-        * - K(u): The kernel function, typically a symmetric and normalized function.
-     */
-    template<std::size_t PD>
-    double KDE<PD>::kdeValue(const Point<double, PD>& x) {
-        // Check if the bandwidth matrix is initialized
-        if (m_h.rows() == 0 || m_h.cols() == 0) {
-            throw std::runtime_error("Bandwidth matrix is not initialized.");
-        }
-
-        // Transform the query point using the square root inverse of the bandwidth matrix
-        Eigen::VectorXd transformedQuery = m_h_sqrt_inv * pointToVector(x);
-
-        double density = 0.0; // Initialize the density value to 0
-
-        // Iterate through all transformed points in the dataset
-        Eigen::VectorXd diff(PD);
-        for (size_t i = 0; i < m_transformedPoints.size(); ++i) {
-            diff.noalias() = transformedQuery - m_transformedPoints[i];
-            density += Kernel::gaussian(diff);
-        }
-
-        // Normalize the density using the determinant of the bandwidth matrix and the dataset size
-        density /= (m_transformedPoints.size() * m_h_det_sqrt);
-        
-        return density; // Return the estimated density value
-    }
-
-
-    /* Converte un Point in un VectorXd */
-    template<std::size_t PD>
-    Eigen::VectorXd KDE<PD>::pointToVector(const Point<double, PD>& point) {
-        VectorXd vec(PD);
-        for (std::size_t i = 0; i < PD; ++i) {
-            vec[i] = point.coordinates[i];
-        }
-        return vec;
-    }
-
-
-
     // Find local maxima in the grid
     template<std::size_t PD>
     void KDE<PD>::findLocalMaxima(const std::vector<Point<double, PD>>& gridPoints, std::vector<CentroidPoint<double, PD>>& returnVec) {
@@ -295,16 +191,16 @@ class Kernel;
             if (this->m_k != 0 && maximaPD.size() < this->m_k) {
                 maximaPD.clear();
 
-                m_h.diagonal() *= 0.40;
+                this->m_h.diagonal() *= 0.40;
 
-                SelfAdjointEigenSolver<MatrixXd> solver(m_h);
+                SelfAdjointEigenSolver<MatrixXd> solver(this->m_h);
                 this->m_h_sqrt_inv = solver.operatorInverseSqrt();
-                this->m_h_det_sqrt = sqrt(m_h.determinant());
+                this->m_h_det_sqrt = sqrt(this->m_h.determinant());
 
-                m_transformedPoints.resize(this->m_data.size());
+                this->m_transformedPoints.resize(this->m_data.size());
                 #pragma omp parallel for
                 for (size_t i = 0; i < this->m_data.size(); ++i) {
-                    m_transformedPoints[i] = m_h_sqrt_inv * pointToVector(this->m_data[i]);
+                    this->m_transformedPoints[i] = this->m_h_sqrt_inv * this->pointToVector(this->m_data[i]);
                 }
 
             } else {

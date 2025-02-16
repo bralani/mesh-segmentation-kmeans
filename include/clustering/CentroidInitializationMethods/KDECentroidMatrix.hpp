@@ -11,6 +11,8 @@
 #include "clustering/CentroidInitializationMethods/KernelFunction.hpp"
 #include "clustering/CentroidInitializationMethods/CentroidInitMethods.hpp"
 #include "clustering/CentroidInitializationMethods/MostDistantCentroids.hpp"
+#include "clustering/CentroidInitializationMethods/KDEBase.hpp"
+
 
 #define PDS 3
 #ifndef M_PI
@@ -27,7 +29,7 @@ class Point;
 template <typename PT, std::size_t PD>
 class CentroidPoint;
 
-class KDE3D : public CentroidInitMethod<double, 3> {
+class KDE3D : public CentroidInitMethod<double, 3> , public KDEBase<3>  {
 public:
     KDE3D(const std::vector<Point<double, 3>>& data, int k);
     KDE3D(const std::vector<Point<double, 3>>& data);
@@ -39,25 +41,21 @@ private:
     int m_bandwidthMethods;
     int range_number_division;
     std::size_t m_totalPoints;
-    double m_h_det_sqrt;
-    Eigen::MatrixXd m_h;
-    MatrixXd m_h_sqrt_inv;
-    std::vector<Eigen::VectorXd> m_transformedPoints;
     std::array<double, 3> m_range;
     std::array<double, 3> m_step;
     std::array<size_t, 3> m_numPoints;
 
     // Mean and standard deviation
-    std::pair<double, double> computeMeanAndStdDev(int dim);
+    //std::pair<double, double> computeMeanAndStdDev(int dim);
 
     // Bandwidth matrix calculation
-    Eigen::MatrixXd bandwidth_RuleOfThumb();
+    //Eigen::MatrixXd bandwidth_RuleOfThumb();
 
     // KDE3D value calculation
-    double kdeValue(const Point<double, 3>& x);
+    //double kdeValue(const Point<double, 3>& x);
 
     // Convert Point to VectorXd
-    Eigen::VectorXd pointToVector(const Point<double, 3>& point);
+    //Eigen::VectorXd pointToVector(const Point<double, 3>& point);
 
     // Generate grid
     Grid3D generateGrid();
