@@ -25,11 +25,10 @@ set(GLFW_DIR ${THIRD_PARTY_DIR}/glfw/cmake)
 set(glm_DIR ${THIRD_PARTY_DIR}/glm/cmake/glm)
 
 # Find OpenGL and GLFW via CMake
-find_package(OpenGL REQUIRED)
-find_package(glm REQUIRED)
+find_package(OpenGL)
+find_package(glm)
 
 # checks for libraries
-
 if(NOT OPENGL_FOUND)
     message(WARNING "OpenGL library not found, cannot import model_renderer")
 
