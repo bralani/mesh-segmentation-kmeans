@@ -28,6 +28,22 @@ set(glm_DIR ${THIRD_PARTY_DIR}/glm/cmake/glm)
 find_package(OpenGL REQUIRED)
 find_package(glm REQUIRED)
 
+# checks for libraries
+
+if(NOT OPENGL_FOUND)
+    message(WARNING "OpenGL library not found, cannot import model_renderer")
+
+    # end the configuration process
+    return()
+endif()
+
+if(NOT EXISTS ${GLFW_LIBRARY} OR NOT EXISTS ${GLFW_INCLUDE_DIR})
+    message(WARNING "GLFW library not found at ${GLFW_LIBRARY}, cannot import model_renderer")
+
+    # end the configuration process
+    return()
+endif()
+
 # Add glad source files to the project
 set(GLAD_SRC ${THIRD_PARTY_DIR}/glad/src/glad.c)
 
