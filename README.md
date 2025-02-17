@@ -147,3 +147,6 @@ Once the project is built, you can run the segmentation tool with:
 ```bash
 ./build/segmentation <path-to-mesh-file> <number-of-clusters>
 ```
+
+## 📖 Doxygen Documentation
+The most-updated version of documentation is available with github pages at this link: [https://amsc-24-25.github.io/16-kmeans-16-kmeans/](https://amsc-24-25.github.io/16-kmeans-16-kmeans/).
