@@ -4,9 +4,14 @@ on:
   push:
     branches:
       - ci-cd
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
