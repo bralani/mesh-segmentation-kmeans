@@ -43,7 +43,7 @@ function(add_kmeans_test exe_name)
     target_compile_options(${exe_name} PRIVATE ${OpenMP_CXX_FLAGS})
 
     # Include project-specific directories for headers
-    target_include_directories(${exe_name} PRIVATE ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/third_party)
+    target_include_directories(${exe_name} PRIVATE ${CMAKE_SOURCE_DIR}/include ${CMAKE_SOURCE_DIR}/third_party ${CMAKE_SOURCE_DIR}/src)
 
     # Set the output directory for the executable
     set_target_properties(${exe_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
@@ -64,7 +64,7 @@ file(GLOB_RECURSE CUDA_SOURCES "${CMAKE_SOURCE_DIR}/include/*.cu")
 add_kmeans_test(my_tests 
     ${CMAKE_SOURCE_DIR}/tests/test_main.cpp
     ${CMAKE_SOURCE_DIR}/tests/geometry/mesh/MeshTest.cpp
-    # ${CMAKE_SOURCE_DIR}/tests/geometry/metrics/MetricTest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/geometry/metrics/MetricTest.cpp
     # ${CMAKE_SOURCE_DIR}/tests/geometry/metrics/EuclideanMetricTest.cpp
     ${SOURCES} 
     ${CUDA_SOURCES}

@@ -25,6 +25,8 @@ template <typename PT, std::size_t PD>
 class EuclideanMetric : public Metric<PT, PD>
 {
 public:
+    EuclideanMetric() = default;
+
     EuclideanMetric(std::vector<Point<PT, PD>> data, double threshold);
 
     EuclideanMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data);
@@ -38,7 +40,7 @@ public:
     void fit_gpu() override;
 #endif
 
-    std::vector<Point<PT, PD>>& getPoints() override;
+    std::vector<Point<PT, PD>> &getPoints() override;
 
 private:
     Mesh *mesh;
