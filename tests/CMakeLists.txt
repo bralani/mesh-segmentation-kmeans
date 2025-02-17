@@ -10,7 +10,8 @@ set(CMAKE_CXX_STANDARD 17)
 enable_testing()
 
 # CUDA settings: locate CUDA toolkit and set GPU architecture
-find_package(CUDAToolkit)
+cmake_policy(SET CMP0146 OLD)
+find_package(CUDA)
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_50")
 
 # Include third-party dependencies for the project
@@ -59,5 +60,5 @@ file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/src/geometry/*.cpp" "${CMAKE_SOUR
 file(GLOB_RECURSE CUDA_SOURCES "${CMAKE_SOURCE_DIR}/include/*.cu")
 
 # Add the test executable
-add_kmeans_test(my_tests "${CMAKE_SOURCE_DIR}/tests/test_main.cpp;${CMAKE_SOURCE_DIR}/tests/geometry/mesh/MeshTest.cpp;${SOURCES}" ${CUDA_SOURCES})
+add_kmeans_test(my_tests "${CMAKE_SOURCE_DIR}/tests/test_main.cpp;${CMAKE_SOURCE_DIR}/tests/geometry/mesh/MeshTest.cpp;${SOURCES}" "${CUDA_SOURCES}")
 add_test(NAME MyTest COMMAND my_tests)

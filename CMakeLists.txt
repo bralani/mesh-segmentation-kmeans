@@ -15,7 +15,8 @@ endif()
 add_definitions(-DROOT_FOLDER=\"${CMAKE_SOURCE_DIR}\")
 
 # CUDA settings
-find_package(CUDAToolkit)
+cmake_policy(SET CMP0146 OLD)
+find_package(CUDA)
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_50") # Set GPU architecture (adjust if necessary)
 
 # Include dependencies
@@ -63,12 +64,12 @@ file(GLOB_RECURSE SOURCES "src/geometry/*.cpp" "src/clustering/*.cpp")
 file(GLOB_RECURSE CUDA_SOURCES "include/*.cu")
 
 # Define executables
-add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" ${CUDA_SOURCES})
-add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;${SOURCES}" ${CUDA_SOURCES})
-add_kmeans_executable(evaluation "src/evaluation.cpp;${SOURCES}" ${CUDA_SOURCES})
+add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" "${CUDA_SOURCES}")
+add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;${SOURCES}" "${CUDA_SOURCES}")
+add_kmeans_executable(evaluation "src/evaluation.cpp;${SOURCES}" "${CUDA_SOURCES}")
 
 if(TARGET model_renderer)
-    add_kmeans_executable(viewer "src/viewer.cpp;${SOURCES}" ${CUDA_SOURCES})
+    add_kmeans_executable(viewer "src/viewer.cpp;${SOURCES}" "${CUDA_SOURCES}")
     if(WIN32)
             add_custom_command(TARGET viewer POST_BUILD
                     COMMAND ${CMAKE_COMMAND} -E copy_if_different
