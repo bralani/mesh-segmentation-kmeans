@@ -18,6 +18,12 @@ public:
         KDE3D
     };
 
+    enum class MetricMethod {
+        EUCLEANM,
+        DIJKSTRA,
+        HEAT
+    };
+
     static std::string toString(KInit kInit) {
         switch (kInit) {
             case KInit::ELBOW_METHOD: return "Elbow Method";
@@ -54,6 +60,16 @@ inline bool operator==(Enums::KInit kinit, int value) {
 }
 
 inline bool operator==(int value, Enums::KInit kinit) {
+    return value == static_cast<int>(kinit);
+}
+
+
+// Overload operator== for CentroidInit and int
+inline bool operator==(Enums::MetricMethod kinit, int value) {
+    return static_cast<int>(kinit) == value;
+}
+
+inline bool operator==(int value, Enums::MetricMethod kinit) {
     return value == static_cast<int>(kinit);
 }
 
