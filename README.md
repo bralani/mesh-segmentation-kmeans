@@ -138,8 +138,7 @@ The dataset contains 400 3D models in OBJ format, along with their corresponding
 ## Running with Docker
 ```bash
 # From the main folder
-docker build -t mesh-segmentation .  # Build the Docker image
-docker run --rm -it -v $(pwd)/output:/app/output mesh-segmentation  # Run the container
+docker compose up --build -d
 ```
 
 ## Getting started
