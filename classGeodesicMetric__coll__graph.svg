@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="A class for computing geodesic distances on a mesh with Dijkstra&#39;s algorithm.">
 <polygon fill="#999999" stroke="transparent" points="206,-240 44,-240 44,0 206,0 206,-240"/>
 <text text-anchor="start" x="73.5" y="-228" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicMetric&lt; PT,</text>
 <text text-anchor="start" x="111" y="-217" font-family="Helvetica,sans-Serif" font-size="10.00"> PD &gt;</text>
@@ -53,7 +53,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classMetric.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classMetric.html" target="_top" xlink:title="Abstract class representing a generic metric for calculating distances.">
 <polygon fill="white" stroke="transparent" points="100,-544 0,-544 0,-300 100,-300 100,-544"/>
 <text text-anchor="start" x="7.5" y="-532" font-family="Helvetica,sans-Serif" font-size="10.00">Metric&lt; PT, PD &gt;</text>
 <text text-anchor="start" x="4" y="-517" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>

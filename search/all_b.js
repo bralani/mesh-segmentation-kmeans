@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['truncatetothreedecimals_0',['truncateToThreeDecimals',['../classCentroidInitMethod.html#a43bf9b3b7c9633f5fa4f98e567428f96',1,'CentroidInitMethod']]]
+  ['point_0',['Point',['../classPoint.html',1,'']]],
+  ['point_3c_20double_2c_203_20_3e_1',['Point&lt; double, 3 &gt;',['../classPoint.html',1,'']]]
 ];

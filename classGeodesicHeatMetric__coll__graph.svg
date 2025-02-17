@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="A class for computing geodesic distances using heat diffusion&#45;based method.">
 <polygon fill="#999999" stroke="transparent" points="189,-75 61,-75 61,0 189,0 189,-75"/>
 <text text-anchor="start" x="75" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicHeatMetric</text>
 <text text-anchor="start" x="97.5" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; PT, PD &gt;</text>
@@ -31,7 +31,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classGeodesicMetric.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classGeodesicMetric.html" target="_top" xlink:title="A class for computing geodesic distances on a mesh with Dijkstra&#39;s algorithm.">
 <polygon fill="white" stroke="transparent" points="206,-352 44,-352 44,-112 206,-112 206,-352"/>
 <text text-anchor="start" x="73.5" y="-340" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicMetric&lt; PT,</text>
 <text text-anchor="start" x="111" y="-329" font-family="Helvetica,sans-Serif" font-size="10.00"> PD &gt;</text>
@@ -63,10 +63,10 @@
 <text text-anchor="start" x="61" y="-134" font-family="Helvetica,sans-Serif" font-size="10.00">setupAvg()</text>
 <text text-anchor="start" x="48" y="-119" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="61" y="-119" font-family="Helvetica,sans-Serif" font-size="10.00">checkConvergence()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="44,-324 44,-324 206,-324 206,-324 44,-324"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="44,-279 44,-279 59,-279 59,-279 44,-279"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="59,-279 59,-279 206,-279 206,-279 59,-279"/>
-<polygon fill="none" stroke="#bfbfbf" points="44,-112 44,-352 206,-352 206,-112 44,-112"/>
+<polygon fill="#666666" stroke="#666666" points="44,-324 44,-324 206,-324 206,-324 44,-324"/>
+<polygon fill="#666666" stroke="#666666" points="44,-279 44,-279 59,-279 59,-279 44,-279"/>
+<polygon fill="#666666" stroke="#666666" points="59,-279 59,-279 206,-279 206,-279 59,-279"/>
+<polygon fill="none" stroke="#666666" points="44,-112 44,-352 206,-352 206,-112 44,-112"/>
 </a>
 </g>
 </g>
@@ -82,7 +82,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classMetric.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classMetric.html" target="_top" xlink:title="Abstract class representing a generic metric for calculating distances.">
 <polygon fill="white" stroke="transparent" points="100,-656 0,-656 0,-412 100,-412 100,-656"/>
 <text text-anchor="start" x="7.5" y="-644" font-family="Helvetica,sans-Serif" font-size="10.00">Metric&lt; PT, PD &gt;</text>
 <text text-anchor="start" x="4" y="-629" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>

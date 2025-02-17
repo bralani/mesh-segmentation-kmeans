@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['right_0',['right',['../classKdNode.html#a999499c9058f835976d19fb76fbaf9f5',1,'KdNode']]]
+  ['left_0',['left',['../classKdNode.html#a6294d2956f1dfc3b09adb373e4c36bf5',1,'KdNode']]]
 ];

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Abstract class representing a generic metric for calculating distances.">
 <polygon fill="#999999" stroke="transparent" points="185.5,-646 85.5,-646 85.5,-402 185.5,-402 185.5,-646"/>
 <text text-anchor="start" x="93" y="-634" font-family="Helvetica,sans-Serif" font-size="10.00">Metric&lt; PT, PD &gt;</text>
 <text text-anchor="start" x="89.5" y="-619" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -54,30 +54,28 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classEuclideanMetric.html" target="_top" xlink:title=" ">
-<polygon fill="white" stroke="transparent" points="115,-321 0,-321 0,-156 115,-156 115,-321"/>
-<text text-anchor="start" x="5.5" y="-308.5" font-family="Helvetica,sans-Serif" font-size="10.00">EuclideanMetric&lt; PT,</text>
-<text text-anchor="start" x="44" y="-297.5" font-family="Helvetica,sans-Serif" font-size="10.00"> PD &gt;</text>
-<text text-anchor="start" x="56" y="-282.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
-<text text-anchor="start" x="6.5" y="-267.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="21.5" y="-267.5" font-family="Helvetica,sans-Serif" font-size="10.00">EuclideanMetric()</text>
-<text text-anchor="start" x="6.5" y="-252.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="21.5" y="-252.5" font-family="Helvetica,sans-Serif" font-size="10.00">EuclideanMetric()</text>
-<text text-anchor="start" x="6.5" y="-237.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="21.5" y="-237.5" font-family="Helvetica,sans-Serif" font-size="10.00">EuclideanMetric()</text>
-<text text-anchor="start" x="6.5" y="-222.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="21.5" y="-222.5" font-family="Helvetica,sans-Serif" font-size="10.00">setup()</text>
-<text text-anchor="start" x="6.5" y="-207.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="21.5" y="-207.5" font-family="Helvetica,sans-Serif" font-size="10.00">fit_cpu()</text>
-<text text-anchor="start" x="6.5" y="-192.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="21.5" y="-192.5" font-family="Helvetica,sans-Serif" font-size="10.00">getTreshold()</text>
-<text text-anchor="start" x="6.5" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="21.5" y="-177.5" font-family="Helvetica,sans-Serif" font-size="10.00">getPoints()</text>
-<text text-anchor="start" x="6.5" y="-162.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="21.5" y="-162.5" font-family="Helvetica,sans-Serif" font-size="10.00">distanceTo()</text>
-<polygon fill="#666666" stroke="#666666" points="0.5,-292.5 0.5,-292.5 115.5,-292.5 115.5,-292.5 0.5,-292.5"/>
-<polygon fill="#666666" stroke="#666666" points="0.5,-277.5 0.5,-277.5 115.5,-277.5 115.5,-277.5 0.5,-277.5"/>
-<polygon fill="none" stroke="#666666" points="0,-156 0,-321 115,-321 115,-156 0,-156"/>
+<g id="a_Node000002"><a xlink:href="classEuclideanMetric.html" target="_top" xlink:title="A class that calculates Euclidean distance for clustering and metric purposes.">
+<polygon fill="white" stroke="transparent" points="115,-313.5 0,-313.5 0,-163.5 115,-163.5 115,-313.5"/>
+<text text-anchor="start" x="5.5" y="-301.5" font-family="Helvetica,sans-Serif" font-size="10.00">EuclideanMetric&lt; PT,</text>
+<text text-anchor="start" x="44" y="-290.5" font-family="Helvetica,sans-Serif" font-size="10.00"> PD &gt;</text>
+<text text-anchor="start" x="56" y="-275.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
+<text text-anchor="start" x="6.5" y="-260.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="21.5" y="-260.5" font-family="Helvetica,sans-Serif" font-size="10.00">EuclideanMetric()</text>
+<text text-anchor="start" x="6.5" y="-245.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="21.5" y="-245.5" font-family="Helvetica,sans-Serif" font-size="10.00">EuclideanMetric()</text>
+<text text-anchor="start" x="6.5" y="-230.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="21.5" y="-230.5" font-family="Helvetica,sans-Serif" font-size="10.00">EuclideanMetric()</text>
+<text text-anchor="start" x="6.5" y="-215.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="21.5" y="-215.5" font-family="Helvetica,sans-Serif" font-size="10.00">setup()</text>
+<text text-anchor="start" x="6.5" y="-200.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="21.5" y="-200.5" font-family="Helvetica,sans-Serif" font-size="10.00">fit_cpu()</text>
+<text text-anchor="start" x="6.5" y="-185.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="21.5" y="-185.5" font-family="Helvetica,sans-Serif" font-size="10.00">getPoints()</text>
+<text text-anchor="start" x="6.5" y="-170.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
+<text text-anchor="start" x="21.5" y="-170.5" font-family="Helvetica,sans-Serif" font-size="10.00">distanceTo()</text>
+<polygon fill="#666666" stroke="#666666" points="0.5,-285.5 0.5,-285.5 115.5,-285.5 115.5,-285.5 0.5,-285.5"/>
+<polygon fill="#666666" stroke="#666666" points="0.5,-270.5 0.5,-270.5 115.5,-270.5 115.5,-270.5 0.5,-270.5"/>
+<polygon fill="none" stroke="#666666" points="0,-163.5 0,-313.5 115,-313.5 115,-163.5 0,-163.5"/>
 </a>
 </g>
 </g>
@@ -85,7 +83,7 @@
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M99.46,-392.01C92.83,-367.9 86.08,-343.38 79.99,-321.24"/>
+<path fill="none" stroke="#63b8ff" d="M99.48,-392.08C92.09,-365.22 84.56,-337.84 77.95,-313.83"/>
 <polygon fill="none" stroke="#63b8ff" points="96.17,-393.23 102.19,-401.95 102.92,-391.38 96.17,-393.23"/>
 </a>
 </g>
@@ -93,7 +91,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classGeodesicMetric.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classGeodesicMetric.html" target="_top" xlink:title="A class for computing geodesic distances on a mesh with Dijkstra&#39;s algorithm.">
 <polygon fill="white" stroke="transparent" points="295.5,-366 133.5,-366 133.5,-111 295.5,-111 295.5,-366"/>
 <text text-anchor="start" x="163" y="-353.5" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicMetric&lt; PT,</text>
 <text text-anchor="start" x="200.5" y="-342.5" font-family="Helvetica,sans-Serif" font-size="10.00"> PD &gt;</text>
@@ -127,10 +125,10 @@
 <text text-anchor="start" x="150.5" y="-132.5" font-family="Helvetica,sans-Serif" font-size="10.00">setupAvg()</text>
 <text text-anchor="start" x="137.5" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="150.5" y="-117.5" font-family="Helvetica,sans-Serif" font-size="10.00">checkConvergence()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="133.5,-337.5 133.5,-337.5 295.5,-337.5 295.5,-337.5 133.5,-337.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="133.5,-277.5 133.5,-277.5 148.5,-277.5 148.5,-277.5 133.5,-277.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="148.5,-277.5 148.5,-277.5 295.5,-277.5 295.5,-277.5 148.5,-277.5"/>
-<polygon fill="none" stroke="#bfbfbf" points="133.5,-111 133.5,-366 295.5,-366 295.5,-111 133.5,-111"/>
+<polygon fill="#666666" stroke="#666666" points="133.5,-337.5 133.5,-337.5 295.5,-337.5 295.5,-337.5 133.5,-337.5"/>
+<polygon fill="#666666" stroke="#666666" points="133.5,-277.5 133.5,-277.5 148.5,-277.5 148.5,-277.5 133.5,-277.5"/>
+<polygon fill="#666666" stroke="#666666" points="148.5,-277.5 148.5,-277.5 295.5,-277.5 295.5,-277.5 148.5,-277.5"/>
+<polygon fill="none" stroke="#666666" points="133.5,-111 133.5,-366 295.5,-366 295.5,-111 133.5,-111"/>
 </a>
 </g>
 </g>
@@ -146,7 +144,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classGeodesicHeatMetric.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="classGeodesicHeatMetric.html" target="_top" xlink:title="A class for computing geodesic distances using heat diffusion&#45;based method.">
 <polygon fill="white" stroke="transparent" points="278.5,-75 150.5,-75 150.5,0 278.5,0 278.5,-75"/>
 <text text-anchor="start" x="164.5" y="-62.5" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicHeatMetric</text>
 <text text-anchor="start" x="187" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; PT, PD &gt;</text>
@@ -156,10 +154,10 @@
 <text text-anchor="start" x="167.5" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicHeatMetric()</text>
 <text text-anchor="start" x="154.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="167.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">computeDistances()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="150.5,-46.5 150.5,-46.5 278.5,-46.5 278.5,-46.5 150.5,-46.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="150.5,-31.5 150.5,-31.5 165.5,-31.5 165.5,-31.5 150.5,-31.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="165.5,-31.5 165.5,-31.5 278.5,-31.5 278.5,-31.5 165.5,-31.5"/>
-<polygon fill="none" stroke="#bfbfbf" points="150.5,0 150.5,-75 278.5,-75 278.5,0 150.5,0"/>
+<polygon fill="#666666" stroke="#666666" points="150.5,-46.5 150.5,-46.5 278.5,-46.5 278.5,-46.5 150.5,-46.5"/>
+<polygon fill="#666666" stroke="#666666" points="150.5,-31.5 150.5,-31.5 165.5,-31.5 165.5,-31.5 150.5,-31.5"/>
+<polygon fill="#666666" stroke="#666666" points="165.5,-31.5 165.5,-31.5 278.5,-31.5 278.5,-31.5 165.5,-31.5"/>
+<polygon fill="none" stroke="#666666" points="150.5,0 150.5,-75 278.5,-75 278.5,0 150.5,0"/>
 </a>
 </g>
 </g>

@@ -1,5 +1,5 @@
 <map id="EuclideanMetric&lt; PT, PD &gt;" name="EuclideanMetric&lt; PT, PD &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,379,159,599"/>
-<area shape="rect" id="Node000002" href="$classMetric.html" title=" " alt="" coords="15,5,149,331"/>
+<area shape="rect" id="Node000001" title="A class that calculates Euclidean distance for clustering and metric purposes." alt="" coords="5,379,159,579"/>
+<area shape="rect" id="Node000002" href="$classMetric.html" title="Abstract class representing a generic metric for calculating distances." alt="" coords="15,5,149,331"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,345,85,378,79,378,79,345"/>
 </map>

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['point_0',['Point',['../classPoint.html',1,'']]],
-  ['point_3c_20double_2c_203_20_3e_1',['Point&lt; double, 3 &gt;',['../classPoint.html',1,'']]]
+  ['left_0',['left',['../classKdNode.html#a6294d2956f1dfc3b09adb373e4c36bf5',1,'KdNode']]]
 ];
