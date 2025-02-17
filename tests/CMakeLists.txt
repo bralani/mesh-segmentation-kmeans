@@ -24,11 +24,12 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/third_party/googletest ${CMAKE_BINARY_DIR}/
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 # Define a function to add KMeans tests as executables
-function(add_kmeans_test exe_name source_files cuda_files)
+function(add_kmeans_test exe_name)
+    set(source_files ${ARGN}) # Collect all arguments into a list
 
     if(CUDA_FOUND AND MSVC)
         add_definitions(-DUSE_CUDA)
-        cuda_add_executable(${exe_name} ${source_files} ${cuda_files}) 
+        cuda_add_executable(${exe_name} ${source_files}) 
         target_link_libraries(${exe_name} ${CUDA_LIBRARIES})
         set_target_properties(${exe_name} PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
     else()
@@ -60,5 +61,13 @@ file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/src/geometry/*.cpp" "${CMAKE_SOUR
 file(GLOB_RECURSE CUDA_SOURCES "${CMAKE_SOURCE_DIR}/include/*.cu")
 
 # Add the test executable
-add_kmeans_test(my_tests "${CMAKE_SOURCE_DIR}/tests/test_main.cpp;${CMAKE_SOURCE_DIR}/tests/geometry/mesh/MeshTest.cpp;${SOURCES}" "${CUDA_SOURCES}")
+add_kmeans_test(my_tests 
+    ${CMAKE_SOURCE_DIR}/tests/test_main.cpp
+    ${CMAKE_SOURCE_DIR}/tests/geometry/mesh/MeshTest.cpp
+    # ${CMAKE_SOURCE_DIR}/tests/geometry/metrics/MetricTest.cpp
+    # ${CMAKE_SOURCE_DIR}/tests/geometry/metrics/EuclideanMetricTest.cpp
+    ${SOURCES} 
+    ${CUDA_SOURCES}
+)
+
 add_test(NAME MyTest COMMAND my_tests)
