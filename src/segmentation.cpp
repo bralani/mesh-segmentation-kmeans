@@ -8,8 +8,6 @@
 #include "geometry/metrics/GeodesicHeatMetric.hpp"
 #include "clustering/CentroidInitializationMethods/SharedEnum.hpp"
 
-
-
 using namespace std;
 
 #define DIM 3
@@ -50,10 +48,8 @@ int main(int argc, char* argv[])
 
         if (metric == Enums::MetricMethod::EUCLEANM)
         {
-            EuclideanMetric<double, DIM> metric(mesh.getMeshFacesPoints(), 1e-4);
-            KMeans<double, DIM, EuclideanMetric<double, DIM>> kmeans(num_clusters, 1e-4, &metric, num_initialization_method, num_k_init_method);
-            kmeans.fit();
-            kmeans.print();
+            MeshSegmentation<EuclideanMetric<double, DIM>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method);
+            segmentation.fit();
         }
         else if (metric == Enums::MetricMethod::DIJKSTRA)
         {
