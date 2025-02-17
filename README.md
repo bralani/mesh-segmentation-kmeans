@@ -65,8 +65,7 @@ On macOS you can install the dependencies using [Homebrew](https://brew.sh/). On
       sudo apt install libglfw3-dev
       sudo apt install libglm-dev
       ```
-      Then, go to `./src/model_renderer/CMakeLists.txt` and replace the two variables `GLFW_INCLUDE_DIR` and `GLFW_LIBRARY` with the right path.
-
+      
     - Windows:
       ```bash
       git clone https://github.com/microsoft/vcpkg.git
