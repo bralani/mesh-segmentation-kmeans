@@ -1,0 +1,9 @@
+<map id="Metric&lt; PT, PD &gt;" name="Metric&lt; PT, PD &gt;">
+<area shape="rect" id="Node000001" title=" " alt="" coords="119,5,253,331"/>
+<area shape="rect" id="Node000002" href="$classEuclideanMetric.html" title=" " alt="" coords="5,439,159,659"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,345,115,439,109,438,135,343"/>
+<area shape="rect" id="Node000003" href="$classGeodesicMetric.html" title=" " alt="" coords="183,379,399,719"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="237,343,247,378,242,379,232,345"/>
+<area shape="rect" id="Node000004" href="$classGeodesicHeatMetric.html" title=" " alt="" coords="206,767,377,867"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="294,732,294,766,289,766,289,732"/>
+</map>

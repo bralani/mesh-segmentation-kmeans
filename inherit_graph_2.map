@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classCentroidInitMethod.html" title="A class for managing the initialization of centroids and computing cluster centroids." alt="" coords="5,5,152,45"/>
+<area shape="rect" id="Node000001" href="$classRandomCentroidInit.html" title="A class for initializing centroids randomly from the dataset." alt="" coords="200,5,352,45"/>
+<area shape="poly" id="edge6_Node000000_Node000001" title=" " alt="" coords="166,23,200,23,200,28,166,28"/>
+</map>
