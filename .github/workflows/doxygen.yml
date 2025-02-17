@@ -3,7 +3,7 @@ name: Generate doxygen documentation
 on:
   push:
     branches:
-      - ci-cd
+      - main
 
 jobs:
   build:
