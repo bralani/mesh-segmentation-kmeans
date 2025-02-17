@@ -9,7 +9,7 @@
 
 /**
  * @class KdNode
- * @brief Represents a node in a k-d tree, including bounding box and child pointers.
+ * @brief Represents a node in a kd tree, including bounding box and child pointers.
  * 
  * @tparam PT Type of the point coordinates.
  * @tparam PD Dimensionality of the points.
