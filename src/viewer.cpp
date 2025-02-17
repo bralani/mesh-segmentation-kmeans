@@ -7,7 +7,6 @@
 #include "mesh_segmentation/MeshSegmentation.hpp"
 #include "geometry/metrics/EuclideanMetric.hpp"
 #include "geometry/metrics/GeodesicMetric.hpp"
-#include "geometry/metrics/GeodesicHeatMetric.hpp"
 
 #define DIMENSION 2
 
@@ -72,6 +71,9 @@ void segmentationCallback(Render &render, const std::string &fileName, int num_i
 
 int main()
 {
+
+  string file_name = "../../resources/meshes/obj_test/1.obj";
+
   Render render(segmentationCallback);
   render.start();
   return 0;
