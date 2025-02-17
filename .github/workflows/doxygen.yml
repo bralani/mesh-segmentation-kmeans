@@ -25,5 +25,5 @@ jobs:
       - name: Deploy su GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
-          folder: docs
+          branch: doxygen
+          folder: docs/doxygen/html
