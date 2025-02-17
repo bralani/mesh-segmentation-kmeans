@@ -249,7 +249,7 @@ void Render::start()
                 // Method for 'k' initialization, shown only if num_clusters == 0
                 if (inputValue == 0)
                 {
-                    const char *kInitMethods[] = {"Elbow", "KDE"};
+                    const char *kInitMethods[] = {"Elbow", "KDE", "Silhouette"};
 
                     ImGui::Text("Select Method for k Initialization:");
                     if (ImGui::BeginCombo("k Initialization Method", kInitMethods[num_k_init_method]))
