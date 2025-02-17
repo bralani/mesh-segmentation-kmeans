@@ -36,6 +36,11 @@ public:
     void setup() override;
     void fit_cpu() override;
 
+    double getTreshold()
+    {
+        return treshold;
+    }
+
 #ifdef USE_CUDA
     void fit_gpu() override;
 #endif
