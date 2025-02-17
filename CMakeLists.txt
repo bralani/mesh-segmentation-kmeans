@@ -15,7 +15,6 @@ endif()
 add_definitions(-DROOT_FOLDER=\"${CMAKE_SOURCE_DIR}\")
 
 # CUDA settings
-cmake_policy(SET CMP0146 OLD)
 find_package(CUDA)
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_50") # Set GPU architecture (adjust if necessary)
 

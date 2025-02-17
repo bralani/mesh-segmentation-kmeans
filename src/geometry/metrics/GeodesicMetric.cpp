@@ -211,7 +211,6 @@ void GeodesicMetric<PT, PD>::fit_cpu()
     iteration++;
   }
   storeCentroids();
-  this->oldPoints = 1;
   std::cout << "K-Means converged after " << iteration << " iterations." << std::endl;
 }
 
@@ -397,16 +396,13 @@ void GeodesicMetric<PT, PD>::storeCentroids(){
 
 template <typename PT, std::size_t PD>
 std::vector<Point<PT, PD>>& GeodesicMetric<PT, PD>::getPoints(){
-  //if(this->oldPoints == 1){
-    (this->data).clear();
-    const size_t numFaces = mesh->numFaces();
-    for (FaceId faceId = 0; faceId < numFaces; ++faceId)
-    {
-      Point<PT, PD>& baricenter = mesh->getFace(faceId).baricenter;
-      this->data.push_back(baricenter);
-    }
-    this->oldPoints = 0;
-  //}
+  (this->data).clear();
+  const size_t numFaces = mesh->numFaces();
+  for (FaceId faceId = 0; faceId < numFaces; ++faceId)
+  {
+    Point<PT, PD>& baricenter = mesh->getFace(faceId).baricenter;
+    this->data.push_back(baricenter);
+  }
   return this->data;
 }
 

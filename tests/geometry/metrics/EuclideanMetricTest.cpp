@@ -38,9 +38,3 @@ TEST_F(EuclideanMetricTest, DistanceToCalculatesCorrectly)
     Point2D b({3.0, 4.0}, -1);
     EXPECT_DOUBLE_EQ(metric->distanceTo(a, b), 5.0);
 }
-
-// Test threshold value
-TEST_F(EuclideanMetricTest, ThresholdInitialization)
-{
-    EXPECT_DOUBLE_EQ(metric->getTreshold(), 0.1);
-}

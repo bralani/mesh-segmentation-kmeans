@@ -10,7 +10,6 @@ set(CMAKE_CXX_STANDARD 17)
 enable_testing()
 
 # CUDA settings: locate CUDA toolkit and set GPU architecture
-cmake_policy(SET CMP0146 OLD)
 find_package(CUDA)
 set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -arch=sm_50")
 
