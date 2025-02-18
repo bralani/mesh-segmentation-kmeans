@@ -12,7 +12,7 @@ using namespace std;
 
 #define DIM 3
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv[])
 {
     try
     {
@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
         Mesh mesh(file_name);
 
-        if (metric == Enums::MetricMethod::EUCLEANM)
+        if (metric == Enums::MetricMethod::EUCLIDEAN)
         {
             MeshSegmentation<EuclideanMetric<double, DIM>> segmentation(&mesh, num_clusters, 1e-4, num_initialization_method, num_k_init_method);
             segmentation.fit();
