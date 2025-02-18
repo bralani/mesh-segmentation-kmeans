@@ -19,7 +19,7 @@
 <text text-anchor="start" x="34" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">data_heat</text>
 <text text-anchor="start" x="21" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="34" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicHeatMetric()</text>
-<text text-anchor="start" x="21" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
+<text text-anchor="start" x="21" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="34" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">computeDistances()</text>
 <polygon fill="#666666" stroke="#666666" points="17,-46.5 17,-46.5 145,-46.5 145,-46.5 17,-46.5"/>
 <polygon fill="#666666" stroke="#666666" points="17,-31.5 17,-31.5 32,-31.5 32,-31.5 17,-31.5"/>
