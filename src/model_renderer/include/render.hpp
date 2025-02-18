@@ -14,7 +14,7 @@ class Render
 {
 public:
     // Constructor accepting a reference-based callback function
-    explicit Render(std::function<void(Render &, const std::string &, Enums::CentroidInit, int, int, double)> segmentationCallback);
+    explicit Render(std::function<void(Render &, const std::string &, Enums::CentroidInit, Enums::KInit, int, double)> segmentationCallback);
 
     // Starts the rendering loop
     void start();
@@ -25,7 +25,7 @@ public:
     void renderFile(const std::string &fileName);
 
 private:
-    std::function<void(Render &, const std::string &, Enums::CentroidInit, int, int, double)> segmentationCallback;
+    std::function<void(Render &, const std::string &, Enums::CentroidInit, Enums::KInit, int, double)> segmentationCallback;
 
     ShaderProgram *program;
 };

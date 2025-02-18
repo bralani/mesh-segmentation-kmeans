@@ -69,7 +69,7 @@ void populateModelPaths(const std::string &directory)
     }
 }
 
-Render::Render(std::function<void(Render &, const std::string &, Enums::CentroidInit, int, int, double)> segmentationCallback)
+Render::Render(std::function<void(Render &, const std::string &, Enums::CentroidInit, Enums::KInit, int, double)> segmentationCallback)
     : segmentationCallback(std::move(segmentationCallback))
 {
     std::cout << "Shader program initialized!" << std::endl;
@@ -225,7 +225,8 @@ void Render::start()
                 // Initialization method dropdown
                 const Enums::CentroidInit initMethods[] = {Enums::CentroidInit::RANDOM, Enums::CentroidInit::KDE, Enums::CentroidInit::MOSTDISTANT, Enums::CentroidInit::KDE3D};
                 static Enums::CentroidInit selectedInitMethod = Enums::CentroidInit::RANDOM;
-                static int num_k_init_method = 0; // To store the selected k initialization method
+                static Enums::KInit selectedKInitMethod = Enums::KInit::ELBOW_METHOD;
+
                 ImGui::Text("Select Initialization Method for Centroids:");
 
                 if (ImGui::BeginCombo("Initialization Method", Enums::toString(selectedInitMethod).c_str()))
@@ -250,17 +251,17 @@ void Render::start()
                 // Method for 'k' initialization, shown only if num_clusters == 0
                 if (inputValue == 0)
                 {
-                    const char *kInitMethods[] = {"Elbow", "KDE", "Silhouette"};
+                    const Enums::KInit initMethods[] = {Enums::KInit::ELBOW_METHOD, Enums::KInit::KDE_METHOD, Enums::KInit::SILHOUETTE_METHOD};
 
                     ImGui::Text("Select Method for k Initialization:");
-                    if (ImGui::BeginCombo("k Initialization Method", kInitMethods[num_k_init_method]))
+                    if (ImGui::BeginCombo("k Initialization Method", Enums::toString(selectedKInitMethod).c_str()))
                     {
-                        for (int i = 0; i < IM_ARRAYSIZE(kInitMethods); ++i)
+                        for (const auto &method : initMethods)
                         {
-                            bool isSelected = (num_k_init_method == i);
-                            if (ImGui::Selectable(kInitMethods[i], isSelected))
+                            bool isSelected = (selectedKInitMethod == method);
+                            if (ImGui::Selectable(Enums::toString(method).c_str(), isSelected))
                             {
-                                num_k_init_method = i; // Store the selected index
+                                selectedKInitMethod = method; // Store the selected index
                             }
 
                             if (isSelected)
@@ -276,18 +277,11 @@ void Render::start()
                 // Step 3: Start Button to trigger loading process
                 if (ImGui::Button("Start"))
                 {
-                    if (inputValue == 0 && num_k_init_method == -1)
-                    {
-                        ImGui::Text("Please select a method for k initialization.");
-                    }
-                    else
-                    {
-                        showLoader = true;     // Show loader flag
-                        loaderProgress = 0.0f; // Reset progress
+                    showLoader = true;     // Show loader flag
+                    loaderProgress = 0.0f; // Reset progress
 
-                        // Call the segmentation callback with the necessary parameters
-                        segmentationCallback(*this, selectedModelPath, selectedInitMethod, num_k_init_method, inputValue, threshold);
-                    }
+                    // Call the segmentation callback with the necessary parameters
+                    segmentationCallback(*this, selectedModelPath, selectedInitMethod, selectedKInitMethod, inputValue, threshold);
                 }
 
                 // Step 4: Back Button to return to model selection

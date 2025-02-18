@@ -15,18 +15,18 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-void segmentationCallback(Render &render, const std::string &fileName, Enums::CentroidInit num_initialization_method, int num_k_init_method, int num_clusters, double threshold)
+void segmentationCallback(Render &render, const std::string &fileName, Enums::CentroidInit num_initialization_method, Enums::KInit num_k_init_method, int num_clusters, double threshold)
 {
   try
   {
     std::cout << "Selected model path: " << fileName << std::endl;
     std::cout << "Number of clusters: " << num_clusters << std::endl;
     std::cout << "Initialisation Method: " << Enums::toString(num_initialization_method) << std::endl;
-    std::cout << "Key Init method: " << num_k_init_method << std::endl;
+    std::cout << "Key Init method: " << Enums::toString(num_k_init_method) << std::endl;
     std::cout << "Threshold value: " << threshold << std::endl;
 
     Mesh mesh(fileName);
-    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, static_cast<int>(num_initialization_method), num_k_init_method);
+    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, static_cast<int>(num_initialization_method), static_cast<int>(num_k_init_method));
     segmentation.fit();
 
     // Extract filename without extension
