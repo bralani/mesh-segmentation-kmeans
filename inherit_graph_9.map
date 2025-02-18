@@ -1,3 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structFace.html" title="Represents a triangular face in a 3D mesh." alt="" coords="5,5,56,31"/>
+<area shape="rect" id="Node000000" href="$classKinit.html" title="Abstract base class for determining the optimal number of clusters (k)." alt="" coords="5,55,149,80"/>
+<area shape="rect" id="Node000001" href="$classElbowMethod.html" title=" " alt="" coords="197,5,400,31"/>
+<area shape="poly" id="edge10_Node000000_Node000001" title=" " alt="" coords="148,49,240,28,241,33,149,54"/>
+<area shape="rect" id="Node000002" href="$classKDEMethod.html" title=" " alt="" coords="203,55,394,80"/>
+<area shape="poly" id="edge11_Node000000_Node000002" title=" " alt="" coords="163,65,203,65,203,70,163,70"/>
+<area shape="rect" id="Node000003" href="$classSilhouetteMethod.html" title="Implements the Silhouette Method to determine the optimal number of clusters." alt="" coords="213,105,385,145"/>
+<area shape="poly" id="edge12_Node000000_Node000003" title=" " alt="" coords="141,81,222,102,220,107,140,86"/>
 </map>

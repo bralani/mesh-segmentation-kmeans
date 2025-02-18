@@ -11,10 +11,6 @@ var hierarchy =
       [ "MostDistanceClass< PD >", "classMostDistanceClass.html", null ]
     ] ],
     [ "CSVUtils", "classCSVUtils.html", null ],
-    [ "Entry_CD", "structEntry__CD.html", null ],
-    [ "Entry_CE", "structEntry__CE.html", null ],
-    [ "Entry_HD", "structEntry__HD.html", null ],
-    [ "Entry_RI", "structEntry__RI.html", null ],
     [ "Enums", "classEnums.html", null ],
     [ "Face", "structFace.html", null ],
     [ "HasWgtCent< PT, PD >", "classHasWgtCent.html", [
@@ -47,7 +43,5 @@ var hierarchy =
     [ "Point< PT, PD >", "classPoint.html", [
       [ "CentroidPoint< PT, PD >", "classCentroidPoint.html", null ]
     ] ],
-    [ "Point< double, 3 >", "classPoint.html", null ],
-    [ "Segment", "structSegment.html", null ],
-    [ "Segmentation", "classSegmentation.html", null ]
+    [ "Point< double, 3 >", "classPoint.html", null ]
 ];

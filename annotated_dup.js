@@ -4,10 +4,6 @@ var annotated_dup =
     [ "CentroidPoint", "classCentroidPoint.html", "classCentroidPoint" ],
     [ "CSVUtils", "classCSVUtils.html", null ],
     [ "ElbowMethod", "classElbowMethod.html", "classElbowMethod" ],
-    [ "Entry_CD", "structEntry__CD.html", null ],
-    [ "Entry_CE", "structEntry__CE.html", null ],
-    [ "Entry_HD", "structEntry__HD.html", null ],
-    [ "Entry_RI", "structEntry__RI.html", null ],
     [ "Enums", "classEnums.html", null ],
     [ "EuclideanMetric", "classEuclideanMetric.html", "classEuclideanMetric" ],
     [ "Face", "structFace.html", "structFace" ],
@@ -29,7 +25,5 @@ var annotated_dup =
     [ "MostDistanceClass", "classMostDistanceClass.html", "classMostDistanceClass" ],
     [ "Point", "classPoint.html", "classPoint" ],
     [ "RandomCentroidInit", "classRandomCentroidInit.html", "classRandomCentroidInit" ],
-    [ "Segment", "structSegment.html", null ],
-    [ "Segmentation", "classSegmentation.html", null ],
     [ "SilhouetteMethod", "classSilhouetteMethod.html", "classSilhouetteMethod" ]
 ];
