@@ -1,11 +1,14 @@
 var searchData=
 [
-  ['m_5fdata_0',['m_data',['../classCentroidInitMethod.html#a692d9e32c9b92206c1b46de4467bfaa8',1,'CentroidInitMethod']]],
-  ['m_5fk_1',['m_k',['../classCentroidInitMethod.html#af6826d66fb866a6d0071584a9169eb71',1,'CentroidInitMethod']]],
-  ['m_5fkmeans_2',['m_kMeans',['../classKinit.html#a14db2b0148d94f5dbffa58d4c19fb411',1,'Kinit']]],
-  ['mesh_3',['mesh',['../classMesh.html',1,'Mesh'],['../classGeodesicMetric.html#abb836353308bf1c2e9de79e5e301df43',1,'GeodesicMetric::mesh']]],
-  ['meshsegmentation_4',['MeshSegmentation',['../classMeshSegmentation.html',1,'']]],
-  ['metric_5',['metric',['../classMetric.html',1,'Metric&lt; PT, PD &gt;'],['../classMetric.html#abd6ee8ea94d0c8c82534ded7356e0185',1,'Metric::Metric()'],['../classMetric.html#a1d8e067e41f8ee790165e4df2d0cf41c',1,'Metric::Metric(std::vector&lt; CentroidPoint&lt; PT, PD &gt; &gt; &amp;centroids)'],['../classMetric.html#a45f5181ed3a24f27484d02a6b9e9ecba',1,'Metric::Metric(std::vector&lt; CentroidPoint&lt; PT, PD &gt; &gt; &amp;centroids, std::vector&lt; Point&lt; PT, PD &gt; &gt; data)']]],
-  ['mostdistanceclass_6',['MostDistanceClass',['../classMostDistanceClass.html',1,'']]],
-  ['mypoint_7',['myPoint',['../classKdNode.html#a4410b913e3a6a1c84c3e5137f8de8666',1,'KdNode']]]
+  ['kde_0',['KDE',['../classKDE.html',1,'']]],
+  ['kde3d_1',['KDE3D',['../classKDE3D.html',1,'']]],
+  ['kdebase_2',['KDEBase',['../classKDEBase.html',1,'']]],
+  ['kdebase_3c_203_20_3e_3',['KDEBase&lt; 3 &gt;',['../classKDEBase.html',1,'']]],
+  ['kdemethod_4',['KDEMethod',['../classKDEMethod.html',1,'']]],
+  ['kdnode_5',['KdNode',['../classKdNode.html',1,'']]],
+  ['kdtree_6',['KdTree',['../classKdTree.html',1,'']]],
+  ['kernel_7',['Kernel',['../classKernel.html',1,'']]],
+  ['kinit_8',['kinit',['../classKinit.html',1,'Kinit&lt; PT, PD, M &gt;'],['../classKinit.html#a0d02442296360a40a640d3bd41b349a7',1,'Kinit::Kinit()']]],
+  ['kmeans_9',['kmeans',['../classKMeans.html',1,'KMeans&lt; PT, PD, M &gt;'],['../classKMeans.html#a8ce204fab6687425b5163b32a14d81a4',1,'KMeans::KMeans()']]],
+  ['kmeans_3c_20double_2c_203_2c_20m_20_3e_10',['KMeans&lt; double, 3, M &gt;',['../classKMeans.html',1,'']]]
 ];

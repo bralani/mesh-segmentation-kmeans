@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['elbowmethod_0',['ElbowMethod',['../classElbowMethod.html',1,'']]],
-  ['entry_5fcd_1',['Entry_CD',['../structEntry__CD.html',1,'']]],
-  ['entry_5fce_2',['Entry_CE',['../structEntry__CE.html',1,'']]],
-  ['entry_5fhd_3',['Entry_HD',['../structEntry__HD.html',1,'']]],
-  ['entry_5fri_4',['Entry_RI',['../structEntry__RI.html',1,'']]],
-  ['enums_5',['Enums',['../classEnums.html',1,'']]],
-  ['euclideanmetric_6',['euclideanmetric',['../classEuclideanMetric.html',1,'EuclideanMetric&lt; PT, PD &gt;'],['../classEuclideanMetric.html#a55e6111a439150461e5660db03e8623e',1,'EuclideanMetric::EuclideanMetric()=default'],['../classEuclideanMetric.html#ab6a6e2132abadbb9526f34a69938c1df',1,'EuclideanMetric::EuclideanMetric(std::vector&lt; Point&lt; PT, PD &gt; &gt; data, double threshold)'],['../classEuclideanMetric.html#a01af92427aa638d8870c0cd5bdb364f9',1,'EuclideanMetric::EuclideanMetric(Mesh &amp;mesh, double percentage_threshold, std::vector&lt; Point&lt; PT, PD &gt; &gt; data)']]],
-  ['exportedmesh_7',['exportedmesh',['../classCentroidInitMethod.html#aed5441e0394542605b550045e857ced7',1,'CentroidInitMethod::exportedMesh(const std::vector&lt; Point&lt; PT, PD &gt; &gt; &amp;points, const std::string &amp;name_csv)'],['../classCentroidInitMethod.html#a55aac7b8f1d82dee9e310b6ba32dd9a4',1,'CentroidInitMethod::exportedMesh(const std::vector&lt; CentroidPoint&lt; PT, PD &gt; &gt; &amp;points, const std::string &amp;name_csv)']]]
+  ['data_0',['data',['../classMetric.html#a5f022c396ff8ab3537f66f23de201e85',1,'Metric']]],
+  ['data_5fheat_1',['data_heat',['../classGeodesicHeatMetric.html#ae678fb1d68967498dc4504d9bf553dc7',1,'GeodesicHeatMetric']]],
+  ['dihedralangle_2',['dihedralAngle',['../classGeodesicMetric.html#a4f433268c09df1d528c24acc8c205585',1,'GeodesicMetric']]],
+  ['distances_3',['distances',['../classGeodesicMetric.html#aa96ebe18340026a0a2bec9ba4bd9f513',1,'GeodesicMetric']]],
+  ['distanceto_4',['distanceTo',['../classEuclideanMetric.html#add8992eb4a434068ebc2f405f19e0549',1,'EuclideanMetric']]]
 ];

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Represents a 3D mesh composed of vertices, faces, and adjacency relationships.">
 <polygon fill="#999999" stroke="transparent" points="163,-270 0,-270 0,0 163,0 163,-270"/>
 <text text-anchor="start" x="68.5" y="-258" font-family="Helvetica,sans-Serif" font-size="10.00">Mesh</text>
 <text text-anchor="start" x="80" y="-243" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>

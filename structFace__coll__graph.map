@@ -1,5 +1,5 @@
 <map id="Face" name="Face">
-<area shape="rect" id="Node000001" title=" " alt="" coords="29,408,119,513"/>
+<area shape="rect" id="Node000001" title="Represents a triangular face in a 3D mesh." alt="" coords="29,408,119,513"/>
 <area shape="rect" id="Node000002" href="$classPoint.html" title=" " alt="" coords="5,5,143,331"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,331,77,391,71,391,71,331"/>
 </map>

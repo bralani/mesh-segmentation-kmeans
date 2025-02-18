@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['segment_0',['Segment',['../structSegment.html',1,'']]],
-  ['segmentation_1',['Segmentation',['../classSegmentation.html',1,'']]],
-  ['setcentroids_2',['setCentroids',['../classMetric.html#a0916c3e367836c69945b6c18fca4e323',1,'Metric']]],
-  ['setpoints_3',['setPoints',['../classMetric.html#aa7a66f78b887fb80499cbbbc79114f7a',1,'Metric']]],
-  ['setup_4',['setup',['../classEuclideanMetric.html#a3ae05913f9dc9f7d56990f6443a2d940',1,'EuclideanMetric::setup()'],['../classGeodesicMetric.html#af236f81df609336f894dbf39ed24891e',1,'GeodesicMetric::setup()'],['../classMetric.html#a6e0557acd38bfc57fe6521b9246c4b25',1,'Metric::setup()']]],
-  ['setupavg_5',['setupAvg',['../classGeodesicMetric.html#a0e9cddd8ada1495b38ceeaae69917d91',1,'GeodesicMetric']]],
-  ['silhouettemethod_6',['silhouettemethod',['../classSilhouetteMethod.html',1,'SilhouetteMethod&lt; PT, PD, M &gt;'],['../classSilhouetteMethod.html#a37bbc7d79d15da6cb87468132a71a778',1,'SilhouetteMethod::SilhouetteMethod()']]],
-  ['storecentroids_7',['storecentroids',['../classGeodesicMetric.html#a27d1a05a59ecfdf888dd74632ce6023c',1,'GeodesicMetric::storeCentroids()'],['../classMetric.html#a15c1b6b24dd38f50dd79adc8e35069cc',1,'Metric::storeCentroids()']]]
+  ['oldcentroids_0',['oldCentroids',['../classMetric.html#ab19be5cecbf73fc14b79ce5e0c485efd',1,'Metric']]],
+  ['oldpoints_1',['oldPoints',['../classGeodesicMetric.html#adb8fcc4993f3a2d694b18f6c0155e01d',1,'GeodesicMetric']]],
+  ['operator_21_3d_2',['operator!=',['../classCentroidPoint.html#ab44378e4fb86a80601baf94aae3797f7',1,'CentroidPoint::operator!=(const CentroidPoint&lt; PT, PD &gt; &amp;other) const'],['../classCentroidPoint.html#a368eedcd466fce58dbab2201e41ebfd2',1,'CentroidPoint::operator!=(const Point&lt; PT, PD &gt; &amp;other) const']]],
+  ['operator_2b_3',['operator+',['../classCentroidPoint.html#a61b6e9ff012efb8cd7cf10aa58ba6acc',1,'CentroidPoint::operator+()'],['../classPoint.html#ac3ab9f1ce8279381650719e4680b5d4a',1,'Point::operator+(const Point&lt; PT, PD &gt; &amp;other) const']]],
+  ['operator_2d_4',['operator-',['../classPoint.html#a1f270ab277fe6bd3a79a038a9a1b36be',1,'Point']]],
+  ['operator_2f_5',['operator/',['../classPoint.html#a99bdc837b6bf4163634e4febb4381849',1,'Point::operator/(const Point&lt; PT, PD &gt; &amp;other) const'],['../classPoint.html#a3be1d2092e5f3230a2eb44f25f77ec11',1,'Point::operator/(double div) const']]],
+  ['operator_3c_3c_6',['operator&lt;&lt;',['../classMesh.html#a1ef0a342442d6e336e6b44df1354cd23',1,'Mesh::operator&lt;&lt;'],['../classPoint.html#ab0756c2fadbdcf9c47027cfa131852fc',1,'Point::operator&lt;&lt;']]],
+  ['operator_3d_3d_7',['operator==',['../classCentroidPoint.html#a56dff55d6b50587fc65195453811037e',1,'CentroidPoint::operator==(const CentroidPoint&lt; PT, PD &gt; &amp;other) const'],['../classCentroidPoint.html#a10d147d7223246fe8cfc61fe6210519e',1,'CentroidPoint::operator==(const Point&lt; PT, PD &gt; &amp;other) const'],['../classPoint.html#a04eeb76892e69d4e3c2490728c7a881d',1,'Point::operator==()']]]
 ];

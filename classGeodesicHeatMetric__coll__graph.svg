@@ -134,7 +134,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="classMesh.html" target="_top" xlink:title=" ">
+<g id="a_Node000004"><a xlink:href="classMesh.html" target="_top" xlink:title="Represents a 3D mesh composed of vertices, faces, and adjacency relationships.">
 <polygon fill="white" stroke="transparent" points="281.5,-669 118.5,-669 118.5,-399 281.5,-399 281.5,-669"/>
 <text text-anchor="start" x="187" y="-657" font-family="Helvetica,sans-Serif" font-size="10.00">Mesh</text>
 <text text-anchor="start" x="198.5" y="-642" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -169,9 +169,9 @@
 <text text-anchor="start" x="136" y="-421" font-family="Helvetica,sans-Serif" font-size="10.00">getFaceAdjacency()</text>
 <text text-anchor="start" x="123" y="-406" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="136" y="-406" font-family="Helvetica,sans-Serif" font-size="10.00">getMeshFaces()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="119,-652 119,-652 282,-652 282,-652 119,-652"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="119,-637 119,-637 282,-637 282,-637 119,-637"/>
-<polygon fill="none" stroke="#bfbfbf" points="118.5,-399 118.5,-669 281.5,-669 281.5,-399 118.5,-399"/>
+<polygon fill="#666666" stroke="#666666" points="119,-652 119,-652 282,-652 282,-652 119,-652"/>
+<polygon fill="#666666" stroke="#666666" points="119,-637 119,-637 282,-637 282,-637 119,-637"/>
+<polygon fill="none" stroke="#666666" points="118.5,-399 118.5,-669 281.5,-669 281.5,-399 118.5,-399"/>
 </a>
 </g>
 </g>

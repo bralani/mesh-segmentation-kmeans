@@ -102,6 +102,11 @@ $(document).ready(function(){initNavTree('structFace.html',''); initResizable();
   <div class="headertitle"><div class="title">Face Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a triangular face in a 3D mesh.  
+ <a href="structFace.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Face_8hpp_source.html">Face.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Face:</div>
 <div class="dyncontent">
@@ -110,28 +115,189 @@ Collaboration diagram for Face:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a34363b90a7c31d6fc4604f4e8b2a52e4" id="r_a34363b90a7c31d6fc4604f4e8b2a52e4"><td class="memItemLeft" align="right" valign="top"><a id="a34363b90a7c31d6fc4604f4e8b2a52e4" name="a34363b90a7c31d6fc4604f4e8b2a52e4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Face</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; VertId &gt; &amp;vertices, <a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt; &amp;meshVertices, <a class="el" href="classKinit.html">FaceId</a> id)</td></tr>
+<tr class="memitem:a34363b90a7c31d6fc4604f4e8b2a52e4" id="r_a34363b90a7c31d6fc4604f4e8b2a52e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFace.html#a34363b90a7c31d6fc4604f4e8b2a52e4">Face</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; VertId &gt; &amp;<a class="el" href="structFace.html#aa880b02f47bc7cb996cac255cb43a071">vertices</a>, <a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt; &amp;meshVertices, <a class="el" href="classKinit.html">FaceId</a> id)</td></tr>
+<tr class="memdesc:a34363b90a7c31d6fc4604f4e8b2a52e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that initializes a face with three vertices and computes its area and normal.  <br /></td></tr>
 <tr class="separator:a34363b90a7c31d6fc4604f4e8b2a52e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c63f15147fbf57ad495d6973b9fb568" id="r_a7c63f15147fbf57ad495d6973b9fb568"><td class="memItemLeft" align="right" valign="top"><a id="a7c63f15147fbf57ad495d6973b9fb568" name="a7c63f15147fbf57ad495d6973b9fb568"></a>
-<a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getArea</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:a7c63f15147fbf57ad495d6973b9fb568" id="r_a7c63f15147fbf57ad495d6973b9fb568"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFace.html#a7c63f15147fbf57ad495d6973b9fb568">getArea</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a7c63f15147fbf57ad495d6973b9fb568"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the area of the face.  <br /></td></tr>
 <tr class="separator:a7c63f15147fbf57ad495d6973b9fb568"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aa880b02f47bc7cb996cac255cb43a071" id="r_aa880b02f47bc7cb996cac255cb43a071"><td class="memItemLeft" align="right" valign="top"><a id="aa880b02f47bc7cb996cac255cb43a071" name="aa880b02f47bc7cb996cac255cb43a071"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; VertId &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vertices</b></td></tr>
+<tr class="memitem:aa880b02f47bc7cb996cac255cb43a071" id="r_aa880b02f47bc7cb996cac255cb43a071"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; VertId &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFace.html#aa880b02f47bc7cb996cac255cb43a071">vertices</a></td></tr>
+<tr class="memdesc:aa880b02f47bc7cb996cac255cb43a071"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of vertex indices that define the face.  <br /></td></tr>
 <tr class="separator:aa880b02f47bc7cb996cac255cb43a071"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae63fcd017fcd355e212a2510209db17c" id="r_ae63fcd017fcd355e212a2510209db17c"><td class="memItemLeft" align="right" valign="top"><a id="ae63fcd017fcd355e212a2510209db17c" name="ae63fcd017fcd355e212a2510209db17c"></a>
-<a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>area</b></td></tr>
+<tr class="memitem:ae63fcd017fcd355e212a2510209db17c" id="r_ae63fcd017fcd355e212a2510209db17c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFace.html#ae63fcd017fcd355e212a2510209db17c">area</a></td></tr>
+<tr class="memdesc:ae63fcd017fcd355e212a2510209db17c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The area of the face.  <br /></td></tr>
 <tr class="separator:ae63fcd017fcd355e212a2510209db17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0abc3357bd54d94eacaf64f103ada035" id="r_a0abc3357bd54d94eacaf64f103ada035"><td class="memItemLeft" align="right" valign="top"><a id="a0abc3357bd54d94eacaf64f103ada035" name="a0abc3357bd54d94eacaf64f103ada035"></a>
-<a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>baricenter</b></td></tr>
+<tr class="memitem:a0abc3357bd54d94eacaf64f103ada035" id="r_a0abc3357bd54d94eacaf64f103ada035"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFace.html#a0abc3357bd54d94eacaf64f103ada035">baricenter</a></td></tr>
+<tr class="memdesc:a0abc3357bd54d94eacaf64f103ada035"><td class="mdescLeft">&#160;</td><td class="mdescRight">The baricenter (centroid) of the face.  <br /></td></tr>
 <tr class="separator:a0abc3357bd54d94eacaf64f103ada035"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d01f701e5c2f3f640a55292488e1638" id="r_a4d01f701e5c2f3f640a55292488e1638"><td class="memItemLeft" align="right" valign="top"><a id="a4d01f701e5c2f3f640a55292488e1638" name="a4d01f701e5c2f3f640a55292488e1638"></a>
-<a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>normal</b></td></tr>
+<tr class="memitem:a4d01f701e5c2f3f640a55292488e1638" id="r_a4d01f701e5c2f3f640a55292488e1638"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structFace.html#a4d01f701e5c2f3f640a55292488e1638">normal</a></td></tr>
+<tr class="memdesc:a4d01f701e5c2f3f640a55292488e1638"><td class="mdescLeft">&#160;</td><td class="mdescRight">The normal vector of the face.  <br /></td></tr>
 <tr class="separator:a4d01f701e5c2f3f640a55292488e1638"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a triangular face in a 3D mesh. </p>
+<p>A face is defined by three vertices, and this structure stores the vertices, the computed area, the normal vector, and the baricenter (centroid) of the face. The face also includes methods for calculating the area and baricenter from the provided vertices and mesh vertex data. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a34363b90a7c31d6fc4604f4e8b2a52e4" name="a34363b90a7c31d6fc4604f4e8b2a52e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34363b90a7c31d6fc4604f4e8b2a52e4">&#9670;&#160;</a></span>Face()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Face::Face </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; VertId &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>meshVertices</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">FaceId</a>&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor that initializes a face with three vertices and computes its area and normal. </p>
+<p>This constructor takes a set of vertices, a mesh of vertices, and an ID for the face. It computes the area and normal of the face as well as its baricenter.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vertices</td><td>The list of vertex indices that define the face. </td></tr>
+    <tr><td class="paramname">meshVertices</td><td>A list of all the vertices in the mesh, referenced by index. </td></tr>
+    <tr><td class="paramname">id</td><td>The unique identifier of the face. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="structFace_a34363b90a7c31d6fc4604f4e8b2a52e4_cgraph.svg" width="244" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7c63f15147fbf57ad495d6973b9fb568" name="a7c63f15147fbf57ad495d6973b9fb568"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c63f15147fbf57ad495d6973b9fb568">&#9670;&#160;</a></span>getArea()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">double</a> Face::getArea </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the area of the face. </p>
+<p>This method returns the computed area of the triangular face.</p>
+<dl class="section return"><dt>Returns</dt><dd>The area of the face. </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae63fcd017fcd355e212a2510209db17c" name="ae63fcd017fcd355e212a2510209db17c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae63fcd017fcd355e212a2510209db17c">&#9670;&#160;</a></span>area</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">double</a> Face::area</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The area of the face. </p>
+<p>The area is computed as half the magnitude of the cross product of two edge vectors of the triangle. </p>
+
+</div>
+</div>
+<a id="a0abc3357bd54d94eacaf64f103ada035" name="a0abc3357bd54d94eacaf64f103ada035"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0abc3357bd54d94eacaf64f103ada035">&#9670;&#160;</a></span>baricenter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPoint.html">Point</a>&lt;<a class="el" href="classKinit.html">double</a>, 3&gt; Face::baricenter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The baricenter (centroid) of the face. </p>
+<p>The baricenter is the average of the three vertex coordinates. </p>
+
+</div>
+</div>
+<a id="a4d01f701e5c2f3f640a55292488e1638" name="a4d01f701e5c2f3f640a55292488e1638"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d01f701e5c2f3f640a55292488e1638">&#9670;&#160;</a></span>normal</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPoint.html">Point</a>&lt;<a class="el" href="classKinit.html">double</a>, 3&gt; Face::normal</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The normal vector of the face. </p>
+<p>The normal is computed as the cross product of two edge vectors of the triangle, and it is normalized. </p>
+
+</div>
+</div>
+<a id="aa880b02f47bc7cb996cac255cb43a071" name="aa880b02f47bc7cb996cac255cb43a071"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa880b02f47bc7cb996cac255cb43a071">&#9670;&#160;</a></span>vertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt;VertId&gt; Face::vertices</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A list of vertex indices that define the face. </p>
+<p>The vertices are represented by indices into the mesh's vertex array. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/geometry/mesh/<a class="el" href="Face_8hpp_source.html">Face.hpp</a></li>
 </ul>

@@ -102,6 +102,11 @@ $(document).ready(function(){initNavTree('classMesh.html',''); initResizable(); 
   <div class="headertitle"><div class="title">Mesh Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a 3D mesh composed of vertices, faces, and adjacency relationships.  
+ <a href="classMesh.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Mesh:</div>
 <div class="dyncontent">
@@ -110,58 +115,563 @@ Collaboration diagram for Mesh:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a23f4d2d0b1764d8fc3170ce4758aefa5" id="r_a23f4d2d0b1764d8fc3170ce4758aefa5"><td class="memItemLeft" align="right" valign="top"><a id="a23f4d2d0b1764d8fc3170ce4758aefa5" name="a23f4d2d0b1764d8fc3170ce4758aefa5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Mesh</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> <a class="el" href="classKinit.html">path</a>)</td></tr>
+<tr class="memitem:a23f4d2d0b1764d8fc3170ce4758aefa5" id="r_a23f4d2d0b1764d8fc3170ce4758aefa5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a23f4d2d0b1764d8fc3170ce4758aefa5">Mesh</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> <a class="el" href="classKinit.html">path</a>)</td></tr>
+<tr class="memdesc:a23f4d2d0b1764d8fc3170ce4758aefa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to initialize the mesh from a file.  <br /></td></tr>
 <tr class="separator:a23f4d2d0b1764d8fc3170ce4758aefa5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ac931d2c817d4bad949aa37adb9687a" id="r_a2ac931d2c817d4bad949aa37adb9687a"><td class="memItemLeft" align="right" valign="top"><a id="a2ac931d2c817d4bad949aa37adb9687a" name="a2ac931d2c817d4bad949aa37adb9687a"></a>
-<a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>createSegmentationFromSegFile</b> (<a class="el" href="classKinit.html">const</a> std::filesystem::path &amp;<a class="el" href="classKinit.html">path</a>)</td></tr>
+<tr class="memitem:a2ac931d2c817d4bad949aa37adb9687a" id="r_a2ac931d2c817d4bad949aa37adb9687a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a2ac931d2c817d4bad949aa37adb9687a">createSegmentationFromSegFile</a> (<a class="el" href="classKinit.html">const</a> std::filesystem::path &amp;<a class="el" href="classKinit.html">path</a>)</td></tr>
+<tr class="memdesc:a2ac931d2c817d4bad949aa37adb9687a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a segmentation from a .segm file and returns the number of clusters.  <br /></td></tr>
 <tr class="separator:a2ac931d2c817d4bad949aa37adb9687a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd586b22d3715964487c198e6f5bfdf0" id="r_acd586b22d3715964487c198e6f5bfdf0"><td class="memItemLeft" align="right" valign="top"><a id="acd586b22d3715964487c198e6f5bfdf0" name="acd586b22d3715964487c198e6f5bfdf0"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>buildFaceAdjacency</b> ()</td></tr>
+<tr class="memitem:acd586b22d3715964487c198e6f5bfdf0" id="r_acd586b22d3715964487c198e6f5bfdf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#acd586b22d3715964487c198e6f5bfdf0">buildFaceAdjacency</a> ()</td></tr>
+<tr class="memdesc:acd586b22d3715964487c198e6f5bfdf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds the face adjacency relationships for the mesh.  <br /></td></tr>
 <tr class="separator:acd586b22d3715964487c198e6f5bfdf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2033f61e3d2c9b29e301a235dce2b5c1" id="r_a2033f61e3d2c9b29e301a235dce2b5c1"><td class="memItemLeft" align="right" valign="top"><a id="a2033f61e3d2c9b29e301a235dce2b5c1" name="a2033f61e3d2c9b29e301a235dce2b5c1"></a>
-<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getFaceCluster</b> (FaceId <a class="el" href="classKinit.html">face</a>) <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:a2033f61e3d2c9b29e301a235dce2b5c1" id="r_a2033f61e3d2c9b29e301a235dce2b5c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a2033f61e3d2c9b29e301a235dce2b5c1">getFaceCluster</a> (FaceId <a class="el" href="classKinit.html">face</a>) <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a2033f61e3d2c9b29e301a235dce2b5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the cluster ID of a specified face.  <br /></td></tr>
 <tr class="separator:a2033f61e3d2c9b29e301a235dce2b5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a43c8579a48714e25ddf4ecffe69bb9" id="r_a2a43c8579a48714e25ddf4ecffe69bb9"><td class="memItemLeft" align="right" valign="top"><a id="a2a43c8579a48714e25ddf4ecffe69bb9" name="a2a43c8579a48714e25ddf4ecffe69bb9"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>setFaceCluster</b> (FaceId <a class="el" href="classKinit.html">face</a>, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">cluster</a>)</td></tr>
-<tr class="separator:a2a43c8579a48714e25ddf4ecffe69bb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8321bba7e349e66cd3098974f3fe3f1" id="r_ac8321bba7e349e66cd3098974f3fe3f1"><td class="memItemLeft" align="right" valign="top"><a id="ac8321bba7e349e66cd3098974f3fe3f1" name="ac8321bba7e349e66cd3098974f3fe3f1"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getMeshFacesPoints</b> ()</td></tr>
+<tr class="memitem:a982c2015a98e54421be2fca6e4fcde73" id="r_a982c2015a98e54421be2fca6e4fcde73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a982c2015a98e54421be2fca6e4fcde73">setFaceCluster</a> (<a class="el" href="classKinit.html">const</a> FaceId <a class="el" href="classKinit.html">face</a>, <a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">cluster</a>)</td></tr>
+<tr class="memdesc:a982c2015a98e54421be2fca6e4fcde73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the cluster ID for a specified face.  <br /></td></tr>
+<tr class="separator:a982c2015a98e54421be2fca6e4fcde73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8321bba7e349e66cd3098974f3fe3f1" id="r_ac8321bba7e349e66cd3098974f3fe3f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#ac8321bba7e349e66cd3098974f3fe3f1">getMeshFacesPoints</a> ()</td></tr>
+<tr class="memdesc:ac8321bba7e349e66cd3098974f3fe3f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of points representing the face centroids of the mesh.  <br /></td></tr>
 <tr class="separator:ac8321bba7e349e66cd3098974f3fe3f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7151069daa033eccda08200d81c3de8e" id="r_a7151069daa033eccda08200d81c3de8e"><td class="memItemLeft" align="right" valign="top"><a id="a7151069daa033eccda08200d81c3de8e" name="a7151069daa033eccda08200d81c3de8e"></a>
-<a class="el" href="structFace.html">Face</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getFace</b> (FaceId <a class="el" href="classKinit.html">face</a>)</td></tr>
-<tr class="separator:a7151069daa033eccda08200d81c3de8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62e984f43128ea7cdadc4ba24f9402e2" id="r_a62e984f43128ea7cdadc4ba24f9402e2"><td class="memItemLeft" align="right" valign="top"><a id="a62e984f43128ea7cdadc4ba24f9402e2" name="a62e984f43128ea7cdadc4ba24f9402e2"></a>
-<a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>numFaces</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:a6a95a8345a7c857d6a797044520828d8" id="r_a6a95a8345a7c857d6a797044520828d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structFace.html">Face</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a6a95a8345a7c857d6a797044520828d8">getFace</a> (<a class="el" href="classKinit.html">const</a> FaceId <a class="el" href="classKinit.html">face</a>)</td></tr>
+<tr class="memdesc:a6a95a8345a7c857d6a797044520828d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a reference to a specific face in the mesh.  <br /></td></tr>
+<tr class="separator:a6a95a8345a7c857d6a797044520828d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62e984f43128ea7cdadc4ba24f9402e2" id="r_a62e984f43128ea7cdadc4ba24f9402e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a62e984f43128ea7cdadc4ba24f9402e2">numFaces</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a62e984f43128ea7cdadc4ba24f9402e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of faces in the mesh.  <br /></td></tr>
 <tr class="separator:a62e984f43128ea7cdadc4ba24f9402e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a981333c0728e8f56b9df0b01a41e4150" id="r_a981333c0728e8f56b9df0b01a41e4150"><td class="memItemLeft" align="right" valign="top"><a id="a981333c0728e8f56b9df0b01a41e4150" name="a981333c0728e8f56b9df0b01a41e4150"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getVertices</b> ()</td></tr>
+<tr class="memitem:a981333c0728e8f56b9df0b01a41e4150" id="r_a981333c0728e8f56b9df0b01a41e4150"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a981333c0728e8f56b9df0b01a41e4150">getVertices</a> ()</td></tr>
+<tr class="memdesc:a981333c0728e8f56b9df0b01a41e4150"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a reference to the list of vertices in the mesh.  <br /></td></tr>
 <tr class="separator:a981333c0728e8f56b9df0b01a41e4150"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ea999d8e6154eff15535e5082c1366d" id="r_a1ea999d8e6154eff15535e5082c1366d"><td class="memItemLeft" align="right" valign="top"><a id="a1ea999d8e6154eff15535e5082c1366d" name="a1ea999d8e6154eff15535e5082c1366d"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; FaceId &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getFaceAdjacencyAt</b> (FaceId id) <a class="el" href="classKinit.html">const</a></td></tr>
-<tr class="separator:a1ea999d8e6154eff15535e5082c1366d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85e23d4abbd46fe2e1ca0b9904dd7b61" id="r_a85e23d4abbd46fe2e1ca0b9904dd7b61"><td class="memItemLeft" align="right" valign="top"><a id="a85e23d4abbd46fe2e1ca0b9904dd7b61" name="a85e23d4abbd46fe2e1ca0b9904dd7b61"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>exportToObj</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">filepath</a>, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">cluster</a>)</td></tr>
+<tr class="memitem:a5b2a33251f127cb4899ed6d473f7b120" id="r_a5b2a33251f127cb4899ed6d473f7b120"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; FaceId &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a5b2a33251f127cb4899ed6d473f7b120">getFaceAdjacencyAt</a> (<a class="el" href="classKinit.html">const</a> FaceId id) <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a5b2a33251f127cb4899ed6d473f7b120"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of faces adjacent to a given face.  <br /></td></tr>
+<tr class="separator:a5b2a33251f127cb4899ed6d473f7b120"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85e23d4abbd46fe2e1ca0b9904dd7b61" id="r_a85e23d4abbd46fe2e1ca0b9904dd7b61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a85e23d4abbd46fe2e1ca0b9904dd7b61">exportToObj</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">filepath</a>, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">cluster</a>)</td></tr>
+<tr class="memdesc:a85e23d4abbd46fe2e1ca0b9904dd7b61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports the mesh to an .obj file, filtering faces by a specific cluster.  <br /></td></tr>
 <tr class="separator:a85e23d4abbd46fe2e1ca0b9904dd7b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49daaf52dd39cdfe1aa3aff9ba7c9d67" id="r_a49daaf52dd39cdfe1aa3aff9ba7c9d67"><td class="memItemLeft" align="right" valign="top"><a id="a49daaf52dd39cdfe1aa3aff9ba7c9d67" name="a49daaf52dd39cdfe1aa3aff9ba7c9d67"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>exportToGroupedObj</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">filepath</a>) <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:a49daaf52dd39cdfe1aa3aff9ba7c9d67" id="r_a49daaf52dd39cdfe1aa3aff9ba7c9d67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a49daaf52dd39cdfe1aa3aff9ba7c9d67">exportToGroupedObj</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">filepath</a>) <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a49daaf52dd39cdfe1aa3aff9ba7c9d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports the mesh to a grouped .obj file.  <br /></td></tr>
 <tr class="separator:a49daaf52dd39cdfe1aa3aff9ba7c9d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae98b7b11137eed55d3502165cbbde4c9" id="r_ae98b7b11137eed55d3502165cbbde4c9"><td class="memItemLeft" align="right" valign="top"><a id="ae98b7b11137eed55d3502165cbbde4c9" name="ae98b7b11137eed55d3502165cbbde4c9"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getMeshVertices</b> ()</td></tr>
-<tr class="separator:ae98b7b11137eed55d3502165cbbde4c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f245fcafca5614e97803df281354764" id="r_a5f245fcafca5614e97803df281354764"><td class="memItemLeft" align="right" valign="top"><a id="a5f245fcafca5614e97803df281354764" name="a5f245fcafca5614e97803df281354764"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::unordered_map</a>&lt; FaceId, <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; FaceId &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getFaceAdjacency</b> ()</td></tr>
-<tr class="separator:a5f245fcafca5614e97803df281354764"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64d05822490d0b074b61794c36f2bf14" id="r_a64d05822490d0b074b61794c36f2bf14"><td class="memItemLeft" align="right" valign="top"><a id="a64d05822490d0b074b61794c36f2bf14" name="a64d05822490d0b074b61794c36f2bf14"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="structFace.html">Face</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getMeshFaces</b> ()</td></tr>
-<tr class="separator:a64d05822490d0b074b61794c36f2bf14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab496e4d5005626b2aa30806ebb423fa2" id="r_ab496e4d5005626b2aa30806ebb423fa2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#ab496e4d5005626b2aa30806ebb423fa2">getMeshVertices</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:ab496e4d5005626b2aa30806ebb423fa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of vertices in the mesh.  <br /></td></tr>
+<tr class="separator:ab496e4d5005626b2aa30806ebb423fa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af957ebf52489541d011a6370be1f2eb9" id="r_af957ebf52489541d011a6370be1f2eb9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::unordered_map</a>&lt; FaceId, <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; FaceId &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#af957ebf52489541d011a6370be1f2eb9">getFaceAdjacency</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:af957ebf52489541d011a6370be1f2eb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the adjacency relationships for the faces in the mesh.  <br /></td></tr>
+<tr class="separator:af957ebf52489541d011a6370be1f2eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8402cbbbe9192334ca55b6cd32cbbf" id="r_a0a8402cbbbe9192334ca55b6cd32cbbf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="structFace.html">Face</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a0a8402cbbbe9192334ca55b6cd32cbbf">getMeshFaces</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a0a8402cbbbe9192334ca55b6cd32cbbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the list of faces in the mesh.  <br /></td></tr>
+<tr class="separator:a0a8402cbbbe9192334ca55b6cd32cbbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:a1ef0a342442d6e336e6b44df1354cd23" id="r_a1ef0a342442d6e336e6b44df1354cd23"><td class="memItemLeft" align="right" valign="top"><a id="a1ef0a342442d6e336e6b44df1354cd23" name="a1ef0a342442d6e336e6b44df1354cd23"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::ostream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator&lt;&lt;</b> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::ostream</a> &amp;<a class="el" href="classKinit.html">os</a>, <a class="el" href="classKinit.html">const</a> <a class="el" href="classMesh.html">Mesh</a> &amp;<a class="el" href="classKinit.html">graph</a>)</td></tr>
+<tr class="memitem:a1ef0a342442d6e336e6b44df1354cd23" id="r_a1ef0a342442d6e336e6b44df1354cd23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::ostream</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMesh.html#a1ef0a342442d6e336e6b44df1354cd23">operator&lt;&lt;</a> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::ostream</a> &amp;<a class="el" href="classKinit.html">os</a>, <a class="el" href="classKinit.html">const</a> <a class="el" href="classMesh.html">Mesh</a> &amp;<a class="el" href="classKinit.html">graph</a>)</td></tr>
+<tr class="memdesc:a1ef0a342442d6e336e6b44df1354cd23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overloads the output stream operator to print the mesh.  <br /></td></tr>
 <tr class="separator:a1ef0a342442d6e336e6b44df1354cd23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a 3D mesh composed of vertices, faces, and adjacency relationships. </p>
+<p>The <a class="el" href="classMesh.html" title="Represents a 3D mesh composed of vertices, faces, and adjacency relationships.">Mesh</a> class provides methods for managing a collection of faces and vertices, building face adjacency, exporting the mesh to files, and handling cluster segmentation of the faces. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a23f4d2d0b1764d8fc3170ce4758aefa5" name="a23f4d2d0b1764d8fc3170ce4758aefa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23f4d2d0b1764d8fc3170ce4758aefa5">&#9670;&#160;</a></span>Mesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mesh::Mesh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a>&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor to initialize the mesh from a file. </p>
+<p>This constructor takes a file path, reads the mesh data, and initializes the vertices, faces, and adjacency relationships.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The file path to the mesh data. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="acd586b22d3715964487c198e6f5bfdf0" name="acd586b22d3715964487c198e6f5bfdf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd586b22d3715964487c198e6f5bfdf0">&#9670;&#160;</a></span>buildFaceAdjacency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">void</a> Mesh::buildFaceAdjacency </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Builds the face adjacency relationships for the mesh. </p>
+<p>This method computes the adjacency list for each face in the mesh, storing the adjacent faces for each face ID. </p>
+
+</div>
+</div>
+<a id="a2ac931d2c817d4bad949aa37adb9687a" name="a2ac931d2c817d4bad949aa37adb9687a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ac931d2c817d4bad949aa37adb9687a">&#9670;&#160;</a></span>createSegmentationFromSegFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">int</a> Mesh::createSegmentationFromSegFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> std::filesystem::path &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a segmentation from a .segm file and returns the number of clusters. </p>
+<p>This method reads the provided .segm file, processes the segmentation data, and assigns faces to clusters.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The path to the .segm file. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of clusters in the segmentation. </dd></dl>
+
+</div>
+</div>
+<a id="a49daaf52dd39cdfe1aa3aff9ba7c9d67" name="a49daaf52dd39cdfe1aa3aff9ba7c9d67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49daaf52dd39cdfe1aa3aff9ba7c9d67">&#9670;&#160;</a></span>exportToGroupedObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">void</a> Mesh::exportToGroupedObj </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>filepath</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Exports the mesh to a grouped .obj file. </p>
+<p>This method exports the mesh to an .obj file, grouping faces according to their cluster IDs.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>The path to the output .obj file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a85e23d4abbd46fe2e1ca0b9904dd7b61" name="a85e23d4abbd46fe2e1ca0b9904dd7b61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85e23d4abbd46fe2e1ca0b9904dd7b61">&#9670;&#160;</a></span>exportToObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">void</a> Mesh::exportToObj </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>filepath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramname"><em>cluster</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Exports the mesh to an .obj file, filtering faces by a specific cluster. </p>
+<p>This method exports the mesh to an .obj file, including only the faces that belong to the specified cluster.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filepath</td><td>The path to the output .obj file. </td></tr>
+    <tr><td class="paramname">cluster</td><td>The cluster ID to filter faces. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6a95a8345a7c857d6a797044520828d8" name="a6a95a8345a7c857d6a797044520828d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a95a8345a7c857d6a797044520828d8">&#9670;&#160;</a></span>getFace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structFace.html">Face</a> &amp; Mesh::getFace </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> FaceId&#160;</td>
+          <td class="paramname"><em>face</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a reference to a specific face in the mesh. </p>
+<p>This method returns a reference to the face identified by the given FaceId.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">face</td><td>The ID of the face. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the specified face. </dd></dl>
+
+</div>
+</div>
+<a id="af957ebf52489541d011a6370be1f2eb9" name="af957ebf52489541d011a6370be1f2eb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af957ebf52489541d011a6370be1f2eb9">&#9670;&#160;</a></span>getFaceAdjacency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::unordered_map</a>&lt; FaceId, <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; FaceId &gt; &gt; Mesh::getFaceAdjacency </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the adjacency relationships for the faces in the mesh. </p>
+<p>This method returns a map where each face ID is associated with a vector of adjacent face IDs.</p>
+<dl class="section return"><dt>Returns</dt><dd>A map representing the adjacency relationships of faces. </dd></dl>
+
+</div>
+</div>
+<a id="a5b2a33251f127cb4899ed6d473f7b120" name="a5b2a33251f127cb4899ed6d473f7b120"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b2a33251f127cb4899ed6d473f7b120">&#9670;&#160;</a></span>getFaceAdjacencyAt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; FaceId &gt; Mesh::getFaceAdjacencyAt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> FaceId&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the list of faces adjacent to a given face. </p>
+<p>This method returns the adjacent faces for a given face identified by the FaceId.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the face. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A vector of FaceIds representing the adjacent faces. </dd></dl>
+
+</div>
+</div>
+<a id="a2033f61e3d2c9b29e301a235dce2b5c1" name="a2033f61e3d2c9b29e301a235dce2b5c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2033f61e3d2c9b29e301a235dce2b5c1">&#9670;&#160;</a></span>getFaceCluster()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html">int</a> Mesh::getFaceCluster </td>
+          <td>(</td>
+          <td class="paramtype">FaceId&#160;</td>
+          <td class="paramname"><em>face</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the cluster ID of a specified face. </p>
+<p>This method retrieves the cluster ID assigned to a face. If the face does not belong to any cluster, it returns -1.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">face</td><td>The ID of the face. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The cluster ID of the face, or -1 if not assigned. </dd></dl>
+
+</div>
+</div>
+<a id="a0a8402cbbbe9192334ca55b6cd32cbbf" name="a0a8402cbbbe9192334ca55b6cd32cbbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a8402cbbbe9192334ca55b6cd32cbbf">&#9670;&#160;</a></span>getMeshFaces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="structFace.html">Face</a> &gt; Mesh::getMeshFaces </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the list of faces in the mesh. </p>
+<p>This method returns the list of faces that constitute the mesh.</p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of faces in the mesh. </dd></dl>
+
+</div>
+</div>
+<a id="ac8321bba7e349e66cd3098974f3fe3f1" name="ac8321bba7e349e66cd3098974f3fe3f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8321bba7e349e66cd3098974f3fe3f1">&#9670;&#160;</a></span>getMeshFacesPoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt; Mesh::getMeshFacesPoints </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the list of points representing the face centroids of the mesh. </p>
+<p>This method returns a list of points representing the centroids (baricenters) of all the faces in the mesh.</p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of 3D points representing the centroids of the mesh faces. </dd></dl>
+
+</div>
+</div>
+<a id="ab496e4d5005626b2aa30806ebb423fa2" name="ab496e4d5005626b2aa30806ebb423fa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab496e4d5005626b2aa30806ebb423fa2">&#9670;&#160;</a></span>getMeshVertices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt; Mesh::getMeshVertices </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the list of vertices in the mesh. </p>
+<p>This method returns the list of vertices as a vector of 3D points.</p>
+<dl class="section return"><dt>Returns</dt><dd>A vector of 3D points representing the vertices of the mesh. </dd></dl>
+
+</div>
+</div>
+<a id="a981333c0728e8f56b9df0b01a41e4150" name="a981333c0728e8f56b9df0b01a41e4150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a981333c0728e8f56b9df0b01a41e4150">&#9670;&#160;</a></span>getVertices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, 3 &gt; &gt; &amp; Mesh::getVertices </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a reference to the list of vertices in the mesh. </p>
+<p>This method returns a reference to the list of vertices in the mesh.</p>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the mesh vertices. </dd></dl>
+
+</div>
+</div>
+<a id="a62e984f43128ea7cdadc4ba24f9402e2" name="a62e984f43128ea7cdadc4ba24f9402e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62e984f43128ea7cdadc4ba24f9402e2">&#9670;&#160;</a></span>numFaces()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">int</a> Mesh::numFaces </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the number of faces in the mesh. </p>
+<p>This method returns the total number of faces present in the mesh.</p>
+<dl class="section return"><dt>Returns</dt><dd>The number of faces in the mesh. </dd></dl>
+
+</div>
+</div>
+<a id="a982c2015a98e54421be2fca6e4fcde73" name="a982c2015a98e54421be2fca6e4fcde73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a982c2015a98e54421be2fca6e4fcde73">&#9670;&#160;</a></span>setFaceCluster()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">void</a> Mesh::setFaceCluster </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> FaceId&#160;</td>
+          <td class="paramname"><em>face</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramname"><em>cluster</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the cluster ID for a specified face. </p>
+<p>This method assigns a cluster ID to a specific face.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">face</td><td>The ID of the face. </td></tr>
+    <tr><td class="paramname">cluster</td><td>The cluster ID to be assigned to the face. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="a1ef0a342442d6e336e6b44df1354cd23" name="a1ef0a342442d6e336e6b44df1354cd23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ef0a342442d6e336e6b44df1354cd23">&#9670;&#160;</a></span>operator&lt;&lt;</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::ostream</a> &amp; <a class="el" href="classKinit.html">operator</a>&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::ostream</a> &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classMesh.html">Mesh</a> &amp;&#160;</td>
+          <td class="paramname"><em>graph</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overloads the output stream operator to print the mesh. </p>
+<p>This operator allows printing the mesh to an output stream (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">std::cout</a>) in a human-readable format.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>The output stream. </td></tr>
+    <tr><td class="paramname">graph</td><td>The mesh object to be printed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The output stream with the mesh data. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/geometry/mesh/<a class="el" href="Mesh_8hpp_source.html">Mesh.hpp</a></li>
 </ul>

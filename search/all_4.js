@@ -1,9 +1,13 @@
 var searchData=
 [
-  ['face_0',['Face',['../structFace.html',1,'']]],
-  ['findcentroid_1',['findcentroid',['../classCentroidInitMethod.html#ac5b8f0f0e4e4d893732f08ed8740b37f',1,'CentroidInitMethod::findCentroid()'],['../classKDE.html#aa68fd658e8f462a0d8681488d5ebee4a',1,'KDE::findCentroid()'],['../classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3',1,'MostDistanceClass::findCentroid()'],['../classRandomCentroidInit.html#a30f645a506514cae1f7f4b11342051c5',1,'RandomCentroidInit::findCentroid()']]],
-  ['findclosestface_2',['findClosestFace',['../classGeodesicMetric.html#ae47c61508bc4a8872a80b380ec725e61',1,'GeodesicMetric']]],
-  ['findk_3',['findk',['../classElbowMethod.html#a008b8f04452f61d7c48eac9d774ec6c4',1,'ElbowMethod::findK()'],['../classKDEMethod.html#aa75d8dad8a4eaf36519124fe6ef13842',1,'KDEMethod::findK()'],['../classKinit.html#a882ed77d99e07f7af3da9233dd1ab5e3',1,'Kinit::findK()'],['../classSilhouetteMethod.html#a2415282f053306e134305be27c1e7f07',1,'SilhouetteMethod::findK()']]],
-  ['fit_4',['fit',['../classMeshSegmentation.html#ac985172a19b90bb78192303ab1ff8bfc',1,'MeshSegmentation']]],
-  ['fit_5fcpu_5',['fit_cpu',['../classEuclideanMetric.html#a1c64ddaaf8f8fd48629a61a8ff35b121',1,'EuclideanMetric::fit_cpu()'],['../classGeodesicMetric.html#a195d373d46183857a57f203c86464716',1,'GeodesicMetric::fit_cpu()'],['../classMetric.html#a5678d2cf086f497b8e7aff0635c65aa4',1,'Metric::fit_cpu()']]]
+  ['elbowmethod_0',['ElbowMethod',['../classElbowMethod.html',1,'']]],
+  ['entry_5fcd_1',['Entry_CD',['../structEntry__CD.html',1,'']]],
+  ['entry_5fce_2',['Entry_CE',['../structEntry__CE.html',1,'']]],
+  ['entry_5fhd_3',['Entry_HD',['../structEntry__HD.html',1,'']]],
+  ['entry_5fri_4',['Entry_RI',['../structEntry__RI.html',1,'']]],
+  ['enums_5',['Enums',['../classEnums.html',1,'']]],
+  ['euclideanmetric_6',['euclideanmetric',['../classEuclideanMetric.html',1,'EuclideanMetric&lt; PT, PD &gt;'],['../classEuclideanMetric.html#a55e6111a439150461e5660db03e8623e',1,'EuclideanMetric::EuclideanMetric()=default'],['../classEuclideanMetric.html#ab6a6e2132abadbb9526f34a69938c1df',1,'EuclideanMetric::EuclideanMetric(std::vector&lt; Point&lt; PT, PD &gt; &gt; data, double threshold)'],['../classEuclideanMetric.html#a01af92427aa638d8870c0cd5bdb364f9',1,'EuclideanMetric::EuclideanMetric(Mesh &amp;mesh, double percentage_threshold, std::vector&lt; Point&lt; PT, PD &gt; &gt; data)']]],
+  ['exportedmesh_7',['exportedmesh',['../classCentroidInitMethod.html#aed5441e0394542605b550045e857ced7',1,'CentroidInitMethod::exportedMesh(const std::vector&lt; Point&lt; PT, PD &gt; &gt; &amp;points, const std::string &amp;name_csv)'],['../classCentroidInitMethod.html#a55aac7b8f1d82dee9e310b6ba32dd9a4',1,'CentroidInitMethod::exportedMesh(const std::vector&lt; CentroidPoint&lt; PT, PD &gt; &gt; &amp;points, const std::string &amp;name_csv)']]],
+  ['exporttogroupedobj_8',['exportToGroupedObj',['../classMesh.html#a49daaf52dd39cdfe1aa3aff9ba7c9d67',1,'Mesh']]],
+  ['exporttoobj_9',['exportToObj',['../classMesh.html#a85e23d4abbd46fe2e1ca0b9904dd7b61',1,'Mesh']]]
 ];

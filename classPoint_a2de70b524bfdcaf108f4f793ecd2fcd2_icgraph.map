@@ -1,0 +1,5 @@
+<map id="Point::setID" name="Point::setID">
+<area shape="rect" id="Node000001" title="Sets the ID of the point." alt="" coords="141,5,239,31"/>
+<area shape="rect" id="Node000002" href="$structFace.html#a34363b90a7c31d6fc4604f4e8b2a52e4" title="Constructor that initializes a face with three vertices and computes its area and normal." alt="" coords="5,5,93,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="127,21,94,21,94,15,127,15"/>
+</map>

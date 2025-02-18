@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Represents an object with an array of weights and a counter.">
 <polygon fill="#999999" stroke="transparent" points="195,-299 70,-299 70,-205 195,-205 195,-299"/>
 <text text-anchor="start" x="75.5" y="-287" font-family="Helvetica,sans-Serif" font-size="10.00">HasWgtCent&lt; PT, PD &gt;</text>
 <text text-anchor="start" x="81" y="-272" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -34,7 +34,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classCentroidPoint.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classCentroidPoint.html" target="_top" xlink:title="Represents a point with a centroid and associated weights.">
 <polygon fill="white" stroke="transparent" points="131,-169 0,-169 0,0 131,0 131,-169"/>
 <text text-anchor="start" x="5.5" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">CentroidPoint&lt; PT, PD &gt;</text>
 <text text-anchor="start" x="64" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -56,9 +56,9 @@
 <text text-anchor="start" x="31.5" y="-21.5" font-family="Helvetica,sans-Serif" font-size="10.00">operator!=()</text>
 <text text-anchor="start" x="11.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="31.5" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">~CentroidPoint()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="0.5,-151.5 0.5,-151.5 131.5,-151.5 131.5,-151.5 0.5,-151.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="0.5,-136.5 0.5,-136.5 131.5,-136.5 131.5,-136.5 0.5,-136.5"/>
-<polygon fill="none" stroke="#bfbfbf" points="0,0 0,-169 131,-169 131,0 0,0"/>
+<polygon fill="#666666" stroke="#666666" points="0.5,-151.5 0.5,-151.5 131.5,-151.5 131.5,-151.5 0.5,-151.5"/>
+<polygon fill="#666666" stroke="#666666" points="0.5,-136.5 0.5,-136.5 131.5,-136.5 131.5,-136.5 0.5,-136.5"/>
+<polygon fill="none" stroke="#666666" points="0,0 0,-169 131,-169 131,0 0,0"/>
 </a>
 </g>
 </g>
