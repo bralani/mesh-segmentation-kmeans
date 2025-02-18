@@ -220,3 +220,13 @@ void Mesh::exportToGroupedObj(const std::string &filepath) const
   objFile.close();
   std::cout << "Exported grouped mesh to " << filepath << std::endl;
 }
+
+void Mesh::addVertex(const Point<double, 3> &vertex)
+{
+  meshVertices.push_back(vertex);
+}
+
+void Mesh::addFace(const Face &face)
+{
+  meshFaces.push_back(face);
+}
