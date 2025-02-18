@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="classMeshSegmentation.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="classMeshSegmentation.html" target="_top" xlink:title="Performs segmentation (clustering) on a 3D mesh using K&#45;Means.">
 <polygon fill="white" stroke="#666666" points="143,-19 0,-19 0,0 143,0 143,-19"/>
 <text text-anchor="middle" x="71.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">MeshSegmentation&lt; M &gt;</text>
 </a>

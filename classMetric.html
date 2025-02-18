@@ -140,7 +140,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0916c3e367836c69945b6c18fca4e323"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the centroids for the metric.  <br /></td></tr>
 <tr class="separator:a0916c3e367836c69945b6c18fca4e323"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5678d2cf086f497b8e7aff0635c65aa4" id="r_a5678d2cf086f497b8e7aff0635c65aa4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetric.html#a5678d2cf086f497b8e7aff0635c65aa4">fit_cpu</a> ()=0</td></tr>
-<tr class="memdesc:a5678d2cf086f497b8e7aff0635c65aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the <a class="el" href="classKMeans.html">KMeans</a> algorithm on the CPU.  <br /></td></tr>
+<tr class="memdesc:a5678d2cf086f497b8e7aff0635c65aa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the <a class="el" href="classKMeans.html" title="Class implementing the K-Means clustering algorithm.">KMeans</a> algorithm on the CPU.  <br /></td></tr>
 <tr class="separator:a5678d2cf086f497b8e7aff0635c65aa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7a66f78b887fb80499cbbbc79114f7a" id="r_aa7a66f78b887fb80499cbbbc79114f7a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetric.html#aa7a66f78b887fb80499cbbbc79114f7a">setPoints</a> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; <a class="el" href="classMetric.html#a5f022c396ff8ab3537f66f23de201e85">data</a>)</td></tr>
 <tr class="memdesc:aa7a66f78b887fb80499cbbbc79114f7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the data points for the metric.  <br /></td></tr>
@@ -344,8 +344,8 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>Fits the <a class="el" href="classKMeans.html">KMeans</a> algorithm on the CPU. </p>
-<p>This method must be implemented in derived classes to compute the fitting of the <a class="el" href="classKMeans.html">KMeans</a> algorithm on the CPU. It can be used for clustering tasks. </p>
+<p>Fits the <a class="el" href="classKMeans.html" title="Class implementing the K-Means clustering algorithm.">KMeans</a> algorithm on the CPU. </p>
+<p>This method must be implemented in derived classes to compute the fitting of the <a class="el" href="classKMeans.html" title="Class implementing the K-Means clustering algorithm.">KMeans</a> algorithm on the CPU. It can be used for clustering tasks. </p>
 
 <p>Implemented in <a class="el" href="classEuclideanMetric.html#a1c64ddaaf8f8fd48629a61a8ff35b121">EuclideanMetric&lt; PT, PD &gt;</a>, and <a class="el" href="classGeodesicMetric.html#a195d373d46183857a57f203c86464716">GeodesicMetric&lt; PT, PD &gt;</a>.</p>
 
@@ -521,7 +521,7 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </div><div class="memdoc">
 
 <p>Stores the centroids after the fitting process. </p>
-<p>This method stores the centroids after a fitting process (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., <a class="el" href="classKMeans.html">KMeans</a>).</p>
+<p>This method stores the centroids after a fitting process (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., <a class="el" href="classKMeans.html" title="Class implementing the K-Means clustering algorithm.">KMeans</a>).</p>
 <p>This method must be implemented in derived classes to perform the actual storage of centroids. </p>
 
 <p>Implemented in <a class="el" href="classGeodesicMetric.html#a27d1a05a59ecfdf888dd74632ce6023c">GeodesicMetric&lt; PT, PD &gt;</a>.</p>

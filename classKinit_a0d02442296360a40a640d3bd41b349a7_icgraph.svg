@@ -74,7 +74,7 @@
 <!-- Node5 -->
 <g id="Node000005" class="node">
 <title>Node5</title>
-<g id="a_Node000005"><a xlink:href="classCSVUtils.html#af8d9a5ac2fbe8408cdd36bfbb5cac996" target="_top" xlink:title=" ">
+<g id="a_Node000005"><a xlink:href="classCSVUtils.html#af8d9a5ac2fbe8408cdd36bfbb5cac996" target="_top" xlink:title="Reads a CSV file and converts its rows into Point objects.">
 <polygon fill="white" stroke="#666666" points="120,-19 14,-19 14,0 120,0 120,-19"/>
 <text text-anchor="middle" x="67" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">CSVUtils::readCSV</text>
 </a>

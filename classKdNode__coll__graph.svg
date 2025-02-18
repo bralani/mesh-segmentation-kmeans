@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Represents a node in a kd tree, including bounding box and child pointers.">
+<g id="a_Node000001"><a xlink:title="Represents a node in a kd&#45;tree, including its bounding box and child pointers.">
 <polygon fill="#999999" stroke="transparent" points="114,-139 11,-139 11,0 114,0 114,-139"/>
 <text text-anchor="start" x="16.5" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">KdNode&lt; PT, PD &gt;</text>
 <text text-anchor="start" x="22" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

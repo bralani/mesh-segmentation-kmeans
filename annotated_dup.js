@@ -19,7 +19,7 @@ var annotated_dup =
     [ "KDEBase", "classKDEBase.html", null ],
     [ "KDEMethod", "classKDEMethod.html", "classKDEMethod" ],
     [ "KdNode", "classKdNode.html", "classKdNode" ],
-    [ "KdTree", "classKdTree.html", null ],
+    [ "KdTree", "classKdTree.html", "classKdTree" ],
     [ "Kernel", "classKernel.html", null ],
     [ "Kinit", "classKinit.html", "classKinit" ],
     [ "KMeans", "classKMeans.html", "classKMeans" ],

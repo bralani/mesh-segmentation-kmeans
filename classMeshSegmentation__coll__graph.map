@@ -1,3 +1,3 @@
 <map id="MeshSegmentation&lt; M &gt;" name="MeshSegmentation&lt; M &gt;">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,188,91"/>
+<area shape="rect" id="Node000001" title="Performs segmentation (clustering) on a 3D mesh using K&#45;Means." alt="" coords="5,5,188,91"/>
 </map>

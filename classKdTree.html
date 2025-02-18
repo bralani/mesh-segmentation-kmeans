@@ -102,6 +102,9 @@ $(document).ready(function(){initNavTree('classKdTree.html',''); initResizable()
 </div><!--header-->
 <div class="contents">
 
+<p>A k-dimensional tree (kd-tree) for organizing and searching spatial data.  
+ <a href="classKdTree.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="KDTree_8hpp_source.html">KDTree.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for KdTree&lt; PT, PD &gt;:</div>
@@ -111,20 +114,112 @@ Collaboration diagram for KdTree&lt; PT, PD &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6961e4f76bf311d6d9ec9982945eef4f" id="r_a6961e4f76bf311d6d9ec9982945eef4f"><td class="memItemLeft" align="right" valign="top"><a id="a6961e4f76bf311d6d9ec9982945eef4f" name="a6961e4f76bf311d6d9ec9982945eef4f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>KdTree</b> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;<a class="el" href="classKinit.html">points</a>)</td></tr>
+<tr class="memitem:a6961e4f76bf311d6d9ec9982945eef4f" id="r_a6961e4f76bf311d6d9ec9982945eef4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKdTree.html#a6961e4f76bf311d6d9ec9982945eef4f">KdTree</a> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;<a class="el" href="classKinit.html">points</a>)</td></tr>
+<tr class="memdesc:a6961e4f76bf311d6d9ec9982945eef4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a KD-tree from a given set of points.  <br /></td></tr>
 <tr class="separator:a6961e4f76bf311d6d9ec9982945eef4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addbc57d40f96b2e18ce3763f7f5a99f3" id="r_addbc57d40f96b2e18ce3763f7f5a99f3"><td class="memItemLeft" align="right" valign="top"><a id="addbc57d40f96b2e18ce3763f7f5a99f3" name="addbc57d40f96b2e18ce3763f7f5a99f3"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::unique_ptr</a>&lt; <a class="el" href="classKdNode.html">KdNode</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getRoot</b> ()</td></tr>
+<tr class="memitem:ab73701abd136e4ef2e9d59ec6bef38a0" id="r_ab73701abd136e4ef2e9d59ec6bef38a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKdTree.html#ab73701abd136e4ef2e9d59ec6bef38a0">~KdTree</a> ()=<a class="el" href="classKinit.html">default</a></td></tr>
+<tr class="memdesc:ab73701abd136e4ef2e9d59ec6bef38a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default virtual destructor.  <br /></td></tr>
+<tr class="separator:ab73701abd136e4ef2e9d59ec6bef38a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addbc57d40f96b2e18ce3763f7f5a99f3" id="r_addbc57d40f96b2e18ce3763f7f5a99f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::unique_ptr</a>&lt; <a class="el" href="classKdNode.html">KdNode</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKdTree.html#addbc57d40f96b2e18ce3763f7f5a99f3">getRoot</a> ()</td></tr>
+<tr class="memdesc:addbc57d40f96b2e18ce3763f7f5a99f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the root node of the kd-tree.  <br /></td></tr>
 <tr class="separator:addbc57d40f96b2e18ce3763f7f5a99f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt;<br />
-class KdTree&lt; PT, PD &gt;</div><p>Class template to represent a KD-Tree Template parameters:</p><ul>
-<li>PT: The type of the coordinate values (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., double, int)</li>
-<li>PD: The number of dimensions of the points (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., 2 for 2D, 3 for 3D) </li>
-</ul>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+class KdTree&lt; PT, PD &gt;</div><p>A k-dimensional tree (kd-tree) for organizing and searching spatial data. </p>
+<p>The kd-tree is a space-partitioning data structure used for organizing points in a k-dimensional space. It is useful for efficient nearest-neighbor searches, range searches, and clustering.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">PT</td><td>The type of the coordinate values (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., double, int). </td></tr>
+    <tr><td class="paramname">PD</td><td>The number of dimensions of the points (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., 2 for 2D, 3 for 3D). </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6961e4f76bf311d6d9ec9982945eef4f" name="a6961e4f76bf311d6d9ec9982945eef4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6961e4f76bf311d6d9ec9982945eef4f">&#9670;&#160;</a></span>KdTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKdTree.html">KdTree</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt;<a class="el" href="classKdTree.html">::KdTree</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>points</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a KD-tree from a given set of points. </p>
+<p>This constructor initializes the tree by recursively partitioning the input points.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">points</td><td>A reference to a vector of points to be organized into the tree. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab73701abd136e4ef2e9d59ec6bef38a0" name="ab73701abd136e4ef2e9d59ec6bef38a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab73701abd136e4ef2e9d59ec6bef38a0">&#9670;&#160;</a></span>~KdTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKdTree.html">KdTree</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt;::~<a class="el" href="classKdTree.html">KdTree</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Default virtual destructor. </p>
+<p>Ensures proper cleanup of dynamically allocated nodes when the <a class="el" href="classKdTree.html" title="A k-dimensional tree (kd-tree) for organizing and searching spatial data.">KdTree</a> object is destroyed. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="addbc57d40f96b2e18ce3763f7f5a99f3" name="addbc57d40f96b2e18ce3763f7f5a99f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addbc57d40f96b2e18ce3763f7f5a99f3">&#9670;&#160;</a></span>getRoot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::unique_ptr</a>&lt; <a class="el" href="classKdNode.html">KdNode</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp; <a class="el" href="classKdTree.html">KdTree</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt;::getRoot </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a reference to the root node of the kd-tree. </p>
+<p>The root node provides access to the entire tree structure.</p>
+<dl class="section return"><dt>Returns</dt><dd>A unique pointer to the root <a class="el" href="classKdNode.html" title="Represents a node in a kd-tree, including its bounding box and child pointers.">KdNode</a>. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/clustering/<a class="el" href="KDTree_8hpp_source.html">KDTree.hpp</a></li>
 </ul>
 </div><!-- contents -->

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="A k&#45;dimensional tree (kd&#45;tree) for organizing and searching spatial data.">
 <polygon fill="#999999" stroke="transparent" points="98,-79 0,-79 0,0 98,0 98,-79"/>
 <text text-anchor="start" x="5" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">KdTree&lt; PT, PD &gt;</text>
 <text text-anchor="start" x="47" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>

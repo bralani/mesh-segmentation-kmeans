@@ -101,6 +101,11 @@ $(document).ready(function(){initNavTree('classMeshSegmentation.html',''); initR
   <div class="headertitle"><div class="title">MeshSegmentation&lt; M &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Performs segmentation (clustering) on a 3D mesh using K-Means.  
+ <a href="classMeshSegmentation.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="MeshSegmentation_8hpp_source.html">MeshSegmentation.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for MeshSegmentation&lt; M &gt;:</div>
 <div class="dyncontent">
@@ -109,12 +114,93 @@ Collaboration diagram for MeshSegmentation&lt; M &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a270d1446f060aeeadd8e1fce61add147" id="r_a270d1446f060aeeadd8e1fce61add147"><td class="memItemLeft" align="right" valign="top"><a id="a270d1446f060aeeadd8e1fce61add147" name="a270d1446f060aeeadd8e1fce61add147"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MeshSegmentation</b> (<a class="el" href="classMesh.html">Mesh</a> *mesh, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">clusters</a>, <a class="el" href="classKinit.html">double</a> threshold, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">num_initialization_method</a>, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">kInitializationMethod</a>)</td></tr>
+<tr class="memitem:a270d1446f060aeeadd8e1fce61add147" id="r_a270d1446f060aeeadd8e1fce61add147"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeshSegmentation.html#a270d1446f060aeeadd8e1fce61add147">MeshSegmentation</a> (<a class="el" href="classMesh.html">Mesh</a> *mesh, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">clusters</a>, <a class="el" href="classKinit.html">double</a> threshold, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">num_initialization_method</a>, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">kInitializationMethod</a>)</td></tr>
+<tr class="memdesc:a270d1446f060aeeadd8e1fce61add147"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classMeshSegmentation.html" title="Performs segmentation (clustering) on a 3D mesh using K-Means.">MeshSegmentation</a> object.  <br /></td></tr>
 <tr class="separator:a270d1446f060aeeadd8e1fce61add147"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac985172a19b90bb78192303ab1ff8bfc" id="r_ac985172a19b90bb78192303ab1ff8bfc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMeshSegmentation.html#ac985172a19b90bb78192303ab1ff8bfc">fit</a> ()</td></tr>
+<tr class="memdesc:ac985172a19b90bb78192303ab1ff8bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs the mesh segmentation.  <br /></td></tr>
 <tr class="separator:ac985172a19b90bb78192303ab1ff8bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classKinit.html">class</a> <a class="el" href="classKinit.html">M</a>&gt;<br />
+class MeshSegmentation&lt; M &gt;</div><p>Performs segmentation (clustering) on a 3D mesh using K-Means. </p>
+<p>This class applies a clustering algorithm to a given 3D mesh, grouping similar points based on a specified metric.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">M</td><td>The metric used for measuring distances between points on the mesh (<a class="el" href="classEuclideanMetric.html" title="A class that calculates Euclidean distance for clustering and metric purposes.">EuclideanMetric</a>, <a class="el" href="classGeodesicMetric.html" title="A class for computing geodesic distances on a mesh with Dijkstra&#39;s algorithm.">GeodesicMetric</a>, <a class="el" href="classGeodesicHeatMetric.html" title="A class for computing geodesic distances using heat diffusion-based method.">GeodesicHeatMetric</a>). </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a270d1446f060aeeadd8e1fce61add147" name="a270d1446f060aeeadd8e1fce61add147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a270d1446f060aeeadd8e1fce61add147">&#9670;&#160;</a></span>MeshSegmentation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classKinit.html">class</a> <a class="el" href="classKinit.html">M</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMeshSegmentation.html">MeshSegmentation</a>&lt; <a class="el" href="classKinit.html">M</a> &gt;<a class="el" href="classMeshSegmentation.html">::MeshSegmentation</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMesh.html">Mesh</a> *&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramname"><em>clusters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">double</a>&#160;</td>
+          <td class="paramname"><em>threshold</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramname"><em>num_initialization_method</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramname"><em>kInitializationMethod</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classMeshSegmentation.html" title="Performs segmentation (clustering) on a 3D mesh using K-Means.">MeshSegmentation</a> object. </p>
+<p>Initializes the segmentation process by setting up the metric and the K-Means clustering algorithm.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mesh</td><td>Pointer to the mesh to be segmented. </td></tr>
+    <tr><td class="paramname">clusters</td><td>Number of clusters (segments) to create. </td></tr>
+    <tr><td class="paramname">threshold</td><td>Convergence threshold for the K-Means algorithm. </td></tr>
+    <tr><td class="paramname">num_initialization_method</td><td>The method used for initializing centroids. </td></tr>
+    <tr><td class="paramname">kInitializationMethod</td><td>The method used for choosing initial K-Means centers. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="ac985172a19b90bb78192303ab1ff8bfc" name="ac985172a19b90bb78192303ab1ff8bfc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac985172a19b90bb78192303ab1ff8bfc">&#9670;&#160;</a></span>fit()</h2>
@@ -132,7 +218,11 @@ template&lt;<a class="el" href="classKinit.html">class</a> <a class="el" href="c
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="structSegment.html">Segment</a> the 3D mesh by assigning points to the nearest centroids </p>
+
+<p>Performs the mesh segmentation. </p>
+<p>Runs the segmentation process on the 3D mesh.</p>
+<p>Runs the K-Means algorithm to cluster the points of the mesh based on the given metric.</p>
+<p>Calls the K-Means <code>fit</code> method to cluster the mesh points. </p>
 
 </div>
 </div>
