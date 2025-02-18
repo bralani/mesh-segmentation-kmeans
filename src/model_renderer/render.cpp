@@ -69,7 +69,7 @@ void populateModelPaths(const std::string &directory)
     }
 }
 
-Render::Render(std::function<void(Render &, const std::string &, Enums::CentroidInit, Enums::KInit, int, double)> segmentationCallback)
+Render::Render(std::function<void(Render &, const std::string &, Enums::CentroidInit, Enums::KInit, Enums::MetricMethod, int, double)> segmentationCallback)
     : segmentationCallback(std::move(segmentationCallback))
 {
     std::cout << "Shader program initialized!" << std::endl;
@@ -226,6 +226,7 @@ void Render::start()
                 const Enums::CentroidInit initMethods[] = {Enums::CentroidInit::RANDOM, Enums::CentroidInit::KDE, Enums::CentroidInit::MOSTDISTANT, Enums::CentroidInit::KDE3D};
                 static Enums::CentroidInit selectedInitMethod = Enums::CentroidInit::RANDOM;
                 static Enums::KInit selectedKInitMethod = Enums::KInit::ELBOW_METHOD;
+                static Enums::MetricMethod selectedMetricMethod = Enums::MetricMethod::DIJKSTRA;
 
                 ImGui::Text("Select Initialization Method for Centroids:");
 
@@ -237,6 +238,29 @@ void Render::start()
                         if (ImGui::Selectable(Enums::toString(method).c_str(), isSelected))
                         {
                             selectedInitMethod = method; // Store the selected value
+                        }
+
+                        if (isSelected)
+                        {
+                            ImGui::SetItemDefaultFocus(); // Set the default focus on the selected item
+                        }
+                    }
+
+                    ImGui::EndCombo();
+                }
+
+                ImGui::Text("Select Metric Method:");
+
+                const Enums::MetricMethod initMetricMethods[] = {Enums::MetricMethod::DIJKSTRA, Enums::MetricMethod::EUCLIDEAN, Enums::MetricMethod::HEAT};
+
+                if (ImGui::BeginCombo("Metric Method", Enums::toString(selectedMetricMethod).c_str()))
+                {
+                    for (const auto &method : initMetricMethods)
+                    {
+                        bool isSelected = (selectedMetricMethod == method);
+                        if (ImGui::Selectable(Enums::toString(method).c_str(), isSelected))
+                        {
+                            selectedMetricMethod = method; // Store the selected value
                         }
 
                         if (isSelected)
@@ -281,7 +305,7 @@ void Render::start()
                     loaderProgress = 0.0f; // Reset progress
 
                     // Call the segmentation callback with the necessary parameters
-                    segmentationCallback(*this, selectedModelPath, selectedInitMethod, selectedKInitMethod, inputValue, threshold);
+                    segmentationCallback(*this, selectedModelPath, selectedInitMethod, selectedKInitMethod, selectedMetricMethod, inputValue, threshold);
                 }
 
                 // Step 4: Back Button to return to model selection

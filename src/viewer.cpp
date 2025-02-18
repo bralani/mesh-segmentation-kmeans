@@ -15,7 +15,7 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-void segmentationCallback(Render &render, const std::string &fileName, Enums::CentroidInit num_initialization_method, Enums::KInit num_k_init_method, int num_clusters, double threshold)
+void segmentationCallback(Render &render, const std::string &fileName, Enums::CentroidInit num_initialization_method, Enums::KInit num_k_init_method, Enums::MetricMethod metric_method, int num_clusters, double threshold)
 {
   try
   {
@@ -23,11 +23,31 @@ void segmentationCallback(Render &render, const std::string &fileName, Enums::Ce
     std::cout << "Number of clusters: " << num_clusters << std::endl;
     std::cout << "Initialisation Method: " << Enums::toString(num_initialization_method) << std::endl;
     std::cout << "Key Init method: " << Enums::toString(num_k_init_method) << std::endl;
+    std::cout << "Metric method: " << Enums::toString(metric_method) << std::endl;
     std::cout << "Threshold value: " << threshold << std::endl;
 
     Mesh mesh(fileName);
-    MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, static_cast<int>(num_initialization_method), static_cast<int>(num_k_init_method));
-    segmentation.fit();
+
+    if (metric_method == Enums::MetricMethod::EUCLIDEAN)
+    {
+      MeshSegmentation<EuclideanMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, static_cast<int>(num_initialization_method), static_cast<int>(num_k_init_method));
+      segmentation.fit();
+    }
+    else if (metric_method == Enums::MetricMethod::DIJKSTRA)
+    {
+      MeshSegmentation<GeodesicMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, static_cast<int>(num_initialization_method), static_cast<int>(num_k_init_method));
+      segmentation.fit();
+    }
+    else if (metric_method == Enums::MetricMethod::HEAT)
+    {
+      MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, static_cast<int>(num_initialization_method), static_cast<int>(num_k_init_method));
+      segmentation.fit();
+    }
+    else
+    {
+      std::cerr << "Error: Invalid metric option. Use 0 (Euclidean), 1 (Dijkstra), or 2 (Heat)." << std::endl;
+      return;
+    }
 
     // Extract filename without extension
     size_t lastDot = fileName.find_last_of('.');

@@ -67,16 +67,13 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        if (metric == 1 || metric == 2)
-        {
-            // Generate the output file path
-            std::string output_file = file_name.substr(0, file_name.find_last_of('.')) + "_segmented.obj";
+        // Generate the output file path
+        std::string output_file = file_name.substr(0, file_name.find_last_of('.')) + "_segmented.obj";
 
-            // Export the mesh grouped by clusters
-            mesh.exportToGroupedObj(output_file);
+        // Export the mesh grouped by clusters
+        mesh.exportToGroupedObj(output_file);
 
-            std::cout << "Segmented mesh saved to: " << output_file << std::endl;
-        }
+        std::cout << "Segmented mesh saved to: " << output_file << std::endl;
 
         return 0;
     }
