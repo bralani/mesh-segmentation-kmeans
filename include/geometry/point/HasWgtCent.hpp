@@ -5,30 +5,67 @@
 #include <array>
 #include <memory>
 
-// Class that represents an object with an array of weights (wgtCent) and a counter (count)
-// The class is a template and can be used with different data types (PT) and different sizes (PD)
+/**
+ * \class HasWgtCent
+ * \brief Represents an object with an array of weights and a counter.
+ * 
+ * This class template provides a structure to hold an array of weights (`wgtCent`) 
+ * and a counter (`count`). The size of the array and the data type for weights 
+ * are determined by the template parameters `PT` (the type of weights) and `PD` 
+ * (the number of elements in the array). The class also includes a method for 
+ * resetting the weights and counter to their initial values.
+ * 
+ * \tparam PT The data type of the weights (e.g., float, double).
+ * \tparam PD The size of the weight array (i.e., number of dimensions or elements).
+ */
 template <typename PT, std::size_t PD>
 class HasWgtCent {
 public:
-    std::array<PT, PD> wgtCent; // Array of weights, the size is determined by the template parameter PD
-    int count = 0;               // A counter associated with the object (e.g., to count operations)
+    /**
+     * \brief Array of weights.
+     * 
+     * This array holds the weights, and its size is determined by the template 
+     * parameter `PD`. All elements in this array are initialized to zero by 
+     * the default constructor.
+     */
+    std::array<PT, PD> wgtCent;
 
-    // Default constructor
-    // Initializes wgtCent with all zero values and count to zero
+    /**
+     * \brief Counter associated with the object.
+     * 
+     * The counter is initialized to zero by the default constructor. This counter 
+     * can be used to track the number of operations or updates performed on 
+     * the object.
+     */
+    int count = 0;
+
+    /**
+     * \brief Default constructor.
+     * 
+     * Initializes the `wgtCent` array with all zero values and the `count` to zero.
+     */
     HasWgtCent() : wgtCent(), count(0) {
-        wgtCent.fill(0);  // Set all elements of wgtCent to zero
+        wgtCent.fill(0);  ///< Set all elements of wgtCent to zero.
     }
 
-
-    // Method to reset the weights and the counter
-    // Sets all elements of wgtCent to zero and count to zero
+    /**
+     * \brief Resets the weights and counter.
+     * 
+     * This method resets the `wgtCent` array to all zero values and sets the `count` 
+     * back to zero. It is useful for clearing or reinitializing the object.
+     */
     void resetCount() {
-        wgtCent.fill(0);  // Reset the weights
-        count = 0;        // Reset the counter
+        wgtCent.fill(0);  ///< Reset the weights to zero.
+        count = 0;        ///< Reset the counter to zero.
     }
 
-    // Virtual default destructor
-    // Since the class may be inherited, the destructor should be virtual to ensure proper destruction of derived objects
+    /**
+     * \brief Virtual default destructor.
+     * 
+     * The destructor is virtual, ensuring that if the class is inherited, the 
+     * derived class’s destructor is called correctly when an object of the derived 
+     * type is destroyed.
+     */
     virtual ~HasWgtCent() = default;
 };
 

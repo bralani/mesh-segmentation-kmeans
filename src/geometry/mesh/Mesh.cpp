@@ -151,6 +151,28 @@ void Mesh::exportToObj(const std::string &filepath, int cluster)
   std::cout << "Exported mesh to " << filepath << std::endl;
 }
 
+const int Mesh::getFaceCluster(FaceId face) const
+{
+  try
+  {
+      return faceClusters.at(face);
+  }
+  catch (const std::out_of_range &e)
+  {
+      return -1;
+  }
+}
+
+std::vector<Point<double, 3>> Mesh::getMeshFacesPoints()
+{
+    std::vector<Point<double, 3>> faces;
+    for (const auto &face : meshFaces)
+    {
+        faces.push_back(face.baricenter);
+    }
+    return faces;
+}
+
 void Mesh::exportToGroupedObj(const std::string &filepath) const
 {
   std::ofstream objFile(filepath);
