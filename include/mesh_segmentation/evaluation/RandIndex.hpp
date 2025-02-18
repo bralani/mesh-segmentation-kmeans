@@ -86,7 +86,7 @@ Entry_RI* EvaluateRandIndex(Segmentation* s1, Segmentation* s2){
 		for(int i = 0; i < nSeg1; i ++) {
 			delete n[i];
 		}	
-		delete n;
+		delete[] n;
 	}
 	
 	Entry_RI* e = new Entry_RI;
