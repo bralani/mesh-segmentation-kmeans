@@ -22,6 +22,7 @@
 #include "imgui_impl_opengl3.h"
 #include <config.h>
 #include "render.hpp"
+#include "SharedEnum.hpp"
 
 int width = 1600, height = 900;
 float lastTime;
@@ -68,7 +69,7 @@ void populateModelPaths(const std::string &directory)
     }
 }
 
-Render::Render(std::function<void(Render &, const std::string &, int, int, int, double)> segmentationCallback)
+Render::Render(std::function<void(Render &, const std::string &, Enums::CentroidInit, int, int, double)> segmentationCallback)
     : segmentationCallback(std::move(segmentationCallback))
 {
     std::cout << "Shader program initialized!" << std::endl;
@@ -222,19 +223,19 @@ void Render::start()
                 }
 
                 // Initialization method dropdown
-                const char *initMethods[] = {"Random", "Kernel Density Estimator", "Most Distant", "Static KDE - 3D Point"};
-                static int num_initialization_method = -1; // To store the selected initialization method
-                static int num_k_init_method = 0;          // To store the selected k initialization method
+                const Enums::CentroidInit initMethods[] = {Enums::CentroidInit::RANDOM, Enums::CentroidInit::KDE, Enums::CentroidInit::MOSTDISTANT, Enums::CentroidInit::KDE3D};
+                static Enums::CentroidInit selectedInitMethod = Enums::CentroidInit::RANDOM;
+                static int num_k_init_method = 0; // To store the selected k initialization method
                 ImGui::Text("Select Initialization Method for Centroids:");
 
-                if (ImGui::BeginCombo("Initialization Method", num_initialization_method == -1 ? "Select" : initMethods[num_initialization_method]))
+                if (ImGui::BeginCombo("Initialization Method", Enums::toString(selectedInitMethod).c_str()))
                 {
-                    for (int i = 0; i < IM_ARRAYSIZE(initMethods); ++i)
+                    for (const auto &method : initMethods)
                     {
-                        bool isSelected = (num_initialization_method == i);
-                        if (ImGui::Selectable(initMethods[i], isSelected))
+                        bool isSelected = (selectedInitMethod == method);
+                        if (ImGui::Selectable(Enums::toString(method).c_str(), isSelected))
                         {
-                            num_initialization_method = i; // Store the selected index
+                            selectedInitMethod = method; // Store the selected value
                         }
 
                         if (isSelected)
@@ -275,12 +276,7 @@ void Render::start()
                 // Step 3: Start Button to trigger loading process
                 if (ImGui::Button("Start"))
                 {
-
-                    if (num_initialization_method == -1)
-                    {
-                        ImGui::Text("Please select an initialization method for centroids.");
-                    }
-                    else if (inputValue == 0 && num_k_init_method == -1)
+                    if (inputValue == 0 && num_k_init_method == -1)
                     {
                         ImGui::Text("Please select a method for k initialization.");
                     }
@@ -290,7 +286,7 @@ void Render::start()
                         loaderProgress = 0.0f; // Reset progress
 
                         // Call the segmentation callback with the necessary parameters
-                        segmentationCallback(*this, selectedModelPath, num_initialization_method, num_k_init_method, inputValue, threshold);
+                        segmentationCallback(*this, selectedModelPath, selectedInitMethod, num_k_init_method, inputValue, threshold);
                     }
                 }
 

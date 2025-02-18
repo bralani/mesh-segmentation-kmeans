@@ -8,12 +8,13 @@
 #include "shader.hpp"
 #include <functional>
 #include <string>
+#include "SharedEnum.hpp"
 
 class Render
 {
 public:
     // Constructor accepting a reference-based callback function
-    explicit Render(std::function<void(Render &, const std::string &, int, int, int, double)> segmentationCallback);
+    explicit Render(std::function<void(Render &, const std::string &, Enums::CentroidInit, int, int, double)> segmentationCallback);
 
     // Starts the rendering loop
     void start();
@@ -24,7 +25,7 @@ public:
     void renderFile(const std::string &fileName);
 
 private:
-    std::function<void(Render &, const std::string &, int, int, int, double)> segmentationCallback;
+    std::function<void(Render &, const std::string &, Enums::CentroidInit, int, int, double)> segmentationCallback;
 
     ShaderProgram *program;
 };
