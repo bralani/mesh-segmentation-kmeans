@@ -43,6 +43,23 @@ public:
         }
     }
 
+    static std::string toString(CentroidInit centroidInit)
+    {
+        switch (centroidInit)
+        {
+        case CentroidInit::RANDOM:
+            return "Random";
+        case CentroidInit::KDE:
+            return "KDE";
+        case CentroidInit::MOSTDISTANT:
+            return "Most Distant";
+        case CentroidInit::KDE3D:
+            return "KDE 3D";
+        default:
+            return "Unknown Centroid Init Method";
+        }
+    }
+
     static std::string toString(MetricMethod metricMethod)
     {
         switch (metricMethod)
@@ -55,21 +72,6 @@ public:
             return "Geodesic";
         default:
             return "Unknown Metric Method";
-        }
-    }
-
-    static std::string toString(KInit kInit)
-    {
-        switch (kInit)
-        {
-        case KInit::ELBOW_METHOD:
-            return "Elbow Method";
-        case KInit::KDE_METHOD:
-            return "KDE Method";
-        case KInit::SILHOUETTE_METHOD:
-            return "Silhouett Method";
-        default:
-            return "Unknown KInit Method";
         }
     }
 };
