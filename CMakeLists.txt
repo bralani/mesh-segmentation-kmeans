@@ -23,6 +23,11 @@ include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/csv-parser/single_inc
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/eigen)
 include_directories(SYSTEM ${CMAKE_SOURCE_DIR}/third_party/libigl/include)
 add_subdirectory(src/model_renderer)
+if (TARGET model_renderer)
+    message("- model_renderer correctly found, viewer will be built!")
+else()
+    message(WARNING "- model_renderer not found, viewer will not be built!")
+endif()
 
 # TESTING
 add_subdirectory(tests)
@@ -63,7 +68,7 @@ file(GLOB_RECURSE SOURCES "src/geometry/*.cpp" "src/clustering/*.cpp")
 file(GLOB_RECURSE CUDA_SOURCES "include/*.cu")
 
 # Define executables
-add_kmeans_executable(k_means "src/main.cpp;${SOURCES}" "${CUDA_SOURCES}")
+add_kmeans_executable(k_means "src/k_means.cpp;${SOURCES}" "${CUDA_SOURCES}")
 add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;${SOURCES}" "${CUDA_SOURCES}")
 add_kmeans_executable(evaluation "src/evaluation.cpp;${SOURCES}" "${CUDA_SOURCES}")
 

@@ -11,18 +11,15 @@
 using namespace std;
 
 void printUsage() {
-    std::cout << "Usage: ./program <csv_file> <num_clusters> <centroid_init_method> [k_init_method]\n";
-    std::cout << "  <csv_file>             - Nome del file CSV (senza path)\n";
-    std::cout << "  <num_clusters>         - Numero di cluster (0 se sconosciuto)\n";
-    std::cout << "  <centroid_init_method> - Metodo di inizializzazione dei centroidi:\n";
+    std::cout << "Usage: ./k_means <csv_file> <num_clusters> <centroid_init_method> [k_init_method]\n";
+    std::cout << "  <csv_file>             - Name of csv file in /resources folder\n";
+    std::cout << "  <num_clusters>         - Number of clusters (0 if unknown)\n";
+    std::cout << "  <centroid_init_method> - Method of initialization of centroids:\n";
     std::cout << "                           0: Random\n";
     std::cout << "                           1: Kernel Density Estimator\n";
     std::cout << "                           2: Most Distant\n";
-    std::cout << "  [k_init_method]        - (Opzionale) Metodo per determinare k se num_clusters = 0:\n";
-    std::cout << "                           0: Elbow Method\n";
-    std::cout << "                           1: KDE\n";
-    std::cout << "                           2: Silhouette\n";
-    std::cout << "\nExample: ./program data.csv 3 1\n";
+    std::cout << "  [k_init_method]        - (Optional) Method for k initialization (0: elbow, 1: KDE, 2: Silhouette) if <num_clusters> is 0\n";
+    std::cout << "\nExample: ./k_means data.csv 3 1\n";
 }
 
 int main(int argc, char* argv[]) {
@@ -34,7 +31,7 @@ int main(int argc, char* argv[]) {
         }
 
         std::string file_name = argv[1];
-        std::string full_path = "../../resources/" + file_name;
+        std::string full_path = std::string(ROOT_FOLDER) + "/resources/" + file_name;
 
         int num_clusters = std::stoi(argv[2]);
         int num_initialization_method = std::stoi(argv[3]);
