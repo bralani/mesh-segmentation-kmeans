@@ -10,10 +10,10 @@
 using namespace std;
 
 static const std::vector<std::string> mesh_files = {
-    "../../resources/meshes/obj/125.obj",   // Smallest file
-    "../../resources/meshes/obj/246.obj",   // 
-    "../../resources/meshes/obj/103.obj",   // 
-    "../../resources/meshes/obj/305.obj"    // Biggest file 
+    std::string(ROOT_FOLDER) + "/resources/meshes/obj/125.obj",   // Smallest file
+    std::string(ROOT_FOLDER) + "/resources/meshes/obj/246.obj",   // 
+    std::string(ROOT_FOLDER) + "/resources/meshes/obj/103.obj",   // 
+    std::string(ROOT_FOLDER) + "/resources/meshes/obj/305.obj"    // Biggest file 
 };
 
 static void BM_MeshSegmentation(benchmark::State& state) {

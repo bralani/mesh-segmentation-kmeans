@@ -15,12 +15,26 @@
 #undef min
 #endif
 #include <igl/heat_geodesics.h>
+#include <igl/min_quad_with_fixed.h>
+#include <igl/grad.h>
+#include <igl/doublearea.h>
+#include <igl/cotmatrix.h>
+#include <igl/intrinsic_delaunay_cotmatrix.h>
+#include <igl/massmatrix.h>
+#include <igl/PlainVector.h>
+#include <igl/massmatrix_intrinsic.h>
+#include <igl/grad_intrinsic.h>
+#include <igl/boundary_facets.h>
+#include <igl/unique.h>
+#include <igl/avg_edge_length.h>
 #ifdef WIN32
 #undef max
 #undef min
 #endif
 
-/**
+typedef Eigen::Matrix<double,Eigen::Dynamic,1> VectorXS;
+
+/** 
  * \class GeodesicHeatMetric
  * \brief A class for computing geodesic distances using heat diffusion-based method.
  *
