@@ -183,8 +183,7 @@ __global__ void findClosestFaceKernel(
 
 // Host function to find the closest face index for a given centroid using the GPU.
 int findClosestFaceGPU(const float* d_faceBaricenter, int N, int dim, const float* d_centroid) {
-    int threadsPerBlock = 256;
-    int numBlocks = (N + threadsPerBlock - 1) / threadsPerBlock;
+    int numBlocks = (N + TPB - 1) / TPB;
 
     // Allocate memory for block-level results on the device.
     float* d_blockMinDistances;
@@ -192,11 +191,11 @@ int findClosestFaceGPU(const float* d_faceBaricenter, int N, int dim, const floa
     cudaMalloc(&d_blockMinDistances, numBlocks * sizeof(float));
     cudaMalloc(&d_blockMinIndices, numBlocks * sizeof(int));
 
-    // Calculate shared memory size: each block uses threadsPerBlock * (sizeof(float) + sizeof(int)).
-    size_t sharedMemSize = threadsPerBlock * (sizeof(float) + sizeof(int));
+    // Calculate shared memory size: each block uses TPB * (sizeof(float) + sizeof(int)).
+    size_t sharedMemSize = TPB * (sizeof(float) + sizeof(int));
 
     // Launch the kernel.
-    findClosestFaceKernel<<<numBlocks, threadsPerBlock, sharedMemSize>>>(
+    findClosestFaceKernel<<<numBlocks, TPB, sharedMemSize>>>(
         d_faceBaricenter,
         N,
         dim,
