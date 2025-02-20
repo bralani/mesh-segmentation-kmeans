@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="classCamera.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="classCamera.html" target="_top" xlink:title="Base class for a camera in a 3D scene.">
 <polygon fill="white" stroke="#666666" points="55,-19 0,-19 0,0 55,0 55,-19"/>
 <text text-anchor="middle" x="27.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">Camera</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="classModelRotationCamera.html" target="_top" xlink:title=" ">
+<g id="a_Node000001"><a xlink:href="classModelRotationCamera.html" target="_top" xlink:title="A specialized camera that rotates around a 3D model.">
 <polygon fill="white" stroke="#666666" points="217,-19 91,-19 91,0 217,0 217,-19"/>
 <text text-anchor="middle" x="154" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">ModelRotationCamera</text>
 </a>

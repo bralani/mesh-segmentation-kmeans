@@ -98,10 +98,16 @@ $(document).ready(function(){initNavTree('classTexture2D.html',''); initResizabl
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classTexture2D-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Texture2D Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a 2D texture used in materials.  
+ <a href="classTexture2D.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="material_8hpp_source.html">material.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Texture2D:</div>
 <div class="dyncontent">
@@ -110,31 +116,166 @@ Collaboration diagram for Texture2D:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a15f32406b651825edafe73b100622492" id="r_a15f32406b651825edafe73b100622492"><td class="memItemLeft" align="right" valign="top"><a id="a15f32406b651825edafe73b100622492" name="a15f32406b651825edafe73b100622492"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Texture2D</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">path</a>)</td></tr>
+<tr class="memitem:ab62c7c5172a4800b4629cd475147819d" id="r_ab62c7c5172a4800b4629cd475147819d"><td class="memItemLeft" align="right" valign="top"><a id="ab62c7c5172a4800b4629cd475147819d" name="ab62c7c5172a4800b4629cd475147819d"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Texture2D</b> ()</td></tr>
+<tr class="memdesc:ab62c7c5172a4800b4629cd475147819d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:ab62c7c5172a4800b4629cd475147819d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15f32406b651825edafe73b100622492" id="r_a15f32406b651825edafe73b100622492"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture2D.html#a15f32406b651825edafe73b100622492">Texture2D</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">path</a>)</td></tr>
+<tr class="memdesc:a15f32406b651825edafe73b100622492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classTexture2D.html" title="Represents a 2D texture used in materials.">Texture2D</a> from an image file.  <br /></td></tr>
 <tr class="separator:a15f32406b651825edafe73b100622492"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36d0a3126d22e8e7878c05c444418b80" id="r_a36d0a3126d22e8e7878c05c444418b80"><td class="memItemLeft" align="right" valign="top"><a id="a36d0a3126d22e8e7878c05c444418b80" name="a36d0a3126d22e8e7878c05c444418b80"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Texture2D</b> (<a class="el" href="classKinit.html">unsigned</a> <a class="el" href="classKinit.html">char</a> *<a class="el" href="classKinit.html">rawData</a>, <a class="el" href="classKinit.html">int</a> width, <a class="el" href="classKinit.html">int</a> height)</td></tr>
+<tr class="memitem:a36d0a3126d22e8e7878c05c444418b80" id="r_a36d0a3126d22e8e7878c05c444418b80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture2D.html#a36d0a3126d22e8e7878c05c444418b80">Texture2D</a> (<a class="el" href="classKinit.html">unsigned</a> <a class="el" href="classKinit.html">char</a> *<a class="el" href="classKinit.html">rawData</a>, <a class="el" href="classKinit.html">int</a> width, <a class="el" href="classKinit.html">int</a> <a class="el" href="classTexture2D.html#aa93b0289e30da08c409287d185e5a538">height</a>)</td></tr>
+<tr class="memdesc:a36d0a3126d22e8e7878c05c444418b80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classTexture2D.html" title="Represents a 2D texture used in materials.">Texture2D</a> from raw pixel data.  <br /></td></tr>
 <tr class="separator:a36d0a3126d22e8e7878c05c444418b80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfbd7e11c06f66180f1361da80e2ef94" id="r_abfbd7e11c06f66180f1361da80e2ef94"><td class="memItemLeft" align="right" valign="top"><a id="abfbd7e11c06f66180f1361da80e2ef94" name="abfbd7e11c06f66180f1361da80e2ef94"></a>
-<a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>use</b> (<a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">unit</a>) <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:a7871eee8e1b6621b4fb15cc767778459" id="r_a7871eee8e1b6621b4fb15cc767778459"><td class="memItemLeft" align="right" valign="top"><a id="a7871eee8e1b6621b4fb15cc767778459" name="a7871eee8e1b6621b4fb15cc767778459"></a>
+<a class="el" href="classKinit.html">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><b>~Texture2D</b> ()</td></tr>
+<tr class="memdesc:a7871eee8e1b6621b4fb15cc767778459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Cleans up OpenGL texture resources. <br /></td></tr>
+<tr class="separator:a7871eee8e1b6621b4fb15cc767778459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfbd7e11c06f66180f1361da80e2ef94" id="r_abfbd7e11c06f66180f1361da80e2ef94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture2D.html#abfbd7e11c06f66180f1361da80e2ef94">use</a> (<a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">unit</a>) <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:abfbd7e11c06f66180f1361da80e2ef94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Activates and binds the texture for rendering.  <br /></td></tr>
 <tr class="separator:abfbd7e11c06f66180f1361da80e2ef94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a6de61c3f2d883a1b22931f9bc7322b47" id="r_a6de61c3f2d883a1b22931f9bc7322b47"><td class="memItemLeft" align="right" valign="top"><a id="a6de61c3f2d883a1b22931f9bc7322b47" name="a6de61c3f2d883a1b22931f9bc7322b47"></a>
 <a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html">unsigned</a> <a class="el" href="classKinit.html">char</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> = <a class="el" href="classKinit.html">nullptr</a></td></tr>
+<tr class="memdesc:a6de61c3f2d883a1b22931f9bc7322b47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to texture data. <br /></td></tr>
 <tr class="separator:a6de61c3f2d883a1b22931f9bc7322b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6118058134ca7656ffa585b73b42a6bc" id="r_a6118058134ca7656ffa585b73b42a6bc"><td class="memItemLeft" align="right" valign="top"><a id="a6118058134ca7656ffa585b73b42a6bc" name="a6118058134ca7656ffa585b73b42a6bc"></a>
 <a class="el" href="classKinit.html">GLuint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>glTexture</b></td></tr>
+<tr class="memdesc:a6118058134ca7656ffa585b73b42a6bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenGL texture ID. <br /></td></tr>
 <tr class="separator:a6118058134ca7656ffa585b73b42a6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5b4d0f6e86aa5c997746eb51a0c7bee" id="r_ae5b4d0f6e86aa5c997746eb51a0c7bee"><td class="memItemLeft" align="right" valign="top"><a id="ae5b4d0f6e86aa5c997746eb51a0c7bee" name="ae5b4d0f6e86aa5c997746eb51a0c7bee"></a>
 <a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>width</b></td></tr>
 <tr class="separator:ae5b4d0f6e86aa5c997746eb51a0c7bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa93b0289e30da08c409287d185e5a538" id="r_aa93b0289e30da08c409287d185e5a538"><td class="memItemLeft" align="right" valign="top"><a id="aa93b0289e30da08c409287d185e5a538" name="aa93b0289e30da08c409287d185e5a538"></a>
 <a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>height</b></td></tr>
+<tr class="memdesc:aa93b0289e30da08c409287d185e5a538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Texture dimensions in pixels. <br /></td></tr>
 <tr class="separator:aa93b0289e30da08c409287d185e5a538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aa1212b6e372a0f45d2c01f3cd203af77" id="r_aa1212b6e372a0f45d2c01f3cd203af77"><td class="memItemLeft" align="right" valign="top"><a id="aa1212b6e372a0f45d2c01f3cd203af77" name="aa1212b6e372a0f45d2c01f3cd203af77"></a>
+<a class="el" href="classKinit.html">class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTexture2D.html#aa1212b6e372a0f45d2c01f3cd203af77">Material</a></td></tr>
+<tr class="memdesc:aa1212b6e372a0f45d2c01f3cd203af77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows <a class="el" href="classMaterial.html" title="Represents a material that combines textures and shaders.">Material</a> to access private members of <a class="el" href="classTexture2D.html" title="Represents a 2D texture used in materials.">Texture2D</a>. <br /></td></tr>
+<tr class="separator:aa1212b6e372a0f45d2c01f3cd203af77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a 2D texture used in materials. </p>
+<p>This class handles loading textures from files or raw data and binding them for use in OpenGL shaders. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a15f32406b651825edafe73b100622492" name="a15f32406b651825edafe73b100622492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15f32406b651825edafe73b100622492">&#9670;&#160;</a></span>Texture2D() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Texture2D::Texture2D </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classTexture2D.html" title="Represents a 2D texture used in materials.">Texture2D</a> from an image file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The file path to the texture image. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a36d0a3126d22e8e7878c05c444418b80" name="a36d0a3126d22e8e7878c05c444418b80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36d0a3126d22e8e7878c05c444418b80">&#9670;&#160;</a></span>Texture2D() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Texture2D::Texture2D </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">unsigned</a> <a class="el" href="classKinit.html">char</a> *&#160;</td>
+          <td class="paramname"><em>rawData</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramname"><em>height</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classTexture2D.html" title="Represents a 2D texture used in materials.">Texture2D</a> from raw pixel data. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rawData</td><td>Pointer to the raw texture data. </td></tr>
+    <tr><td class="paramname">width</td><td>The width of the texture in pixels. </td></tr>
+    <tr><td class="paramname">height</td><td>The height of the texture in pixels. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="abfbd7e11c06f66180f1361da80e2ef94" name="abfbd7e11c06f66180f1361da80e2ef94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfbd7e11c06f66180f1361da80e2ef94">&#9670;&#160;</a></span>use()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a> Texture2D::use </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramname"><em>unit</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Activates and binds the texture for rendering. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">unit</td><td>The texture unit to bind the texture to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/model_renderer/include/<a class="el" href="material_8hpp_source.html">material.hpp</a></li>
 </ul>

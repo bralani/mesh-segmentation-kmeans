@@ -98,10 +98,16 @@ $(document).ready(function(){initNavTree('classShader.html',''); initResizable()
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="classShader-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Shader Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents an OpenGL shader.  
+ <a href="classShader.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="shader_8hpp_source.html">shader.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Shader:</div>
 <div class="dyncontent">
@@ -110,19 +116,85 @@ Collaboration diagram for Shader:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4e19b8dd8457c01752ddecb85f99b3ac" id="r_a4e19b8dd8457c01752ddecb85f99b3ac"><td class="memItemLeft" align="right" valign="top"><a id="a4e19b8dd8457c01752ddecb85f99b3ac" name="a4e19b8dd8457c01752ddecb85f99b3ac"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Shader</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">path</a>, <a class="el" href="classKinit.html">GLenum</a> <a class="el" href="classKinit.html">type</a>)</td></tr>
+<tr class="memitem:a0d654ebaca4e0555197c0724c6d30610" id="r_a0d654ebaca4e0555197c0724c6d30610"><td class="memItemLeft" align="right" valign="top"><a id="a0d654ebaca4e0555197c0724c6d30610" name="a0d654ebaca4e0555197c0724c6d30610"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Shader</b> ()</td></tr>
+<tr class="memdesc:a0d654ebaca4e0555197c0724c6d30610"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a0d654ebaca4e0555197c0724c6d30610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e19b8dd8457c01752ddecb85f99b3ac" id="r_a4e19b8dd8457c01752ddecb85f99b3ac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classShader.html#a4e19b8dd8457c01752ddecb85f99b3ac">Shader</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">path</a>, <a class="el" href="classKinit.html">GLenum</a> <a class="el" href="classKinit.html">type</a>)</td></tr>
+<tr class="memdesc:a4e19b8dd8457c01752ddecb85f99b3ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classShader.html" title="Represents an OpenGL shader.">Shader</a> from a file.  <br /></td></tr>
 <tr class="separator:a4e19b8dd8457c01752ddecb85f99b3ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08345855be88781faf704487119af9a8" id="r_a08345855be88781faf704487119af9a8"><td class="memItemLeft" align="right" valign="top"><a id="a08345855be88781faf704487119af9a8" name="a08345855be88781faf704487119af9a8"></a>
+<a class="el" href="classKinit.html">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><b>~Shader</b> ()</td></tr>
+<tr class="memdesc:a08345855be88781faf704487119af9a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Cleans up OpenGL shader resources. <br /></td></tr>
+<tr class="separator:a08345855be88781faf704487119af9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a112572c386fc4d5e697e0f09c358e6ac" id="r_a112572c386fc4d5e697e0f09c358e6ac"><td class="memItemLeft" align="right" valign="top"><a id="a112572c386fc4d5e697e0f09c358e6ac" name="a112572c386fc4d5e697e0f09c358e6ac"></a>
 <a class="el" href="classKinit.html">GLuint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>glShader</b></td></tr>
+<tr class="memdesc:a112572c386fc4d5e697e0f09c358e6ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenGL shader ID. <br /></td></tr>
 <tr class="separator:a112572c386fc4d5e697e0f09c358e6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb0c88e3984d8e88fd28a716fa4de75b" id="r_acb0c88e3984d8e88fd28a716fa4de75b"><td class="memItemLeft" align="right" valign="top"><a id="acb0c88e3984d8e88fd28a716fa4de75b" name="acb0c88e3984d8e88fd28a716fa4de75b"></a>
 <a class="el" href="classKinit.html">GLenum</a>&#160;</td><td class="memItemRight" valign="bottom"><b>glShaderType</b></td></tr>
+<tr class="memdesc:acb0c88e3984d8e88fd28a716fa4de75b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of shader (vertex, fragment, etc.). <br /></td></tr>
 <tr class="separator:acb0c88e3984d8e88fd28a716fa4de75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aef20119bde6aff11ffd23f3ea2131b86" id="r_aef20119bde6aff11ffd23f3ea2131b86"><td class="memItemLeft" align="right" valign="top"><a id="aef20119bde6aff11ffd23f3ea2131b86" name="aef20119bde6aff11ffd23f3ea2131b86"></a>
+<a class="el" href="classKinit.html">class</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classShader.html#aef20119bde6aff11ffd23f3ea2131b86">ShaderProgram</a></td></tr>
+<tr class="memdesc:aef20119bde6aff11ffd23f3ea2131b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows <a class="el" href="classShaderProgram.html" title="Represents an OpenGL shader program.">ShaderProgram</a> to access <a class="el" href="classShader.html" title="Represents an OpenGL shader.">Shader</a> internals. <br /></td></tr>
+<tr class="separator:aef20119bde6aff11ffd23f3ea2131b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents an OpenGL shader. </p>
+<p>This class encapsulates the creation, compilation, and management of OpenGL shaders, such as vertex and fragment shaders. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4e19b8dd8457c01752ddecb85f99b3ac" name="a4e19b8dd8457c01752ddecb85f99b3ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e19b8dd8457c01752ddecb85f99b3ac">&#9670;&#160;</a></span>Shader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Shader::Shader </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">GLenum</a>&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classShader.html" title="Represents an OpenGL shader.">Shader</a> from a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The file path of the shader source code. </td></tr>
+    <tr><td class="paramname">type</td><td>The type of shader (GL_VERTEX_SHADER, GL_FRAGMENT_SHADER, etc.). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/model_renderer/include/<a class="el" href="shader_8hpp_source.html">shader.hpp</a></li>
 </ul>

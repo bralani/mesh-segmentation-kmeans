@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="A material implementing the Phong shading model.">
 <polygon fill="#999999" stroke="transparent" points="106,-109 6,-109 6,0 106,0 106,-109"/>
 <text text-anchor="start" x="20.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">PhongMaterial</text>
 <text text-anchor="start" x="10" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -36,7 +36,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classMaterial.html" target="_top" xlink:title="Represents a material that combines textures and shaders.">
 <polygon fill="white" stroke="transparent" points="91,-225 21,-225 21,-146 91,-146 91,-225"/>
 <text text-anchor="start" x="35.5" y="-212.5" font-family="Helvetica,sans-Serif" font-size="10.00">Material</text>
 <text text-anchor="start" x="25" y="-197.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -47,10 +47,10 @@
 <text text-anchor="start" x="38" y="-167.5" font-family="Helvetica,sans-Serif" font-size="10.00">Material()</text>
 <text text-anchor="start" x="25" y="-152.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="38" y="-152.5" font-family="Helvetica,sans-Serif" font-size="10.00">use()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="21,-207.5 21,-207.5 91,-207.5 91,-207.5 21,-207.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="21,-192.5 21,-192.5 36,-192.5 36,-192.5 21,-192.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="36,-192.5 36,-192.5 91,-192.5 91,-192.5 36,-192.5"/>
-<polygon fill="none" stroke="#bfbfbf" points="21,-146 21,-225 91,-225 91,-146 21,-146"/>
+<polygon fill="#666666" stroke="#666666" points="21,-207.5 21,-207.5 91,-207.5 91,-207.5 21,-207.5"/>
+<polygon fill="#666666" stroke="#666666" points="21,-192.5 21,-192.5 36,-192.5 36,-192.5 21,-192.5"/>
+<polygon fill="#666666" stroke="#666666" points="36,-192.5 36,-192.5 91,-192.5 91,-192.5 36,-192.5"/>
+<polygon fill="none" stroke="#666666" points="21,-146 21,-225 91,-225 91,-146 21,-146"/>
 </a>
 </g>
 </g>
@@ -66,7 +66,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classShaderProgram.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classShaderProgram.html" target="_top" xlink:title="Represents an OpenGL shader program.">
 <polygon fill="white" stroke="transparent" points="112,-486 0,-486 0,-272 112,-272 112,-486"/>
 <text text-anchor="start" x="18" y="-474" font-family="Helvetica,sans-Serif" font-size="10.00">ShaderProgram</text>
 <text text-anchor="start" x="4" y="-459" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -95,10 +95,10 @@
 <text text-anchor="start" x="17" y="-294" font-family="Helvetica,sans-Serif" font-size="10.00">setMat4()</text>
 <text text-anchor="start" x="4" y="-279" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-279" font-family="Helvetica,sans-Serif" font-size="10.00">setMVPMatrices()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="0,-469 0,-469 112,-469 112,-469 0,-469"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="0,-454 0,-454 15,-454 15,-454 0,-454"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="15,-454 15,-454 112,-454 112,-454 15,-454"/>
-<polygon fill="none" stroke="#bfbfbf" points="0,-272 0,-486 112,-486 112,-272 0,-272"/>
+<polygon fill="#666666" stroke="#666666" points="0,-469 0,-469 112,-469 112,-469 0,-469"/>
+<polygon fill="#666666" stroke="#666666" points="0,-454 0,-454 15,-454 15,-454 0,-454"/>
+<polygon fill="#666666" stroke="#666666" points="15,-454 15,-454 112,-454 112,-454 15,-454"/>
+<polygon fill="none" stroke="#666666" points="0,-272 0,-486 112,-486 112,-272 0,-272"/>
 </a>
 </g>
 </g>

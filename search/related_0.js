@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3c_3c_0',['operator&lt;&lt;',['../classMesh.html#a1ef0a342442d6e336e6b44df1354cd23',1,'Mesh::operator&lt;&lt;'],['../classPoint.html#ab0756c2fadbdcf9c47027cfa131852fc',1,'Point::operator&lt;&lt;']]]
+  ['material_0',['Material',['../classTexture2D.html#aa1212b6e372a0f45d2c01f3cd203af77',1,'Texture2D']]]
 ];

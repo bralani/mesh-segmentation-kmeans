@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['normal_0',['normal',['../structFace.html#a4d01f701e5c2f3f640a55292488e1638',1,'Face']]],
-  ['numclusters_1',['numClusters',['../classKMeans.html#a7f3b01d5c0cb8df8b49e1e44443900a9',1,'KMeans']]]
+  ['id_0',['id',['../classPoint.html#a93b2f40764fe95e57a8aa41294ef5bf2',1,'Point']]],
+  ['indexsize_1',['indexSize',['../classmeshviewer_1_1Mesh.html#ac497bc8dc1315c6ac8e18c6d17f11b56',1,'meshviewer::Mesh']]],
+  ['indices_2',['indices',['../classmeshviewer_1_1Mesh.html#ab8270397f37f944035ab5f1877709bc2',1,'meshviewer::Mesh']]]
 ];

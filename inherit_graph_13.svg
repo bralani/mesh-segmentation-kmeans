@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="classMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="classMaterial.html" target="_top" xlink:title="Represents a material that combines textures and shaders.">
 <polygon fill="white" stroke="#666666" points="57,-19 0,-19 0,0 57,0 57,-19"/>
 <text text-anchor="middle" x="28.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">Material</text>
 </a>
@@ -20,7 +20,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="classPhongMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000001"><a xlink:href="classPhongMaterial.html" target="_top" xlink:title="A material implementing the Phong shading model.">
 <polygon fill="white" stroke="#666666" points="180,-19 93,-19 93,0 180,0 180,-19"/>
 <text text-anchor="middle" x="136.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">PhongMaterial</text>
 </a>

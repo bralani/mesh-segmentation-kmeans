@@ -102,6 +102,11 @@ $(document).ready(function(){initNavTree('classModelRotationCamera.html',''); in
   <div class="headertitle"><div class="title">ModelRotationCamera Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>A specialized camera that rotates around a 3D model.  
+ <a href="classModelRotationCamera.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="camera_8hpp_source.html">camera.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for ModelRotationCamera:</div>
 <div class="dyncontent">
@@ -115,85 +120,169 @@ Collaboration diagram for ModelRotationCamera:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4a238ff9afd90e153e6d96d00b71d369" id="r_a4a238ff9afd90e153e6d96d00b71d369"><td class="memItemLeft" align="right" valign="top"><a id="a4a238ff9afd90e153e6d96d00b71d369" name="a4a238ff9afd90e153e6d96d00b71d369"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ModelRotationCamera</b> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> center={0.0f, 0.0f, 0.0f}, <a class="el" href="classKinit.html">float</a> distance=10.0f)</td></tr>
+<tr class="memitem:a3f44f740cc1bae9247e91fc971066ef7" id="r_a3f44f740cc1bae9247e91fc971066ef7"><td class="memItemLeft" align="right" valign="top"><a id="a3f44f740cc1bae9247e91fc971066ef7" name="a3f44f740cc1bae9247e91fc971066ef7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>ModelRotationCamera</b> ()=<a class="el" href="classKinit.html">default</a></td></tr>
+<tr class="memdesc:a3f44f740cc1bae9247e91fc971066ef7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a3f44f740cc1bae9247e91fc971066ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a238ff9afd90e153e6d96d00b71d369" id="r_a4a238ff9afd90e153e6d96d00b71d369"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelRotationCamera.html#a4a238ff9afd90e153e6d96d00b71d369">ModelRotationCamera</a> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> <a class="el" href="classModelRotationCamera.html#a09d6bb58bcdbc038544c548dae9c7dff">center</a>={0.0f, 0.0f, 0.0f}, <a class="el" href="classKinit.html">float</a> <a class="el" href="classModelRotationCamera.html#adbec39e7d0439ca38054b60e65a73c67">distance</a>=10.0f)</td></tr>
+<tr class="memdesc:a4a238ff9afd90e153e6d96d00b71d369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classModelRotationCamera.html" title="A specialized camera that rotates around a 3D model.">ModelRotationCamera</a> with a center and distance.  <br /></td></tr>
 <tr class="separator:a4a238ff9afd90e153e6d96d00b71d369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae04b4010e55b31efec2c0c45f3287c8b" id="r_ae04b4010e55b31efec2c0c45f3287c8b"><td class="memItemLeft" align="right" valign="top"><a id="ae04b4010e55b31efec2c0c45f3287c8b" name="ae04b4010e55b31efec2c0c45f3287c8b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>~ModelRotationCamera</b> () <a class="el" href="classKinit.html">override</a>=<a class="el" href="classKinit.html">default</a></td></tr>
+<tr class="memdesc:ae04b4010e55b31efec2c0c45f3287c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="separator:ae04b4010e55b31efec2c0c45f3287c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94a5f1066775542fe461cb6c966129d3" id="r_a94a5f1066775542fe461cb6c966129d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelRotationCamera.html#a94a5f1066775542fe461cb6c966129d3">handleMouseInput</a> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">x</a>, <a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">y</a>, <a class="el" href="classKinit.html">bool</a> <a class="el" href="classKinit.html">pressed</a>) <a class="el" href="classKinit.html">override</a></td></tr>
+<tr class="memdesc:a94a5f1066775542fe461cb6c966129d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles mouse input for rotating the camera around the model.  <br /></td></tr>
 <tr class="separator:a94a5f1066775542fe461cb6c966129d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8232b197124eb7ed1e4f25f5441129b6" id="r_a8232b197124eb7ed1e4f25f5441129b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelRotationCamera.html#a8232b197124eb7ed1e4f25f5441129b6">handleKeyboardInput</a> (<a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">key</a>, <a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">deltaTime</a>) <a class="el" href="classKinit.html">override</a></td></tr>
+<tr class="memdesc:a8232b197124eb7ed1e4f25f5441129b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles keyboard input for modifying the camera’s position.  <br /></td></tr>
 <tr class="separator:a8232b197124eb7ed1e4f25f5441129b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e7af442fe413706d8c0cbf334e65584" id="r_a0e7af442fe413706d8c0cbf334e65584"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelRotationCamera.html#a0e7af442fe413706d8c0cbf334e65584">handleScrollInput</a> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">y</a>) <a class="el" href="classKinit.html">override</a></td></tr>
+<tr class="memdesc:a0e7af442fe413706d8c0cbf334e65584"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles scroll input to zoom in and out around the model.  <br /></td></tr>
 <tr class="separator:a0e7af442fe413706d8c0cbf334e65584"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac946811fb44ed9d8a03877152cfc6810" id="r_ac946811fb44ed9d8a03877152cfc6810"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelRotationCamera.html#ac946811fb44ed9d8a03877152cfc6810">positionBasedOnObject</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classModel.html">Model</a> &amp;<a class="el" href="classKinit.html">model</a>) <a class="el" href="classKinit.html">override</a></td></tr>
+<tr class="memdesc:ac946811fb44ed9d8a03877152cfc6810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positions the camera based on a given model.  <br /></td></tr>
 <tr class="separator:ac946811fb44ed9d8a03877152cfc6810"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a805220c1eddb3830c75055553d1a2101" id="r_a805220c1eddb3830c75055553d1a2101"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModelRotationCamera.html#a805220c1eddb3830c75055553d1a2101">setCenter</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> &amp;<a class="el" href="classKinit.html">newCenter</a>) <a class="el" href="classKinit.html">override</a></td></tr>
+<tr class="memdesc:a805220c1eddb3830c75055553d1a2101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a new center point for the camera's orbit.  <br /></td></tr>
 <tr class="separator:a805220c1eddb3830c75055553d1a2101"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classCamera"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classCamera')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classCamera.html">Camera</a></td></tr>
-<tr class="memitem:ac9880a48a126e1b20a0f2218479f7a2e inherit pub_methods_classCamera" id="r_ac9880a48a126e1b20a0f2218479f7a2e"><td class="memItemLeft" align="right" valign="top">
-&#160;</td><td class="memItemRight" valign="bottom"><b>Camera</b> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> position, <a class="el" href="classKinit.html">float</a> fov=90.0f)</td></tr>
+<tr class="memitem:a01f94c3543f56ede7af49dc778f19331 inherit pub_methods_classCamera" id="r_a01f94c3543f56ede7af49dc778f19331"><td class="memItemLeft" align="right" valign="top">
+&#160;</td><td class="memItemRight" valign="bottom"><b>Camera</b> ()</td></tr>
+<tr class="memdesc:a01f94c3543f56ede7af49dc778f19331 inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a01f94c3543f56ede7af49dc778f19331 inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9880a48a126e1b20a0f2218479f7a2e inherit pub_methods_classCamera" id="r_ac9880a48a126e1b20a0f2218479f7a2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#ac9880a48a126e1b20a0f2218479f7a2e">Camera</a> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> <a class="el" href="classCamera.html#a04b5db2c530d8630660e8cfb93a4b3b5">position</a>, <a class="el" href="classKinit.html">float</a> <a class="el" href="classCamera.html#aff7393c9cfbccd7e369091f00008da93">fov</a>=90.0f)</td></tr>
+<tr class="memdesc:ac9880a48a126e1b20a0f2218479f7a2e inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classCamera.html" title="Base class for a camera in a 3D scene.">Camera</a> with a given position and field of view.  <br /></td></tr>
 <tr class="separator:ac9880a48a126e1b20a0f2218479f7a2e inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f90e661a78172675ca06ea69667b531 inherit pub_methods_classCamera" id="r_a2f90e661a78172675ca06ea69667b531"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::mat4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getViewMatrix</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:ad3ed0c5e02c46f73ba92673598e40514 inherit pub_methods_classCamera" id="r_ad3ed0c5e02c46f73ba92673598e40514"><td class="memItemLeft" align="right" valign="top">
+<a class="el" href="classKinit.html">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><b>~Camera</b> ()=<a class="el" href="classKinit.html">default</a></td></tr>
+<tr class="memdesc:ad3ed0c5e02c46f73ba92673598e40514 inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor. <br /></td></tr>
+<tr class="separator:ad3ed0c5e02c46f73ba92673598e40514 inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f90e661a78172675ca06ea69667b531 inherit pub_methods_classCamera" id="r_a2f90e661a78172675ca06ea69667b531"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::mat4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a2f90e661a78172675ca06ea69667b531">getViewMatrix</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a2f90e661a78172675ca06ea69667b531 inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the view matrix for rendering.  <br /></td></tr>
 <tr class="separator:a2f90e661a78172675ca06ea69667b531 inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abede0c7fe76eb813328b1dd39fd2c43d inherit pub_methods_classCamera" id="r_abede0c7fe76eb813328b1dd39fd2c43d"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getFOV</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:abede0c7fe76eb813328b1dd39fd2c43d inherit pub_methods_classCamera" id="r_abede0c7fe76eb813328b1dd39fd2c43d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#abede0c7fe76eb813328b1dd39fd2c43d">getFOV</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:abede0c7fe76eb813328b1dd39fd2c43d inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field of view (FOV).  <br /></td></tr>
 <tr class="separator:abede0c7fe76eb813328b1dd39fd2c43d inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9dc951f8d6e7082233786438139c51d inherit pub_methods_classCamera" id="r_aa9dc951f8d6e7082233786438139c51d"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:aa9dc951f8d6e7082233786438139c51d inherit pub_methods_classCamera" id="r_aa9dc951f8d6e7082233786438139c51d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#aa9dc951f8d6e7082233786438139c51d">getPosition</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:aa9dc951f8d6e7082233786438139c51d inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current position of the camera.  <br /></td></tr>
 <tr class="separator:aa9dc951f8d6e7082233786438139c51d inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43beb93105ae5a91c1948ae577a654e0 inherit pub_methods_classCamera" id="r_a43beb93105ae5a91c1948ae577a654e0"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> &amp;<a class="el" href="classKinit.html">newPosition</a>)</td></tr>
+<tr class="memitem:a43beb93105ae5a91c1948ae577a654e0 inherit pub_methods_classCamera" id="r_a43beb93105ae5a91c1948ae577a654e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a43beb93105ae5a91c1948ae577a654e0">setPosition</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> &amp;<a class="el" href="classKinit.html">newPosition</a>)</td></tr>
+<tr class="memdesc:a43beb93105ae5a91c1948ae577a654e0 inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a new camera position.  <br /></td></tr>
 <tr class="separator:a43beb93105ae5a91c1948ae577a654e0 inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa626c27241aa2749821bb4ac3dca483a inherit pub_methods_classCamera" id="r_aa626c27241aa2749821bb4ac3dca483a"><td class="memItemLeft" align="right" valign="top">
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>setFov</b> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">newFov</a>)</td></tr>
+<tr class="memitem:aa626c27241aa2749821bb4ac3dca483a inherit pub_methods_classCamera" id="r_aa626c27241aa2749821bb4ac3dca483a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#aa626c27241aa2749821bb4ac3dca483a">setFov</a> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">newFov</a>)</td></tr>
+<tr class="memdesc:aa626c27241aa2749821bb4ac3dca483a inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a new field of view (FOV).  <br /></td></tr>
 <tr class="separator:aa626c27241aa2749821bb4ac3dca483a inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fe5c71a390571a861ad8afd99dfdea3 inherit pub_methods_classCamera" id="r_a8fe5c71a390571a861ad8afd99dfdea3"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>updateViewMatrix</b> ()</td></tr>
+<tr class="memdesc:a8fe5c71a390571a861ad8afd99dfdea3 inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the view matrix based on camera transformations. <br /></td></tr>
 <tr class="separator:a8fe5c71a390571a861ad8afd99dfdea3 inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee8027b5309a5dc77db956d27924c387 inherit pub_methods_classCamera" id="r_aee8027b5309a5dc77db956d27924c387"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>resetCamera</b> ()</td></tr>
+<tr class="memdesc:aee8027b5309a5dc77db956d27924c387 inherit pub_methods_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the camera to its default position and orientation. <br /></td></tr>
 <tr class="separator:aee8027b5309a5dc77db956d27924c387 inherit pub_methods_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a09d6bb58bcdbc038544c548dae9c7dff" id="r_a09d6bb58bcdbc038544c548dae9c7dff"><td class="memItemLeft" align="right" valign="top"><a id="a09d6bb58bcdbc038544c548dae9c7dff" name="a09d6bb58bcdbc038544c548dae9c7dff"></a>
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>center</b></td></tr>
+<tr class="memdesc:a09d6bb58bcdbc038544c548dae9c7dff"><td class="mdescLeft">&#160;</td><td class="mdescRight">The center point for orbiting the camera. <br /></td></tr>
 <tr class="separator:a09d6bb58bcdbc038544c548dae9c7dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbec39e7d0439ca38054b60e65a73c67" id="r_adbec39e7d0439ca38054b60e65a73c67"><td class="memItemLeft" align="right" valign="top"><a id="adbec39e7d0439ca38054b60e65a73c67" name="adbec39e7d0439ca38054b60e65a73c67"></a>
 <a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>distance</b></td></tr>
+<tr class="memdesc:adbec39e7d0439ca38054b60e65a73c67"><td class="mdescLeft">&#160;</td><td class="mdescRight">The distance from the center. <br /></td></tr>
 <tr class="separator:adbec39e7d0439ca38054b60e65a73c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classCamera"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classCamera')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classCamera.html">Camera</a></td></tr>
 <tr class="memitem:a04b5db2c530d8630660e8cfb93a4b3b5 inherit pro_attribs_classCamera" id="r_a04b5db2c530d8630660e8cfb93a4b3b5"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="memdesc:a04b5db2c530d8630660e8cfb93a4b3b5 inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">The position of the camera. <br /></td></tr>
 <tr class="separator:a04b5db2c530d8630660e8cfb93a4b3b5 inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8847cf29c9c124906ad5d97ecb5c55d1 inherit pro_attribs_classCamera" id="r_a8847cf29c9c124906ad5d97ecb5c55d1"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>front</b> = {0.0f, 0.0f, -1.0f}</td></tr>
+<tr class="memdesc:a8847cf29c9c124906ad5d97ecb5c55d1 inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">The front direction of the camera. <br /></td></tr>
 <tr class="separator:a8847cf29c9c124906ad5d97ecb5c55d1 inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fe5f351380fb118ffc600591769f049 inherit pro_attribs_classCamera" id="r_a3fe5f351380fb118ffc600591769f049"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>up</b> = {0.0f, 1.0f, 0.0f}</td></tr>
+<tr class="memdesc:a3fe5f351380fb118ffc600591769f049 inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">The up direction of the camera. <br /></td></tr>
 <tr class="separator:a3fe5f351380fb118ffc600591769f049 inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebffcc6289dd99df7554b18d00a81161 inherit pro_attribs_classCamera" id="r_aebffcc6289dd99df7554b18d00a81161"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>right</b> = {1.0f, 0.0f, 0.0f}</td></tr>
+<tr class="memdesc:aebffcc6289dd99df7554b18d00a81161 inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">The right direction of the camera. <br /></td></tr>
 <tr class="separator:aebffcc6289dd99df7554b18d00a81161 inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad76701b22630f2df28a0ae15f0497a3a inherit pro_attribs_classCamera" id="r_ad76701b22630f2df28a0ae15f0497a3a"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>yaw</b> = -90.0f</td></tr>
+<tr class="memdesc:ad76701b22630f2df28a0ae15f0497a3a inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">The yaw angle (rotation around the Y-axis). <br /></td></tr>
 <tr class="separator:ad76701b22630f2df28a0ae15f0497a3a inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab56fcb39f580e8d2159cf2c9c6d9a65a inherit pro_attribs_classCamera" id="r_ab56fcb39f580e8d2159cf2c9c6d9a65a"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pitch</b> = 0.0f</td></tr>
+<tr class="memdesc:ab56fcb39f580e8d2159cf2c9c6d9a65a inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">The pitch angle (rotation around the X-axis). <br /></td></tr>
 <tr class="separator:ab56fcb39f580e8d2159cf2c9c6d9a65a inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff7393c9cfbccd7e369091f00008da93 inherit pro_attribs_classCamera" id="r_aff7393c9cfbccd7e369091f00008da93"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>fov</b></td></tr>
+<tr class="memdesc:aff7393c9cfbccd7e369091f00008da93 inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">The field of view (FOV) in degrees. <br /></td></tr>
 <tr class="separator:aff7393c9cfbccd7e369091f00008da93 inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39fd35c8f74419c81d2e61c5918a65c2 inherit pro_attribs_classCamera" id="r_a39fd35c8f74419c81d2e61c5918a65c2"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>firstMouseInput</b> = <a class="el" href="classKinit.html">true</a></td></tr>
+<tr class="memdesc:a39fd35c8f74419c81d2e61c5918a65c2 inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to track the first mouse input. <br /></td></tr>
 <tr class="separator:a39fd35c8f74419c81d2e61c5918a65c2 inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a47174efb191347a3eee52ffa494dd1 inherit pro_attribs_classCamera" id="r_a0a47174efb191347a3eee52ffa494dd1"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lastMouse</b> [2]</td></tr>
+<tr class="memdesc:a0a47174efb191347a3eee52ffa494dd1 inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the last mouse position (x, y). <br /></td></tr>
 <tr class="separator:a0a47174efb191347a3eee52ffa494dd1 inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e088a154066ed6f2bfca373163f21d2 inherit pro_attribs_classCamera" id="r_a6e088a154066ed6f2bfca373163f21d2"><td class="memItemLeft" align="right" valign="top">
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::mat4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>viewMatrix</b></td></tr>
+<tr class="memdesc:a6e088a154066ed6f2bfca373163f21d2 inherit pro_attribs_classCamera"><td class="mdescLeft">&#160;</td><td class="mdescRight">The view matrix representing the camera transformation. <br /></td></tr>
 <tr class="separator:a6e088a154066ed6f2bfca373163f21d2 inherit pro_attribs_classCamera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A specialized camera that rotates around a 3D model. </p>
+<p>This camera orbits around a central point, allowing for intuitive viewing of a 3D object from various angles. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4a238ff9afd90e153e6d96d00b71d369" name="a4a238ff9afd90e153e6d96d00b71d369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a238ff9afd90e153e6d96d00b71d369">&#9670;&#160;</a></span>ModelRotationCamera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ModelRotationCamera::ModelRotationCamera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td>
+          <td class="paramname"><em>center</em> = <code>{0.0f,&#160;0.0f,&#160;0.0f}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">float</a>&#160;</td>
+          <td class="paramname"><em>distance</em> = <code>10.0f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classModelRotationCamera.html" title="A specialized camera that rotates around a 3D model.">ModelRotationCamera</a> with a center and distance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">center</td><td>The center point to orbit around. </td></tr>
+    <tr><td class="paramname">distance</td><td>The distance from the center. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8232b197124eb7ed1e4f25f5441129b6" name="a8232b197124eb7ed1e4f25f5441129b6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8232b197124eb7ed1e4f25f5441129b6">&#9670;&#160;</a></span>handleKeyboardInput()</h2>
@@ -229,7 +318,16 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCamera.html">Camera</a>.</p>
+<p>Handles keyboard input for modifying the camera’s position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key pressed. </td></tr>
+    <tr><td class="paramname">deltaTime</td><td>The time difference between frames. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classCamera.html#a0d7022d4693fc43e095e85173715f056">Camera</a>.</p>
 
 </div>
 </div>
@@ -273,7 +371,17 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCamera.html">Camera</a>.</p>
+<p>Handles mouse input for rotating the camera around the model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The x-coordinate of the mouse. </td></tr>
+    <tr><td class="paramname">y</td><td>The y-coordinate of the mouse. </td></tr>
+    <tr><td class="paramname">pressed</td><td>True if the mouse button is pressed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classCamera.html#a71c222b794c648f13d78cdf84629b00c">Camera</a>.</p>
 
 </div>
 </div>
@@ -301,7 +409,15 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCamera.html">Camera</a>.</p>
+<p>Handles scroll input to zoom in and out around the model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">y</td><td>The scroll offset. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classCamera.html#afbab2d53b0cd7d428e92b4a3cd25c1bd">Camera</a>.</p>
 
 </div>
 </div>
@@ -329,7 +445,15 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCamera.html">Camera</a>.</p>
+<p>Positions the camera based on a given model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">model</td><td>The model to align the camera with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classCamera.html#a15bdd706790066d2cefba1968cce15e6">Camera</a>.</p>
 
 </div>
 </div>
@@ -357,7 +481,15 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Reimplemented from <a class="el" href="classCamera.html">Camera</a>.</p>
+<p>Sets a new center point for the camera's orbit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newCenter</td><td>The new center point. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classCamera.html#a42c550bc5b5a4a72d0098530677a0974">Camera</a>.</p>
 
 </div>
 </div>

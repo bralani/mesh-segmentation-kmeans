@@ -102,6 +102,11 @@ $(document).ready(function(){initNavTree('classCamera.html',''); initResizable()
   <div class="headertitle"><div class="title">Camera Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base class for a camera in a 3D scene.  
+ <a href="classCamera.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="camera_8hpp_source.html">camera.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Camera:</div>
 <div class="dyncontent">
@@ -115,79 +120,486 @@ Collaboration diagram for Camera:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac9880a48a126e1b20a0f2218479f7a2e" id="r_ac9880a48a126e1b20a0f2218479f7a2e"><td class="memItemLeft" align="right" valign="top"><a id="ac9880a48a126e1b20a0f2218479f7a2e" name="ac9880a48a126e1b20a0f2218479f7a2e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Camera</b> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> position, <a class="el" href="classKinit.html">float</a> fov=90.0f)</td></tr>
+<tr class="memitem:a01f94c3543f56ede7af49dc778f19331" id="r_a01f94c3543f56ede7af49dc778f19331"><td class="memItemLeft" align="right" valign="top"><a id="a01f94c3543f56ede7af49dc778f19331" name="a01f94c3543f56ede7af49dc778f19331"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Camera</b> ()</td></tr>
+<tr class="memdesc:a01f94c3543f56ede7af49dc778f19331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
+<tr class="separator:a01f94c3543f56ede7af49dc778f19331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9880a48a126e1b20a0f2218479f7a2e" id="r_ac9880a48a126e1b20a0f2218479f7a2e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#ac9880a48a126e1b20a0f2218479f7a2e">Camera</a> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> <a class="el" href="classCamera.html#a04b5db2c530d8630660e8cfb93a4b3b5">position</a>, <a class="el" href="classKinit.html">float</a> <a class="el" href="classCamera.html#aff7393c9cfbccd7e369091f00008da93">fov</a>=90.0f)</td></tr>
+<tr class="memdesc:ac9880a48a126e1b20a0f2218479f7a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classCamera.html" title="Base class for a camera in a 3D scene.">Camera</a> with a given position and field of view.  <br /></td></tr>
 <tr class="separator:ac9880a48a126e1b20a0f2218479f7a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f90e661a78172675ca06ea69667b531" id="r_a2f90e661a78172675ca06ea69667b531"><td class="memItemLeft" align="right" valign="top"><a id="a2f90e661a78172675ca06ea69667b531" name="a2f90e661a78172675ca06ea69667b531"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::mat4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getViewMatrix</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:ad3ed0c5e02c46f73ba92673598e40514" id="r_ad3ed0c5e02c46f73ba92673598e40514"><td class="memItemLeft" align="right" valign="top"><a id="ad3ed0c5e02c46f73ba92673598e40514" name="ad3ed0c5e02c46f73ba92673598e40514"></a>
+<a class="el" href="classKinit.html">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><b>~Camera</b> ()=<a class="el" href="classKinit.html">default</a></td></tr>
+<tr class="memdesc:ad3ed0c5e02c46f73ba92673598e40514"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor. <br /></td></tr>
+<tr class="separator:ad3ed0c5e02c46f73ba92673598e40514"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f90e661a78172675ca06ea69667b531" id="r_a2f90e661a78172675ca06ea69667b531"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::mat4</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a2f90e661a78172675ca06ea69667b531">getViewMatrix</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a2f90e661a78172675ca06ea69667b531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the view matrix for rendering.  <br /></td></tr>
 <tr class="separator:a2f90e661a78172675ca06ea69667b531"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abede0c7fe76eb813328b1dd39fd2c43d" id="r_abede0c7fe76eb813328b1dd39fd2c43d"><td class="memItemLeft" align="right" valign="top"><a id="abede0c7fe76eb813328b1dd39fd2c43d" name="abede0c7fe76eb813328b1dd39fd2c43d"></a>
-<a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getFOV</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:abede0c7fe76eb813328b1dd39fd2c43d" id="r_abede0c7fe76eb813328b1dd39fd2c43d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#abede0c7fe76eb813328b1dd39fd2c43d">getFOV</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:abede0c7fe76eb813328b1dd39fd2c43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the field of view (FOV).  <br /></td></tr>
 <tr class="separator:abede0c7fe76eb813328b1dd39fd2c43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9dc951f8d6e7082233786438139c51d" id="r_aa9dc951f8d6e7082233786438139c51d"><td class="memItemLeft" align="right" valign="top"><a id="aa9dc951f8d6e7082233786438139c51d" name="aa9dc951f8d6e7082233786438139c51d"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:aa9dc951f8d6e7082233786438139c51d" id="r_aa9dc951f8d6e7082233786438139c51d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#aa9dc951f8d6e7082233786438139c51d">getPosition</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:aa9dc951f8d6e7082233786438139c51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current position of the camera.  <br /></td></tr>
 <tr class="separator:aa9dc951f8d6e7082233786438139c51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43beb93105ae5a91c1948ae577a654e0" id="r_a43beb93105ae5a91c1948ae577a654e0"><td class="memItemLeft" align="right" valign="top"><a id="a43beb93105ae5a91c1948ae577a654e0" name="a43beb93105ae5a91c1948ae577a654e0"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> &amp;<a class="el" href="classKinit.html">newPosition</a>)</td></tr>
+<tr class="memitem:a43beb93105ae5a91c1948ae577a654e0" id="r_a43beb93105ae5a91c1948ae577a654e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a43beb93105ae5a91c1948ae577a654e0">setPosition</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> &amp;<a class="el" href="classKinit.html">newPosition</a>)</td></tr>
+<tr class="memdesc:a43beb93105ae5a91c1948ae577a654e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a new camera position.  <br /></td></tr>
 <tr class="separator:a43beb93105ae5a91c1948ae577a654e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa626c27241aa2749821bb4ac3dca483a" id="r_aa626c27241aa2749821bb4ac3dca483a"><td class="memItemLeft" align="right" valign="top"><a id="aa626c27241aa2749821bb4ac3dca483a" name="aa626c27241aa2749821bb4ac3dca483a"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>setFov</b> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">newFov</a>)</td></tr>
+<tr class="memitem:aa626c27241aa2749821bb4ac3dca483a" id="r_aa626c27241aa2749821bb4ac3dca483a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#aa626c27241aa2749821bb4ac3dca483a">setFov</a> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">newFov</a>)</td></tr>
+<tr class="memdesc:aa626c27241aa2749821bb4ac3dca483a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets a new field of view (FOV).  <br /></td></tr>
 <tr class="separator:aa626c27241aa2749821bb4ac3dca483a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71c222b794c648f13d78cdf84629b00c" id="r_a71c222b794c648f13d78cdf84629b00c"><td class="memItemLeft" align="right" valign="top"><a id="a71c222b794c648f13d78cdf84629b00c" name="a71c222b794c648f13d78cdf84629b00c"></a>
-<a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>handleMouseInput</b> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">x</a>, <a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">y</a>, <a class="el" href="classKinit.html">bool</a> <a class="el" href="classKinit.html">pressed</a>)</td></tr>
+<tr class="memitem:a71c222b794c648f13d78cdf84629b00c" id="r_a71c222b794c648f13d78cdf84629b00c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a71c222b794c648f13d78cdf84629b00c">handleMouseInput</a> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">x</a>, <a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">y</a>, <a class="el" href="classKinit.html">bool</a> <a class="el" href="classKinit.html">pressed</a>)</td></tr>
+<tr class="memdesc:a71c222b794c648f13d78cdf84629b00c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles mouse input for camera movement.  <br /></td></tr>
 <tr class="separator:a71c222b794c648f13d78cdf84629b00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d7022d4693fc43e095e85173715f056" id="r_a0d7022d4693fc43e095e85173715f056"><td class="memItemLeft" align="right" valign="top"><a id="a0d7022d4693fc43e095e85173715f056" name="a0d7022d4693fc43e095e85173715f056"></a>
-<a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>handleKeyboardInput</b> (<a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">key</a>, <a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">deltaTime</a>)</td></tr>
+<tr class="memitem:a0d7022d4693fc43e095e85173715f056" id="r_a0d7022d4693fc43e095e85173715f056"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a0d7022d4693fc43e095e85173715f056">handleKeyboardInput</a> (<a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">key</a>, <a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">deltaTime</a>)</td></tr>
+<tr class="memdesc:a0d7022d4693fc43e095e85173715f056"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles keyboard input for camera movement.  <br /></td></tr>
 <tr class="separator:a0d7022d4693fc43e095e85173715f056"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbab2d53b0cd7d428e92b4a3cd25c1bd" id="r_afbab2d53b0cd7d428e92b4a3cd25c1bd"><td class="memItemLeft" align="right" valign="top"><a id="afbab2d53b0cd7d428e92b4a3cd25c1bd" name="afbab2d53b0cd7d428e92b4a3cd25c1bd"></a>
-<a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>handleScrollInput</b> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">y</a>)</td></tr>
+<tr class="memitem:afbab2d53b0cd7d428e92b4a3cd25c1bd" id="r_afbab2d53b0cd7d428e92b4a3cd25c1bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#afbab2d53b0cd7d428e92b4a3cd25c1bd">handleScrollInput</a> (<a class="el" href="classKinit.html">float</a> <a class="el" href="classKinit.html">y</a>)</td></tr>
+<tr class="memdesc:afbab2d53b0cd7d428e92b4a3cd25c1bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handles scroll input for zooming or changing FOV.  <br /></td></tr>
 <tr class="separator:afbab2d53b0cd7d428e92b4a3cd25c1bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fe5c71a390571a861ad8afd99dfdea3" id="r_a8fe5c71a390571a861ad8afd99dfdea3"><td class="memItemLeft" align="right" valign="top"><a id="a8fe5c71a390571a861ad8afd99dfdea3" name="a8fe5c71a390571a861ad8afd99dfdea3"></a>
 <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>updateViewMatrix</b> ()</td></tr>
+<tr class="memdesc:a8fe5c71a390571a861ad8afd99dfdea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the view matrix based on camera transformations. <br /></td></tr>
 <tr class="separator:a8fe5c71a390571a861ad8afd99dfdea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee8027b5309a5dc77db956d27924c387" id="r_aee8027b5309a5dc77db956d27924c387"><td class="memItemLeft" align="right" valign="top"><a id="aee8027b5309a5dc77db956d27924c387" name="aee8027b5309a5dc77db956d27924c387"></a>
 <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>resetCamera</b> ()</td></tr>
+<tr class="memdesc:aee8027b5309a5dc77db956d27924c387"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the camera to its default position and orientation. <br /></td></tr>
 <tr class="separator:aee8027b5309a5dc77db956d27924c387"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15bdd706790066d2cefba1968cce15e6" id="r_a15bdd706790066d2cefba1968cce15e6"><td class="memItemLeft" align="right" valign="top"><a id="a15bdd706790066d2cefba1968cce15e6" name="a15bdd706790066d2cefba1968cce15e6"></a>
-<a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>positionBasedOnObject</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classModel.html">Model</a> &amp;<a class="el" href="classKinit.html">model</a>)</td></tr>
+<tr class="memitem:a15bdd706790066d2cefba1968cce15e6" id="r_a15bdd706790066d2cefba1968cce15e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a15bdd706790066d2cefba1968cce15e6">positionBasedOnObject</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classModel.html">Model</a> &amp;<a class="el" href="classKinit.html">model</a>)</td></tr>
+<tr class="memdesc:a15bdd706790066d2cefba1968cce15e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positions the camera based on the given model.  <br /></td></tr>
 <tr class="separator:a15bdd706790066d2cefba1968cce15e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42c550bc5b5a4a72d0098530677a0974" id="r_a42c550bc5b5a4a72d0098530677a0974"><td class="memItemLeft" align="right" valign="top"><a id="a42c550bc5b5a4a72d0098530677a0974" name="a42c550bc5b5a4a72d0098530677a0974"></a>
-<a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>setCenter</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> &amp;<a class="el" href="classKinit.html">newCenter</a>)</td></tr>
+<tr class="memitem:a42c550bc5b5a4a72d0098530677a0974" id="r_a42c550bc5b5a4a72d0098530677a0974"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCamera.html#a42c550bc5b5a4a72d0098530677a0974">setCenter</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> &amp;<a class="el" href="classKinit.html">newCenter</a>)</td></tr>
+<tr class="memdesc:a42c550bc5b5a4a72d0098530677a0974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the center of rotation for the camera.  <br /></td></tr>
 <tr class="separator:a42c550bc5b5a4a72d0098530677a0974"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a04b5db2c530d8630660e8cfb93a4b3b5" id="r_a04b5db2c530d8630660e8cfb93a4b3b5"><td class="memItemLeft" align="right" valign="top"><a id="a04b5db2c530d8630660e8cfb93a4b3b5" name="a04b5db2c530d8630660e8cfb93a4b3b5"></a>
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="memdesc:a04b5db2c530d8630660e8cfb93a4b3b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The position of the camera. <br /></td></tr>
 <tr class="separator:a04b5db2c530d8630660e8cfb93a4b3b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8847cf29c9c124906ad5d97ecb5c55d1" id="r_a8847cf29c9c124906ad5d97ecb5c55d1"><td class="memItemLeft" align="right" valign="top"><a id="a8847cf29c9c124906ad5d97ecb5c55d1" name="a8847cf29c9c124906ad5d97ecb5c55d1"></a>
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>front</b> = {0.0f, 0.0f, -1.0f}</td></tr>
+<tr class="memdesc:a8847cf29c9c124906ad5d97ecb5c55d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The front direction of the camera. <br /></td></tr>
 <tr class="separator:a8847cf29c9c124906ad5d97ecb5c55d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fe5f351380fb118ffc600591769f049" id="r_a3fe5f351380fb118ffc600591769f049"><td class="memItemLeft" align="right" valign="top"><a id="a3fe5f351380fb118ffc600591769f049" name="a3fe5f351380fb118ffc600591769f049"></a>
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>up</b> = {0.0f, 1.0f, 0.0f}</td></tr>
+<tr class="memdesc:a3fe5f351380fb118ffc600591769f049"><td class="mdescLeft">&#160;</td><td class="mdescRight">The up direction of the camera. <br /></td></tr>
 <tr class="separator:a3fe5f351380fb118ffc600591769f049"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aebffcc6289dd99df7554b18d00a81161" id="r_aebffcc6289dd99df7554b18d00a81161"><td class="memItemLeft" align="right" valign="top"><a id="aebffcc6289dd99df7554b18d00a81161" name="aebffcc6289dd99df7554b18d00a81161"></a>
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td><td class="memItemRight" valign="bottom"><b>right</b> = {1.0f, 0.0f, 0.0f}</td></tr>
+<tr class="memdesc:aebffcc6289dd99df7554b18d00a81161"><td class="mdescLeft">&#160;</td><td class="mdescRight">The right direction of the camera. <br /></td></tr>
 <tr class="separator:aebffcc6289dd99df7554b18d00a81161"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad76701b22630f2df28a0ae15f0497a3a" id="r_ad76701b22630f2df28a0ae15f0497a3a"><td class="memItemLeft" align="right" valign="top"><a id="ad76701b22630f2df28a0ae15f0497a3a" name="ad76701b22630f2df28a0ae15f0497a3a"></a>
 <a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>yaw</b> = -90.0f</td></tr>
+<tr class="memdesc:ad76701b22630f2df28a0ae15f0497a3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The yaw angle (rotation around the Y-axis). <br /></td></tr>
 <tr class="separator:ad76701b22630f2df28a0ae15f0497a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab56fcb39f580e8d2159cf2c9c6d9a65a" id="r_ab56fcb39f580e8d2159cf2c9c6d9a65a"><td class="memItemLeft" align="right" valign="top"><a id="ab56fcb39f580e8d2159cf2c9c6d9a65a" name="ab56fcb39f580e8d2159cf2c9c6d9a65a"></a>
 <a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pitch</b> = 0.0f</td></tr>
+<tr class="memdesc:ab56fcb39f580e8d2159cf2c9c6d9a65a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The pitch angle (rotation around the X-axis). <br /></td></tr>
 <tr class="separator:ab56fcb39f580e8d2159cf2c9c6d9a65a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff7393c9cfbccd7e369091f00008da93" id="r_aff7393c9cfbccd7e369091f00008da93"><td class="memItemLeft" align="right" valign="top"><a id="aff7393c9cfbccd7e369091f00008da93" name="aff7393c9cfbccd7e369091f00008da93"></a>
 <a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>fov</b></td></tr>
+<tr class="memdesc:aff7393c9cfbccd7e369091f00008da93"><td class="mdescLeft">&#160;</td><td class="mdescRight">The field of view (FOV) in degrees. <br /></td></tr>
 <tr class="separator:aff7393c9cfbccd7e369091f00008da93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39fd35c8f74419c81d2e61c5918a65c2" id="r_a39fd35c8f74419c81d2e61c5918a65c2"><td class="memItemLeft" align="right" valign="top"><a id="a39fd35c8f74419c81d2e61c5918a65c2" name="a39fd35c8f74419c81d2e61c5918a65c2"></a>
 <a class="el" href="classKinit.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><b>firstMouseInput</b> = <a class="el" href="classKinit.html">true</a></td></tr>
+<tr class="memdesc:a39fd35c8f74419c81d2e61c5918a65c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flag to track the first mouse input. <br /></td></tr>
 <tr class="separator:a39fd35c8f74419c81d2e61c5918a65c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a47174efb191347a3eee52ffa494dd1" id="r_a0a47174efb191347a3eee52ffa494dd1"><td class="memItemLeft" align="right" valign="top"><a id="a0a47174efb191347a3eee52ffa494dd1" name="a0a47174efb191347a3eee52ffa494dd1"></a>
 <a class="el" href="classKinit.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lastMouse</b> [2]</td></tr>
+<tr class="memdesc:a0a47174efb191347a3eee52ffa494dd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the last mouse position (x, y). <br /></td></tr>
 <tr class="separator:a0a47174efb191347a3eee52ffa494dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e088a154066ed6f2bfca373163f21d2" id="r_a6e088a154066ed6f2bfca373163f21d2"><td class="memItemLeft" align="right" valign="top"><a id="a6e088a154066ed6f2bfca373163f21d2" name="a6e088a154066ed6f2bfca373163f21d2"></a>
 <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::mat4</a>&#160;</td><td class="memItemRight" valign="bottom"><b>viewMatrix</b></td></tr>
+<tr class="memdesc:a6e088a154066ed6f2bfca373163f21d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The view matrix representing the camera transformation. <br /></td></tr>
 <tr class="separator:a6e088a154066ed6f2bfca373163f21d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Base class for a camera in a 3D scene. </p>
+<p>Provides functionalities for handling camera movement, input handling, and view matrix calculations. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ac9880a48a126e1b20a0f2218479f7a2e" name="ac9880a48a126e1b20a0f2218479f7a2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9880a48a126e1b20a0f2218479f7a2e">&#9670;&#160;</a></span>Camera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Camera::Camera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a>&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">float</a>&#160;</td>
+          <td class="paramname"><em>fov</em> = <code>90.0f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classCamera.html" title="Base class for a camera in a 3D scene.">Camera</a> with a given position and field of view. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>The initial position of the camera. </td></tr>
+    <tr><td class="paramname">fov</td><td>The field of view in degrees (default is <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">90.0f</a>). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="abede0c7fe76eb813328b1dd39fd2c43d" name="abede0c7fe76eb813328b1dd39fd2c43d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abede0c7fe76eb813328b1dd39fd2c43d">&#9670;&#160;</a></span>getFOV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">float</a> Camera::getFOV </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the field of view (FOV). </p>
+<dl class="section return"><dt>Returns</dt><dd>The FOV in degrees. </dd></dl>
+
+</div>
+</div>
+<a id="aa9dc951f8d6e7082233786438139c51d" name="aa9dc951f8d6e7082233786438139c51d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9dc951f8d6e7082233786438139c51d">&#9670;&#160;</a></span>getPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> Camera::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current position of the camera. </p>
+<dl class="section return"><dt>Returns</dt><dd>The camera position as a <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">glm::vec3</a>. </dd></dl>
+
+</div>
+</div>
+<a id="a2f90e661a78172675ca06ea69667b531" name="a2f90e661a78172675ca06ea69667b531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f90e661a78172675ca06ea69667b531">&#9670;&#160;</a></span>getViewMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::mat4</a> Camera::getViewMatrix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the view matrix for rendering. </p>
+<dl class="section return"><dt>Returns</dt><dd>The view matrix (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">glm::mat4</a>). </dd></dl>
+
+</div>
+</div>
+<a id="a0d7022d4693fc43e095e85173715f056" name="a0d7022d4693fc43e095e85173715f056"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d7022d4693fc43e095e85173715f056">&#9670;&#160;</a></span>handleKeyboardInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a> Camera::handleKeyboardInput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">float</a>&#160;</td>
+          <td class="paramname"><em>deltaTime</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles keyboard input for camera movement. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>The key pressed (GLFW key values). </td></tr>
+    <tr><td class="paramname">deltaTime</td><td>The time between frames, used for smooth movement. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classModelRotationCamera.html#a8232b197124eb7ed1e4f25f5441129b6">ModelRotationCamera</a>.</p>
+
+</div>
+</div>
+<a id="a71c222b794c648f13d78cdf84629b00c" name="a71c222b794c648f13d78cdf84629b00c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71c222b794c648f13d78cdf84629b00c">&#9670;&#160;</a></span>handleMouseInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a> Camera::handleMouseInput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">float</a>&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">float</a>&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classKinit.html">bool</a>&#160;</td>
+          <td class="paramname"><em>pressed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles mouse input for camera movement. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The x-coordinate of the mouse. </td></tr>
+    <tr><td class="paramname">y</td><td>The y-coordinate of the mouse. </td></tr>
+    <tr><td class="paramname">pressed</td><td>True if the mouse button is pressed. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classModelRotationCamera.html#a94a5f1066775542fe461cb6c966129d3">ModelRotationCamera</a>.</p>
+
+</div>
+</div>
+<a id="afbab2d53b0cd7d428e92b4a3cd25c1bd" name="afbab2d53b0cd7d428e92b4a3cd25c1bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbab2d53b0cd7d428e92b4a3cd25c1bd">&#9670;&#160;</a></span>handleScrollInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a> Camera::handleScrollInput </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">float</a>&#160;</td>
+          <td class="paramname"><em>y</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Handles scroll input for zooming or changing FOV. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">y</td><td>The scroll offset value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classModelRotationCamera.html#a0e7af442fe413706d8c0cbf334e65584">ModelRotationCamera</a>.</p>
+
+</div>
+</div>
+<a id="a15bdd706790066d2cefba1968cce15e6" name="a15bdd706790066d2cefba1968cce15e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15bdd706790066d2cefba1968cce15e6">&#9670;&#160;</a></span>positionBasedOnObject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a> Camera::positionBasedOnObject </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classModel.html">Model</a> &amp;&#160;</td>
+          <td class="paramname"><em>model</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Positions the camera based on the given model. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">model</td><td>The 3D model to align the camera with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classModelRotationCamera.html#ac946811fb44ed9d8a03877152cfc6810">ModelRotationCamera</a>.</p>
+
+</div>
+</div>
+<a id="a42c550bc5b5a4a72d0098530677a0974" name="a42c550bc5b5a4a72d0098530677a0974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42c550bc5b5a4a72d0098530677a0974">&#9670;&#160;</a></span>setCenter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a> Camera::setCenter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> &amp;&#160;</td>
+          <td class="paramname"><em>newCenter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the center of rotation for the camera. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newCenter</td><td>The new center position. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="classModelRotationCamera.html#a805220c1eddb3830c75055553d1a2101">ModelRotationCamera</a>.</p>
+
+</div>
+</div>
+<a id="aa626c27241aa2749821bb4ac3dca483a" name="aa626c27241aa2749821bb4ac3dca483a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa626c27241aa2749821bb4ac3dca483a">&#9670;&#160;</a></span>setFov()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">void</a> Camera::setFov </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">float</a>&#160;</td>
+          <td class="paramname"><em>newFov</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a new field of view (FOV). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newFov</td><td>The new FOV in degrees. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a43beb93105ae5a91c1948ae577a654e0" name="a43beb93105ae5a91c1948ae577a654e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43beb93105ae5a91c1948ae577a654e0">&#9670;&#160;</a></span>setPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">void</a> Camera::setPosition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">glm::vec3</a> &amp;&#160;</td>
+          <td class="paramname"><em>newPosition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets a new camera position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newPosition</td><td>The new position for the camera. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/model_renderer/include/<a class="el" href="camera_8hpp_source.html">camera.hpp</a></li>
 </ul>

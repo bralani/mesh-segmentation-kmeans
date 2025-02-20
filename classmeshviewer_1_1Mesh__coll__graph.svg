@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Represents a 3D mesh with OpenGL rendering capabilities.">
 <polygon fill="#999999" stroke="transparent" points="108.5,-199 3.5,-199 3.5,0 108.5,0 108.5,-199"/>
 <text text-anchor="start" x="10" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">meshviewer::Mesh</text>
 <text text-anchor="start" x="8" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -48,7 +48,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classMaterial.html" target="_top" xlink:title="Represents a material that combines textures and shaders.">
 <polygon fill="white" stroke="transparent" points="91,-325 21,-325 21,-246 91,-246 91,-325"/>
 <text text-anchor="start" x="35.5" y="-312.5" font-family="Helvetica,sans-Serif" font-size="10.00">Material</text>
 <text text-anchor="start" x="25" y="-297.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -59,10 +59,10 @@
 <text text-anchor="start" x="38" y="-267.5" font-family="Helvetica,sans-Serif" font-size="10.00">Material()</text>
 <text text-anchor="start" x="25" y="-252.5" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="38" y="-252.5" font-family="Helvetica,sans-Serif" font-size="10.00">use()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="21,-307.5 21,-307.5 91,-307.5 91,-307.5 21,-307.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="21,-292.5 21,-292.5 36,-292.5 36,-292.5 21,-292.5"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="36,-292.5 36,-292.5 91,-292.5 91,-292.5 36,-292.5"/>
-<polygon fill="none" stroke="#bfbfbf" points="21,-246 21,-325 91,-325 91,-246 21,-246"/>
+<polygon fill="#666666" stroke="#666666" points="21,-307.5 21,-307.5 91,-307.5 91,-307.5 21,-307.5"/>
+<polygon fill="#666666" stroke="#666666" points="21,-292.5 21,-292.5 36,-292.5 36,-292.5 21,-292.5"/>
+<polygon fill="#666666" stroke="#666666" points="36,-292.5 36,-292.5 91,-292.5 91,-292.5 36,-292.5"/>
+<polygon fill="none" stroke="#666666" points="21,-246 21,-325 91,-325 91,-246 21,-246"/>
 </a>
 </g>
 </g>
@@ -79,7 +79,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classShaderProgram.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classShaderProgram.html" target="_top" xlink:title="Represents an OpenGL shader program.">
 <polygon fill="white" stroke="transparent" points="112,-586 0,-586 0,-372 112,-372 112,-586"/>
 <text text-anchor="start" x="18" y="-574" font-family="Helvetica,sans-Serif" font-size="10.00">ShaderProgram</text>
 <text text-anchor="start" x="4" y="-559" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -108,10 +108,10 @@
 <text text-anchor="start" x="17" y="-394" font-family="Helvetica,sans-Serif" font-size="10.00">setMat4()</text>
 <text text-anchor="start" x="4" y="-379" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="17" y="-379" font-family="Helvetica,sans-Serif" font-size="10.00">setMVPMatrices()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="0,-569 0,-569 112,-569 112,-569 0,-569"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="0,-554 0,-554 15,-554 15,-554 0,-554"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="15,-554 15,-554 112,-554 112,-554 15,-554"/>
-<polygon fill="none" stroke="#bfbfbf" points="0,-372 0,-586 112,-586 112,-372 0,-372"/>
+<polygon fill="#666666" stroke="#666666" points="0,-569 0,-569 112,-569 112,-569 0,-569"/>
+<polygon fill="#666666" stroke="#666666" points="0,-554 0,-554 15,-554 15,-554 0,-554"/>
+<polygon fill="#666666" stroke="#666666" points="15,-554 15,-554 112,-554 112,-554 15,-554"/>
+<polygon fill="none" stroke="#666666" points="0,-372 0,-586 112,-586 112,-372 0,-372"/>
 </a>
 </g>
 </g>

@@ -101,6 +101,11 @@ $(document).ready(function(){initNavTree('classRender.html',''); initResizable()
   <div class="headertitle"><div class="title">Render Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Handles rendering and segmentation callbacks for a 3D mesh viewer.  
+ <a href="classRender.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="render_8hpp_source.html">render.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Render:</div>
 <div class="dyncontent">
@@ -109,19 +114,133 @@ Collaboration diagram for Render:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3a98d94e16e0361cc976b939276f3d73" id="r_a3a98d94e16e0361cc976b939276f3d73"><td class="memItemLeft" align="right" valign="top"><a id="a3a98d94e16e0361cc976b939276f3d73" name="a3a98d94e16e0361cc976b939276f3d73"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Render</b> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::function</a>&lt; <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a>(<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;, Enums::CentroidInit, Enums::KInit, Enums::MetricMethod, <a class="el" href="classKinit.html">int</a>, <a class="el" href="classKinit.html">double</a>)&gt; segmentationCallback)</td></tr>
+<tr class="memitem:a3a98d94e16e0361cc976b939276f3d73" id="r_a3a98d94e16e0361cc976b939276f3d73"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRender.html#a3a98d94e16e0361cc976b939276f3d73">Render</a> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::function</a>&lt; <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a>(<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;, Enums::CentroidInit, Enums::KInit, Enums::MetricMethod, <a class="el" href="classKinit.html">int</a>, <a class="el" href="classKinit.html">double</a>)&gt; segmentationCallback)</td></tr>
+<tr class="memdesc:a3a98d94e16e0361cc976b939276f3d73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classRender.html" title="Handles rendering and segmentation callbacks for a 3D mesh viewer.">Render</a> instance with a segmentation callback.  <br /></td></tr>
 <tr class="separator:a3a98d94e16e0361cc976b939276f3d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f34fdb2ccfd0c9d87ecea916934e576" id="r_a5f34fdb2ccfd0c9d87ecea916934e576"><td class="memItemLeft" align="right" valign="top"><a id="a5f34fdb2ccfd0c9d87ecea916934e576" name="a5f34fdb2ccfd0c9d87ecea916934e576"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>start</b> ()</td></tr>
+<tr class="memitem:a5f34fdb2ccfd0c9d87ecea916934e576" id="r_a5f34fdb2ccfd0c9d87ecea916934e576"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRender.html#a5f34fdb2ccfd0c9d87ecea916934e576">start</a> ()</td></tr>
+<tr class="memdesc:a5f34fdb2ccfd0c9d87ecea916934e576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the rendering loop.  <br /></td></tr>
 <tr class="separator:a5f34fdb2ccfd0c9d87ecea916934e576"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe7035bb1a94164651abf4f051651606" id="r_afe7035bb1a94164651abf4f051651606"><td class="memItemLeft" align="right" valign="top"><a id="afe7035bb1a94164651abf4f051651606" name="afe7035bb1a94164651abf4f051651606"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>loadAndRenderModel</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">modelPath</a>)</td></tr>
+<tr class="memitem:afe7035bb1a94164651abf4f051651606" id="r_afe7035bb1a94164651abf4f051651606"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRender.html#afe7035bb1a94164651abf4f051651606">loadAndRenderModel</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">modelPath</a>)</td></tr>
+<tr class="memdesc:afe7035bb1a94164651abf4f051651606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a model from a file and prepares it for rendering.  <br /></td></tr>
 <tr class="separator:afe7035bb1a94164651abf4f051651606"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7413db2179c4bafeea297e5fb102e6e4" id="r_a7413db2179c4bafeea297e5fb102e6e4"><td class="memItemLeft" align="right" valign="top"><a id="a7413db2179c4bafeea297e5fb102e6e4" name="a7413db2179c4bafeea297e5fb102e6e4"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>renderFile</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">fileName</a>)</td></tr>
+<tr class="memitem:a7413db2179c4bafeea297e5fb102e6e4" id="r_a7413db2179c4bafeea297e5fb102e6e4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRender.html#a7413db2179c4bafeea297e5fb102e6e4">renderFile</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">fileName</a>)</td></tr>
+<tr class="memdesc:a7413db2179c4bafeea297e5fb102e6e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Renders a specific file.  <br /></td></tr>
 <tr class="separator:a7413db2179c4bafeea297e5fb102e6e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles rendering and segmentation callbacks for a 3D mesh viewer. </p>
+<p>This class manages the rendering process, model loading, and segmentation callbacks. It provides functions to start the rendering loop, load models, and trigger rendering for specific files. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a3a98d94e16e0361cc976b939276f3d73" name="a3a98d94e16e0361cc976b939276f3d73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a98d94e16e0361cc976b939276f3d73">&#9670;&#160;</a></span>Render()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Render::Render </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::function</a>&lt; <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a>(<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;, Enums::CentroidInit, Enums::KInit, Enums::MetricMethod, <a class="el" href="classKinit.html">int</a>, <a class="el" href="classKinit.html">double</a>)&gt;&#160;</td>
+          <td class="paramname"><em>segmentationCallback</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classRender.html" title="Handles rendering and segmentation callbacks for a 3D mesh viewer.">Render</a> instance with a segmentation callback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">segmentationCallback</td><td>A function that performs segmentation and returns the output file name.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>The callback should take the model file path, initialization methods, metric method, number of clusters, and threshold as input. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="afe7035bb1a94164651abf4f051651606" name="afe7035bb1a94164651abf4f051651606"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe7035bb1a94164651abf4f051651606">&#9670;&#160;</a></span>loadAndRenderModel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">void</a> Render::loadAndRenderModel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>modelPath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loads a model from a file and prepares it for rendering. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">modelPath</td><td>The path to the model file.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function loads the model, sets up the necessary OpenGL buffers, and updates the rendering pipeline. </p>
+
+</div>
+</div>
+<a id="a7413db2179c4bafeea297e5fb102e6e4" name="a7413db2179c4bafeea297e5fb102e6e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7413db2179c4bafeea297e5fb102e6e4">&#9670;&#160;</a></span>renderFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">void</a> Render::renderFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Renders a specific file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>The path to the file to be rendered.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function is used to display a segmented model after processing. </p>
+
+</div>
+</div>
+<a id="a5f34fdb2ccfd0c9d87ecea916934e576" name="a5f34fdb2ccfd0c9d87ecea916934e576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f34fdb2ccfd0c9d87ecea916934e576">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">void</a> Render::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Starts the rendering loop. </p>
+<p>This function initializes the rendering environment, sets up OpenGL context, and enters the main rendering loop where the user interacts with the UI. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/model_renderer/include/<a class="el" href="render_8hpp_source.html">render.hpp</a></li>
 </ul>

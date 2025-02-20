@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="A material implementing the Phong shading model.">
 <polygon fill="#999999" stroke="transparent" points="100,-109 0,-109 0,0 100,0 100,-109"/>
 <text text-anchor="start" x="14.5" y="-96.5" font-family="Helvetica,sans-Serif" font-size="10.00">PhongMaterial</text>
 <text text-anchor="start" x="4" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -36,7 +36,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classMaterial.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classMaterial.html" target="_top" xlink:title="Represents a material that combines textures and shaders.">
 <polygon fill="white" stroke="transparent" points="85,-239 15,-239 15,-145 85,-145 85,-239"/>
 <text text-anchor="start" x="29.5" y="-227" font-family="Helvetica,sans-Serif" font-size="10.00">Material</text>
 <text text-anchor="start" x="19" y="-212" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -49,10 +49,10 @@
 <text text-anchor="start" x="32" y="-167" font-family="Helvetica,sans-Serif" font-size="10.00">Material()</text>
 <text text-anchor="start" x="19" y="-152" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="32" y="-152" font-family="Helvetica,sans-Serif" font-size="10.00">use()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="15,-222 15,-222 85,-222 85,-222 15,-222"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="15,-192 15,-192 30,-192 30,-192 15,-192"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="30,-192 30,-192 85,-192 85,-192 30,-192"/>
-<polygon fill="none" stroke="#bfbfbf" points="15,-145 15,-239 85,-239 85,-145 15,-145"/>
+<polygon fill="#666666" stroke="#666666" points="15,-222 15,-222 85,-222 85,-222 15,-222"/>
+<polygon fill="#666666" stroke="#666666" points="15,-192 15,-192 30,-192 30,-192 15,-192"/>
+<polygon fill="#666666" stroke="#666666" points="30,-192 30,-192 85,-192 85,-192 30,-192"/>
+<polygon fill="none" stroke="#666666" points="15,-145 15,-239 85,-239 85,-145 15,-145"/>
 </a>
 </g>
 </g>

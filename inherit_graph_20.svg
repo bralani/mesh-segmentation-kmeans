@@ -11,7 +11,7 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="classRender.html" target="_top" xlink:title=" ">
+<g id="a_Node000000"><a xlink:href="classRender.html" target="_top" xlink:title="Handles rendering and segmentation callbacks for a 3D mesh viewer.">
 <polygon fill="white" stroke="#666666" points="51,-19 0,-19 0,0 51,0 51,-19"/>
 <text text-anchor="middle" x="25.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">Render</text>
 </a>

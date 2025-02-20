@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['vectorsum_0',['vectorSum',['../classPoint.html#ac9e63d9a63f0a38c0dcb732ac9a5fe04',1,'Point']]],
-  ['vertices_1',['vertices',['../structFace.html#aa880b02f47bc7cb996cac255cb43a071',1,'Face']]]
+  ['up_0',['up',['../classCamera.html#a3fe5f351380fb118ffc600591769f049',1,'Camera']]],
+  ['updateviewmatrix_1',['updateViewMatrix',['../classCamera.html#a8fe5c71a390571a861ad8afd99dfdea3',1,'Camera']]],
+  ['use_2',['use',['../classTexture2D.html#abfbd7e11c06f66180f1361da80e2ef94',1,'Texture2D::use()'],['../classMaterial.html#a9ed781bf777a3637519e7372cf8ce1d9',1,'Material::use()'],['../classPhongMaterial.html#a902a287348a0b54e1ccef715d75247ac',1,'PhongMaterial::use()'],['../classShaderProgram.html#aa3860ee49bab09ae3fc117da165ea73a',1,'ShaderProgram::use()']]]
 ];

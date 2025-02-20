@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="A specialized camera that rotates around a 3D model.">
 <polygon fill="#999999" stroke="transparent" points="147,-169 0,-169 0,0 147,0 147,-169"/>
 <text text-anchor="start" x="19" y="-156.5" font-family="Helvetica,sans-Serif" font-size="10.00">ModelRotationCamera</text>
 <text text-anchor="start" x="4.5" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -44,7 +44,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classCamera.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classCamera.html" target="_top" xlink:title="Base class for a camera in a 3D scene.">
 <polygon fill="white" stroke="transparent" points="145,-599 2,-599 2,-205 145,-205 145,-599"/>
 <text text-anchor="start" x="54.5" y="-587" font-family="Helvetica,sans-Serif" font-size="10.00">Camera</text>
 <text text-anchor="start" x="6.5" y="-572" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -97,10 +97,10 @@
 <text text-anchor="start" x="19.5" y="-227" font-family="Helvetica,sans-Serif" font-size="10.00">positionBasedOnObject()</text>
 <text text-anchor="start" x="6.5" y="-212" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="19.5" y="-212" font-family="Helvetica,sans-Serif" font-size="10.00">setCenter()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="2.5,-582 2.5,-582 145.5,-582 145.5,-582 2.5,-582"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="2.5,-432 2.5,-432 17.5,-432 17.5,-432 2.5,-432"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="17.5,-432 17.5,-432 145.5,-432 145.5,-432 17.5,-432"/>
-<polygon fill="none" stroke="#bfbfbf" points="2,-205 2,-599 145,-599 145,-205 2,-205"/>
+<polygon fill="#666666" stroke="#666666" points="2.5,-582 2.5,-582 145.5,-582 145.5,-582 2.5,-582"/>
+<polygon fill="#666666" stroke="#666666" points="2.5,-432 2.5,-432 17.5,-432 17.5,-432 2.5,-432"/>
+<polygon fill="#666666" stroke="#666666" points="17.5,-432 17.5,-432 145.5,-432 145.5,-432 17.5,-432"/>
+<polygon fill="none" stroke="#666666" points="2,-205 2,-599 145,-599 145,-205 2,-205"/>
 </a>
 </g>
 </g>

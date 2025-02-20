@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['threshold_0',['threshold',['../classMetric.html#ae408a11c6cc959124daa6f31b0a85da2',1,'Metric']]],
-  ['treshold_1',['treshold',['../classKMeans.html#a9ced75f5f2f66787d180307b5e3ae61c',1,'KMeans']]]
+  ['normal_0',['normal',['../structFace.html#a4d01f701e5c2f3f640a55292488e1638',1,'Face']]],
+  ['numclusters_1',['numClusters',['../classKMeans.html#a7f3b01d5c0cb8df8b49e1e44443900a9',1,'KMeans']]]
 ];

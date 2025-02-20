@@ -102,6 +102,11 @@ $(document).ready(function(){initNavTree('classmeshviewer_1_1Mesh.html',''); ini
   <div class="headertitle"><div class="title">meshviewer::Mesh Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Represents a 3D mesh with OpenGL rendering capabilities.  
+ <a href="classmeshviewer_1_1Mesh.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="mesh_8hpp_source.html">mesh.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for meshviewer::Mesh:</div>
 <div class="dyncontent">
@@ -110,29 +115,41 @@ Collaboration diagram for meshviewer::Mesh:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0c95a60dea8a6ead26d27a7263ef739d" id="r_a0c95a60dea8a6ead26d27a7263ef739d"><td class="memItemLeft" align="right" valign="top"><a id="a0c95a60dea8a6ead26d27a7263ef739d" name="a0c95a60dea8a6ead26d27a7263ef739d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Mesh</b> (<a class="el" href="classKinit.html">const</a> objl::Mesh &amp;mesh, <a class="el" href="classMaterial.html">Material</a> *material)</td></tr>
+<tr class="memitem:a5964b6fc62c464cbc086a62c733532e6" id="r_a5964b6fc62c464cbc086a62c733532e6"><td class="memItemLeft" align="right" valign="top"><a id="a5964b6fc62c464cbc086a62c733532e6" name="a5964b6fc62c464cbc086a62c733532e6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Mesh</b> ()</td></tr>
+<tr class="memdesc:a5964b6fc62c464cbc086a62c733532e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor, initializes an empty mesh. <br /></td></tr>
+<tr class="separator:a5964b6fc62c464cbc086a62c733532e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c95a60dea8a6ead26d27a7263ef739d" id="r_a0c95a60dea8a6ead26d27a7263ef739d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmeshviewer_1_1Mesh.html#a0c95a60dea8a6ead26d27a7263ef739d">Mesh</a> (<a class="el" href="classKinit.html">const</a> objl::Mesh &amp;mesh, <a class="el" href="classMaterial.html">Material</a> *<a class="el" href="classmeshviewer_1_1Mesh.html#a708275e4c2f7cc484f28301404df1f70">material</a>)</td></tr>
+<tr class="memdesc:a0c95a60dea8a6ead26d27a7263ef739d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classmeshviewer_1_1Mesh.html" title="Represents a 3D mesh with OpenGL rendering capabilities.">Mesh</a> from an objl::Mesh object and a material.  <br /></td></tr>
 <tr class="separator:a0c95a60dea8a6ead26d27a7263ef739d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e60ae1a59eee2ece12430f2b51d7472" id="r_a5e60ae1a59eee2ece12430f2b51d7472"><td class="memItemLeft" align="right" valign="top"><a id="a5e60ae1a59eee2ece12430f2b51d7472" name="a5e60ae1a59eee2ece12430f2b51d7472"></a>
+<a class="el" href="classKinit.html">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><b>~Mesh</b> ()</td></tr>
+<tr class="memdesc:a5e60ae1a59eee2ece12430f2b51d7472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. Cleans up OpenGL resources. <br /></td></tr>
+<tr class="separator:a5e60ae1a59eee2ece12430f2b51d7472"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a2ecf9c28f20ffa0163dcb8dd9b7ec3" id="r_a0a2ecf9c28f20ffa0163dcb8dd9b7ec3"><td class="memItemLeft" align="right" valign="top"><a id="a0a2ecf9c28f20ffa0163dcb8dd9b7ec3" name="a0a2ecf9c28f20ffa0163dcb8dd9b7ec3"></a>
 <a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a0a2ecf9c28f20ffa0163dcb8dd9b7ec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the mesh using OpenGL. <br /></td></tr>
 <tr class="separator:a0a2ecf9c28f20ffa0163dcb8dd9b7ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8999a87faed589ebe8b3ed8604053fa4" id="r_a8999a87faed589ebe8b3ed8604053fa4"><td class="memItemLeft" align="right" valign="top"><a id="a8999a87faed589ebe8b3ed8604053fa4" name="a8999a87faed589ebe8b3ed8604053fa4"></a>
-<a class="el" href="classKinit.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getVertexCount</b> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:a8999a87faed589ebe8b3ed8604053fa4" id="r_a8999a87faed589ebe8b3ed8604053fa4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmeshviewer_1_1Mesh.html#a8999a87faed589ebe8b3ed8604053fa4">getVertexCount</a> () <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a8999a87faed589ebe8b3ed8604053fa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of vertices in the mesh.  <br /></td></tr>
 <tr class="separator:a8999a87faed589ebe8b3ed8604053fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a291b4f7841f4e79c9eb311b2b910a6ac" id="r_a291b4f7841f4e79c9eb311b2b910a6ac"><td class="memItemLeft" align="right" valign="top"><a id="a291b4f7841f4e79c9eb311b2b910a6ac" name="a291b4f7841f4e79c9eb311b2b910a6ac"></a>
-<a class="el" href="classKinit.html">float</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getVertex</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html">size_t</a> <a class="el" href="classKinit.html">index</a>) <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memitem:a291b4f7841f4e79c9eb311b2b910a6ac" id="r_a291b4f7841f4e79c9eb311b2b910a6ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">float</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmeshviewer_1_1Mesh.html#a291b4f7841f4e79c9eb311b2b910a6ac">getVertex</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html">size_t</a> <a class="el" href="classKinit.html">index</a>) <a class="el" href="classKinit.html">const</a></td></tr>
+<tr class="memdesc:a291b4f7841f4e79c9eb311b2b910a6ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves a specific vertex from the mesh.  <br /></td></tr>
 <tr class="separator:a291b4f7841f4e79c9eb311b2b910a6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ac497bc8dc1315c6ac8e18c6d17f11b56" id="r_ac497bc8dc1315c6ac8e18c6d17f11b56"><td class="memItemLeft" align="right" valign="top"><a id="ac497bc8dc1315c6ac8e18c6d17f11b56" name="ac497bc8dc1315c6ac8e18c6d17f11b56"></a>
 <a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>indexSize</b></td></tr>
+<tr class="memdesc:ac497bc8dc1315c6ac8e18c6d17f11b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of indices in the mesh. <br /></td></tr>
 <tr class="separator:ac497bc8dc1315c6ac8e18c6d17f11b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f18680d1b813a072cd217f1295c87f0" id="r_a7f18680d1b813a072cd217f1295c87f0"><td class="memItemLeft" align="right" valign="top"><a id="a7f18680d1b813a072cd217f1295c87f0" name="a7f18680d1b813a072cd217f1295c87f0"></a>
 <a class="el" href="classKinit.html">float</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>vertices</b></td></tr>
+<tr class="memdesc:a7f18680d1b813a072cd217f1295c87f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the array of vertex data. <br /></td></tr>
 <tr class="separator:a7f18680d1b813a072cd217f1295c87f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8270397f37f944035ab5f1877709bc2" id="r_ab8270397f37f944035ab5f1877709bc2"><td class="memItemLeft" align="right" valign="top"><a id="ab8270397f37f944035ab5f1877709bc2" name="ab8270397f37f944035ab5f1877709bc2"></a>
 <a class="el" href="classKinit.html">unsigned</a> <a class="el" href="classKinit.html">int</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>indices</b></td></tr>
+<tr class="memdesc:ab8270397f37f944035ab5f1877709bc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the array of indices. <br /></td></tr>
 <tr class="separator:ab8270397f37f944035ab5f1877709bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5de3d0a9e49111b1081206d861e1107e" id="r_a5de3d0a9e49111b1081206d861e1107e"><td class="memItemLeft" align="right" valign="top"><a id="a5de3d0a9e49111b1081206d861e1107e" name="a5de3d0a9e49111b1081206d861e1107e"></a>
 <a class="el" href="classKinit.html">GLuint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>glVAO</b></td></tr>
@@ -142,11 +159,119 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a068d686d859cfcc3ec89b879ee4cc730"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70ea7432c354fadc9654c69f8ed58b48" id="r_a70ea7432c354fadc9654c69f8ed58b48"><td class="memItemLeft" align="right" valign="top"><a id="a70ea7432c354fadc9654c69f8ed58b48" name="a70ea7432c354fadc9654c69f8ed58b48"></a>
 <a class="el" href="classKinit.html">GLuint</a>&#160;</td><td class="memItemRight" valign="bottom"><b>glEBO</b></td></tr>
+<tr class="memdesc:a70ea7432c354fadc9654c69f8ed58b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">OpenGL vertex array and buffer objects. <br /></td></tr>
 <tr class="separator:a70ea7432c354fadc9654c69f8ed58b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a708275e4c2f7cc484f28301404df1f70" id="r_a708275e4c2f7cc484f28301404df1f70"><td class="memItemLeft" align="right" valign="top"><a id="a708275e4c2f7cc484f28301404df1f70" name="a708275e4c2f7cc484f28301404df1f70"></a>
 <a class="el" href="classMaterial.html">Material</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>material</b></td></tr>
+<tr class="memdesc:a708275e4c2f7cc484f28301404df1f70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pointer to the material applied to the mesh. <br /></td></tr>
 <tr class="separator:a708275e4c2f7cc484f28301404df1f70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Represents a 3D mesh with OpenGL rendering capabilities. </p>
+<p>This class stores vertex data, indices, and materials for rendering. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a0c95a60dea8a6ead26d27a7263ef739d" name="a0c95a60dea8a6ead26d27a7263ef739d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c95a60dea8a6ead26d27a7263ef739d">&#9670;&#160;</a></span>Mesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">meshviewer::Mesh::Mesh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> objl::Mesh &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMaterial.html">Material</a> *&#160;</td>
+          <td class="paramname"><em>material</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a <a class="el" href="classmeshviewer_1_1Mesh.html" title="Represents a 3D mesh with OpenGL rendering capabilities.">Mesh</a> from an objl::Mesh object and a material. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mesh</td><td>The OBJ Loader mesh representation. </td></tr>
+    <tr><td class="paramname">material</td><td>Pointer to the material applied to the mesh. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a291b4f7841f4e79c9eb311b2b910a6ac" name="a291b4f7841f4e79c9eb311b2b910a6ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a291b4f7841f4e79c9eb311b2b910a6ac">&#9670;&#160;</a></span>getVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">float</a> * meshviewer::Mesh::getVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html">size_t</a>&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retrieves a specific vertex from the mesh. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index</td><td>The index of the vertex. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the vertex data (nullptr if index is out of bounds).</dd></dl>
+<p>Each vertex is assumed to be composed of 3 floating-point values (x, y, z). </p>
+
+</div>
+</div>
+<a id="a8999a87faed589ebe8b3ed8604053fa4" name="a8999a87faed589ebe8b3ed8604053fa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8999a87faed589ebe8b3ed8604053fa4">&#9670;&#160;</a></span>getVertexCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classKinit.html">size_t</a> meshviewer::Mesh::getVertexCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the number of vertices in the mesh. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of vertices. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>src/model_renderer/include/<a class="el" href="mesh_8hpp_source.html">mesh.hpp</a></li>
 </ul>
