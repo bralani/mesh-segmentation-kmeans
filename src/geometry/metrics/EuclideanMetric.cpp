@@ -106,6 +106,11 @@ void EuclideanMetric<PT, PD>::fit_gpu() {
         this->data.at(i).setCentroid(centroid_ptr);
     }
 
+    if (mesh != nullptr) {
+        updateFaceClusters();
+        storeCentroids();
+    }
+
     delete[] data_flat;
     delete[] centroids_flat;
     delete[] cluster_assignment;
