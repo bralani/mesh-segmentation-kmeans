@@ -15,7 +15,9 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-void segmentationCallback(Render &render, const std::string &fileName, Enums::CentroidInit num_initialization_method, Enums::KInit num_k_init_method, Enums::MetricMethod metric_method, int num_clusters, double threshold)
+std::string segmentationCallback(const std::string &fileName, Enums::CentroidInit num_initialization_method,
+                                 Enums::KInit num_k_init_method, Enums::MetricMethod metric_method,
+                                 int num_clusters, double threshold)
 {
   try
   {
@@ -30,31 +32,37 @@ void segmentationCallback(Render &render, const std::string &fileName, Enums::Ce
 
     if (metric_method == Enums::MetricMethod::EUCLIDEAN)
     {
-      MeshSegmentation<EuclideanMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, static_cast<int>(num_initialization_method), static_cast<int>(num_k_init_method));
+      MeshSegmentation<EuclideanMetric<double, 3>> segmentation(&mesh, num_clusters, threshold,
+                                                                static_cast<int>(num_initialization_method),
+                                                                static_cast<int>(num_k_init_method));
       segmentation.fit();
     }
     else if (metric_method == Enums::MetricMethod::DIJKSTRA)
     {
-      MeshSegmentation<GeodesicMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, static_cast<int>(num_initialization_method), static_cast<int>(num_k_init_method));
+      MeshSegmentation<GeodesicMetric<double, 3>> segmentation(&mesh, num_clusters, threshold,
+                                                               static_cast<int>(num_initialization_method),
+                                                               static_cast<int>(num_k_init_method));
       segmentation.fit();
     }
     else if (metric_method == Enums::MetricMethod::HEAT)
     {
-      MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, threshold, static_cast<int>(num_initialization_method), static_cast<int>(num_k_init_method));
+      MeshSegmentation<GeodesicHeatMetric<double, 3>> segmentation(&mesh, num_clusters, threshold,
+                                                                   static_cast<int>(num_initialization_method),
+                                                                   static_cast<int>(num_k_init_method));
       segmentation.fit();
     }
     else
     {
       std::cerr << "Error: Invalid metric option. Use 0 (Euclidean), 1 (Dijkstra), or 2 (Heat)." << std::endl;
-      return;
+      return "";
     }
 
-    // Extract filename without extension
+    // Generate output filename
     size_t lastDot = fileName.find_last_of('.');
     std::string baseName = (lastDot == std::string::npos) ? fileName : fileName.substr(0, lastDot);
     std::string extension = (lastDot == std::string::npos) ? "" : fileName.substr(lastDot);
-
     std::string suffix = "_segmented";
+
     if (baseName.size() >= suffix.size() && baseName.substr(baseName.size() - suffix.size()) == suffix)
     {
       std::cout << "File already contains '_segmented', keeping original name." << std::endl;
@@ -82,18 +90,18 @@ void segmentationCallback(Render &render, const std::string &fileName, Enums::Ce
     mesh.exportToGroupedObj(outputFile);
     std::cout << "Segmented mesh saved to: " << outputFile << std::endl;
 
-    // Notify render to display the segmented file
-    render.renderFile(outputFile);
+    return outputFile; // Return segmented file path
   }
   catch (const std::exception &e)
   {
     std::cerr << "Error during segmentation: " << e.what() << std::endl;
+    return "";
   }
 }
 
 int main()
 {
-  Render render(segmentationCallback);
+  Render render(segmentationCallback); // Pass function pointer
   render.start();
   return 0;
 }

@@ -69,7 +69,7 @@ void populateModelPaths(const std::string &directory)
     }
 }
 
-Render::Render(std::function<void(Render &, const std::string &, Enums::CentroidInit, Enums::KInit, Enums::MetricMethod, int, double)> segmentationCallback)
+Render::Render(std::function<std::string(const std::string &, Enums::CentroidInit, Enums::KInit, Enums::MetricMethod, int, double)> segmentationCallback)
     : segmentationCallback(std::move(segmentationCallback))
 {
     std::cout << "Shader program initialized!" << std::endl;
@@ -305,7 +305,22 @@ void Render::start()
                     loaderProgress = 0.0f; // Reset progress
 
                     // Call the segmentation callback with the necessary parameters
-                    segmentationCallback(*this, selectedModelPath, selectedInitMethod, selectedKInitMethod, selectedMetricMethod, inputValue, threshold);
+                    std::string outputFile = segmentationCallback(selectedModelPath,
+                                                                  selectedInitMethod,
+                                                                  selectedKInitMethod,
+                                                                  selectedMetricMethod,
+                                                                  inputValue,
+                                                                  threshold);
+
+                    if (!outputFile.empty())
+                    {
+                        std::cout << "Segmentation completed. Rendering file: " << outputFile << std::endl;
+                        renderFile(outputFile); // Now, call render internally
+                    }
+                    else
+                    {
+                        std::cerr << "Segmentation failed!" << std::endl;
+                    }
                 }
 
                 // Step 4: Back Button to return to model selection
