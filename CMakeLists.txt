@@ -67,6 +67,11 @@ endif()
 file(GLOB_RECURSE SOURCES "src/geometry/*.cpp" "src/clustering/*.cpp")
 file(GLOB_RECURSE CUDA_SOURCES "include/*.cu")
 
+# Compile options
+if(MSVC)
+  add_compile_options(/bigobj)
+endif()
+
 # Define executables
 add_kmeans_executable(k_means "src/k_means.cpp;${SOURCES}" "${CUDA_SOURCES}")
 add_kmeans_executable(mesh_segmentation "src/segmentation.cpp;${SOURCES}" "${CUDA_SOURCES}")
