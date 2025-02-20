@@ -322,12 +322,49 @@ void Render::start()
                 // Show loader while segmentation is ongoing
                 if (isProcessing)
                 {
-                    ImGui::Text("Processing...");
-                    ImGui::ProgressBar(loaderProgress, ImVec2(0.0f, 0.0f));
+                    // Make the overlay cover the entire screen
+                    ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
+                    ImGui::SetNextWindowPos(ImVec2(0, 0));
 
-                    // Simulate progress update
-                    if (loaderProgress < 1.0f)
-                        loaderProgress += 0.01f;
+                    ImGui::Begin("##LoaderOverlay", nullptr,
+                                 ImGuiWindowFlags_NoTitleBar |
+                                     ImGuiWindowFlags_NoResize |
+                                     ImGuiWindowFlags_NoMove |
+                                     ImGuiWindowFlags_NoScrollbar |
+                                     ImGuiWindowFlags_NoInputs |
+                                     ImGuiWindowFlags_NoBackground);
+
+                    // Draw semi-transparent dark background
+                    ImDrawList *drawList = ImGui::GetForegroundDrawList();
+                    ImVec2 screenSize = ImGui::GetIO().DisplaySize;
+                    drawList->AddRectFilled(ImVec2(0, 0), screenSize, IM_COL32(0, 0, 0, 150)); // Grey overlay (alpha 150)
+
+                    // Position the loader at the center
+                    ImVec2 center = ImVec2(screenSize.x * 0.5f, screenSize.y * 0.5f);
+
+                    // Show loading text
+                    ImGui::SetCursorPos(ImVec2(center.x - 40, center.y - 20));
+                    ImGui::Text("Processing...");
+
+                    // Draw a loading spinner
+                    static float angle = 0.0f;
+                    angle += ImGui::GetIO().DeltaTime * 3.0f; // Rotate spinner over time
+
+                    float radius = 20.0f;
+                    int numSegments = 16;
+                    for (int i = 0; i < numSegments; i++)
+                    {
+                        float start = (float)i / (float)numSegments * 2.0f * 3.14159265f;
+                        float end = (float)(i + 1) / (float)numSegments * 2.0f * 3.14159265f;
+                        float alpha = (float)i / (float)numSegments;
+
+                        ImVec2 p1 = ImVec2(center.x + cosf(start + angle) * radius, center.y + sinf(start + angle) * radius);
+                        ImVec2 p2 = ImVec2(center.x + cosf(end + angle) * radius, center.y + sinf(end + angle) * radius);
+
+                        drawList->AddLine(p1, p2, IM_COL32(255, 255, 255, (int)(alpha * 255)), 3.0f);
+                    }
+
+                    ImGui::End();
                 }
 
                 // Check if segmentation is finished
