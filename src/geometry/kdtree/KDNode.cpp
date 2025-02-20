@@ -1,4 +1,4 @@
-#include "clustering/KDNode.hpp"
+#include "geometry/kdtree/KDNode.hpp"
 
 // Default constructor
 template <typename PT, std::size_t PD>

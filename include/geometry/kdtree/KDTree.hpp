@@ -7,7 +7,7 @@
 #include <limits>
 #include <omp.h>
 
-#include "clustering/KDNode.hpp"
+#include "geometry/kdtree/KDNode.hpp"
 
 /**
  * @class KdTree

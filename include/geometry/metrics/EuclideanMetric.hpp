@@ -6,7 +6,7 @@
 #include <cmath>
 #include <stdexcept>
 
-#include "clustering/KDTree.hpp"
+#include "geometry/kdtree/KDTree.hpp"
 #include "geometry/metrics/Metric.hpp"
 #include "geometry/mesh/Mesh.hpp"
 

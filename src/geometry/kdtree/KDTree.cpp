@@ -1,4 +1,4 @@
-#include "clustering/KDTree.hpp"
+#include "geometry/kdtree/KDTree.hpp"
 
 // Constructor: initializes the KD-tree by building it
 template <typename PT, std::size_t PD>
