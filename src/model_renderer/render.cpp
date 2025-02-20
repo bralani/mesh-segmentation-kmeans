@@ -10,6 +10,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <filesystem>
 #include <iostream>
+#include <future>
 
 #include <plog/Log.h>
 #include <plog/Initializers/RollingFileInitializer.h>
@@ -28,7 +29,6 @@ int width = 1600, height = 900;
 float lastTime;
 Camera *camera = nullptr;
 
-bool showLoader = false;
 float loaderProgress = 0.0f;
 int inputValue = 0;
 double threshold = 0.05;
@@ -43,6 +43,9 @@ std::string selectedModelPath;
 // Variables for model selection
 int selectedModelIndex = -1;   // Default: no model selected
 Model *currentModel = nullptr; // Pointer to the currently loaded model
+
+std::future<std::string> segmentationFuture; // Future to track segmentation progress
+bool isProcessing = false;                   // Flag to track processing state
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void cursor_position_callback(GLFWwindow *window, double x, double y);
@@ -299,23 +302,44 @@ void Render::start()
                 }
 
                 // Step 3: Start Button to trigger loading process
-                if (ImGui::Button("Start"))
+                if (ImGui::Button("Start") && !isProcessing)
                 {
-                    showLoader = true;     // Show loader flag
                     loaderProgress = 0.0f; // Reset progress
+                    isProcessing = true;   // Mark segmentation as ongoing
 
-                    // Call the segmentation callback with the necessary parameters
-                    std::string outputFile = segmentationCallback(selectedModelPath,
-                                                                  selectedInitMethod,
-                                                                  selectedKInitMethod,
-                                                                  selectedMetricMethod,
-                                                                  inputValue,
-                                                                  threshold);
+                    std::cout << "Starting segmentation..." << std::endl;
+
+                    // Launch segmentation asynchronously in another thread (non-blocking)
+                    segmentationFuture = std::async(std::launch::async, [&]()
+                                                    { return segmentationCallback(selectedModelPath,
+                                                                                  selectedInitMethod,
+                                                                                  selectedKInitMethod,
+                                                                                  selectedMetricMethod,
+                                                                                  inputValue,
+                                                                                  threshold); });
+                }
+
+                // Show loader while segmentation is ongoing
+                if (isProcessing)
+                {
+                    ImGui::Text("Processing...");
+                    ImGui::ProgressBar(loaderProgress, ImVec2(0.0f, 0.0f));
+
+                    // Simulate progress update
+                    if (loaderProgress < 1.0f)
+                        loaderProgress += 0.01f;
+                }
+
+                // Check if segmentation is finished
+                if (isProcessing && segmentationFuture.valid() && segmentationFuture.wait_for(std::chrono::seconds(0)) == std::future_status::ready)
+                {
+                    std::string outputFile = segmentationFuture.get(); // Retrieve segmentation result
+                    isProcessing = false;                              // Reset processing flag
 
                     if (!outputFile.empty())
                     {
                         std::cout << "Segmentation completed. Rendering file: " << outputFile << std::endl;
-                        renderFile(outputFile); // Now, call render internally
+                        renderFile(outputFile); // Render the segmented model
                     }
                     else
                     {
@@ -333,24 +357,6 @@ void Render::start()
 
                     modelPaths.clear();            // Clear the current list
                     populateModelPaths(MODEL_DIR); // Reload models in the table on back
-                }
-
-                // Step 5: Show loader/progress bar while processing
-                if (showLoader)
-                {
-                    ImGui::Text("Processing...");
-
-                    // Show a progress bar
-                    ImGui::ProgressBar(loaderProgress, ImVec2(0.0f, 0.0f));
-
-                    if (loaderProgress < 1.0f)
-                    {
-                        loaderProgress += 0.01f;
-                    }
-                    else
-                    {
-                        showLoader = false;
-                    }
                 }
             }
             else
