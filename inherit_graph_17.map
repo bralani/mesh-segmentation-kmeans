@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classMetric.html" title="Abstract class representing a generic metric for calculating distances." alt="" coords="5,45,140,70"/>
+<area shape="rect" id="Node000001" href="$classEuclideanMetric.html" title="A class that calculates Euclidean distance for clustering and metric purposes." alt="" coords="188,5,349,45"/>
+<area shape="poly" id="edge15_Node000000_Node000001" title=" " alt="" coords="153,41,187,36,188,41,154,47"/>
+<area shape="rect" id="Node000002" href="$classGeodesicMetric.html" title="A class for computing geodesic distances on a mesh with Dijkstra&#39;s algorithm." alt="" coords="189,69,348,109"/>
+<area shape="poly" id="edge16_Node000000_Node000002" title=" " alt="" coords="154,68,189,74,189,79,154,73"/>
+<area shape="rect" id="Node000003" href="$classGeodesicHeatMetric.html" title="A class for computing geodesic distances using heat diffusion&#45;based method." alt="" coords="397,69,552,109"/>
+<area shape="poly" id="edge17_Node000002_Node000003" title=" " alt="" coords="361,87,397,87,397,92,361,92"/>
+</map>

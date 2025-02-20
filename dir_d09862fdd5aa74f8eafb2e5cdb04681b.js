@@ -10,6 +10,6 @@ var dir_d09862fdd5aa74f8eafb2e5cdb04681b =
     [ "kInitMethods.hpp", "kInitMethods_8hpp_source.html", null ],
     [ "MostDistantCentroids.hpp", "MostDistantCentroids_8hpp_source.html", null ],
     [ "RandomCentroids.hpp", "RandomCentroids_8hpp_source.html", null ],
-    [ "SharedEnum.hpp", "SharedEnum_8hpp_source.html", null ],
+    [ "SharedEnum.hpp", "include_2clustering_2CentroidInitializationMethods_2SharedEnum_8hpp_source.html", null ],
     [ "Silhouette.hpp", "Silhouette_8hpp_source.html", null ]
 ];

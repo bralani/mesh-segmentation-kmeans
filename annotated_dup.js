@@ -1,5 +1,9 @@
 var annotated_dup =
 [
+    [ "meshviewer", null, [
+      [ "Mesh", "classmeshviewer_1_1Mesh.html", null ]
+    ] ],
+    [ "Camera", "classCamera.html", null ],
     [ "CentroidInitMethod", "classCentroidInitMethod.html", "classCentroidInitMethod" ],
     [ "CentroidPoint", "classCentroidPoint.html", "classCentroidPoint" ],
     [ "CSVUtils", "classCSVUtils.html", null ],
@@ -19,11 +23,19 @@ var annotated_dup =
     [ "Kernel", "classKernel.html", null ],
     [ "Kinit", "classKinit.html", "classKinit" ],
     [ "KMeans", "classKMeans.html", "classKMeans" ],
+    [ "Material", "classMaterial.html", null ],
     [ "Mesh", "classMesh.html", "classMesh" ],
     [ "MeshSegmentation", "classMeshSegmentation.html", "classMeshSegmentation" ],
     [ "Metric", "classMetric.html", "classMetric" ],
+    [ "Model", "classModel.html", null ],
+    [ "ModelRotationCamera", "classModelRotationCamera.html", null ],
     [ "MostDistanceClass", "classMostDistanceClass.html", "classMostDistanceClass" ],
+    [ "PhongMaterial", "classPhongMaterial.html", null ],
     [ "Point", "classPoint.html", "classPoint" ],
     [ "RandomCentroidInit", "classRandomCentroidInit.html", "classRandomCentroidInit" ],
-    [ "SilhouetteMethod", "classSilhouetteMethod.html", "classSilhouetteMethod" ]
+    [ "Render", "classRender.html", null ],
+    [ "Shader", "classShader.html", null ],
+    [ "ShaderProgram", "classShaderProgram.html", null ],
+    [ "SilhouetteMethod", "classSilhouetteMethod.html", "classSilhouetteMethod" ],
+    [ "Texture2D", "classTexture2D.html", null ]
 ];

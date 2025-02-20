@@ -1,5 +1,8 @@
 var hierarchy =
 [
+    [ "Camera", "classCamera.html", [
+      [ "ModelRotationCamera", "classModelRotationCamera.html", null ]
+    ] ],
     [ "CentroidInitMethod< PT, PD >", "classCentroidInitMethod.html", [
       [ "RandomCentroidInit< PT, PD >", "classRandomCentroidInit.html", null ]
     ] ],
@@ -32,7 +35,11 @@ var hierarchy =
     ] ],
     [ "KMeans< PT, PD, M >", "classKMeans.html", null ],
     [ "KMeans< double, 3, M >", "classKMeans.html", null ],
+    [ "Material", "classMaterial.html", [
+      [ "PhongMaterial", "classPhongMaterial.html", null ]
+    ] ],
     [ "Mesh", "classMesh.html", null ],
+    [ "meshviewer::Mesh", "classmeshviewer_1_1Mesh.html", null ],
     [ "MeshSegmentation< M >", "classMeshSegmentation.html", null ],
     [ "Metric< PT, PD >", "classMetric.html", [
       [ "EuclideanMetric< PT, PD >", "classEuclideanMetric.html", null ],
@@ -40,8 +47,13 @@ var hierarchy =
         [ "GeodesicHeatMetric< PT, PD >", "classGeodesicHeatMetric.html", null ]
       ] ]
     ] ],
+    [ "Model", "classModel.html", null ],
     [ "Point< PT, PD >", "classPoint.html", [
       [ "CentroidPoint< PT, PD >", "classCentroidPoint.html", null ]
     ] ],
-    [ "Point< double, 3 >", "classPoint.html", null ]
+    [ "Point< double, 3 >", "classPoint.html", null ],
+    [ "Render", "classRender.html", null ],
+    [ "Shader", "classShader.html", null ],
+    [ "ShaderProgram", "classShaderProgram.html", null ],
+    [ "Texture2D", "classTexture2D.html", null ]
 ];

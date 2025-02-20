@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['silhouettemethod_0',['SilhouetteMethod',['../classSilhouetteMethod.html',1,'']]]
+  ['shader_0',['Shader',['../classShader.html',1,'']]],
+  ['shaderprogram_1',['ShaderProgram',['../classShaderProgram.html',1,'']]],
+  ['silhouettemethod_2',['SilhouetteMethod',['../classSilhouetteMethod.html',1,'']]]
 ];
