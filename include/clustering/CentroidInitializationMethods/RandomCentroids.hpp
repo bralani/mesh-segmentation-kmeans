@@ -11,25 +11,35 @@
 #include <numeric>
 
 /**
- * @class RandomCentroidInit
- * @brief A class for initializing centroids randomly from the dataset.
- * 
- * This class implements the CentroidInitMethod interface and provides functionality
- * to select centroids randomly from the given dataset. It also includes methods to
- * calculate the centroid of a cluster.
+ * \class RandomCentroidInit
+ * \brief Implements a centroid initialization method using random selection.
+ *
+ * This class randomly selects k points from the dataset to serve as initial centroids.
+ *
+ * \tparam PT Type of the points (e.g., float, double, etc.).
+ * \tparam PD Dimension of the data points.
  */
 template <typename PT, std::size_t PD>
 class RandomCentroidInit : public CentroidInitMethod<PT, PD> {
 public:
-    // Constructor with both data and the number of clusters
+    /**
+     * \brief Constructor: Initializes centroids randomly from the dataset.
+     * \param data The dataset from which to select centroids.
+     * \param k The number of centroids to initialize.
+     */
     RandomCentroidInit(const std::vector<Point<PT, PD>>& data, int k);
 
-    // Constructor with only data; the number of clusters will be determined later
+    /**
+     * \brief Constructor: Initializes centroids randomly from the dataset with default k.
+     * \param data The dataset from which to select centroids.
+     */
     RandomCentroidInit(const std::vector<Point<PT, PD>>& data);
 
-    // Method to randomly find initial centroids
+    /**
+     * \brief Finds and assigns centroids using random selection.
+     * \param centroids The vector where the selected centroids will be stored.
+     */
     void findCentroid(std::vector<CentroidPoint<PT, PD>>& centroids) override;
 };
 
-
-#endif
+#endif // RANDOM_CENTROID_INIT_HPP

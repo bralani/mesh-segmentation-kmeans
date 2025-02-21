@@ -26,109 +26,84 @@
 
 #define MIN_NUM_POINTS_CUDA 10000
 
-/** 
- * @class KMeans
- * @brief Class implementing the K-Means clustering algorithm.
- * 
- * The class performs the K-Means algorithm by clustering a set of data points into a specified number of clusters. 
- * It supports various centroid initialization methods and utilizes a distance metric for clustering.
- * 
- * @tparam PT The type of the point coordinates (e.g., double, int).
- * @tparam PD The number of dimensions of the points (e.g., 2 for 2D, 3 for 3D).
- * @tparam M The type of the distance metric (e.g., EuclideanMetric, GeodesicMetric, GeodesicHeatMetric).
+/**
+ * \class KMeans
+ * \brief Implements the K-Means clustering algorithm.
+ *
+ * This class performs clustering on a dataset using the K-Means algorithm, supporting various centroid initialization methods.
+ *
+ * \tparam PT Type of the data points (e.g., float, double, etc.).
+ * \tparam PD Dimension of the data points.
+ * \tparam M Distance metric type.
  */
 template <typename PT, std::size_t PD, class M>
 class KMeans
 {
 public:
-    /** 
-     * @brief Constructor to initialize the KMeans algorithm with necessary parameters.
-     * 
-     * This constructor takes the number of clusters, a threshold value for convergence, 
-     * the metric function to compute distances between points, and the methods for 
-     * centroid initialization.
-     * 
-     * @param clusters The number of clusters to generate.
-     * @param treshold The threshold value used to determine when the algorithm has converged.
-     * @param metric A pointer to the metric function used to calculate distances between points.
-     * @param centroidsInitializationMethod The method to initialize centroids.
-     * @param kInitializationMethod Additional initialization method for centroids.
+    /**
+     * \brief Constructor for KMeans.
+     * \param clusters Number of clusters.
+     * \param treshold Convergence threshold.
+     * \param metric Distance metric function.
+     * \param centroidsInitializationMethod Method for initializing centroids.
+     * \param kInitializationMethod Method for determining the optimal number of clusters.
      */
     KMeans(std::size_t clusters, PT treshold, M* metric, 
            int centroidsInitializationMethod, int kInitializationMethod);
 
-    /** 
-     * @brief Destructor for cleaning up resources.
-     * 
-     * The destructor handles any necessary cleanup and deallocation when the 
-     * KMeans object is destroyed.
+    /**
+     * \brief Destructor for KMeans.
      */
-    virtual ~KMeans() = default;
-
-    /** 
-     * @brief Fit method to perform the K-Means algorithm.
-     * 
-     * This method performs the K-Means clustering process: 
-     * 1. Initializes centroids, 
-     * 2. Assigns points to clusters based on the closest centroid, 
-     * 3. Recomputes centroids and repeats until convergence.
+    virtual ~KMeans() = default;    
+    
+    /**
+     * \brief Runs the K-Means clustering algorithm.
      */
     void fit();
 
     /** 
-     * @brief Prints the results of the K-Means algorithm.
+     * \brief Prints the results of the K-Means algorithm.
      * 
      * This method outputs the final centroids and the points assigned to each cluster.
      */
     void print();
 
-    /** 
-     * @brief Getter for the data points used in clustering.
-     * 
-     * @return A reference to the vector of points used for clustering.
+    /**
+     * \brief Retrieves the dataset points.
+     * \return Reference to the vector of points.
      */
     std::vector<Point<PT, PD>>& getPoints();
 
-    /** 
-     * @brief Getter for the centroids of the clusters.
-     * 
-     * @return A reference to the vector of centroids.
+    /**
+     * \brief Retrieves the centroids of the clusters.
+     * \return Reference to the vector of centroid points.
      */
     std::vector<CentroidPoint<PT, PD>>& getCentroids();
 
-    /** 
-     * @brief Resets the centroids.
-     * 
-     * This method clears and reinitializes the centroids for the next run or adjustment of the algorithm.
+    /**
+     * \brief Resets the centroids.
      */
     void resetCentroids();
 
-    /** 
-     * @brief Setter for the number of clusters.
-     * 
-     * This method allows updating the number of clusters if required before running the algorithm.
-     * 
-     * @param numC The number of clusters.
+    /**
+     * \brief Sets the number of clusters.
+     * \param numC New number of clusters.
      */
     void setNumClusters(std::size_t numC);
 
 protected:
-  M* metric;                                       ///< Distance metric function used in clustering.
-  PT treshold;                                     ///< Threshold value for convergence.
-  std::size_t numClusters;                         ///< Number of clusters to generate.
-  std::vector<CentroidPoint<PT, PD>> centroids;    ///< Centroids of clusters.
+    M* metric;                                       ///< Distance metric function used in clustering.
+    PT treshold;                                     ///< Threshold value for convergence.
+    std::size_t numClusters;                         ///< Number of clusters to generate.
+    std::vector<CentroidPoint<PT, PD>> centroids;    ///< Centroids of clusters.
 
 private:
-  /** 
-   * @brief Method to initialize the centroids using the specified initialization method.
-   * 
-   * This method selects the centroids based on the chosen initialization strategy 
-   * such as random, most distant, or based on a density function.
-   * 
-   * @param centroidsInitializationMethod The method to initialize centroids.
-   * @param kInitializationMethod An additional method to adjust initialization.
-   */
-  void initializeCentroids(int centroidsInitializationMethod, int kInitializationMethod);
+    /**
+     * \brief Initializes the centroids using a selected method.
+     * \param centroidsInitializationMethod Method for initializing centroids.
+     * \param kInitializationMethod Method for determining the optimal number of clusters.
+     */
+    void initializeCentroids(int centroidsInitializationMethod, int kInitializationMethod);
 };
 
 #endif // K_MEANS_HPP

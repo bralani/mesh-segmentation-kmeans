@@ -1,87 +1,75 @@
-#ifndef KDNODE_HPP
-#define KDNODE_HPP
+#ifndef KD_NODE_HPP
+#define KD_NODE_HPP
 
 #include <vector>
-#include <array>
-#include <memory>
 #include "geometry/point/Point.hpp"
-#include "geometry/point/HasWgtCent.hpp"
 
 /**
- * @class KdNode
- * @brief Represents a node in a kd-tree, including its bounding box and child pointers.
- * 
- * A kd-tree (k-dimensional tree) is a space-partitioning data structure used 
- * for organizing points in a k-dimensional space. Each node represents a 
- * partitioning of space with a bounding box and may contain a single point 
- * (in leaf nodes).
- * 
- * @tparam PT Type of the point coordinates.
- * @tparam PD Dimensionality of the points.
+ * \class KDNode
+ * \brief Represents a node in a k-d tree.
+ *
+ * This class defines a node structure used in a k-dimensional tree (k-d tree) for spatial partitioning.
+ * Each node contains a point, left and right children, and the split dimension.
+ *
+ * \tparam PT Type of the point coordinates (e.g., float, double, etc.).
+ * \tparam PD Dimension of the data points.
  */
 template <typename PT, std::size_t PD>
-class KdNode : public HasWgtCent<PT, PD> {
+class KDNode {
 public:
     /**
-     * @brief Minimum coordinates of the node's bounding box.
-     * 
-     * Defines the lower corner of the bounding box for this kd-tree node.
+     * \brief Constructor for KDNode.
+     * \param point The point stored in this node.
+     * \param splitDimension The dimension used for splitting at this node.
      */
-    std::array<PT, PD> cellMin;
+    KDNode(const Point<PT, PD>& point, std::size_t splitDimension);
 
     /**
-     * @brief Maximum coordinates of the node's bounding box.
-     * 
-     * Defines the upper corner of the bounding box for this kd-tree node.
+     * \brief Destructor for KDNode.
      */
-    std::array<PT, PD> cellMax;
+    ~KDNode();
 
     /**
-     * @brief Pointer to the left child node.
-     * 
-     * If this node is not a leaf, it has a left child representing 
-     * one of the partitions.
+     * \brief Gets the left child node.
+     * \return Pointer to the left child node.
      */
-    std::unique_ptr<KdNode<PT, PD>> left = nullptr;
+    KDNode* getLeft() const;
 
     /**
-     * @brief Pointer to the right child node.
-     * 
-     * If this node is not a leaf, it has a right child representing 
-     * the other partition.
+     * \brief Gets the right child node.
+     * \return Pointer to the right child node.
      */
-    std::unique_ptr<KdNode<PT, PD>> right = nullptr;
+    KDNode* getRight() const;
 
     /**
-     * @brief Pointer to the single point of this node (only for leaf nodes).
-     * 
-     * If this node is a leaf, it stores a pointer to the associated point.
+     * \brief Sets the left child node.
+     * \param left Pointer to the left child node.
      */
-    std::unique_ptr<Point<PT, PD>> myPoint = nullptr;
+    void setLeft(KDNode* left);
 
     /**
-     * @brief Default constructor.
-     * 
-     * Initializes an empty kd-tree node without assigned bounds or children.
+     * \brief Sets the right child node.
+     * \param right Pointer to the right child node.
      */
-    KdNode();
+    void setRight(KDNode* right);
 
     /**
-     * @brief Constructor with bounding box.
-     * 
-     * Initializes the node with given bounding box minimum and maximum coordinates.
-     * 
-     * @param min The minimum coordinates of the bounding box.
-     * @param max The maximum coordinates of the bounding box.
+     * \brief Gets the point stored in this node.
+     * \return Reference to the point stored in the node.
      */
-    KdNode(const std::array<PT, PD>& min, const std::array<PT, PD>& max);
+    const Point<PT, PD>& getPoint() const;
 
     /**
-     * @brief Virtual destructor.
-     * 
-     * Ensures proper cleanup of dynamically allocated child nodes.
+     * \brief Gets the dimension used for splitting at this node.
+     * \return The split dimension.
      */
-    virtual ~KdNode() override;
+    std::size_t getSplitDimension() const;
+
+private:
+    Point<PT, PD> m_point; ///< The point stored in this node.
+    std::size_t m_splitDimension; ///< The dimension used for splitting.
+    KDNode* m_left = nullptr; ///< Pointer to the left child node.
+    KDNode* m_right = nullptr; ///< Pointer to the right child node.
 };
 
-#endif // KDNODE_HPP
+#endif // KD_NODE_HPP
