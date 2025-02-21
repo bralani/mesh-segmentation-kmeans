@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="A class for managing the initialization of centroids and computing cluster centroids.">
+<g id="a_Node000001"><a xlink:title="Base class for centroid initialization methods.">
 <polygon fill="#999999" stroke="transparent" points="154,-306 0,-306 0,-126 154,-126 154,-306"/>
 <text text-anchor="start" x="30" y="-294" font-family="Helvetica,sans-Serif" font-size="10.00">CentroidInitMethod</text>
 <text text-anchor="start" x="49.5" y="-283" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; PT, PD &gt;</text>
@@ -45,7 +45,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classRandomCentroidInit.html" target="_top" xlink:title="A class for initializing centroids randomly from the dataset.">
+<g id="a_Node000002"><a xlink:href="classRandomCentroidInit.html" target="_top" xlink:title="Implements a centroid initialization method using random selection.">
 <polygon fill="white" stroke="transparent" points="140.5,-90 13.5,-90 13.5,0 140.5,0 140.5,-90"/>
 <text text-anchor="start" x="28.5" y="-78" font-family="Helvetica,sans-Serif" font-size="10.00">RandomCentroidInit</text>
 <text text-anchor="start" x="50" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; PT, PD &gt;</text>

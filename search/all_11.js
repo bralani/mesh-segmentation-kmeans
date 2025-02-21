@@ -5,5 +5,7 @@ var searchData=
   ['textures_2',['textures',['../classMaterial.html#a285879d9e7e8811705b28f759d098c89',1,'Material::textures'],['../classModel.html#a506a2b6bedb336450dc760dc5ea41ec8',1,'Model::textures']]],
   ['threshold_3',['threshold',['../classMetric.html#ae408a11c6cc959124daa6f31b0a85da2',1,'Metric']]],
   ['treshold_4',['treshold',['../classKMeans.html#a9ced75f5f2f66787d180307b5e3ae61c',1,'KMeans']]],
-  ['truncatetothreedecimals_5',['truncateToThreeDecimals',['../classCentroidInitMethod.html#a43bf9b3b7c9633f5fa4f98e567428f96',1,'CentroidInitMethod']]]
+  ['triangular_5',['triangular',['../classKernel.html#a2723d5286da733c981bcafb87f601324',1,'Kernel']]],
+  ['triweight_6',['triweight',['../classKernel.html#abfdc55e6909d7dc3a43c75effb60bdf2',1,'Kernel']]],
+  ['truncatetothreedecimals_7',['truncateToThreeDecimals',['../classCentroidInitMethod.html#a43bf9b3b7c9633f5fa4f98e567428f96',1,'CentroidInitMethod']]]
 ];

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Implements Kernel Density Estimation (KDE) for centroid initialization.">
 <polygon fill="#999999" stroke="transparent" points="244.5,-94 81.5,-94 81.5,0 244.5,0 244.5,-94"/>
 <text text-anchor="start" x="135" y="-82" font-family="Helvetica,sans-Serif" font-size="10.00">KDE&lt; PD &gt;</text>
 <text text-anchor="start" x="161.5" y="-67" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -75,7 +75,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classKDEBase.html" target="_top" xlink:title=" ">
+<g id="a_Node000003"><a xlink:href="classKDEBase.html" target="_top" xlink:title="Base class for Kernel Density Estimation (KDE) operations.">
 <polygon fill="white" stroke="transparent" points="325.5,-304.5 172.5,-304.5 172.5,-135.5 325.5,-135.5 325.5,-304.5"/>
 <text text-anchor="start" x="209" y="-292" font-family="Helvetica,sans-Serif" font-size="10.00">KDEBase&lt; PD &gt;</text>
 <text text-anchor="start" x="177" y="-277" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
@@ -98,10 +98,10 @@
 <text text-anchor="start" x="190" y="-157" font-family="Helvetica,sans-Serif" font-size="10.00">kdeValue()</text>
 <text text-anchor="start" x="177" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="190" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">pointToVector()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="173,-287 173,-287 326,-287 326,-287 173,-287"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="173,-227 173,-227 188,-227 188,-227 173,-227"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="188,-227 188,-227 326,-227 326,-227 188,-227"/>
-<polygon fill="none" stroke="#bfbfbf" points="172.5,-135.5 172.5,-304.5 325.5,-304.5 325.5,-135.5 172.5,-135.5"/>
+<polygon fill="#666666" stroke="#666666" points="173,-287 173,-287 326,-287 326,-287 173,-287"/>
+<polygon fill="#666666" stroke="#666666" points="173,-227 173,-227 188,-227 188,-227 173,-227"/>
+<polygon fill="#666666" stroke="#666666" points="188,-227 188,-227 326,-227 326,-227 188,-227"/>
+<polygon fill="none" stroke="#666666" points="172.5,-135.5 172.5,-304.5 325.5,-304.5 325.5,-135.5 172.5,-135.5"/>
 </a>
 </g>
 </g>

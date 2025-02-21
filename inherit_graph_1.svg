@@ -21,7 +21,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="classKDE3D.html" target="_top" xlink:title=" ">
+<g id="a_Node000001"><a xlink:href="classKDE3D.html" target="_top" xlink:title="Implements Kernel Density Estimation (KDE) for 3D data.">
 <polygon fill="white" stroke="#666666" points="196,-40 146,-40 146,-21 196,-21 196,-40"/>
 <text text-anchor="middle" x="171" y="-28" font-family="Helvetica,sans-Serif" font-size="10.00">KDE3D</text>
 </a>

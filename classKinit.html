@@ -120,21 +120,21 @@ Collaboration diagram for Kinit&lt; PT, PD, M &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0d02442296360a40a640d3bd41b349a7" id="r_a0d02442296360a40a640d3bd41b349a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">Kinit</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKMeans.html">KMeans</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a>, <a class="el" href="classKinit.html">M</a> &gt; &amp;<a class="el" href="classKinit.html">kMeans</a>)</td></tr>
+<tr class="memitem:a0d02442296360a40a640d3bd41b349a7" id="r_a0d02442296360a40a640d3bd41b349a7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">Kinit</a> (const <a class="el" href="classKMeans.html">KMeans</a>&lt; PT, PD, M &gt; &amp;kMeans)</td></tr>
 <tr class="memdesc:a0d02442296360a40a640d3bd41b349a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classKinit.html" title="Abstract base class for determining the optimal number of clusters (k).">Kinit</a> class.  <br /></td></tr>
 <tr class="separator:a0d02442296360a40a640d3bd41b349a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33ec8eb0394de9e179dd7749be1e94cc" id="r_a33ec8eb0394de9e179dd7749be1e94cc"><td class="memItemLeft" align="right" valign="top"><a id="a33ec8eb0394de9e179dd7749be1e94cc" name="a33ec8eb0394de9e179dd7749be1e94cc"></a>
-<a class="el" href="classKinit.html">virtual</a>&#160;</td><td class="memItemRight" valign="bottom"><b>~Kinit</b> ()=<a class="el" href="classKinit.html">default</a></td></tr>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Kinit</b> ()=default</td></tr>
 <tr class="memdesc:a33ec8eb0394de9e179dd7749be1e94cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for safe polymorphic usage. <br /></td></tr>
 <tr class="separator:a33ec8eb0394de9e179dd7749be1e94cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a882ed77d99e07f7af3da9233dd1ab5e3" id="r_a882ed77d99e07f7af3da9233dd1ab5e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinit.html#a882ed77d99e07f7af3da9233dd1ab5e3">findK</a> ()=0</td></tr>
+<tr class="memitem:a882ed77d99e07f7af3da9233dd1ab5e3" id="r_a882ed77d99e07f7af3da9233dd1ab5e3"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKinit.html#a882ed77d99e07f7af3da9233dd1ab5e3">findK</a> ()=0</td></tr>
 <tr class="memdesc:a882ed77d99e07f7af3da9233dd1ab5e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pure virtual function to determine the number of clusters (k).  <br /></td></tr>
 <tr class="separator:a882ed77d99e07f7af3da9233dd1ab5e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a14db2b0148d94f5dbffa58d4c19fb411" id="r_a14db2b0148d94f5dbffa58d4c19fb411"><td class="memItemLeft" align="right" valign="top"><a id="a14db2b0148d94f5dbffa58d4c19fb411" name="a14db2b0148d94f5dbffa58d4c19fb411"></a>
-<a class="el" href="classKMeans.html">KMeans</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a>, <a class="el" href="classKinit.html">M</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_kMeans</b></td></tr>
+<a class="el" href="classKMeans.html">KMeans</a>&lt; PT, PD, M &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_kMeans</b></td></tr>
 <tr class="memdesc:a14db2b0148d94f5dbffa58d4c19fb411"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classKMeans.html" title="Class implementing the K-Means clustering algorithm.">KMeans</a> instance used for clustering. <br /></td></tr>
 <tr class="separator:a14db2b0148d94f5dbffa58d4c19fb411"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -144,7 +144,7 @@ class Kinit&lt; PT, PD, M &gt;</div><p>Abstract base class for determining the o
 <p>This class provides an interface for algorithms that determine the optimal number of clusters (k) in a dataset. It includes a pure virtual method <code><a class="el" href="classKinit.html#a882ed77d99e07f7af3da9233dd1ab5e3" title="Pure virtual function to determine the number of clusters (k).">findK()</a></code> that must be implemented in derived classes.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">PT</td><td>Type of the points (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., float, double, etc.). </td></tr>
+    <tr><td class="paramname">PT</td><td>Type of the points (e.g., float, double, etc.). </td></tr>
     <tr><td class="paramname">PD</td><td>Dimension of the data points. </td></tr>
   </table>
   </dd>
@@ -156,15 +156,15 @@ class Kinit&lt; PT, PD, M &gt;</div><p>Abstract base class for determining the o
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , std::size_t PD, <a class="el" href="classKinit.html">class</a> <a class="el" href="classKinit.html">M</a> &gt; </div>
+template&lt;typename PT , std::size_t PD, class M &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classKinit.html">Kinit</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a>, <a class="el" href="classKinit.html">M</a> &gt;<a class="el" href="classKinit.html">::Kinit</a> </td>
+          <td class="memname"><a class="el" href="classKinit.html">Kinit</a>&lt; PT, PD, M &gt;<a class="el" href="classKinit.html">::Kinit</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKMeans.html">KMeans</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a>, <a class="el" href="classKinit.html">M</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classKMeans.html">KMeans</a>&lt; PT, PD, M &gt; &amp;&#160;</td>
           <td class="paramname"><em>kMeans</em></td><td>)</td>
           <td></td>
         </tr>
@@ -183,11 +183,6 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
   </table>
   </dd>
 </dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classKinit_a0d02442296360a40a640d3bd41b349a7_icgraph.svg" width="328" height="184"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
-</div>
 
 </div>
 </div>
@@ -198,13 +193,13 @@ Here is the caller graph for this function:</div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD, <a class="el" href="classKinit.html">class</a> <a class="el" href="classKinit.html">M</a> &gt; </div>
+template&lt;typename PT , std::size_t PD, class M &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">Kinit</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a>, <a class="el" href="classKinit.html">M</a> &gt;::findK </td>
+          <td class="memname">virtual int <a class="el" href="classKinit.html">Kinit</a>&lt; PT, PD, M &gt;::findK </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

@@ -20,7 +20,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:href="classElbowMethod.html" target="_top" xlink:title=" ">
+<g id="a_Node000001"><a xlink:href="classElbowMethod.html" target="_top" xlink:title="Implements the &quot;elbow method&quot; to determine the optimal number of clusters.">
 <polygon fill="white" stroke="#666666" points="296,-104.5 144,-104.5 144,-85.5 296,-85.5 296,-104.5"/>
 <text text-anchor="middle" x="220" y="-92.5" font-family="Helvetica,sans-Serif" font-size="10.00">ElbowMethod&lt; PT, PD, M &gt;</text>
 </a>
@@ -38,7 +38,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classKDEMethod.html" target="_top" xlink:title=" ">
+<g id="a_Node000002"><a xlink:href="classKDEMethod.html" target="_top" xlink:title="Implements a K initialization method based on Kernel Density Estimation (KDE).">
 <polygon fill="white" stroke="#666666" points="291.5,-67.5 148.5,-67.5 148.5,-48.5 291.5,-48.5 291.5,-67.5"/>
 <text text-anchor="middle" x="220" y="-55.5" font-family="Helvetica,sans-Serif" font-size="10.00">KDEMethod&lt; PT, PD, M &gt;</text>
 </a>
@@ -56,7 +56,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="classSilhouetteMethod.html" target="_top" xlink:title="Implements the Silhouette Method to determine the optimal number of clusters.">
+<g id="a_Node000003"><a xlink:href="classSilhouetteMethod.html" target="_top" xlink:title="Implements the Silhouette method for determining the optimal number of clusters.">
 <polygon fill="white" stroke="#666666" points="284.5,-30 155.5,-30 155.5,0 284.5,0 284.5,-30"/>
 <text text-anchor="start" x="163.5" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">SilhouetteMethod&lt; PT,</text>
 <text text-anchor="middle" x="220" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00"> PD, M &gt;</text>

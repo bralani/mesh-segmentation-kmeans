@@ -1,5 +1,5 @@
 <map id="KDEMethod::findK" name="KDEMethod::findK">
-<area shape="rect" id="Node000001" title="Pure virtual function to determine the number of clusters (k)." alt="" coords="5,5,144,31"/>
-<area shape="rect" id="Node000002" href="$classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class." alt="" coords="192,5,283,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,15,178,15,178,21,144,21"/>
+<area shape="rect" id="Node000001" title="Finds the optimal number of clusters (K) using Kernel Density Estimation (KDE)." alt="" coords="5,5,144,31"/>
+<area shape="rect" id="Node000002" href="$classKDE.html#a8053788ee085f36ceb0485c52be45ad5" title="Finds local maxima without restriction." alt="" coords="192,5,428,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,15,178,15,178,21,145,21"/>
 </map>

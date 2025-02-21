@@ -1,9 +1,9 @@
 <map id="Kinit&lt; PT, PD, M &gt;" name="Kinit&lt; PT, PD, M &gt;">
 <area shape="rect" id="Node000001" title="Abstract base class for determining the optimal number of clusters (k)." alt="" coords="248,5,384,111"/>
-<area shape="rect" id="Node000002" href="$classElbowMethod.html" title=" " alt="" coords="5,166,200,251"/>
+<area shape="rect" id="Node000002" href="$classElbowMethod.html" title="Implements the &quot;elbow method&quot; to determine the optimal number of clusters." alt="" coords="5,166,200,251"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,116,164,168,161,164,235,112"/>
-<area shape="rect" id="Node000003" href="$classKDEMethod.html" title=" " alt="" coords="225,166,407,251"/>
+<area shape="rect" id="Node000003" href="$classKDEMethod.html" title="Implements a K initialization method based on Kernel Density Estimation (KDE)." alt="" coords="225,166,407,251"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="319,124,319,166,313,166,313,124"/>
-<area shape="rect" id="Node000004" href="$classSilhouetteMethod.html" title="Implements the Silhouette Method to determine the optimal number of clusters." alt="" coords="431,159,595,259"/>
+<area shape="rect" id="Node000004" href="$classSilhouetteMethod.html" title="Implements the Silhouette method for determining the optimal number of clusters." alt="" coords="431,159,595,259"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="397,117,450,156,447,161,394,121"/>
 </map>

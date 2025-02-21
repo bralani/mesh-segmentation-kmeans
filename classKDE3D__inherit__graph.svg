@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Implements Kernel Density Estimation (KDE) for 3D data.">
 <polygon fill="#999999" stroke="transparent" points="207,-79 119,-79 119,0 207,0 207,-79"/>
 <text text-anchor="start" x="146" y="-66.5" font-family="Helvetica,sans-Serif" font-size="10.00">KDE3D</text>
 <text text-anchor="start" x="161" y="-51.5" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>
@@ -96,10 +96,10 @@
 <text text-anchor="start" x="190" y="-142" font-family="Helvetica,sans-Serif" font-size="10.00">kdeValue()</text>
 <text text-anchor="start" x="177" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="190" y="-127" font-family="Helvetica,sans-Serif" font-size="10.00">pointToVector()</text>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="173,-272 173,-272 326,-272 326,-272 173,-272"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="173,-212 173,-212 188,-212 188,-212 173,-212"/>
-<polygon fill="#bfbfbf" stroke="#bfbfbf" points="188,-212 188,-212 326,-212 326,-212 188,-212"/>
-<polygon fill="none" stroke="#bfbfbf" points="172.5,-120.5 172.5,-289.5 325.5,-289.5 325.5,-120.5 172.5,-120.5"/>
+<polygon fill="#666666" stroke="#666666" points="173,-272 173,-272 326,-272 326,-272 173,-272"/>
+<polygon fill="#666666" stroke="#666666" points="173,-212 173,-212 188,-212 188,-212 173,-212"/>
+<polygon fill="#666666" stroke="#666666" points="188,-212 188,-212 326,-212 326,-212 188,-212"/>
+<polygon fill="none" stroke="#666666" points="172.5,-120.5 172.5,-289.5 325.5,-289.5 325.5,-120.5 172.5,-120.5"/>
 </a>
 </g>
 </g>

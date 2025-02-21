@@ -1,0 +1,5 @@
+<map id="KDE::findLocalWithoutRestriction" name="KDE::findLocalWithoutRestriction">
+<area shape="rect" id="Node000001" title="Finds local maxima without restriction." alt="" coords="192,5,428,31"/>
+<area shape="rect" id="Node000002" href="$classKDEMethod.html#aa75d8dad8a4eaf36519124fe6ef13842" title="Finds the optimal number of clusters (K) using Kernel Density Estimation (KDE)." alt="" coords="5,5,144,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,21,144,21,144,15,179,15"/>
+</map>

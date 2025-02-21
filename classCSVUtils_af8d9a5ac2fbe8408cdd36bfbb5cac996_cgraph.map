@@ -1,5 +1,0 @@
-<map id="CSVUtils::readCSV" name="CSVUtils::readCSV">
-<area shape="rect" id="Node000001" title="Reads a CSV file and converts its rows into Point objects." alt="" coords="5,5,147,31"/>
-<area shape="rect" id="Node000002" href="$classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class." alt="" coords="195,5,285,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,15,181,15,181,21,147,21"/>
-</map>

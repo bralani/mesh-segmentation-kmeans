@@ -1,4 +1,7 @@
 var classKDE =
 [
-    [ "findCentroid", "classKDE.html#aa68fd658e8f462a0d8681488d5ebee4a", null ]
+    [ "KDE", "classKDE.html#a3895bae31012831018c052f08d5604ea", null ],
+    [ "KDE", "classKDE.html#aa423cfd96c7d047f76ac328a7338a52a", null ],
+    [ "findCentroid", "classKDE.html#aa68fd658e8f462a0d8681488d5ebee4a", null ],
+    [ "findLocalWithoutRestriction", "classKDE.html#a8053788ee085f36ceb0485c52be45ad5", null ]
 ];

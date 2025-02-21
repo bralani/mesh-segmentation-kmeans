@@ -6,6 +6,8 @@ var searchData=
   ['checkconvergence_3',['checkConvergence',['../classGeodesicMetric.html#a06b619053bc4438f85c7b949575c9f81',1,'GeodesicMetric']]],
   ['computedistances_4',['computedistances',['../classGeodesicHeatMetric.html#a8a4dde173481b3cfa387c277c016b512',1,'GeodesicHeatMetric::computeDistances()'],['../classGeodesicMetric.html#a7ae3d51c48e921e19fa7c88193ec7b57',1,'GeodesicMetric::computeDistances(const FaceId startFace) const']]],
   ['computeeuclideandistance_5',['computeEuclideanDistance',['../classGeodesicMetric.html#aef6e920854639847c73a7297556997f7',1,'GeodesicMetric']]],
-  ['createsegmentationfromsegfile_6',['createSegmentationFromSegFile',['../classMesh.html#a2ac931d2c817d4bad949aa37adb9687a',1,'Mesh']]],
-  ['cross_7',['cross',['../classPoint.html#aabbdd5f6af8a5ae39764192ce9bf16d5',1,'Point']]]
+  ['computemeanandstddev_6',['computeMeanAndStdDev',['../classKDEBase.html#af5a8be265615bf89bd33a8bac0b86a05',1,'KDEBase']]],
+  ['cosine_7',['cosine',['../classKernel.html#add0db69ca628d738159809d96f05e0d6',1,'Kernel']]],
+  ['createsegmentationfromsegfile_8',['createSegmentationFromSegFile',['../classMesh.html#a2ac931d2c817d4bad949aa37adb9687a',1,'Mesh']]],
+  ['cross_9',['cross',['../classPoint.html#aabbdd5f6af8a5ae39764192ce9bf16d5',1,'Point']]]
 ];
