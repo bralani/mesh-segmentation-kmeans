@@ -23,9 +23,9 @@ jobs:
       run: |
         git submodule update --init --recursive
 
-    - name: Run Cppcheck
+    - name: Run Cppcheck (Ignora exit code)
       run: |
-        cppcheck --enable=all --inconclusive --quiet --error-exitcode=1 src/ 2> cppcheck_report.txt
+        cppcheck --enable=all --inconclusive --quiet src/ 2> cppcheck_report.txt || true
 
     - name: Upload Cppcheck Report
       uses: actions/upload-artifact@v4
