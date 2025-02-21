@@ -14,39 +14,33 @@
 template <typename PT, std::size_t PD, class M>
 class KMeans;
 
-
 /**
- * \class SilhouetteMethod
- * \brief Implements the Silhouette method for determining the optimal number of clusters.
+ * @brief Implements the Silhouette Method to determine the optimal number of clusters.
  *
- * This class inherits from Kinit and uses the Silhouette score to evaluate cluster quality.
- * It determines the optimal number of clusters by maximizing the Silhouette score.
- *
- * \tparam PT Type of the points (e.g., float, double, etc.).
- * \tparam PD Dimension of the data points.
- * \tparam M Metric used for distance calculation.
+ * This class inherits from Kinit and uses the silhouette coefficient to find the
+ * best k for K-Means clustering.
  */
 template <typename PT, std::size_t PD, class M>
 class SilhouetteMethod : public Kinit<PT, PD, M>
 {
 public:
     /**
-     * \brief Constructor: Initializes SilhouetteMethod with a reference to KMeans.
-     * \param kMeans Reference to a KMeans instance.
+     * @brief Constructor for the SilhouetteMethod.
+     * @param kMeans Reference to the KMeans object.
      */
     SilhouetteMethod(const KMeans<PT, PD, M> &kMeans) : Kinit<PT, PD, M>(kMeans) {}
 
     /**
-     * \brief Determines the optimal number of clusters using the Silhouette score.
-     * \return The optimal number of clusters.
+     * @brief Determines the optimal number of clusters using the Silhouette Score.
+     * @return The optimal number of clusters.
      */
     int findK();
 
 private:
     /**
-     * \brief Computes the Silhouette score for a given number of clusters.
-     * \param k The number of clusters.
-     * \return The computed Silhouette score.
+     * @brief Computes the Silhouette Score for a given k.
+     * @param k The number of clusters to evaluate.
+     * @return The silhouette score for k clusters.
      */
     double computeSilhouetteScore(int k);
 };
@@ -58,9 +52,11 @@ int SilhouetteMethod<PT, PD, M>::findK()
     int optimalK = 2; // The silhouette method does not apply to k=1
     double maxSilhouette = -1.0;
 
+    // Retrieve points from KMeans
     std::vector<Point<PT, PD>> points = (this->m_kMeans).getPoints();
     std::cout << "Start searching k using Silhouette Method...\n";
 
+    // Iterate over different k values to find the one with the best silhouette score
     for (int k = 2; k < MAX_CLUSTER; ++k)
     {
         double silhouette = computeSilhouetteScore(k);

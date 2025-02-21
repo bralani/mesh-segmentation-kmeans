@@ -1,78 +1,44 @@
-#ifndef CENTROID_INIT_METHOD_HPP
-#define CENTROID_INIT_METHOD_HPP
+#ifndef KDE_K_INIT
+#define KDE_K_INIT
 
-#include <vector>
-#include <fstream>
-#include <cstddef>
-#include "geometry/point/Point.hpp"
-#include "geometry/point/CentroidPoint.hpp"
+#include <cstddef> 
 
-/**
- * \class CentroidInitMethod
- * \brief A class for managing the initialization of centroids and computing cluster centroids.
- *
- * This class provides methods to initialize centroids using a dataset and compute centroids for clustering algorithms.
- *
- * \tparam PT Type of the points (e.g., float, double, etc.).
- * \tparam PD Dimension of the data points.
- */
-template <typename PT, std::size_t PD>
-class CentroidInitMethod {
-public:
-    /**
-     * \brief Virtual destructor for CentroidInitMethod.
-     */
-    virtual ~CentroidInitMethod() = default;
+// Forward declaration of KMeans to avoid cyclic dependencies
+template <typename PT, std::size_t PD, class M>
+class KMeans;
 
-    /**
-     * \brief Constructor: Initializes centroids using the dataset.
-     * \param data The dataset from which to initialize centroids.
-     */
-    explicit CentroidInitMethod(const std::vector<Point<PT, PD>>& data);
+// Forward declaration of Kinit, the base class for K initialization methods
+template<typename PT, std::size_t PD, class M>
+class Kinit;
 
-    /**
-     * \brief Constructor: Initializes centroids using the dataset and the number of clusters.
-     * \param data The dataset from which to initialize centroids.
-     * \param k The number of centroids to initialize.
-     */
-    explicit CentroidInitMethod(const std::vector<Point<PT, PD>>& data, int k);
+// Forward declaration of KDE, a class for kernel density estimation
+template<std::size_t PD>
+class KDE;
 
-    /**
-     * \brief Abstract method to find a centroid given a set of centroids.
-     * \param centroids The centroids to process.
-     */
-    virtual void findCentroid(std::vector<CentroidPoint<PT, PD>>& centroids) = 0;
+// KDEMethod class: Implements a K initialization method based on KDE (Kernel Density Estimation)
+template<typename PT, std::size_t PD, class M>
+class KDEMethod : public Kinit<PT, PD, M> {
 
-    /**
-     * \brief Exports a mesh to a CSV file without densities.
-     * \param points Vector of points to export.
-     * \param name_csv Name of the CSV file.
-     */
-    static void exportedMesh(const std::vector<Point<PT, PD>>& points, const std::string& name_csv);
+    public: 
+        // Constructor: Initializes KDEMethod with a reference to the KMeans object
+        KDEMethod(const KMeans<PT, PD, M>& kMeans) : Kinit<PT, PD, M>(kMeans) {}
 
-    /**
-     * \brief Exports a mesh to a CSV file without densities.
-     * \param points Vector of points to export.
-     * \param name_csv Name of the CSV file.
-     */
-    static void exportedMesh(const std::vector<CentroidPoint<PT, PD>>& points, const std::string& name_csv);
-
-    /**
-     * \brief Truncates a double value to three decimal places.
-     * \param value Value to be truncated.
-     * \return Truncated value.
-     */
-    static double truncateToThreeDecimals(double value);
-    
-protected:
-    std::vector<Point<PT, PD>> m_data; ///< Dataset
-    std::size_t m_k = 0; ///< Number of clusters
-
-    /**
-     * \brief Setter for the number of clusters.
-     * \param k The number of clusters.
-     */
-    void set_k(std::size_t k);
+        // Method to find the optimal number of clusters (K) using KDE
+        int findK();
 };
 
-#endif // CENTROID_INIT_METHOD_HPP
+// Implementation of the findK method
+template<typename PT, std::size_t PD, class M>
+int KDEMethod<PT, PD, M>::findK() {
+    // Retrieve the points from the KMeans object
+    std::vector<Point<PT, PD>> points = (this->m_kMeans).getPoints();
+    std::cout << "Searching K with KDE...";
+    // Create a KDE object using the retrieved points
+    KDE kde(points);
+    int k = kde.findLocalWithoutRestriction();
+    std::cout<< "Optimal is " << k << std::endl;
+    // Use KDE to find the optimal number of clusters without restrictions
+    return k;
+}
+
+#endif

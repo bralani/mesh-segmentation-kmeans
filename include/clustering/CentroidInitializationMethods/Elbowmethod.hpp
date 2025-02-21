@@ -14,39 +14,20 @@ class KMeans;
 template<typename PT, std::size_t PD, class M>
 class Kinit;
 
-/**
- * \class ElbowMethod
- * \brief Implements the "elbow method" to determine the optimal number of clusters.
- *
- * This class inherits from Kinit and is responsible for computing the optimal number of clusters
- * using the elbow method, which analyzes the Within-Cluster Sum of Squares (WCSS).
- *
- * \tparam PT Data type of the points.
- * \tparam PD Dimensionality of the data.
- * \tparam M Metric or distance measure used.
- */
+// ElbowMethod class that inherits from Kinit
+// Implements the "elbow method" to determine the optimal number of clusters
 template<typename PT, std::size_t PD, class M>
 class ElbowMethod : public Kinit<PT, PD, M> {
-public:
-    /**
-     * \brief Constructor initializes ElbowMethod with a reference to KMeans.
-     *
-     * \param kMeans A reference to the KMeans instance used for clustering.
-     */
+public: 
+    // Constructor: Initializes ElbowMethod with a reference to KMeans
     ElbowMethod(const KMeans<PT, PD, M>& kMeans) : Kinit<PT, PD, M>(kMeans) {}
 
-    /**
-     * \brief Determines the optimal number of clusters using the elbow method.
-     *
-     * This method analyzes the changes in the Within-Cluster Sum of Squares (WCSS) to
-     * determine the best value for k.
-     *
-     * \return The optimal number of clusters.
-     */
+    // Method to determine the optimal number of clusters
     int findK();
     
 private:
-    std::vector<PT> wcss; ///< Stores the Within-Cluster Sum of Squares (WCSS) for each k.
+    // Stores the Within-Cluster Sum of Squares (WCSS) for each k
+    std::vector<PT> wcss;
 };
 
 // Implementation of the findK method
