@@ -41,7 +41,7 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT, PD>::buildTree(typename std::vector<P
     // If there is only one point, store it in the node
     if (count == 1)
     {
-        node->myPoint = std::unique_ptr<Point<PT, PD>>(&(*begin));
+        node->myPoint = std::make_unique<Point<PT, PD>>(*begin);
         return node;
     }
 
