@@ -32,11 +32,11 @@ public:
     KdTree(std::vector<Point<PT, PD>>& points);
 
     /**
-     * \brief Default virtual destructor.
+     * \brief Destructor.
      * 
      * Ensures proper cleanup of dynamically allocated nodes when the KdTree object is destroyed.
      */
-    virtual ~KdTree() = default;
+    ~KdTree();
 
     /**
      * \brief Returns a reference to the root node of the kd-tree.
@@ -63,6 +63,16 @@ private:
     std::unique_ptr<KdNode<PT, PD>> buildTree(typename std::vector<Point<PT, PD>>::iterator begin,
                                               typename std::vector<Point<PT, PD>>::iterator end,
                                               int depth);
+
+    /**
+     * \brief Clears the KD-tree by recursively deleting all nodes.
+     * 
+     * The function traverses the tree in post-order and deletes each node.
+     * 
+     * \param node Reference to the root node of the subtree to be cleared.
+     */
+    void clearTree(std::unique_ptr<KdNode<PT, PD>>& node);
+
 };
 
 #endif // KDTREE_HPP

@@ -79,6 +79,20 @@ std::unique_ptr<KdNode<PT, PD>> &KdTree<PT, PD>::getRoot()
     return root;
 }
 
+template <typename PT, std::size_t PD>
+KdTree<PT, PD>::~KdTree() {
+    clearTree(root);
+}
+
+template <typename PT, std::size_t PD>
+void KdTree<PT, PD>::clearTree(std::unique_ptr<KdNode<PT, PD>>& node) {
+    if (!node) return;
+    clearTree(node->left);
+    clearTree(node->right);
+    node.reset();  // Explicitly delete the node
+}
+
+
 // Explicit instantiation for supported types
 template class KdTree<double, 2>;
 template class KdTree<double, 3>;
