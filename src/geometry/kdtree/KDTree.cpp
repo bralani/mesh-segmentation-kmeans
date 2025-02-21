@@ -4,11 +4,7 @@
 template <typename PT, std::size_t PD>
 KdTree<PT, PD>::KdTree(std::vector<Point<PT, PD>> &points)
 {
-#pragma omp parallel
-    {
-#pragma omp single
-        root = buildTree(points.begin(), points.end(), 0);
-    }
+    root = buildTree(points.begin(), points.end(), 0);
 }
 
 // Recursively builds the KD-tree
@@ -20,8 +16,8 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT, PD>::buildTree(typename std::vector<P
     if (begin == end)
         return nullptr; // Base case: no points
 
-    // Allocate a new KD-tree node
-    auto node = std::unique_ptr<KdNode<PT, PD>>(new KdNode<PT, PD>());
+    // Allocate a new KD-tree node safely
+    auto node = std::make_unique<KdNode<PT, PD>>();
     size_t count = std::distance(begin, end);
     node->count = count;
     node->wgtCent = Point<PT, PD>::vectorSum(begin, end).coordinates;
@@ -48,15 +44,14 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT, PD>::buildTree(typename std::vector<P
     // Choose splitting axis
     int axis = depth % PD;
 
-    // Sort points along the chosen axis
-    std::sort(begin, end, [axis](const Point<PT, PD> &a, const Point<PT, PD> &b)
-              { return a.getValues()[axis] < b.getValues()[axis]; });
-
-    // Find the median
+    // Efficiently find the median
     auto median = begin + count / 2;
+    std::nth_element(begin, median, end, [axis](const Point<PT, PD> &a, const Point<PT, PD> &b)
+                     { return a.getValues()[axis] < b.getValues()[axis]; });
 
+    // Determine if parallel execution is possible
     int max_threads = omp_get_max_threads();
-    bool can_parallelize = (depth < std::log2(max_threads) + 1);
+    bool can_parallelize = (depth < std::log2(max_threads));
 
     if (can_parallelize)
     {
@@ -84,5 +79,6 @@ std::unique_ptr<KdNode<PT, PD>> &KdTree<PT, PD>::getRoot()
     return root;
 }
 
+// Explicit instantiation for supported types
 template class KdTree<double, 2>;
 template class KdTree<double, 3>;

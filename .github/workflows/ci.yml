@@ -43,4 +43,4 @@ jobs:
     - name: Valgrind Tests
       run: |
         cd build/bin
-        valgrind --leak-check=full --show-leak-kinds=all --error-exitcode=1 ./monitoring brain 3 2 0
+        valgrind --leak-check=full --show-leak-kinds=all --error-exitcode=1 ./monitoring test 3 2 0
