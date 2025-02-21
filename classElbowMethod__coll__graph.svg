@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title=" ">
+<g id="a_Node000001"><a xlink:title="Implements the &quot;elbow method&quot; to determine the optimal number of clusters.">
 <polygon fill="#999999" stroke="transparent" points="146,-64 0,-64 0,0 146,0 146,-64"/>
 <text text-anchor="start" x="5" y="-52" font-family="Helvetica,sans-Serif" font-size="10.00">ElbowMethod&lt; PT, PD, M &gt;</text>
 <text text-anchor="start" x="71" y="-37" font-family="Helvetica,sans-Serif" font-size="10.00"> </text>

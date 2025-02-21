@@ -1,0 +1,5 @@
+<map id="MeshSegmentation::fit" name="MeshSegmentation::fit">
+<area shape="rect" id="Node000001" title="Performs the mesh segmentation." alt="" coords="5,5,175,31"/>
+<area shape="rect" id="Node000002" href="$classKMeans.html#a81158e1dd2dbe18873a38ff91b29d1d5" title="Runs the K&#45;Means clustering algorithm." alt="" coords="223,5,317,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,15,209,15,209,21,175,21"/>
+</map>

@@ -105,81 +105,127 @@ $(document).ready(function(){initNavTree('classCentroidInitMethod.html',''); ini
 </div><!--header-->
 <div class="contents">
 
-<p>A class for managing the initialization of centroids and computing cluster centroids.  
+<p>Base class for centroid initialization methods.  
  <a href="classCentroidInitMethod.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="CentroidInitMethods_8hpp_source.html">CentroidInitMethods.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for CentroidInitMethod&lt; PT, PD &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCentroidInitMethod__inherit__graph.svg" width="216" height="419"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCentroidInitMethod__inherit__graph.svg" width="216" height="579"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
 Collaboration diagram for CentroidInitMethod&lt; PT, PD &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classCentroidInitMethod__coll__graph.svg" width="216" height="251"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCentroidInitMethod__coll__graph.svg" width="216" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af0d1458d943b4bb799a388e411b0c4cd" id="r_af0d1458d943b4bb799a388e411b0c4cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#af0d1458d943b4bb799a388e411b0c4cd">CentroidInitMethod</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;data)</td></tr>
-<tr class="memdesc:af0d1458d943b4bb799a388e411b0c4cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Initialize centroids using the dataset.  <br /></td></tr>
+<tr class="memitem:a6989528b92fdf1091ec02309f65f5f68" id="r_a6989528b92fdf1091ec02309f65f5f68"><td class="memItemLeft" align="right" valign="top"><a id="a6989528b92fdf1091ec02309f65f5f68" name="a6989528b92fdf1091ec02309f65f5f68"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~CentroidInitMethod</b> ()=default</td></tr>
+<tr class="memdesc:a6989528b92fdf1091ec02309f65f5f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for <a class="el" href="classCentroidInitMethod.html" title="Base class for centroid initialization methods.">CentroidInitMethod</a>. <br /></td></tr>
+<tr class="separator:a6989528b92fdf1091ec02309f65f5f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d1458d943b4bb799a388e411b0c4cd" id="r_af0d1458d943b4bb799a388e411b0c4cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#af0d1458d943b4bb799a388e411b0c4cd">CentroidInitMethod</a> (const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;data)</td></tr>
+<tr class="memdesc:af0d1458d943b4bb799a388e411b0c4cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Initializes centroids using the dataset.  <br /></td></tr>
 <tr class="separator:af0d1458d943b4bb799a388e411b0c4cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e66f7f21cfd7e9f925f3420e21e78ed" id="r_a4e66f7f21cfd7e9f925f3420e21e78ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a4e66f7f21cfd7e9f925f3420e21e78ed">CentroidInitMethod</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;data, <a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">k</a>)</td></tr>
-<tr class="memdesc:a4e66f7f21cfd7e9f925f3420e21e78ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Initialize centroids using the dataset and the number of clusters.  <br /></td></tr>
+<tr class="memitem:a4e66f7f21cfd7e9f925f3420e21e78ed" id="r_a4e66f7f21cfd7e9f925f3420e21e78ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a4e66f7f21cfd7e9f925f3420e21e78ed">CentroidInitMethod</a> (const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;data, int k)</td></tr>
+<tr class="memdesc:a4e66f7f21cfd7e9f925f3420e21e78ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Initializes centroids using the dataset and the number of clusters.  <br /></td></tr>
 <tr class="separator:a4e66f7f21cfd7e9f925f3420e21e78ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5b8f0f0e4e4d893732f08ed8740b37f" id="r_ac5b8f0f0e4e4d893732f08ed8740b37f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#ac5b8f0f0e4e4d893732f08ed8740b37f">findCentroid</a> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;centroids)=0</td></tr>
+<tr class="memitem:ac5b8f0f0e4e4d893732f08ed8740b37f" id="r_ac5b8f0f0e4e4d893732f08ed8740b37f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#ac5b8f0f0e4e4d893732f08ed8740b37f">findCentroid</a> (std::vector&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; PT, PD &gt; &gt; &amp;centroids)=0</td></tr>
+<tr class="memdesc:ac5b8f0f0e4e4d893732f08ed8740b37f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method to find a centroid given a set of centroids.  <br /></td></tr>
+<tr class="separator:ac5b8f0f0e4e4d893732f08ed8740b37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6989528b92fdf1091ec02309f65f5f68" id="r_a6989528b92fdf1091ec02309f65f5f68"><td class="memItemLeft" align="right" valign="top"><a id="a6989528b92fdf1091ec02309f65f5f68" name="a6989528b92fdf1091ec02309f65f5f68"></a>
+virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~CentroidInitMethod</b> ()=default</td></tr>
+<tr class="memdesc:a6989528b92fdf1091ec02309f65f5f68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Virtual destructor for <a class="el" href="classCentroidInitMethod.html" title="Base class for centroid initialization methods.">CentroidInitMethod</a>. <br /></td></tr>
+<tr class="separator:a6989528b92fdf1091ec02309f65f5f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d1458d943b4bb799a388e411b0c4cd" id="r_af0d1458d943b4bb799a388e411b0c4cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#af0d1458d943b4bb799a388e411b0c4cd">CentroidInitMethod</a> (const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;data)</td></tr>
+<tr class="memdesc:af0d1458d943b4bb799a388e411b0c4cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Initializes centroids using the dataset.  <br /></td></tr>
+<tr class="separator:af0d1458d943b4bb799a388e411b0c4cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e66f7f21cfd7e9f925f3420e21e78ed" id="r_a4e66f7f21cfd7e9f925f3420e21e78ed"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a4e66f7f21cfd7e9f925f3420e21e78ed">CentroidInitMethod</a> (const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;data, int k)</td></tr>
+<tr class="memdesc:a4e66f7f21cfd7e9f925f3420e21e78ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor: Initializes centroids using the dataset and the number of clusters.  <br /></td></tr>
+<tr class="separator:a4e66f7f21cfd7e9f925f3420e21e78ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5b8f0f0e4e4d893732f08ed8740b37f" id="r_ac5b8f0f0e4e4d893732f08ed8740b37f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#ac5b8f0f0e4e4d893732f08ed8740b37f">findCentroid</a> (std::vector&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; PT, PD &gt; &gt; &amp;centroids)=0</td></tr>
 <tr class="memdesc:ac5b8f0f0e4e4d893732f08ed8740b37f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract method to find a centroid given a set of centroids.  <br /></td></tr>
 <tr class="separator:ac5b8f0f0e4e4d893732f08ed8740b37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:aed5441e0394542605b550045e857ced7" id="r_aed5441e0394542605b550045e857ced7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#aed5441e0394542605b550045e857ced7">exportedMesh</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;<a class="el" href="classKinit.html">points</a>, <a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">name_csv</a>)</td></tr>
-<tr class="memdesc:aed5441e0394542605b550045e857ced7"><td class="mdescLeft">&#160;</td><td class="mdescRight">a mesh to a CSV file without densities  <br /></td></tr>
+<tr class="memitem:aed5441e0394542605b550045e857ced7" id="r_aed5441e0394542605b550045e857ced7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#aed5441e0394542605b550045e857ced7">exportedMesh</a> (const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;points, const std::string &amp;name_csv)</td></tr>
+<tr class="memdesc:aed5441e0394542605b550045e857ced7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports a mesh to a CSV file without densities.  <br /></td></tr>
 <tr class="separator:aed5441e0394542605b550045e857ced7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55aac7b8f1d82dee9e310b6ba32dd9a4" id="r_a55aac7b8f1d82dee9e310b6ba32dd9a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a55aac7b8f1d82dee9e310b6ba32dd9a4">exportedMesh</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;<a class="el" href="classKinit.html">points</a>, <a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">name_csv</a>)</td></tr>
-<tr class="memdesc:a55aac7b8f1d82dee9e310b6ba32dd9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">a mesh to a CSV file without densities  <br /></td></tr>
+<tr class="memitem:a55aac7b8f1d82dee9e310b6ba32dd9a4" id="r_a55aac7b8f1d82dee9e310b6ba32dd9a4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a55aac7b8f1d82dee9e310b6ba32dd9a4">exportedMesh</a> (const std::vector&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; PT, PD &gt; &gt; &amp;points, const std::string &amp;name_csv)</td></tr>
+<tr class="memdesc:a55aac7b8f1d82dee9e310b6ba32dd9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports a mesh to a CSV file without densities.  <br /></td></tr>
 <tr class="separator:a55aac7b8f1d82dee9e310b6ba32dd9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43bf9b3b7c9633f5fa4f98e567428f96" id="r_a43bf9b3b7c9633f5fa4f98e567428f96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a43bf9b3b7c9633f5fa4f98e567428f96">truncateToThreeDecimals</a> (<a class="el" href="classKinit.html">double</a> <a class="el" href="classKinit.html">value</a>)</td></tr>
-<tr class="memdesc:a43bf9b3b7c9633f5fa4f98e567428f96"><td class="mdescLeft">&#160;</td><td class="mdescRight">It truncates double value for small cv.  <br /></td></tr>
+<tr class="memitem:a43bf9b3b7c9633f5fa4f98e567428f96" id="r_a43bf9b3b7c9633f5fa4f98e567428f96"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a43bf9b3b7c9633f5fa4f98e567428f96">truncateToThreeDecimals</a> (double value)</td></tr>
+<tr class="memdesc:a43bf9b3b7c9633f5fa4f98e567428f96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncates a double value to three decimal places.  <br /></td></tr>
+<tr class="separator:a43bf9b3b7c9633f5fa4f98e567428f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed5441e0394542605b550045e857ced7" id="r_aed5441e0394542605b550045e857ced7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#aed5441e0394542605b550045e857ced7">exportedMesh</a> (const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;points, const std::string &amp;name_csv)</td></tr>
+<tr class="memdesc:aed5441e0394542605b550045e857ced7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports a mesh to a CSV file without densities.  <br /></td></tr>
+<tr class="separator:aed5441e0394542605b550045e857ced7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55aac7b8f1d82dee9e310b6ba32dd9a4" id="r_a55aac7b8f1d82dee9e310b6ba32dd9a4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a55aac7b8f1d82dee9e310b6ba32dd9a4">exportedMesh</a> (const std::vector&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; PT, PD &gt; &gt; &amp;points, const std::string &amp;name_csv)</td></tr>
+<tr class="memdesc:a55aac7b8f1d82dee9e310b6ba32dd9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports a mesh to a CSV file without densities.  <br /></td></tr>
+<tr class="separator:a55aac7b8f1d82dee9e310b6ba32dd9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43bf9b3b7c9633f5fa4f98e567428f96" id="r_a43bf9b3b7c9633f5fa4f98e567428f96"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a43bf9b3b7c9633f5fa4f98e567428f96">truncateToThreeDecimals</a> (double value)</td></tr>
+<tr class="memdesc:a43bf9b3b7c9633f5fa4f98e567428f96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Truncates a double value to three decimal places.  <br /></td></tr>
 <tr class="separator:a43bf9b3b7c9633f5fa4f98e567428f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a97ef11ecfbfaa73a05169ff8466f3e12" id="r_a97ef11ecfbfaa73a05169ff8466f3e12"><td class="memItemLeft" align="right" valign="top"><a id="a97ef11ecfbfaa73a05169ff8466f3e12" name="a97ef11ecfbfaa73a05169ff8466f3e12"></a>
-<a class="el" href="classKinit.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><b>set_k</b> (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> <a class="el" href="classKinit.html">k</a>)</td></tr>
+<tr class="memitem:a97ef11ecfbfaa73a05169ff8466f3e12" id="r_a97ef11ecfbfaa73a05169ff8466f3e12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a97ef11ecfbfaa73a05169ff8466f3e12">set_k</a> (std::size_t k)</td></tr>
+<tr class="memdesc:a97ef11ecfbfaa73a05169ff8466f3e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the number of clusters.  <br /></td></tr>
+<tr class="separator:a97ef11ecfbfaa73a05169ff8466f3e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97ef11ecfbfaa73a05169ff8466f3e12" id="r_a97ef11ecfbfaa73a05169ff8466f3e12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCentroidInitMethod.html#a97ef11ecfbfaa73a05169ff8466f3e12">set_k</a> (std::size_t k)</td></tr>
+<tr class="memdesc:a97ef11ecfbfaa73a05169ff8466f3e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setter for the number of clusters.  <br /></td></tr>
 <tr class="separator:a97ef11ecfbfaa73a05169ff8466f3e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a692d9e32c9b92206c1b46de4467bfaa8" id="r_a692d9e32c9b92206c1b46de4467bfaa8"><td class="memItemLeft" align="right" valign="top"><a id="a692d9e32c9b92206c1b46de4467bfaa8" name="a692d9e32c9b92206c1b46de4467bfaa8"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_data</b></td></tr>
-<tr class="memdesc:a692d9e32c9b92206c1b46de4467bfaa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dataset. <br /></td></tr>
-<tr class="separator:a692d9e32c9b92206c1b46de4467bfaa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb1c474447875e81c1f8afa3d3a9bb98" id="r_abb1c474447875e81c1f8afa3d3a9bb98"><td class="memItemLeft" align="right" valign="top"><a id="abb1c474447875e81c1f8afa3d3a9bb98" name="abb1c474447875e81c1f8afa3d3a9bb98"></a>
+std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_data</b></td></tr>
+<tr class="memdesc:abb1c474447875e81c1f8afa3d3a9bb98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dataset. <br /></td></tr>
+<tr class="separator:abb1c474447875e81c1f8afa3d3a9bb98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6826d66fb866a6d0071584a9169eb71" id="r_af6826d66fb866a6d0071584a9169eb71"><td class="memItemLeft" align="right" valign="top"><a id="af6826d66fb866a6d0071584a9169eb71" name="af6826d66fb866a6d0071584a9169eb71"></a>
-<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_k</b> = 0</td></tr>
+std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>m_k</b> = 0</td></tr>
 <tr class="memdesc:af6826d66fb866a6d0071584a9169eb71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of clusters. <br /></td></tr>
 <tr class="separator:af6826d66fb866a6d0071584a9169eb71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt;<br />
-class CentroidInitMethod&lt; PT, PD &gt;</div><p>A class for managing the initialization of centroids and computing cluster centroids. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename PT, std::size_t PD&gt;<br />
+class CentroidInitMethod&lt; PT, PD &gt;</div><p>Base class for centroid initialization methods. </p>
+<p>A class for managing the initialization of centroids and computing cluster centroids.</p>
+<p>This class provides functionality for initializing centroids in clustering algorithms.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">PT</td><td>Type of the points (e.g., float, double, etc.). </td></tr>
+    <tr><td class="paramname">PD</td><td>Dimension of the data points.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This class provides methods to initialize centroids using a dataset and compute centroids for clustering algorithms.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">PT</td><td>Type of the points (e.g., float, double, etc.). </td></tr>
+    <tr><td class="paramname">PD</td><td>Dimension of the data points. </td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af0d1458d943b4bb799a388e411b0c4cd" name="af0d1458d943b4bb799a388e411b0c4cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0d1458d943b4bb799a388e411b0c4cd">&#9670;&#160;</a></span>CentroidInitMethod() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af0d1458d943b4bb799a388e411b0c4cd">&#9670;&#160;</a></span>CentroidInitMethod() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
+template&lt;typename PT , std::size_t PD&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt;<a class="el" href="classCentroidInitMethod.html">::CentroidInitMethod</a> </td>
+          <td class="memname"><a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;<a class="el" href="classCentroidInitMethod.html">::CentroidInitMethod</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
           <td></td>
         </tr>
@@ -191,7 +237,7 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>Constructor: Initialize centroids using the dataset. </p>
+<p>Constructor: Initializes centroids using the dataset. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The dataset from which to initialize centroids. </td></tr>
@@ -202,26 +248,26 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </div>
 </div>
 <a id="a4e66f7f21cfd7e9f925f3420e21e78ed" name="a4e66f7f21cfd7e9f925f3420e21e78ed"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e66f7f21cfd7e9f925f3420e21e78ed">&#9670;&#160;</a></span>CentroidInitMethod() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e66f7f21cfd7e9f925f3420e21e78ed">&#9670;&#160;</a></span>CentroidInitMethod() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
+template&lt;typename PT , std::size_t PD&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt;<a class="el" href="classCentroidInitMethod.html">::CentroidInitMethod</a> </td>
+          <td class="memname"><a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;<a class="el" href="classCentroidInitMethod.html">::CentroidInitMethod</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classKinit.html">int</a>&#160;</td>
+          <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>k</em>&#160;</td>
         </tr>
         <tr>
@@ -237,7 +283,90 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>Constructor: Initialize centroids using the dataset and the number of clusters. </p>
+<p>Constructor: Initializes centroids using the dataset and the number of clusters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The dataset from which to initialize centroids. </td></tr>
+    <tr><td class="paramname">k</td><td>The number of centroids to initialize. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af0d1458d943b4bb799a388e411b0c4cd" name="af0d1458d943b4bb799a388e411b0c4cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0d1458d943b4bb799a388e411b0c4cd">&#9670;&#160;</a></span>CentroidInitMethod() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PT , std::size_t PD&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;<a class="el" href="classCentroidInitMethod.html">::CentroidInitMethod</a> </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor: Initializes centroids using the dataset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>The dataset from which to initialize centroids. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4e66f7f21cfd7e9f925f3420e21e78ed" name="a4e66f7f21cfd7e9f925f3420e21e78ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e66f7f21cfd7e9f925f3420e21e78ed">&#9670;&#160;</a></span>CentroidInitMethod() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PT , std::size_t PD&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;<a class="el" href="classCentroidInitMethod.html">::CentroidInitMethod</a> </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor: Initializes centroids using the dataset and the number of clusters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>The dataset from which to initialize centroids. </td></tr>
@@ -250,26 +379,26 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a55aac7b8f1d82dee9e310b6ba32dd9a4" name="a55aac7b8f1d82dee9e310b6ba32dd9a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55aac7b8f1d82dee9e310b6ba32dd9a4">&#9670;&#160;</a></span>exportedMesh() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a55aac7b8f1d82dee9e310b6ba32dd9a4">&#9670;&#160;</a></span>exportedMesh() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
+template&lt;typename PT , std::size_t PD&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">void</a> <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt;::exportedMesh </td>
+          <td class="memname">static void <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::exportedMesh </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>points</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>name_csv</em>&#160;</td>
         </tr>
         <tr>
@@ -285,11 +414,58 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>a mesh to a CSV file without densities </p>
+<p>Exports a mesh to a CSV file without densities. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">points</td><td>vector of points to export </td></tr>
-    <tr><td class="paramname">name_csv</td><td>name of the file csv </td></tr>
+    <tr><td class="paramname">points</td><td>Vector of points to export. </td></tr>
+    <tr><td class="paramname">name_csv</td><td>Name of the CSV file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a55aac7b8f1d82dee9e310b6ba32dd9a4" name="a55aac7b8f1d82dee9e310b6ba32dd9a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55aac7b8f1d82dee9e310b6ba32dd9a4">&#9670;&#160;</a></span>exportedMesh() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PT , std::size_t PD&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::exportedMesh </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name_csv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Exports a mesh to a CSV file without densities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">points</td><td>Vector of points to export. </td></tr>
+    <tr><td class="paramname">name_csv</td><td>Name of the CSV file. </td></tr>
   </table>
   </dd>
 </dl>
@@ -297,26 +473,26 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </div>
 </div>
 <a id="aed5441e0394542605b550045e857ced7" name="aed5441e0394542605b550045e857ced7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed5441e0394542605b550045e857ced7">&#9670;&#160;</a></span>exportedMesh() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aed5441e0394542605b550045e857ced7">&#9670;&#160;</a></span>exportedMesh() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
+template&lt;typename PT , std::size_t PD&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">void</a> <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt;::exportedMesh </td>
+          <td class="memname">static void <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::exportedMesh </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>points</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>name_csv</em>&#160;</td>
         </tr>
         <tr>
@@ -332,11 +508,58 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>a mesh to a CSV file without densities </p>
+<p>Exports a mesh to a CSV file without densities. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">points</td><td>vector of points to export </td></tr>
-    <tr><td class="paramname">name_csv</td><td>name of the file csv </td></tr>
+    <tr><td class="paramname">points</td><td>Vector of points to export. </td></tr>
+    <tr><td class="paramname">name_csv</td><td>Name of the CSV file. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aed5441e0394542605b550045e857ced7" name="aed5441e0394542605b550045e857ced7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed5441e0394542605b550045e857ced7">&#9670;&#160;</a></span>exportedMesh() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PT , std::size_t PD&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::exportedMesh </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>points</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name_csv</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Exports a mesh to a CSV file without densities. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">points</td><td>Vector of points to export. </td></tr>
+    <tr><td class="paramname">name_csv</td><td>Name of the CSV file. </td></tr>
   </table>
   </dd>
 </dl>
@@ -344,20 +567,20 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </div>
 </div>
 <a id="ac5b8f0f0e4e4d893732f08ed8740b37f" name="ac5b8f0f0e4e4d893732f08ed8740b37f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5b8f0f0e4e4d893732f08ed8740b37f">&#9670;&#160;</a></span>findCentroid()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b8f0f0e4e4d893732f08ed8740b37f">&#9670;&#160;</a></span>findCentroid() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
+template&lt;typename PT , std::size_t PD&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classKinit.html">virtual</a> <a class="el" href="classKinit.html">void</a> <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt;::findCentroid </td>
+          <td class="memname">virtual void <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::findCentroid </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>centroids</em></td><td>)</td>
           <td></td>
         </tr>
@@ -381,21 +604,131 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 
 </div>
 </div>
-<a id="a43bf9b3b7c9633f5fa4f98e567428f96" name="a43bf9b3b7c9633f5fa4f98e567428f96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43bf9b3b7c9633f5fa4f98e567428f96">&#9670;&#160;</a></span>truncateToThreeDecimals()</h2>
+<a id="ac5b8f0f0e4e4d893732f08ed8740b37f" name="ac5b8f0f0e4e4d893732f08ed8740b37f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b8f0f0e4e4d893732f08ed8740b37f">&#9670;&#160;</a></span>findCentroid() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
+template&lt;typename PT , std::size_t PD&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">double</a> <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt;::truncateToThreeDecimals </td>
+          <td class="memname">virtual void <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::findCentroid </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classKinit.html">double</a>&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="classCentroidPoint.html">CentroidPoint</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>centroids</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Abstract method to find a centroid given a set of centroids. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">centroids</td><td>The centroids to process. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classKDE.html#aa68fd658e8f462a0d8681488d5ebee4a">KDE&lt; PD &gt;</a>, <a class="el" href="classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3">MostDistanceClass&lt; PD &gt;</a>, and <a class="el" href="classRandomCentroidInit.html#a30f645a506514cae1f7f4b11342051c5">RandomCentroidInit&lt; PT, PD &gt;</a>.</p>
+
+</div>
+</div>
+<a id="a97ef11ecfbfaa73a05169ff8466f3e12" name="a97ef11ecfbfaa73a05169ff8466f3e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97ef11ecfbfaa73a05169ff8466f3e12">&#9670;&#160;</a></span>set_k() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PT , std::size_t PD&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::set_k </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>k</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setter for the number of clusters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">k</td><td>The number of clusters. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a97ef11ecfbfaa73a05169ff8466f3e12" name="a97ef11ecfbfaa73a05169ff8466f3e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97ef11ecfbfaa73a05169ff8466f3e12">&#9670;&#160;</a></span>set_k() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PT , std::size_t PD&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::set_k </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>k</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Setter for the number of clusters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">k</td><td>The number of clusters. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a43bf9b3b7c9633f5fa4f98e567428f96" name="a43bf9b3b7c9633f5fa4f98e567428f96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43bf9b3b7c9633f5fa4f98e567428f96">&#9670;&#160;</a></span>truncateToThreeDecimals() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PT , std::size_t PD&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::truncateToThreeDecimals </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td></td>
         </tr>
@@ -407,18 +740,57 @@ template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href
 </table>
 </div><div class="memdoc">
 
-<p>It truncates double value for small cv. </p>
+<p>Truncates a double value to three decimal places. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>value to be truncated </td></tr>
+    <tr><td class="paramname">value</td><td>Value to be truncated. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Truncated value. </dd></dl>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a id="a43bf9b3b7c9633f5fa4f98e567428f96" name="a43bf9b3b7c9633f5fa4f98e567428f96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43bf9b3b7c9633f5fa4f98e567428f96">&#9670;&#160;</a></span>truncateToThreeDecimals() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename PT , std::size_t PD&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double <a class="el" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt; PT, PD &gt;::truncateToThreeDecimals </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Truncates a double value to three decimal places. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Value to be truncated. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Truncated value. </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>include/clustering/CentroidInitializationMethods/<a class="el" href="CentroidInitMethods_8hpp_source.html">CentroidInitMethods.hpp</a></li>
+<li>include/clustering/CentroidInitializationMethods/<a class="el" href="KDEKInitMehod_8hpp_source.html">KDEKInitMehod.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

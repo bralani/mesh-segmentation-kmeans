@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classMesh.html" title="Represents a 3D mesh composed of vertices, faces, and adjacency relationships." alt="" coords="5,5,63,31"/>
+<area shape="rect" id="Node000000" href="$classMaterial.html" title="Represents a material that combines textures and shaders." alt="" coords="5,5,81,31"/>
+<area shape="rect" id="Node000001" href="$classPhongMaterial.html" title="A material implementing the Phong shading model." alt="" coords="129,5,245,31"/>
+<area shape="poly" id="edge12_Node000000_Node000001" title=" " alt="" coords="95,15,129,15,129,21,95,21"/>
 </map>

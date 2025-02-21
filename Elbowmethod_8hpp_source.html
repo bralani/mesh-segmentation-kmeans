@@ -114,87 +114,83 @@ $(document).ready(function(){initNavTree('Elbowmethod_8hpp_source.html',''); ini
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PT, std::<span class="keywordtype">size_t</span> PD, <span class="keyword">class</span> M&gt;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">class </span><a class="code hl_class" href="classKinit.html">Kinit</a>;</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// ElbowMethod class that inherits from Kinit</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// Implements the &quot;elbow method&quot; to determine the optimal number of clusters</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PT, std::<span class="keywordtype">size_t</span> PD, <span class="keyword">class</span> M&gt;</div>
-<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classElbowMethod.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classElbowMethod.html">ElbowMethod</a> : <span class="keyword">public</span> <a class="code hl_class" href="classKinit.html">Kinit</a>&lt;PT, PD, M&gt; {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">public</span>: </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="comment">// Constructor: Initializes ElbowMethod with a reference to KMeans</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_class" href="classElbowMethod.html">ElbowMethod</a>(<span class="keyword">const</span> <a class="code hl_class" href="classKMeans.html">KMeans&lt;PT, PD, M&gt;</a>&amp; kMeans) : <a class="code hl_class" href="classKinit.html">Kinit&lt;PT, PD, M&gt;</a>(<a class="code hl_class" href="classKinit.html">kMeans</a>) {}</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// Method to determine the optimal number of clusters</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classElbowMethod.html#a008b8f04452f61d7c48eac9d774ec6c4">findK</a>();</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// Stores the Within-Cluster Sum of Squares (WCSS) for each k</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector&lt;PT&gt;</a> wcss;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PT, std::<span class="keywordtype">size_t</span> PD, <span class="keyword">class</span> M&gt;</div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classElbowMethod.html">   29</a></span><span class="keyword">class </span><a class="code hl_class" href="classElbowMethod.html">ElbowMethod</a> : <span class="keyword">public</span> <a class="code hl_class" href="classKinit.html">Kinit</a>&lt;PT, PD, M&gt; {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classElbowMethod.html#a970abfc967eef117d72ff46200f144ca">   36</a></span>    <a class="code hl_function" href="classElbowMethod.html#a970abfc967eef117d72ff46200f144ca">ElbowMethod</a>(<span class="keyword">const</span> <a class="code hl_class" href="classKMeans.html">KMeans&lt;PT, PD, M&gt;</a>&amp; kMeans) : <a class="code hl_class" href="classKinit.html">Kinit</a>&lt;PT, PD, M&gt;(kMeans) {}</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="classElbowMethod.html#a008b8f04452f61d7c48eac9d774ec6c4">findK</a>();</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    std::vector&lt;PT&gt; wcss; </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>};</div>
 </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">// Implementation of the findK method</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PT, std::<span class="keywordtype">size_t</span> PD, <span class="keyword">class</span> M&gt;</div>
-<div class="foldopen" id="foldopen00035" data-start="{" data-end="}">
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classElbowMethod.html#a008b8f04452f61d7c48eac9d774ec6c4">   35</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classElbowMethod.html#a008b8f04452f61d7c48eac9d774ec6c4">ElbowMethod&lt;PT, PD, M&gt;::findK</a>() {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">int</span> <a class="code hl_class" href="classKinit.html">k</a> = 1; <span class="comment">// Start with k = 1 cluster</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">double</span> <a class="code hl_class" href="classKinit.html">epsilon</a> = 1<a class="code hl_class" href="classKinit.html">e</a>-2; <span class="comment">// Convergence threshold for WCSS change</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">int</span> <a class="code hl_class" href="classKinit.html">optimalK</a> = 0; <span class="comment">// Variable to store the optimal number of clusters</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// Retrieve the points from KMeans</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector&lt;Point&lt;PT, PD&gt;</a>&gt; <a class="code hl_class" href="classKinit.html">points</a> = (this-&gt;<a class="code hl_variable" href="classKinit.html#a14db2b0148d94f5dbffa58d4c19fb411">m_kMeans</a>).getPoints();</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::cout</a> &lt;&lt; <span class="stringliteral">&quot;Start searching k...\n&quot;</span>;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> <a class="code hl_class" href="classKinit.html">i</a> = 0; <a class="code hl_class" href="classKinit.html">i</a> &lt; MAX_CLUSTER ; <a class="code hl_class" href="classKinit.html">i</a>++) { <span class="comment">// Infinite loop to incrementally search for the optimal k</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <a class="code hl_class" href="classMostDistanceClass.html">MostDistanceClass</a> <a class="code hl_class" href="classKinit.html">mdc</a>(<a class="code hl_class" href="classKinit.html">points</a>, <a class="code hl_class" href="classKinit.html">k</a>); </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector&lt;CentroidPoint&lt;PT, PD&gt;</a>&gt;&amp; <a class="code hl_class" href="classKinit.html">pointerCentroids</a> = (this-&gt;<a class="code hl_variable" href="classKinit.html#a14db2b0148d94f5dbffa58d4c19fb411">m_kMeans</a>).getCentroids();</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <a class="code hl_class" href="classKinit.html">mdc</a>.findCentroid(<a class="code hl_class" href="classKinit.html">pointerCentroids</a>);</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        (this-&gt;<a class="code hl_variable" href="classKinit.html#a14db2b0148d94f5dbffa58d4c19fb411">m_kMeans</a>).setNumClusters(<span class="keyword">static_cast&lt;</span><a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a><span class="keyword">&gt;</span>(<a class="code hl_class" href="classKinit.html">k</a>));</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        (this-&gt;<a class="code hl_variable" href="classKinit.html#a14db2b0148d94f5dbffa58d4c19fb411">m_kMeans</a>).fit();</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <a class="code hl_class" href="classKinit.html">points</a> = (this-&gt;<a class="code hl_variable" href="classKinit.html#a14db2b0148d94f5dbffa58d4c19fb411">m_kMeans</a>).getPoints();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <span class="keywordtype">double</span> <a class="code hl_class" href="classKinit.html">sum</a> = 0; </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">        #pragma omp parallel for reduction(+:sum)</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> <a class="code hl_class" href="classKinit.html">i</a> = 0; <a class="code hl_class" href="classKinit.html">i</a> &lt; <a class="code hl_class" href="classKinit.html">points</a>.size(); ++<a class="code hl_class" href="classKinit.html">i</a>) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <a class="code hl_class" href="classKinit.html">Point&lt;PT, PD&gt;</a> <a class="code hl_class" href="classKinit.html">centroidTmp</a> = *(<a class="code hl_class" href="classKinit.html">points</a>[<a class="code hl_class" href="classKinit.html">i</a>].centroid);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <a class="code hl_class" href="classKinit.html">sum</a> += <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::pow</a>(<a class="code hl_class" href="classEuclideanMetric.html">EuclideanMetric&lt;PT, PD&gt;::distanceTo</a>(<a class="code hl_class" href="classKinit.html">points</a>[<a class="code hl_class" href="classKinit.html">i</a>], <a class="code hl_class" href="classKinit.html">centroidTmp</a>), 2);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        }</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::cout</a> &lt;&lt; <span class="stringliteral">&quot;K: &quot;</span> &lt;&lt; <a class="code hl_class" href="classKinit.html">k</a> &lt;&lt; <span class="stringliteral">&quot;, WCSS: &quot;</span> &lt;&lt; <a class="code hl_class" href="classKinit.html">sum</a> &lt;&lt; <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::endl</a>;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        (this-&gt;wcss).<a class="code hl_class" href="classKinit.html">push_back</a>(<a class="code hl_class" href="classKinit.html">sum</a>); </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">// Implementation of the findK method</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> PT, std::<span class="keywordtype">size_t</span> PD, <span class="keyword">class</span> M&gt;</div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classElbowMethod.html#a008b8f04452f61d7c48eac9d774ec6c4">   54</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="classElbowMethod.html#a008b8f04452f61d7c48eac9d774ec6c4">ElbowMethod&lt;PT, PD, M&gt;::findK</a>() {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">int</span> k = 1; <span class="comment">// Start with k = 1 cluster</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">double</span> epsilon = 1e-2; <span class="comment">// Convergence threshold for WCSS change</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordtype">int</span> optimalK = 0; <span class="comment">// Variable to store the optimal number of clusters</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// Retrieve the points from KMeans</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    std::vector&lt;Point&lt;PT, PD&gt;&gt; points = (this-&gt;m_kMeans).getPoints();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Start searching k...\n&quot;</span>;</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        <span class="keywordflow">if</span>(<a class="code hl_class" href="classKinit.html">i</a> &gt; 1 &amp;&amp; wcss[<a class="code hl_class" href="classKinit.html">i</a>-1] &gt; wcss[<a class="code hl_class" href="classKinit.html">i</a>-2])</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        (this-&gt;<a class="code hl_variable" href="classKinit.html#a14db2b0148d94f5dbffa58d4c19fb411">m_kMeans</a>).resetCentroids();</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <a class="code hl_class" href="classKinit.html">k</a>++; </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">double</span> <a class="code hl_class" href="classKinit.html">maxCurvature</a> = -std::numeric_limits&lt;double&gt;::max();</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> <a class="code hl_class" href="classKinit.html">k</a> = 1; <a class="code hl_class" href="classKinit.html">k</a> &lt; wcss.size() - 1; ++<a class="code hl_class" href="classKinit.html">k</a>) {</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordtype">double</span> <a class="code hl_class" href="classKinit.html">secondDerivative</a> = wcss[<a class="code hl_class" href="classKinit.html">k</a> - 1] - 2 * wcss[<a class="code hl_class" href="classKinit.html">k</a>] + wcss[<a class="code hl_class" href="classKinit.html">k</a> + 1];</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::abs</a>(<a class="code hl_class" href="classKinit.html">secondDerivative</a>) &gt; <a class="code hl_class" href="classKinit.html">maxCurvature</a>) {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <a class="code hl_class" href="classKinit.html">maxCurvature</a> = <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::abs</a>(<a class="code hl_class" href="classKinit.html">secondDerivative</a>);</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <a class="code hl_class" href="classKinit.html">optimalK</a> = <a class="code hl_class" href="classKinit.html">k</a> + 1; </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        }</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keywordflow">return</span> <a class="code hl_class" href="classKinit.html">optimalK</a>; <span class="comment">// Return the optimal number of clusters</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; MAX_CLUSTER ; i++) { <span class="comment">// Infinite loop to incrementally search for the optimal k</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <a class="code hl_class" href="classMostDistanceClass.html">MostDistanceClass</a> mdc(points, k); </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        std::vector&lt;CentroidPoint&lt;PT, PD&gt;&gt;&amp; pointerCentroids = (this-&gt;m_kMeans).getCentroids();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        mdc.<a class="code hl_function" href="classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3">findCentroid</a>(pointerCentroids);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        (this-&gt;m_kMeans).setNumClusters(<span class="keyword">static_cast&lt;</span>std::size_t<span class="keyword">&gt;</span>(k));</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        (this-&gt;m_kMeans).fit();</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        points = (this-&gt;m_kMeans).getPoints();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordtype">double</span> sum = 0; </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">        #pragma omp parallel for reduction(+:sum)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; points.size(); ++i) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <a class="code hl_class" href="classPoint.html">Point&lt;PT, PD&gt;</a> centroidTmp = *(points[i].centroid);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            sum += std::pow(<a class="code hl_class" href="classEuclideanMetric.html">EuclideanMetric&lt;PT, PD&gt;::distanceTo</a>(points[i], centroidTmp), 2);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        }</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        std::cout &lt;&lt; <span class="stringliteral">&quot;K: &quot;</span> &lt;&lt; k &lt;&lt; <span class="stringliteral">&quot;, WCSS: &quot;</span> &lt;&lt; sum &lt;&lt; std::endl;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        (this-&gt;wcss).push_back(sum); </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">if</span>(i &gt; 1 &amp;&amp; wcss[i-1] &gt; wcss[i-2])</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        (this-&gt;m_kMeans).resetCentroids();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        k++; </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">double</span> maxCurvature = -std::numeric_limits&lt;double&gt;::max();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> k = 1; k &lt; wcss.size() - 1; ++k) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordtype">double</span> secondDerivative = wcss[k - 1] - 2 * wcss[k] + wcss[k + 1];</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">if</span> (std::abs(secondDerivative) &gt; maxCurvature) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            maxCurvature = std::abs(secondDerivative);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            optimalK = k + 1; </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        }</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    }</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span> optimalK; <span class="comment">// Return the optimal number of clusters</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
 </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassElbowMethod_html"><div class="ttname"><a href="classElbowMethod.html">ElbowMethod</a></div><div class="ttdef"><b>Definition</b> Elbowmethod.hpp:20</div></div>
-<div class="ttc" id="aclassElbowMethod_html_a008b8f04452f61d7c48eac9d774ec6c4"><div class="ttname"><a href="classElbowMethod.html#a008b8f04452f61d7c48eac9d774ec6c4">ElbowMethod::findK</a></div><div class="ttdeci">int findK()</div><div class="ttdoc">Pure virtual function to determine the number of clusters (k).</div><div class="ttdef"><b>Definition</b> Elbowmethod.hpp:35</div></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassElbowMethod_html"><div class="ttname"><a href="classElbowMethod.html">ElbowMethod</a></div><div class="ttdoc">Implements the &quot;elbow method&quot; to determine the optimal number of clusters.</div><div class="ttdef"><b>Definition</b> Elbowmethod.hpp:29</div></div>
+<div class="ttc" id="aclassElbowMethod_html_a008b8f04452f61d7c48eac9d774ec6c4"><div class="ttname"><a href="classElbowMethod.html#a008b8f04452f61d7c48eac9d774ec6c4">ElbowMethod::findK</a></div><div class="ttdeci">int findK()</div><div class="ttdoc">Determines the optimal number of clusters using the elbow method.</div><div class="ttdef"><b>Definition</b> Elbowmethod.hpp:54</div></div>
+<div class="ttc" id="aclassElbowMethod_html_a970abfc967eef117d72ff46200f144ca"><div class="ttname"><a href="classElbowMethod.html#a970abfc967eef117d72ff46200f144ca">ElbowMethod::ElbowMethod</a></div><div class="ttdeci">ElbowMethod(const KMeans&lt; PT, PD, M &gt; &amp;kMeans)</div><div class="ttdoc">Constructor initializes ElbowMethod with a reference to KMeans.</div><div class="ttdef"><b>Definition</b> Elbowmethod.hpp:36</div></div>
 <div class="ttc" id="aclassEuclideanMetric_html"><div class="ttname"><a href="classEuclideanMetric.html">EuclideanMetric</a></div><div class="ttdoc">A class that calculates Euclidean distance for clustering and metric purposes.</div><div class="ttdef"><b>Definition</b> EuclideanMetric.hpp:35</div></div>
-<div class="ttc" id="aclassKMeans_html"><div class="ttname"><a href="classKMeans.html">KMeans</a></div><div class="ttdoc">Class implementing the K-Means clustering algorithm.</div><div class="ttdef"><b>Definition</b> KMeans.hpp:42</div></div>
-<div class="ttc" id="aclassKinit_html"><div class="ttname"><a href="classKinit.html">Kinit</a></div><div class="ttdoc">Abstract base class for determining the optimal number of clusters (k).</div><div class="ttdef"><b>Definition</b> kInitMethods.hpp:26</div></div>
-<div class="ttc" id="aclassKinit_html_a0d02442296360a40a640d3bd41b349a7"><div class="ttname"><a href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">Kinit::Kinit</a></div><div class="ttdeci">Kinit(const KMeans&lt; PT, PD, M &gt; &amp;kMeans)</div><div class="ttdoc">Constructor for the Kinit class.</div><div class="ttdef"><b>Definition</b> kInitMethods.hpp:33</div></div>
-<div class="ttc" id="aclassKinit_html_a14db2b0148d94f5dbffa58d4c19fb411"><div class="ttname"><a href="classKinit.html#a14db2b0148d94f5dbffa58d4c19fb411">Kinit::m_kMeans</a></div><div class="ttdeci">KMeans&lt; PT, PD, M &gt; m_kMeans</div><div class="ttdoc">KMeans instance used for clustering.</div><div class="ttdef"><b>Definition</b> kInitMethods.hpp:52</div></div>
-<div class="ttc" id="aclassMostDistanceClass_html"><div class="ttname"><a href="classMostDistanceClass.html">MostDistanceClass</a></div><div class="ttdef"><b>Definition</b> MostDistantCentroids.hpp:17</div></div>
+<div class="ttc" id="aclassKMeans_html"><div class="ttname"><a href="classKMeans.html">KMeans</a></div><div class="ttdoc">Implements the K-Means clustering algorithm.</div><div class="ttdef"><b>Definition</b> KMeans.hpp:41</div></div>
+<div class="ttc" id="aclassKinit_html"><div class="ttname"><a href="classKinit.html">Kinit</a></div><div class="ttdoc">Abstract base class for determining the optimal number of clusters (k).</div><div class="ttdef"><b>Definition</b> kInitMethods.hpp:30</div></div>
+<div class="ttc" id="aclassMostDistanceClass_html"><div class="ttname"><a href="classMostDistanceClass.html">MostDistanceClass</a></div><div class="ttdoc">Class for centroid initialization based on maximum distance.</div><div class="ttdef"><b>Definition</b> MostDistantCentroids.hpp:30</div></div>
+<div class="ttc" id="aclassMostDistanceClass_html_a95677d31ad2e03d6b0947c36ce4bf9c3"><div class="ttname"><a href="classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3">MostDistanceClass::findCentroid</a></div><div class="ttdeci">void findCentroid(std::vector&lt; CentroidPoint&lt; double, PD &gt; &gt; &amp;centroids) override</div><div class="ttdoc">Finds the initial centroids based on maximum distance.</div></div>
+<div class="ttc" id="aclassPoint_html"><div class="ttname"><a href="classPoint.html">Point</a></div><div class="ttdoc">Represents a mathematical point in a multi-dimensional space.</div><div class="ttdef"><b>Definition</b> Point.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

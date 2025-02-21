@@ -1,7 +1,5 @@
 <map id="HasWgtCent&lt; PT, PD &gt;" name="HasWgtCent&lt; PT, PD &gt;">
-<area shape="rect" id="Node000001" title="Represents an object with an array of weights and a counter." alt="" coords="99,5,265,131"/>
+<area shape="rect" id="Node000001" title="Represents an object with an array of weights and a counter." alt="" coords="9,5,176,131"/>
 <area shape="rect" id="Node000002" href="$classCentroidPoint.html" title="Represents a point with a centroid and associated weights." alt="" coords="5,179,180,404"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="155,144,140,180,135,178,150,142"/>
-<area shape="rect" id="Node000003" href="$classKdNode.html" title="Represents a node in a kd&#45;tree, including its bounding box and child pointers." alt="" coords="204,199,341,384"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,142,237,197,233,199,210,144"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,144,95,179,90,179,90,144"/>
 </map>

@@ -1,3 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classmeshviewer_1_1Mesh.html" title="Represents a 3D mesh with OpenGL rendering capabilities." alt="" coords="5,5,151,31"/>
+<area shape="rect" id="Node000000" href="$classMeshSegmentation.html" title="Performs segmentation (clustering) on a 3D mesh using K&#45;Means." alt="" coords="5,5,196,31"/>
 </map>

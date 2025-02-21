@@ -101,6 +101,11 @@ $(document).ready(function(){initNavTree('classKernel.html',''); initResizable()
   <div class="headertitle"><div class="title">Kernel Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Provides various kernel functions for density estimation and regression.  
+ <a href="classKernel.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="KernelFunction_8hpp_source.html">KernelFunction.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for Kernel:</div>
 <div class="dyncontent">
@@ -109,28 +114,277 @@ Collaboration diagram for Kernel:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a955fa7611c16312b639c4a7a46f2df46" id="r_a955fa7611c16312b639c4a7a46f2df46"><td class="memItemLeft" align="right" valign="top"><a id="a955fa7611c16312b639c4a7a46f2df46" name="a955fa7611c16312b639c4a7a46f2df46"></a>
-<a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gaussian</b> (<a class="el" href="classKinit.html">const</a> VectorXd &amp;<a class="el" href="classKinit.html">u</a>)</td></tr>
+<tr class="memitem:a955fa7611c16312b639c4a7a46f2df46" id="r_a955fa7611c16312b639c4a7a46f2df46"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKernel.html#a955fa7611c16312b639c4a7a46f2df46">gaussian</a> (const VectorXd &amp;u)</td></tr>
+<tr class="memdesc:a955fa7611c16312b639c4a7a46f2df46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Gaussian kernel.  <br /></td></tr>
 <tr class="separator:a955fa7611c16312b639c4a7a46f2df46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d2da94426e916b61cccf7643bb251e8" id="r_a3d2da94426e916b61cccf7643bb251e8"><td class="memItemLeft" align="right" valign="top"><a id="a3d2da94426e916b61cccf7643bb251e8" name="a3d2da94426e916b61cccf7643bb251e8"></a>
-<a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>epanechnikov</b> (<a class="el" href="classKinit.html">const</a> VectorXd &amp;<a class="el" href="classKinit.html">u</a>)</td></tr>
+<tr class="memitem:a3d2da94426e916b61cccf7643bb251e8" id="r_a3d2da94426e916b61cccf7643bb251e8"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKernel.html#a3d2da94426e916b61cccf7643bb251e8">epanechnikov</a> (const VectorXd &amp;u)</td></tr>
+<tr class="memdesc:a3d2da94426e916b61cccf7643bb251e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Epanechnikov kernel.  <br /></td></tr>
 <tr class="separator:a3d2da94426e916b61cccf7643bb251e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3004363039615180e88ba91b81d342d0" id="r_a3004363039615180e88ba91b81d342d0"><td class="memItemLeft" align="right" valign="top"><a id="a3004363039615180e88ba91b81d342d0" name="a3004363039615180e88ba91b81d342d0"></a>
-<a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>uniform</b> (<a class="el" href="classKinit.html">const</a> VectorXd &amp;<a class="el" href="classKinit.html">u</a>)</td></tr>
+<tr class="memitem:a3004363039615180e88ba91b81d342d0" id="r_a3004363039615180e88ba91b81d342d0"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKernel.html#a3004363039615180e88ba91b81d342d0">uniform</a> (const VectorXd &amp;u)</td></tr>
+<tr class="memdesc:a3004363039615180e88ba91b81d342d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Uniform kernel.  <br /></td></tr>
 <tr class="separator:a3004363039615180e88ba91b81d342d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2723d5286da733c981bcafb87f601324" id="r_a2723d5286da733c981bcafb87f601324"><td class="memItemLeft" align="right" valign="top"><a id="a2723d5286da733c981bcafb87f601324" name="a2723d5286da733c981bcafb87f601324"></a>
-<a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>triangular</b> (<a class="el" href="classKinit.html">const</a> VectorXd &amp;<a class="el" href="classKinit.html">u</a>)</td></tr>
+<tr class="memitem:a2723d5286da733c981bcafb87f601324" id="r_a2723d5286da733c981bcafb87f601324"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKernel.html#a2723d5286da733c981bcafb87f601324">triangular</a> (const VectorXd &amp;u)</td></tr>
+<tr class="memdesc:a2723d5286da733c981bcafb87f601324"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Triangular kernel.  <br /></td></tr>
 <tr class="separator:a2723d5286da733c981bcafb87f601324"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa92a6616192ee2aea6d62a006b7f1176" id="r_aa92a6616192ee2aea6d62a006b7f1176"><td class="memItemLeft" align="right" valign="top"><a id="aa92a6616192ee2aea6d62a006b7f1176" name="aa92a6616192ee2aea6d62a006b7f1176"></a>
-<a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>biweight</b> (<a class="el" href="classKinit.html">const</a> VectorXd &amp;<a class="el" href="classKinit.html">u</a>)</td></tr>
+<tr class="memitem:aa92a6616192ee2aea6d62a006b7f1176" id="r_aa92a6616192ee2aea6d62a006b7f1176"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKernel.html#aa92a6616192ee2aea6d62a006b7f1176">biweight</a> (const VectorXd &amp;u)</td></tr>
+<tr class="memdesc:aa92a6616192ee2aea6d62a006b7f1176"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Biweight kernel.  <br /></td></tr>
 <tr class="separator:aa92a6616192ee2aea6d62a006b7f1176"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfdc55e6909d7dc3a43c75effb60bdf2" id="r_abfdc55e6909d7dc3a43c75effb60bdf2"><td class="memItemLeft" align="right" valign="top"><a id="abfdc55e6909d7dc3a43c75effb60bdf2" name="abfdc55e6909d7dc3a43c75effb60bdf2"></a>
-<a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>triweight</b> (<a class="el" href="classKinit.html">const</a> VectorXd &amp;<a class="el" href="classKinit.html">u</a>)</td></tr>
+<tr class="memitem:abfdc55e6909d7dc3a43c75effb60bdf2" id="r_abfdc55e6909d7dc3a43c75effb60bdf2"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKernel.html#abfdc55e6909d7dc3a43c75effb60bdf2">triweight</a> (const VectorXd &amp;u)</td></tr>
+<tr class="memdesc:abfdc55e6909d7dc3a43c75effb60bdf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Triweight kernel.  <br /></td></tr>
 <tr class="separator:abfdc55e6909d7dc3a43c75effb60bdf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add0db69ca628d738159809d96f05e0d6" id="r_add0db69ca628d738159809d96f05e0d6"><td class="memItemLeft" align="right" valign="top"><a id="add0db69ca628d738159809d96f05e0d6" name="add0db69ca628d738159809d96f05e0d6"></a>
-<a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cosine</b> (<a class="el" href="classKinit.html">const</a> VectorXd &amp;<a class="el" href="classKinit.html">u</a>)</td></tr>
+<tr class="memitem:add0db69ca628d738159809d96f05e0d6" id="r_add0db69ca628d738159809d96f05e0d6"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKernel.html#add0db69ca628d738159809d96f05e0d6">cosine</a> (const VectorXd &amp;u)</td></tr>
+<tr class="memdesc:add0db69ca628d738159809d96f05e0d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Cosine kernel.  <br /></td></tr>
 <tr class="separator:add0db69ca628d738159809d96f05e0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Provides various kernel functions for density estimation and regression. </p>
+<p>This class implements several common kernel functions, which are used in statistical applications such as kernel density estimation and non-parametric regression. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa92a6616192ee2aea6d62a006b7f1176" name="aa92a6616192ee2aea6d62a006b7f1176"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92a6616192ee2aea6d62a006b7f1176">&#9670;&#160;</a></span>biweight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double Kernel::biweight </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the Biweight kernel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Input vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Computed kernel value. </dd></dl>
+
+</div>
+</div>
+<a id="add0db69ca628d738159809d96f05e0d6" name="add0db69ca628d738159809d96f05e0d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add0db69ca628d738159809d96f05e0d6">&#9670;&#160;</a></span>cosine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double Kernel::cosine </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the Cosine kernel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Input vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Computed kernel value. </dd></dl>
+
+</div>
+</div>
+<a id="a3d2da94426e916b61cccf7643bb251e8" name="a3d2da94426e916b61cccf7643bb251e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d2da94426e916b61cccf7643bb251e8">&#9670;&#160;</a></span>epanechnikov()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double Kernel::epanechnikov </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the Epanechnikov kernel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Input vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Computed kernel value. </dd></dl>
+
+</div>
+</div>
+<a id="a955fa7611c16312b639c4a7a46f2df46" name="a955fa7611c16312b639c4a7a46f2df46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a955fa7611c16312b639c4a7a46f2df46">&#9670;&#160;</a></span>gaussian()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double Kernel::gaussian </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the Gaussian kernel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Input vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Computed kernel value. </dd></dl>
+
+</div>
+</div>
+<a id="a2723d5286da733c981bcafb87f601324" name="a2723d5286da733c981bcafb87f601324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2723d5286da733c981bcafb87f601324">&#9670;&#160;</a></span>triangular()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double Kernel::triangular </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the Triangular kernel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Input vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Computed kernel value. </dd></dl>
+
+</div>
+</div>
+<a id="abfdc55e6909d7dc3a43c75effb60bdf2" name="abfdc55e6909d7dc3a43c75effb60bdf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfdc55e6909d7dc3a43c75effb60bdf2">&#9670;&#160;</a></span>triweight()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double Kernel::triweight </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the Triweight kernel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Input vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Computed kernel value. </dd></dl>
+
+</div>
+</div>
+<a id="a3004363039615180e88ba91b81d342d0" name="a3004363039615180e88ba91b81d342d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3004363039615180e88ba91b81d342d0">&#9670;&#160;</a></span>uniform()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static double Kernel::uniform </td>
+          <td>(</td>
+          <td class="paramtype">const VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>u</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Computes the Uniform kernel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">u</td><td>Input vector. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Computed kernel value. </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/clustering/CentroidInitializationMethods/<a class="el" href="KernelFunction_8hpp_source.html">KernelFunction.hpp</a></li>
 </ul>
