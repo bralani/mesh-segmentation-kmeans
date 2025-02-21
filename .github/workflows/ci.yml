@@ -17,21 +17,11 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt update
-        sudo apt install -y cmake g++ ninja-build cppcheck
+        sudo apt install -y cmake g++ ninja-build valgrind
 
     - name: Update Submodules
       run: |
         git submodule update --init --recursive
-
-    - name: Run Cppcheck (Ignora exit code)
-      run: |
-        cppcheck --enable=all --inconclusive --quiet src/ 2> cppcheck_report.txt || true
-
-    - name: Upload Cppcheck Report
-      uses: actions/upload-artifact@v4
-      with:
-        name: cppcheck-report
-        path: cppcheck_report.txt
 
     - name: Configure CMake
       run: |
@@ -48,3 +38,9 @@ jobs:
       run: |
         cd build/tests
         ctest --output-on-failure
+
+
+    - name: Valgrind Tests
+      run: |
+        cd build/bin
+        valgrind --leak-check=full --show-leak-kinds=all --error-exitcode=1 ./monitoring brain 3 2 0
