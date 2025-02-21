@@ -5,13 +5,6 @@ project(KMeans)
 set(CMAKE_OSX_ARCHITECTURES arm64)
 set(CMAKE_CXX_STANDARD 17)
 
-# Coverage only if CLANG or GCC
-if(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} --coverage")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
-endif()
-
 add_definitions(-DROOT_FOLDER=\"${CMAKE_SOURCE_DIR}\")
 
 # CUDA settings
