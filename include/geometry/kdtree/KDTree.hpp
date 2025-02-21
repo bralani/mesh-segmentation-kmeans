@@ -10,40 +10,40 @@
 #include "geometry/kdtree/KDNode.hpp"
 
 /**
- * @class KdTree
- * @brief A k-dimensional tree (kd-tree) for organizing and searching spatial data.
+ * \class KdTree
+ * \brief A k-dimensional tree (kd-tree) for organizing and searching spatial data.
  * 
  * The kd-tree is a space-partitioning data structure used for organizing points in a k-dimensional space.
  * It is useful for efficient nearest-neighbor searches, range searches, and clustering.
  * 
- * @tparam PT The type of the coordinate values (e.g., double, int).
- * @tparam PD The number of dimensions of the points (e.g., 2 for 2D, 3 for 3D).
+ * \tparam PT The type of the coordinate values (e.g., double, int).
+ * \tparam PD The number of dimensions of the points (e.g., 2 for 2D, 3 for 3D).
  */
 template <typename PT, std::size_t PD>
 class KdTree {
 public:
     /**
-     * @brief Constructs a KD-tree from a given set of points.
+     * \brief Constructs a KD-tree from a given set of points.
      * 
      * This constructor initializes the tree by recursively partitioning the input points.
      * 
-     * @param points A reference to a vector of points to be organized into the tree.
+     * \param points A reference to a vector of points to be organized into the tree.
      */
     KdTree(std::vector<Point<PT, PD>>& points);
 
     /**
-     * @brief Default virtual destructor.
+     * \brief Default virtual destructor.
      * 
      * Ensures proper cleanup of dynamically allocated nodes when the KdTree object is destroyed.
      */
     virtual ~KdTree() = default;
 
     /**
-     * @brief Returns a reference to the root node of the kd-tree.
+     * \brief Returns a reference to the root node of the kd-tree.
      * 
      * The root node provides access to the entire tree structure.
      * 
-     * @return A unique pointer to the root KdNode.
+     * \return A unique pointer to the root KdNode.
      */
     std::unique_ptr<KdNode<PT, PD>>& getRoot();
 
@@ -51,14 +51,14 @@ private:
     std::unique_ptr<KdNode<PT, PD>> root = nullptr; ///< Root node of the KD-tree.
 
     /**
-     * @brief Recursively builds the KD-tree from a subset of points.
+     * \brief Recursively builds the KD-tree from a subset of points.
      * 
      * The function partitions the points along a selected dimension and creates child nodes recursively.
      * 
-     * @param begin Iterator pointing to the beginning of the subset.
-     * @param end Iterator pointing to the end of the subset.
-     * @param depth Current depth in the tree (used to determine the splitting dimension).
-     * @return A unique pointer to the constructed KdNode.
+     * \param begin Iterator pointing to the beginning of the subset.
+     * \param end Iterator pointing to the end of the subset.
+     * \param depth Current depth in the tree (used to determine the splitting dimension).
+     * \return A unique pointer to the constructed KdNode.
      */
     std::unique_ptr<KdNode<PT, PD>> buildTree(typename std::vector<Point<PT, PD>>::iterator begin,
                                               typename std::vector<Point<PT, PD>>::iterator end,

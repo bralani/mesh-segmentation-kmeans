@@ -117,6 +117,7 @@
         "openglsupport": "cpp",
         "specialfunctions": "cpp",
         "splines": "cpp",
-        "__config": "cpp"
+        "__config": "cpp",
+        "hash_map": "cpp"
     }
 }
