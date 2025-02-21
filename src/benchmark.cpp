@@ -5,7 +5,7 @@
 
 #include "mesh_segmentation/MeshSegmentation.hpp"
 #include "geometry/metrics/EuclideanMetric.hpp"
-#include "geometry/metrics/GeodesicMetric.hpp"
+#include "geometry/metrics/GeodesicDijkstraMetric.hpp"
 
 using namespace std;
 

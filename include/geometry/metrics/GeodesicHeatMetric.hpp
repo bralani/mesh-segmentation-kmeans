@@ -7,7 +7,7 @@
 #include <stdexcept>
 #include <cassert>
 #include "geometry/mesh/Mesh.hpp"
-#include "geometry/metrics/GeodesicMetric.hpp"
+#include "geometry/metrics/GeodesicDijkstraMetric.hpp"
 
 #ifdef WIN32
 #include <windows.h>
@@ -38,7 +38,7 @@ typedef Eigen::Matrix<double,Eigen::Dynamic,1> VectorXS;
  * \class GeodesicHeatMetric
  * \brief A class for computing geodesic distances using heat diffusion-based method.
  *
- * This class inherits from the GeodesicMetric class and provides an implementation
+ * This class inherits from the GeodesicDijkstraMetric class and provides an implementation
  * of geodesic distances based on heat geodesics. It uses data from the igl library
  * to compute these distances across a given mesh.
  *
@@ -46,7 +46,7 @@ typedef Eigen::Matrix<double,Eigen::Dynamic,1> VectorXS;
  * \tparam PD Dimension of the point (e.g., 3D)
  */
 template <typename PT, std::size_t PD>
-class GeodesicHeatMetric : public GeodesicMetric<PT, PD>
+class GeodesicHeatMetric : public GeodesicDijkstraMetric<PT, PD>
 {
 public:
     /**
@@ -64,7 +64,7 @@ public:
     /**
      * \brief Computes the geodesic distances from a specified starting face.
      *
-     * This method overrides the pure virtual method in the GeodesicMetric base class
+     * This method overrides the pure virtual method in the GeodesicDijkstraMetric base class
      * to compute the distances using heat geodesics.
      *
      * \param startFace The face of the mesh from which the geodesic distances will be calculated.

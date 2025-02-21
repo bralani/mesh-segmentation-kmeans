@@ -6,7 +6,7 @@
 
 #include "mesh_segmentation/MeshSegmentation.hpp"
 #include "geometry/metrics/EuclideanMetric.hpp"
-#include "geometry/metrics/GeodesicMetric.hpp"
+#include "geometry/metrics/GeodesicDijkstraMetric.hpp"
 #include "geometry/metrics/GeodesicHeatMetric.hpp"
 #include "SharedEnum.hpp"
 
@@ -39,7 +39,7 @@ std::string segmentationCallback(const std::string &fileName, Enums::CentroidIni
     }
     else if (metric_method == Enums::MetricMethod::DIJKSTRA)
     {
-      MeshSegmentation<GeodesicMetric<double, 3>> segmentation(&mesh, num_clusters, threshold,
+      MeshSegmentation<GeodesicDijkstraMetric<double, 3>> segmentation(&mesh, num_clusters, threshold,
                                                                static_cast<int>(num_initialization_method),
                                                                static_cast<int>(num_k_init_method));
       segmentation.fit();

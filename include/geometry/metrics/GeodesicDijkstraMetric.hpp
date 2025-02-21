@@ -30,7 +30,7 @@ void kmeans_cuda_geodesic(
 #endif
 
 /**
- * \class GeodesicMetric
+ * \class GeodesicDijkstraMetric
  * \brief A class for computing geodesic distances on a mesh with Dijkstra's algorithm
  * 
  * This class provides an implementation for computing geodesic distances between faces
@@ -42,7 +42,7 @@ void kmeans_cuda_geodesic(
  * \tparam PD Dimension of the point (e.g., 3D)
  */
 template <typename PT, std::size_t PD>
-class GeodesicMetric : public Metric<PT, PD>
+class GeodesicDijkstraMetric : public Metric<PT, PD>
 {
 public:
     /**
@@ -52,7 +52,7 @@ public:
      * \param percentage_threshold The threshold value for geodesic distance calculations.
      * \param data A collection of points (faces) to work with in the metric calculation.
      */
-    GeodesicMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data);
+    GeodesicDijkstraMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data);
 
     /**
      * \brief Prepares the metric by setting up necessary data structures and initializations.

@@ -10,7 +10,7 @@
 #include <unordered_map>
 
 #include "geometry/mesh/Mesh.hpp"
-#include "geometry/metrics/GeodesicMetric.hpp"
+#include "geometry/metrics/GeodesicDijkstraMetric.hpp"
 #include "geometry/metrics/GeodesicHeatMetric.hpp"
 #include "clustering/KMeans.hpp"
 
@@ -21,7 +21,7 @@
  * This class applies a clustering algorithm to a given 3D mesh, 
  * grouping similar points based on a specified metric.
  * 
- * \tparam M The metric used for measuring distances between points on the mesh (EuclideanMetric, GeodesicMetric, GeodesicHeatMetric).
+ * \tparam M The metric used for measuring distances between points on the mesh (EuclideanMetric, GeodesicDijkstraMetric, GeodesicHeatMetric).
  */
 template <class M>
 class MeshSegmentation

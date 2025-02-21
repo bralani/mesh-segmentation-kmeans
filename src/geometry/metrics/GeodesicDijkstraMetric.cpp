@@ -1,9 +1,9 @@
-#include "geometry/metrics/GeodesicMetric.hpp"
+#include "geometry/metrics/GeodesicDijkstraMetric.hpp"
 
 #define MAX_ITERATIONS 200
 
 template <typename PT, std::size_t PD>
-GeodesicMetric<PT, PD>::GeodesicMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data)
+GeodesicDijkstraMetric<PT, PD>::GeodesicDijkstraMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data)
     : mesh(&mesh)
 {
   this->threshold = percentage_threshold;
@@ -11,7 +11,7 @@ GeodesicMetric<PT, PD>::GeodesicMetric(Mesh &mesh, double percentage_threshold, 
 }
 
 template <typename PT, std::size_t PD>
-double GeodesicMetric<PT, PD>::setupAvg(){
+double GeodesicDijkstraMetric<PT, PD>::setupAvg(){
   
   double result = 0.0;
   int totalPairs = 0;
@@ -40,7 +40,7 @@ double GeodesicMetric<PT, PD>::setupAvg(){
 }
 
 template <typename PT, std::size_t PD>
-double GeodesicMetric<PT, PD>::dihedralAngle(const Face& f1, const Face& f2) const {
+double GeodesicDijkstraMetric<PT, PD>::dihedralAngle(const Face& f1, const Face& f2) const {
     // Compute the normal vectors of the two faces
     Point<PT, PD> n1 = f1.normal;
     Point<PT, PD> n2 = f2.normal;
@@ -71,10 +71,10 @@ double GeodesicMetric<PT, PD>::dihedralAngle(const Face& f1, const Face& f2) con
 
 
 template <typename PT, std::size_t PD>
-void GeodesicMetric<PT, PD>::setup()
+void GeodesicDijkstraMetric<PT, PD>::setup()
 {
   this->avgDistances = setupAvg();
-  #pragma omp parallel for
+  //#pragma omp parallel for
   for (int centroidId = 0; centroidId < this->centroids->size(); ++centroidId)
   {
     const auto &centroid = this->centroids->at(centroidId);
@@ -87,7 +87,7 @@ void GeodesicMetric<PT, PD>::setup()
 }
 
 template <typename PT, std::size_t PD>
-FaceId GeodesicMetric<PT, PD>::findClosestFace(const Point<PT, PD> &centroid) const
+FaceId GeodesicDijkstraMetric<PT, PD>::findClosestFace(const Point<PT, PD> &centroid) const
 {
   double minDistance = std::numeric_limits<double>::max();
   FaceId closestFaceId = 0;
@@ -126,7 +126,7 @@ FaceId GeodesicMetric<PT, PD>::findClosestFace(const Point<PT, PD> &centroid) co
 }
 
 template <typename PT, std::size_t PD>
-void GeodesicMetric<PT, PD>::fit_cpu()
+void GeodesicDijkstraMetric<PT, PD>::fit_cpu()
 {
   if (this->centroids->empty())
   {
@@ -216,7 +216,7 @@ void GeodesicMetric<PT, PD>::fit_cpu()
 
 // Controlla la convergenza
 template <typename PT, std::size_t PD>
-bool GeodesicMetric<PT, PD>::checkConvergence(int iter) {
+bool GeodesicDijkstraMetric<PT, PD>::checkConvergence(int iter) {
     if (iter > MAX_ITERATIONS) return true;
 
     if (this->oldCentroids.empty()) return false;
@@ -230,7 +230,7 @@ bool GeodesicMetric<PT, PD>::checkConvergence(int iter) {
 }
 
 template <typename PT, std::size_t PD>
-double GeodesicMetric<PT, PD>::computeEuclideanDistance(const Point<PT, PD> &a, const Point<PT, PD> &b) const
+double GeodesicDijkstraMetric<PT, PD>::computeEuclideanDistance(const Point<PT, PD> &a, const Point<PT, PD> &b) const
 {
   double sum = 0.0;
   for (std::size_t i = 0; i < PD; ++i)
@@ -241,7 +241,7 @@ double GeodesicMetric<PT, PD>::computeEuclideanDistance(const Point<PT, PD> &a, 
 }
 
 template <typename PT, std::size_t PD>
-std::vector<PT> GeodesicMetric<PT, PD>::computeDistances(const FaceId startFace) const
+std::vector<PT> GeodesicDijkstraMetric<PT, PD>::computeDistances(const FaceId startFace) const
 {
 
   // Initialize Dijkstra's algorithm
@@ -294,9 +294,9 @@ std::vector<PT> GeodesicMetric<PT, PD>::computeDistances(const FaceId startFace)
 
 #ifdef USE_CUDA
 template <typename PT, std::size_t PD>
-void GeodesicMetric<PT, PD>::fit_gpu()
+void GeodesicDijkstraMetric<PT, PD>::fit_gpu()
 {
-  std::cout << "[GeodesicMetric::fit_gpu] starting GPU K-Means..." << std::endl;
+  std::cout << "[GeodesicDijkstraMetric::fit_gpu] starting GPU K-Means..." << std::endl;
   if (this->centroids->empty())
   {
     throw std::runtime_error("Centroids not set!");
@@ -378,12 +378,12 @@ void GeodesicMetric<PT, PD>::fit_gpu()
 
   // store or print
   this->storeCentroids();
-  std::cout << "[GeodesicMetric::fit_gpu] finished after GPU K-Means.\n";
+  std::cout << "[GeodesicDijkstraMetric::fit_gpu] finished after GPU K-Means.\n";
 }
 #endif
 
 template <typename PT, std::size_t PD>
-void GeodesicMetric<PT, PD>::storeCentroids(){
+void GeodesicDijkstraMetric<PT, PD>::storeCentroids(){
   const size_t numFaces = mesh->numFaces();
   for (FaceId faceId = 0; faceId < numFaces; ++faceId)
   {
@@ -395,7 +395,7 @@ void GeodesicMetric<PT, PD>::storeCentroids(){
 }
 
 template <typename PT, std::size_t PD>
-std::vector<Point<PT, PD>>& GeodesicMetric<PT, PD>::getPoints(){
+std::vector<Point<PT, PD>>& GeodesicDijkstraMetric<PT, PD>::getPoints(){
   (this->data).clear();
   const size_t numFaces = mesh->numFaces();
   for (FaceId faceId = 0; faceId < numFaces; ++faceId)
@@ -408,4 +408,4 @@ std::vector<Point<PT, PD>>& GeodesicMetric<PT, PD>::getPoints(){
 
 
 // Explicit template instantiations
-template class GeodesicMetric<double, 3>;
+template class GeodesicDijkstraMetric<double, 3>;

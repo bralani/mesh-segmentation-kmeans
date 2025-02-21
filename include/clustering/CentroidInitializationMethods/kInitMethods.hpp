@@ -4,7 +4,7 @@
 #include <cstddef> 
 
 #include "geometry/metrics/Metric.hpp"
-#include "geometry/metrics/GeodesicMetric.hpp"
+#include "geometry/metrics/GeodesicDijkstraMetric.hpp"
 #include "geometry/metrics/GeodesicHeatMetric.hpp"
 #include "geometry/metrics/EuclideanMetric.hpp"
 

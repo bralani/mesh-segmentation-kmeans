@@ -2,7 +2,7 @@
 
 template <typename PT, std::size_t PD>
 GeodesicHeatMetric<PT, PD>::GeodesicHeatMetric(Mesh &mesh, double percentage_threshold, std::vector<Point<PT, PD>> data)
-    : GeodesicMetric<PT, PD>(mesh, percentage_threshold, data)
+    : GeodesicDijkstraMetric<PT, PD>(mesh, percentage_threshold, data)
 {
     const std::vector<Point<double, 3>> vertices = mesh.getVertices();
     Eigen::MatrixXd V(vertices.size(), 3);

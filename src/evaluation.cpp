@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
                             segmentation.fit();
                         }
                         else if(metric == 1) {
-                            MeshSegmentation<GeodesicMetric<double, 3>> segmentation(&mesh, num_clusters, 0.05, num_initialization_method, 0);
+                            MeshSegmentation<GeodesicDijkstraMetric<double, 3>> segmentation(&mesh, num_clusters, 0.05, num_initialization_method, 0);
                             segmentation.fit();
                         }
                         else if(metric == 2) {

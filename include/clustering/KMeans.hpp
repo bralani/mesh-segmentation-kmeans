@@ -35,7 +35,7 @@
  * 
  * \tparam PT The type of the point coordinates (e.g., double, int).
  * \tparam PD The number of dimensions of the points (e.g., 2 for 2D, 3 for 3D).
- * \tparam M The type of the distance metric (e.g., EuclideanMetric, GeodesicMetric, GeodesicHeatMetric).
+ * \tparam M The type of the distance metric (e.g., EuclideanMetric, GeodesicDijkstraMetric, GeodesicHeatMetric).
  */
 template <typename PT, std::size_t PD, class M>
 class KMeans

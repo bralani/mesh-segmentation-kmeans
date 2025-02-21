@@ -69,7 +69,7 @@ public:
         case MetricMethod::EUCLIDEAN:
             return "Euclidean";
         case MetricMethod::HEAT:
-            return "Geodesic";
+            return "Heat";
         default:
             return "Unknown Metric Method";
         }

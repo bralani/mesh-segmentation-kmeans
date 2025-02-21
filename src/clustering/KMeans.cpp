@@ -158,4 +158,4 @@ void KMeans<PT, PD, M>::print()
 template class KMeans<double, 2, EuclideanMetric<double, 2>>;
 template class KMeans<double, 3, EuclideanMetric<double, 3>>;
 template class KMeans<double, 3, GeodesicHeatMetric<double, 3>>;
-template class KMeans<double, 3, GeodesicMetric<double, 3>>;
+template class KMeans<double, 3, GeodesicDijkstraMetric<double, 3>>;

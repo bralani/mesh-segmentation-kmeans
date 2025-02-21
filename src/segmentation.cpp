@@ -4,7 +4,7 @@
 
 #include "mesh_segmentation/MeshSegmentation.hpp"
 #include "geometry/metrics/EuclideanMetric.hpp"
-#include "geometry/metrics/GeodesicMetric.hpp"
+#include "geometry/metrics/GeodesicDijkstraMetric.hpp"
 #include "geometry/metrics/GeodesicHeatMetric.hpp"
 #include "clustering/CentroidInitializationMethods/SharedEnum.hpp"
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
         }
         else if (metric == Enums::MetricMethod::DIJKSTRA)
         {
-            MeshSegmentation<GeodesicMetric<double, DIM>> segmentation(&mesh, num_clusters, 0.05, num_initialization_method, num_k_init_method);
+            MeshSegmentation<GeodesicDijkstraMetric<double, DIM>> segmentation(&mesh, num_clusters, 0.05, num_initialization_method, num_k_init_method);
             segmentation.fit();
         }
         else if (metric == Enums::MetricMethod::HEAT)
