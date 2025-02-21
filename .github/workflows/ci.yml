@@ -17,7 +17,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt update
-        sudo apt install -y cmake g++ ninja-build
+        sudo apt install -y cmake g++ ninja-build linux-tools-common linux-tools-generic linux-tools-`uname -r`
 
     - name: Update Submodules
       run: |
@@ -38,9 +38,14 @@ jobs:
       run: |
         cd build/tests
         ctest --output-on-failure
-
     
     - name: Monitoring Euclidean
       run: |
         cd build/bin
-        ./monitoring brain 3 2 0
+        perf stat -e cache-references,cache-misses ./monitoring brain 3 2 0 2> cache_stats.txt
+
+    - name: Commit Cache Miss Data
+      run: |
+        git add cache_stats.txt
+        git commit -m "Update cache miss stats" || echo "No changes"
+        git push
