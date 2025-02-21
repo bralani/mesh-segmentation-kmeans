@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Mesh segmentation: GeodesicMetric&lt; PT, PD &gt; Class Template Reference</title>
+<title>Mesh segmentation: GeodesicDijkstraMetric&lt; PT, PD &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classGeodesicMetric.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classGeodesicDijkstraMetric.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -99,43 +99,43 @@ $(document).ready(function(){initNavTree('classGeodesicMetric.html',''); initRes
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="classGeodesicMetric-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">GeodesicMetric&lt; PT, PD &gt; Class Template Reference</div></div>
+<a href="classGeodesicDijkstraMetric-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">GeodesicDijkstraMetric&lt; PT, PD &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>A class for computing geodesic distances on a mesh with Dijkstra's algorithm.  
- <a href="classGeodesicMetric.html#details">More...</a></p>
+ <a href="classGeodesicDijkstraMetric.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="GeodesicMetric_8hpp_source.html">GeodesicMetric.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="GeodesicDijkstraMetric_8hpp_source.html">GeodesicDijkstraMetric.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for GeodesicMetric&lt; PT, PD &gt;:</div>
+Inheritance diagram for GeodesicDijkstraMetric&lt; PT, PD &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classGeodesicMetric__inherit__graph.svg" width="227" height="872"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classGeodesicDijkstraMetric__inherit__graph.svg" width="227" height="872"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <div class="dynheader">
-Collaboration diagram for GeodesicMetric&lt; PT, PD &gt;:</div>
+Collaboration diagram for GeodesicDijkstraMetric&lt; PT, PD &gt;:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classGeodesicMetric__coll__graph.svg" width="387" height="719"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classGeodesicDijkstraMetric__coll__graph.svg" width="387" height="719"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a20c1705ef66298837750fbd343cda3bb" id="r_a20c1705ef66298837750fbd343cda3bb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#a20c1705ef66298837750fbd343cda3bb">GeodesicMetric</a> (<a class="el" href="classMesh.html">Mesh</a> &amp;<a class="el" href="classGeodesicMetric.html#abb836353308bf1c2e9de79e5e301df43">mesh</a>, double percentage_threshold, std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; <a class="el" href="classMetric.html#a5f022c396ff8ab3537f66f23de201e85">data</a>)</td></tr>
-<tr class="memdesc:a20c1705ef66298837750fbd343cda3bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that initializes the geodesic metric with a mesh and data points.  <br /></td></tr>
-<tr class="separator:a20c1705ef66298837750fbd343cda3bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af236f81df609336f894dbf39ed24891e" id="r_af236f81df609336f894dbf39ed24891e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#af236f81df609336f894dbf39ed24891e">setup</a> () override</td></tr>
-<tr class="memdesc:af236f81df609336f894dbf39ed24891e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares the metric by setting up necessary data structures and initializations.  <br /></td></tr>
-<tr class="separator:af236f81df609336f894dbf39ed24891e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a195d373d46183857a57f203c86464716" id="r_a195d373d46183857a57f203c86464716"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#a195d373d46183857a57f203c86464716">fit_cpu</a> () override</td></tr>
-<tr class="memdesc:a195d373d46183857a57f203c86464716"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the geodesic model using CPU-based computation.  <br /></td></tr>
-<tr class="separator:a195d373d46183857a57f203c86464716"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae47c61508bc4a8872a80b380ec725e61" id="r_ae47c61508bc4a8872a80b380ec725e61"><td class="memItemLeft" align="right" valign="top">FaceId&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#ae47c61508bc4a8872a80b380ec725e61">findClosestFace</a> (const <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &amp;centroid) const</td></tr>
-<tr class="memdesc:ae47c61508bc4a8872a80b380ec725e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the closest face on the mesh to a given point (centroid).  <br /></td></tr>
-<tr class="separator:ae47c61508bc4a8872a80b380ec725e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1feb47a2df878c99b2dfe92ec884f39" id="r_af1feb47a2df878c99b2dfe92ec884f39"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#af1feb47a2df878c99b2dfe92ec884f39">getPoints</a> () override</td></tr>
-<tr class="memdesc:af1feb47a2df878c99b2dfe92ec884f39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the data points (faces) used for the geodesic calculations.  <br /></td></tr>
-<tr class="separator:af1feb47a2df878c99b2dfe92ec884f39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4876f1dda5c5a2349e9fc096b66a8aca" id="r_a4876f1dda5c5a2349e9fc096b66a8aca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#a4876f1dda5c5a2349e9fc096b66a8aca">GeodesicDijkstraMetric</a> (<a class="el" href="classMesh.html">Mesh</a> &amp;<a class="el" href="classGeodesicDijkstraMetric.html#a621ce031dd571e3a61aeb987795ea255">mesh</a>, double percentage_threshold, std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; <a class="el" href="classMetric.html#a5f022c396ff8ab3537f66f23de201e85">data</a>)</td></tr>
+<tr class="memdesc:a4876f1dda5c5a2349e9fc096b66a8aca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that initializes the geodesic metric with a mesh and data points.  <br /></td></tr>
+<tr class="separator:a4876f1dda5c5a2349e9fc096b66a8aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a5c9e1e5de0cc95516d5c8fe027550e" id="r_a2a5c9e1e5de0cc95516d5c8fe027550e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#a2a5c9e1e5de0cc95516d5c8fe027550e">setup</a> () override</td></tr>
+<tr class="memdesc:a2a5c9e1e5de0cc95516d5c8fe027550e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepares the metric by setting up necessary data structures and initializations.  <br /></td></tr>
+<tr class="separator:a2a5c9e1e5de0cc95516d5c8fe027550e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf3c8f275d51572c4c0c729ec7259616" id="r_adf3c8f275d51572c4c0c729ec7259616"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#adf3c8f275d51572c4c0c729ec7259616">fit_cpu</a> () override</td></tr>
+<tr class="memdesc:adf3c8f275d51572c4c0c729ec7259616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fits the geodesic model using CPU-based computation.  <br /></td></tr>
+<tr class="separator:adf3c8f275d51572c4c0c729ec7259616"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c887a87f2e81f550d6a74bad17db91" id="r_ac3c887a87f2e81f550d6a74bad17db91"><td class="memItemLeft" align="right" valign="top">FaceId&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#ac3c887a87f2e81f550d6a74bad17db91">findClosestFace</a> (const <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &amp;centroid) const</td></tr>
+<tr class="memdesc:ac3c887a87f2e81f550d6a74bad17db91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the closest face on the mesh to a given point (centroid).  <br /></td></tr>
+<tr class="separator:ac3c887a87f2e81f550d6a74bad17db91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86b710373fb6cffdd5974d05d6638dd" id="r_ac86b710373fb6cffdd5974d05d6638dd"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#ac86b710373fb6cffdd5974d05d6638dd">getPoints</a> () override</td></tr>
+<tr class="memdesc:ac86b710373fb6cffdd5974d05d6638dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the data points (faces) used for the geodesic calculations.  <br /></td></tr>
+<tr class="separator:ac86b710373fb6cffdd5974d05d6638dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classMetric"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMetric')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classMetric.html">Metric&lt; PT, PD &gt;</a></td></tr>
 <tr class="memitem:abd6ee8ea94d0c8c82534ded7356e0185 inherit pub_methods_classMetric" id="r_abd6ee8ea94d0c8c82534ded7356e0185"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetric.html#abd6ee8ea94d0c8c82534ded7356e0185">Metric</a> ()</td></tr>
 <tr class="memdesc:abd6ee8ea94d0c8c82534ded7356e0185 inherit pub_methods_classMetric"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor that initializes centroids to null.  <br /></td></tr>
@@ -161,35 +161,35 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:aef6e920854639847c73a7297556997f7" id="r_aef6e920854639847c73a7297556997f7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#aef6e920854639847c73a7297556997f7">computeEuclideanDistance</a> (const <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &amp;a, const <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &amp;b) const</td></tr>
-<tr class="memdesc:aef6e920854639847c73a7297556997f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Euclidean distance between two points.  <br /></td></tr>
-<tr class="separator:aef6e920854639847c73a7297556997f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ae3d51c48e921e19fa7c88193ec7b57" id="r_a7ae3d51c48e921e19fa7c88193ec7b57"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; PT &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#a7ae3d51c48e921e19fa7c88193ec7b57">computeDistances</a> (const FaceId startFace) const</td></tr>
-<tr class="memdesc:a7ae3d51c48e921e19fa7c88193ec7b57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the geodesic distances starting from a given face using Dijkstra's algorithm.  <br /></td></tr>
-<tr class="separator:a7ae3d51c48e921e19fa7c88193ec7b57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27d1a05a59ecfdf888dd74632ce6023c" id="r_a27d1a05a59ecfdf888dd74632ce6023c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#a27d1a05a59ecfdf888dd74632ce6023c">storeCentroids</a> () override</td></tr>
-<tr class="memdesc:a27d1a05a59ecfdf888dd74632ce6023c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the centroids after the fitting process.  <br /></td></tr>
-<tr class="separator:a27d1a05a59ecfdf888dd74632ce6023c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f433268c09df1d528c24acc8c205585" id="r_a4f433268c09df1d528c24acc8c205585"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#a4f433268c09df1d528c24acc8c205585">dihedralAngle</a> (const <a class="el" href="structFace.html">Face</a> &amp;f1, const <a class="el" href="structFace.html">Face</a> &amp;f2) const</td></tr>
-<tr class="memdesc:a4f433268c09df1d528c24acc8c205585"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the dihedral angle between two mesh faces.  <br /></td></tr>
-<tr class="separator:a4f433268c09df1d528c24acc8c205585"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e9cddd8ada1495b38ceeaae69917d91" id="r_a0e9cddd8ada1495b38ceeaae69917d91"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#a0e9cddd8ada1495b38ceeaae69917d91">setupAvg</a> ()</td></tr>
-<tr class="memdesc:a0e9cddd8ada1495b38ceeaae69917d91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the average distance between neighbors faces.  <br /></td></tr>
-<tr class="separator:a0e9cddd8ada1495b38ceeaae69917d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06b619053bc4438f85c7b949575c9f81" id="r_a06b619053bc4438f85c7b949575c9f81"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#a06b619053bc4438f85c7b949575c9f81">checkConvergence</a> (int iter)</td></tr>
-<tr class="memdesc:a06b619053bc4438f85c7b949575c9f81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for convergence based on the number of iterations and distance changes.  <br /></td></tr>
-<tr class="separator:a06b619053bc4438f85c7b949575c9f81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7613dc16c0d8b65cc6b48bcfac44ca5c" id="r_a7613dc16c0d8b65cc6b48bcfac44ca5c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#a7613dc16c0d8b65cc6b48bcfac44ca5c">computeEuclideanDistance</a> (const <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &amp;a, const <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &amp;b) const</td></tr>
+<tr class="memdesc:a7613dc16c0d8b65cc6b48bcfac44ca5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the Euclidean distance between two points.  <br /></td></tr>
+<tr class="separator:a7613dc16c0d8b65cc6b48bcfac44ca5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a995344f5b0f02617bd1f1073c3d8a1" id="r_a2a995344f5b0f02617bd1f1073c3d8a1"><td class="memItemLeft" align="right" valign="top">virtual std::vector&lt; PT &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#a2a995344f5b0f02617bd1f1073c3d8a1">computeDistances</a> (const FaceId startFace) const</td></tr>
+<tr class="memdesc:a2a995344f5b0f02617bd1f1073c3d8a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the geodesic distances starting from a given face using Dijkstra's algorithm.  <br /></td></tr>
+<tr class="separator:a2a995344f5b0f02617bd1f1073c3d8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb3e486a7521d8aecfb645bf0ab246e9" id="r_adb3e486a7521d8aecfb645bf0ab246e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#adb3e486a7521d8aecfb645bf0ab246e9">storeCentroids</a> () override</td></tr>
+<tr class="memdesc:adb3e486a7521d8aecfb645bf0ab246e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores the centroids after the fitting process.  <br /></td></tr>
+<tr class="separator:adb3e486a7521d8aecfb645bf0ab246e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a555ed75358d5260d1453781e36af567c" id="r_a555ed75358d5260d1453781e36af567c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#a555ed75358d5260d1453781e36af567c">dihedralAngle</a> (const <a class="el" href="structFace.html">Face</a> &amp;f1, const <a class="el" href="structFace.html">Face</a> &amp;f2) const</td></tr>
+<tr class="memdesc:a555ed75358d5260d1453781e36af567c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the dihedral angle between two mesh faces.  <br /></td></tr>
+<tr class="separator:a555ed75358d5260d1453781e36af567c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8e9dc1d3c713ced1fdec445c07d36f" id="r_aab8e9dc1d3c713ced1fdec445c07d36f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#aab8e9dc1d3c713ced1fdec445c07d36f">setupAvg</a> ()</td></tr>
+<tr class="memdesc:aab8e9dc1d3c713ced1fdec445c07d36f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets up the average distance between neighbors faces.  <br /></td></tr>
+<tr class="separator:aab8e9dc1d3c713ced1fdec445c07d36f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86a39ffcff7b00dd6c0b5c6a5e78b8f7" id="r_a86a39ffcff7b00dd6c0b5c6a5e78b8f7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#a86a39ffcff7b00dd6c0b5c6a5e78b8f7">checkConvergence</a> (int iter)</td></tr>
+<tr class="memdesc:a86a39ffcff7b00dd6c0b5c6a5e78b8f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for convergence based on the number of iterations and distance changes.  <br /></td></tr>
+<tr class="separator:a86a39ffcff7b00dd6c0b5c6a5e78b8f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:abb836353308bf1c2e9de79e5e301df43" id="r_abb836353308bf1c2e9de79e5e301df43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMesh.html">Mesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#abb836353308bf1c2e9de79e5e301df43">mesh</a></td></tr>
-<tr class="separator:abb836353308bf1c2e9de79e5e301df43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa96ebe18340026a0a2bec9ba4bd9f513" id="r_aa96ebe18340026a0a2bec9ba4bd9f513"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; FaceId, std::vector&lt; PT &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#aa96ebe18340026a0a2bec9ba4bd9f513">distances</a></td></tr>
-<tr class="separator:aa96ebe18340026a0a2bec9ba4bd9f513"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb8fcc4993f3a2d694b18f6c0155e01d" id="r_adb8fcc4993f3a2d694b18f6c0155e01d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#adb8fcc4993f3a2d694b18f6c0155e01d">oldPoints</a> = 0</td></tr>
-<tr class="separator:adb8fcc4993f3a2d694b18f6c0155e01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec2e801ed2977478dc5c3226177e0440" id="r_aec2e801ed2977478dc5c3226177e0440"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicMetric.html#aec2e801ed2977478dc5c3226177e0440">avgDistances</a></td></tr>
-<tr class="separator:aec2e801ed2977478dc5c3226177e0440"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a621ce031dd571e3a61aeb987795ea255" id="r_a621ce031dd571e3a61aeb987795ea255"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMesh.html">Mesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#a621ce031dd571e3a61aeb987795ea255">mesh</a></td></tr>
+<tr class="separator:a621ce031dd571e3a61aeb987795ea255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47f137045b790d87a11fe38cfe04aaf9" id="r_a47f137045b790d87a11fe38cfe04aaf9"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; FaceId, std::vector&lt; PT &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#a47f137045b790d87a11fe38cfe04aaf9">distances</a></td></tr>
+<tr class="separator:a47f137045b790d87a11fe38cfe04aaf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e421ac348797d5e9bc462f9677eb2f9" id="r_a2e421ac348797d5e9bc462f9677eb2f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#a2e421ac348797d5e9bc462f9677eb2f9">oldPoints</a> = 0</td></tr>
+<tr class="separator:a2e421ac348797d5e9bc462f9677eb2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa894cc12894e564addd1bc7883b1294c" id="r_aa894cc12894e564addd1bc7883b1294c"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGeodesicDijkstraMetric.html#aa894cc12894e564addd1bc7883b1294c">avgDistances</a></td></tr>
+<tr class="separator:aa894cc12894e564addd1bc7883b1294c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classMetric"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMetric')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classMetric.html">Metric&lt; PT, PD &gt;</a></td></tr>
 <tr class="memitem:ae408a11c6cc959124daa6f31b0a85da2 inherit pro_attribs_classMetric" id="r_ae408a11c6cc959124daa6f31b0a85da2"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMetric.html#ae408a11c6cc959124daa6f31b0a85da2">threshold</a></td></tr>
 <tr class="separator:ae408a11c6cc959124daa6f31b0a85da2 inherit pro_attribs_classMetric"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -202,7 +202,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename PT, std::size_t PD&gt;<br />
-class GeodesicMetric&lt; PT, PD &gt;</div><p>A class for computing geodesic distances on a mesh with Dijkstra's algorithm. </p>
+class GeodesicDijkstraMetric&lt; PT, PD &gt;</div><p>A class for computing geodesic distances on a mesh with Dijkstra's algorithm. </p>
 <p>This class provides an implementation for computing geodesic distances between faces on a mesh. The distances are computed using various methods, including a Dijkstra-like algorithm in the <code>computeDistances</code> function. Additionally, it supports centroid-based clustering on meshes with geodesic distance metrics.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
@@ -212,8 +212,8 @@ class GeodesicMetric&lt; PT, PD &gt;</div><p>A class for computing geodesic dist
   </dd>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a20c1705ef66298837750fbd343cda3bb" name="a20c1705ef66298837750fbd343cda3bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20c1705ef66298837750fbd343cda3bb">&#9670;&#160;</a></span>GeodesicMetric()</h2>
+<a id="a4876f1dda5c5a2349e9fc096b66a8aca" name="a4876f1dda5c5a2349e9fc096b66a8aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4876f1dda5c5a2349e9fc096b66a8aca">&#9670;&#160;</a></span>GeodesicDijkstraMetric()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -221,7 +221,7 @@ class GeodesicMetric&lt; PT, PD &gt;</div><p>A class for computing geodesic dist
 template&lt;typename PT , std::size_t PD&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;<a class="el" href="classGeodesicMetric.html">::GeodesicMetric</a> </td>
+          <td class="memname"><a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;<a class="el" href="classGeodesicDijkstraMetric.html">::GeodesicDijkstraMetric</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classMesh.html">Mesh</a> &amp;&#160;</td>
           <td class="paramname"><em>mesh</em>, </td>
@@ -259,8 +259,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a06b619053bc4438f85c7b949575c9f81" name="a06b619053bc4438f85c7b949575c9f81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06b619053bc4438f85c7b949575c9f81">&#9670;&#160;</a></span>checkConvergence()</h2>
+<a id="a86a39ffcff7b00dd6c0b5c6a5e78b8f7" name="a86a39ffcff7b00dd6c0b5c6a5e78b8f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86a39ffcff7b00dd6c0b5c6a5e78b8f7">&#9670;&#160;</a></span>checkConvergence()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -271,7 +271,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::checkConvergence </td>
+          <td class="memname">bool <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::checkConvergence </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>iter</em></td><td>)</td>
@@ -297,8 +297,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="a7ae3d51c48e921e19fa7c88193ec7b57" name="a7ae3d51c48e921e19fa7c88193ec7b57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7ae3d51c48e921e19fa7c88193ec7b57">&#9670;&#160;</a></span>computeDistances()</h2>
+<a id="a2a995344f5b0f02617bd1f1073c3d8a1" name="a2a995344f5b0f02617bd1f1073c3d8a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a995344f5b0f02617bd1f1073c3d8a1">&#9670;&#160;</a></span>computeDistances()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -309,7 +309,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::vector&lt; PT &gt; <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::computeDistances </td>
+          <td class="memname">virtual std::vector&lt; PT &gt; <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::computeDistances </td>
           <td>(</td>
           <td class="paramtype">const FaceId&#160;</td>
           <td class="paramname"><em>startFace</em></td><td>)</td>
@@ -337,8 +337,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="aef6e920854639847c73a7297556997f7" name="aef6e920854639847c73a7297556997f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef6e920854639847c73a7297556997f7">&#9670;&#160;</a></span>computeEuclideanDistance()</h2>
+<a id="a7613dc16c0d8b65cc6b48bcfac44ca5c" name="a7613dc16c0d8b65cc6b48bcfac44ca5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7613dc16c0d8b65cc6b48bcfac44ca5c">&#9670;&#160;</a></span>computeEuclideanDistance()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -349,7 +349,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::computeEuclideanDistance </td>
+          <td class="memname">double <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::computeEuclideanDistance </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
@@ -386,8 +386,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="a4f433268c09df1d528c24acc8c205585" name="a4f433268c09df1d528c24acc8c205585"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f433268c09df1d528c24acc8c205585">&#9670;&#160;</a></span>dihedralAngle()</h2>
+<a id="a555ed75358d5260d1453781e36af567c" name="a555ed75358d5260d1453781e36af567c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a555ed75358d5260d1453781e36af567c">&#9670;&#160;</a></span>dihedralAngle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -398,7 +398,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::dihedralAngle </td>
+          <td class="memname">double <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::dihedralAngle </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structFace.html">Face</a> &amp;&#160;</td>
           <td class="paramname"><em>f1</em>, </td>
@@ -435,8 +435,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="ae47c61508bc4a8872a80b380ec725e61" name="ae47c61508bc4a8872a80b380ec725e61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae47c61508bc4a8872a80b380ec725e61">&#9670;&#160;</a></span>findClosestFace()</h2>
+<a id="ac3c887a87f2e81f550d6a74bad17db91" name="ac3c887a87f2e81f550d6a74bad17db91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c887a87f2e81f550d6a74bad17db91">&#9670;&#160;</a></span>findClosestFace()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -444,7 +444,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 template&lt;typename PT , std::size_t PD&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">FaceId <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::findClosestFace </td>
+          <td class="memname">FaceId <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::findClosestFace </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &amp;&#160;</td>
           <td class="paramname"><em>centroid</em></td><td>)</td>
@@ -465,8 +465,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="a195d373d46183857a57f203c86464716" name="a195d373d46183857a57f203c86464716"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a195d373d46183857a57f203c86464716">&#9670;&#160;</a></span>fit_cpu()</h2>
+<a id="adf3c8f275d51572c4c0c729ec7259616" name="adf3c8f275d51572c4c0c729ec7259616"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf3c8f275d51572c4c0c729ec7259616">&#9670;&#160;</a></span>fit_cpu()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -477,7 +477,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::fit_cpu </td>
+          <td class="memname">void <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::fit_cpu </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -497,8 +497,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="af1feb47a2df878c99b2dfe92ec884f39" name="af1feb47a2df878c99b2dfe92ec884f39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1feb47a2df878c99b2dfe92ec884f39">&#9670;&#160;</a></span>getPoints()</h2>
+<a id="ac86b710373fb6cffdd5974d05d6638dd" name="ac86b710373fb6cffdd5974d05d6638dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac86b710373fb6cffdd5974d05d6638dd">&#9670;&#160;</a></span>getPoints()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -509,7 +509,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp; <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::getPoints </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp; <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::getPoints </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -529,8 +529,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="af236f81df609336f894dbf39ed24891e" name="af236f81df609336f894dbf39ed24891e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af236f81df609336f894dbf39ed24891e">&#9670;&#160;</a></span>setup()</h2>
+<a id="a2a5c9e1e5de0cc95516d5c8fe027550e" name="a2a5c9e1e5de0cc95516d5c8fe027550e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a5c9e1e5de0cc95516d5c8fe027550e">&#9670;&#160;</a></span>setup()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -541,7 +541,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::setup </td>
+          <td class="memname">void <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::setup </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -561,8 +561,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="a0e9cddd8ada1495b38ceeaae69917d91" name="a0e9cddd8ada1495b38ceeaae69917d91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e9cddd8ada1495b38ceeaae69917d91">&#9670;&#160;</a></span>setupAvg()</h2>
+<a id="aab8e9dc1d3c713ced1fdec445c07d36f" name="aab8e9dc1d3c713ced1fdec445c07d36f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8e9dc1d3c713ced1fdec445c07d36f">&#9670;&#160;</a></span>setupAvg()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -573,7 +573,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::setupAvg </td>
+          <td class="memname">double <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::setupAvg </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -592,8 +592,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="a27d1a05a59ecfdf888dd74632ce6023c" name="a27d1a05a59ecfdf888dd74632ce6023c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27d1a05a59ecfdf888dd74632ce6023c">&#9670;&#160;</a></span>storeCentroids()</h2>
+<a id="adb3e486a7521d8aecfb645bf0ab246e9" name="adb3e486a7521d8aecfb645bf0ab246e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb3e486a7521d8aecfb645bf0ab246e9">&#9670;&#160;</a></span>storeCentroids()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -604,7 +604,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::storeCentroids </td>
+          <td class="memname">void <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::storeCentroids </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -625,8 +625,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="aec2e801ed2977478dc5c3226177e0440" name="aec2e801ed2977478dc5c3226177e0440"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec2e801ed2977478dc5c3226177e0440">&#9670;&#160;</a></span>avgDistances</h2>
+<a id="aa894cc12894e564addd1bc7883b1294c" name="aa894cc12894e564addd1bc7883b1294c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa894cc12894e564addd1bc7883b1294c">&#9670;&#160;</a></span>avgDistances</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -637,7 +637,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::avgDistances</td>
+          <td class="memname">double <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::avgDistances</td>
         </tr>
       </table>
   </td>
@@ -650,8 +650,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="aa96ebe18340026a0a2bec9ba4bd9f513" name="aa96ebe18340026a0a2bec9ba4bd9f513"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa96ebe18340026a0a2bec9ba4bd9f513">&#9670;&#160;</a></span>distances</h2>
+<a id="a47f137045b790d87a11fe38cfe04aaf9" name="a47f137045b790d87a11fe38cfe04aaf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47f137045b790d87a11fe38cfe04aaf9">&#9670;&#160;</a></span>distances</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -662,7 +662,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;FaceId, std::vector&lt;PT&gt; &gt; <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::distances</td>
+          <td class="memname">std::unordered_map&lt;FaceId, std::vector&lt;PT&gt; &gt; <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::distances</td>
         </tr>
       </table>
   </td>
@@ -675,8 +675,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="abb836353308bf1c2e9de79e5e301df43" name="abb836353308bf1c2e9de79e5e301df43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb836353308bf1c2e9de79e5e301df43">&#9670;&#160;</a></span>mesh</h2>
+<a id="a621ce031dd571e3a61aeb987795ea255" name="a621ce031dd571e3a61aeb987795ea255"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a621ce031dd571e3a61aeb987795ea255">&#9670;&#160;</a></span>mesh</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -687,7 +687,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMesh.html">Mesh</a>* <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::mesh</td>
+          <td class="memname"><a class="el" href="classMesh.html">Mesh</a>* <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::mesh</td>
         </tr>
       </table>
   </td>
@@ -700,8 +700,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="adb8fcc4993f3a2d694b18f6c0155e01d" name="adb8fcc4993f3a2d694b18f6c0155e01d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb8fcc4993f3a2d694b18f6c0155e01d">&#9670;&#160;</a></span>oldPoints</h2>
+<a id="a2e421ac348797d5e9bc462f9677eb2f9" name="a2e421ac348797d5e9bc462f9677eb2f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e421ac348797d5e9bc462f9677eb2f9">&#9670;&#160;</a></span>oldPoints</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -712,7 +712,7 @@ template&lt;typename PT , std::size_t PD&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int <a class="el" href="classGeodesicMetric.html">GeodesicMetric</a>&lt; PT, PD &gt;::oldPoints = 0</td>
+          <td class="memname">int <a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a>&lt; PT, PD &gt;::oldPoints = 0</td>
         </tr>
       </table>
   </td>
@@ -726,14 +726,14 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/geometry/metrics/<a class="el" href="GeodesicMetric_8hpp_source.html">GeodesicMetric.hpp</a></li>
+<li>include/geometry/metrics/<a class="el" href="GeodesicDijkstraMetric_8hpp_source.html">GeodesicDijkstraMetric.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="classGeodesicMetric.html">GeodesicMetric</a></li>
+    <li class="navelem"><a class="el" href="classGeodesicDijkstraMetric.html">GeodesicDijkstraMetric</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

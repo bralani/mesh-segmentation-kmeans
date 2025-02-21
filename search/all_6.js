@@ -1,8 +1,8 @@
 var searchData=
 [
   ['gaussian_0',['gaussian',['../classKernel.html#a955fa7611c16312b639c4a7a46f2df46',1,'Kernel']]],
-  ['geodesicheatmetric_1',['geodesicheatmetric',['../classGeodesicHeatMetric.html',1,'GeodesicHeatMetric&lt; PT, PD &gt;'],['../classGeodesicHeatMetric.html#a90b6ae59b7b2581908ce87edd1845087',1,'GeodesicHeatMetric::GeodesicHeatMetric()']]],
-  ['geodesicmetric_2',['geodesicmetric',['../classGeodesicMetric.html',1,'GeodesicMetric&lt; PT, PD &gt;'],['../classGeodesicMetric.html#a20c1705ef66298837750fbd343cda3bb',1,'GeodesicMetric::GeodesicMetric()']]],
+  ['geodesicdijkstrametric_1',['geodesicdijkstrametric',['../classGeodesicDijkstraMetric.html',1,'GeodesicDijkstraMetric&lt; PT, PD &gt;'],['../classGeodesicDijkstraMetric.html#a4876f1dda5c5a2349e9fc096b66a8aca',1,'GeodesicDijkstraMetric::GeodesicDijkstraMetric()']]],
+  ['geodesicheatmetric_2',['geodesicheatmetric',['../classGeodesicHeatMetric.html',1,'GeodesicHeatMetric&lt; PT, PD &gt;'],['../classGeodesicHeatMetric.html#a90b6ae59b7b2581908ce87edd1845087',1,'GeodesicHeatMetric::GeodesicHeatMetric()']]],
   ['getarea_3',['getArea',['../structFace.html#a7c63f15147fbf57ad495d6973b9fb568',1,'Face']]],
   ['getboundingboxcenter_4',['getBoundingBoxCenter',['../classModel.html#a94df1b69436a368293f42efa406b26fd',1,'Model']]],
   ['getboundingboxsize_5',['getBoundingBoxSize',['../classModel.html#af7c696389125c38e911fba44b6693c00',1,'Model']]],
@@ -16,7 +16,7 @@ var searchData=
   ['getmeshfaces_13',['getMeshFaces',['../classMesh.html#a0a8402cbbbe9192334ca55b6cd32cbbf',1,'Mesh']]],
   ['getmeshfacespoints_14',['getMeshFacesPoints',['../classMesh.html#ac8321bba7e349e66cd3098974f3fe3f1',1,'Mesh']]],
   ['getmeshvertices_15',['getMeshVertices',['../classMesh.html#ab496e4d5005626b2aa30806ebb423fa2',1,'Mesh']]],
-  ['getpoints_16',['getpoints',['../classKMeans.html#a34556507cf61b595efe3062f4e2fb82d',1,'KMeans::getPoints()'],['../classEuclideanMetric.html#a6754f5502fc7a635b4654529a323f62c',1,'EuclideanMetric::getPoints()'],['../classGeodesicMetric.html#af1feb47a2df878c99b2dfe92ec884f39',1,'GeodesicMetric::getPoints()'],['../classMetric.html#a0dd757985d6a1c300cdabacdede5882a',1,'Metric::getPoints()']]],
+  ['getpoints_16',['getpoints',['../classKMeans.html#a34556507cf61b595efe3062f4e2fb82d',1,'KMeans::getPoints()'],['../classEuclideanMetric.html#a6754f5502fc7a635b4654529a323f62c',1,'EuclideanMetric::getPoints()'],['../classGeodesicDijkstraMetric.html#ac86b710373fb6cffdd5974d05d6638dd',1,'GeodesicDijkstraMetric::getPoints()'],['../classMetric.html#a0dd757985d6a1c300cdabacdede5882a',1,'Metric::getPoints()']]],
   ['getposition_17',['getPosition',['../classCamera.html#aa9dc951f8d6e7082233786438139c51d',1,'Camera']]],
   ['getroot_18',['getRoot',['../classKdTree.html#addbc57d40f96b2e18ce3763f7f5a99f3',1,'KdTree']]],
   ['getvalues_19',['getValues',['../classPoint.html#aba93c6ac2a5f7d8e8fe1f58e8a0cf484',1,'Point']]],

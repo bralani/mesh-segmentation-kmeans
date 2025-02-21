@@ -9,7 +9,7 @@ var searchData=
   ['m_5ftransformedpoints_6',['m_transformedPoints',['../classKDEBase.html#a7b14808cd07ea0120225a65b69c9dae9',1,'KDEBase']]],
   ['material_7',['material',['../classmeshviewer_1_1Mesh.html#a708275e4c2f7cc484f28301404df1f70',1,'meshviewer::Mesh']]],
   ['materials_8',['materials',['../classModel.html#a2c1b6a6c7dc3bbb0bbecc5b42386eaf2',1,'Model']]],
-  ['mesh_9',['mesh',['../classGeodesicMetric.html#abb836353308bf1c2e9de79e5e301df43',1,'GeodesicMetric']]],
+  ['mesh_9',['mesh',['../classGeodesicDijkstraMetric.html#a621ce031dd571e3a61aeb987795ea255',1,'GeodesicDijkstraMetric']]],
   ['meshes_10',['meshes',['../classModel.html#aaa01067889547a33874a83e59940f483',1,'Model']]],
   ['metric_11',['metric',['../classKMeans.html#a73f4a0c27c2ba532ca70d2197d680d59',1,'KMeans']]],
   ['mypoint_12',['myPoint',['../classKdNode.html#a4410b913e3a6a1c84c3e5137f8de8666',1,'KdNode']]]

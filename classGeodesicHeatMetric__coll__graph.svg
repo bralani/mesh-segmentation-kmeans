@@ -31,10 +31,10 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="classGeodesicMetric.html" target="_top" xlink:title="A class for computing geodesic distances on a mesh with Dijkstra&#39;s algorithm.">
+<g id="a_Node000002"><a xlink:href="classGeodesicDijkstraMetric.html" target="_top" xlink:title="A class for computing geodesic distances on a mesh with Dijkstra&#39;s algorithm.">
 <polygon fill="white" stroke="transparent" points="206,-352 44,-352 44,-112 206,-112 206,-352"/>
-<text text-anchor="start" x="73.5" y="-340" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicMetric&lt; PT,</text>
-<text text-anchor="start" x="111" y="-329" font-family="Helvetica,sans-Serif" font-size="10.00"> PD &gt;</text>
+<text text-anchor="start" x="67.5" y="-340" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicDijkstraMetric</text>
+<text text-anchor="start" x="97.5" y="-329" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; PT, PD &gt;</text>
 <text text-anchor="start" x="48" y="-314" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="61" y="-314" font-family="Helvetica,sans-Serif" font-size="10.00">distances</text>
 <text text-anchor="start" x="48" y="-299" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
@@ -42,7 +42,7 @@
 <text text-anchor="start" x="48" y="-284" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>
 <text text-anchor="start" x="61" y="-284" font-family="Helvetica,sans-Serif" font-size="10.00">avgDistances</text>
 <text text-anchor="start" x="48" y="-269" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
-<text text-anchor="start" x="61" y="-269" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicMetric()</text>
+<text text-anchor="start" x="61" y="-269" font-family="Helvetica,sans-Serif" font-size="10.00">GeodesicDijkstraMetric()</text>
 <text text-anchor="start" x="48" y="-254" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>
 <text text-anchor="start" x="61" y="-254" font-family="Helvetica,sans-Serif" font-size="10.00">setup()</text>
 <text text-anchor="start" x="48" y="-239" font-family="Helvetica,sans-Serif" font-size="10.00">+</text>

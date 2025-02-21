@@ -1,4 +1,4 @@
-<map id="GeodesicMetric&lt; PT, PD &gt;" name="GeodesicMetric&lt; PT, PD &gt;">
+<map id="GeodesicDijkstraMetric&lt; PT, PD &gt;" name="GeodesicDijkstraMetric&lt; PT, PD &gt;">
 <area shape="rect" id="Node000001" title="A class for computing geodesic distances on a mesh with Dijkstra&#39;s algorithm." alt="" coords="5,379,221,719"/>
 <area shape="rect" id="Node000003" href="$classGeodesicHeatMetric.html" title="A class for computing geodesic distances using heat diffusion&#45;based method." alt="" coords="28,767,199,867"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,732,116,766,111,766,111,732"/>

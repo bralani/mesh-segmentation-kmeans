@@ -43,7 +43,7 @@ var hierarchy =
     [ "MeshSegmentation< M >", "classMeshSegmentation.html", null ],
     [ "Metric< PT, PD >", "classMetric.html", [
       [ "EuclideanMetric< PT, PD >", "classEuclideanMetric.html", null ],
-      [ "GeodesicMetric< PT, PD >", "classGeodesicMetric.html", [
+      [ "GeodesicDijkstraMetric< PT, PD >", "classGeodesicDijkstraMetric.html", [
         [ "GeodesicHeatMetric< PT, PD >", "classGeodesicHeatMetric.html", null ]
       ] ]
     ] ],

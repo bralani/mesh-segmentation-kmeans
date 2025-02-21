@@ -15,8 +15,8 @@ var searchData=
   ['setnumclusters_12',['setNumClusters',['../classKMeans.html#a83b333a0366aec6060e57f8eebd9d101',1,'KMeans']]],
   ['setpoints_13',['setPoints',['../classMetric.html#aa7a66f78b887fb80499cbbbc79114f7a',1,'Metric']]],
   ['setposition_14',['setPosition',['../classCamera.html#a43beb93105ae5a91c1948ae577a654e0',1,'Camera']]],
-  ['setup_15',['setup',['../classEuclideanMetric.html#a3ae05913f9dc9f7d56990f6443a2d940',1,'EuclideanMetric::setup()'],['../classGeodesicMetric.html#af236f81df609336f894dbf39ed24891e',1,'GeodesicMetric::setup()'],['../classMetric.html#a6e0557acd38bfc57fe6521b9246c4b25',1,'Metric::setup()']]],
-  ['setupavg_16',['setupAvg',['../classGeodesicMetric.html#a0e9cddd8ada1495b38ceeaae69917d91',1,'GeodesicMetric']]],
+  ['setup_15',['setup',['../classEuclideanMetric.html#a3ae05913f9dc9f7d56990f6443a2d940',1,'EuclideanMetric::setup()'],['../classGeodesicDijkstraMetric.html#a2a5c9e1e5de0cc95516d5c8fe027550e',1,'GeodesicDijkstraMetric::setup()'],['../classMetric.html#a6e0557acd38bfc57fe6521b9246c4b25',1,'Metric::setup()']]],
+  ['setupavg_16',['setupAvg',['../classGeodesicDijkstraMetric.html#aab8e9dc1d3c713ced1fdec445c07d36f',1,'GeodesicDijkstraMetric']]],
   ['setvalue_17',['setValue',['../classPoint.html#ab5dd2bd249e40c3c9dc05273c4f17185',1,'Point']]],
   ['setvec3_18',['setVec3',['../classShaderProgram.html#af65494974b4acdc88d436a526b644527',1,'ShaderProgram']]],
   ['setvec4_19',['setVec4',['../classShaderProgram.html#a2954457467440f141de327fc3ea218ca',1,'ShaderProgram']]],
@@ -25,5 +25,5 @@ var searchData=
   ['shininess_22',['shininess',['../classPhongMaterial.html#aa327eb1723ade31850dcbc981b50486b',1,'PhongMaterial']]],
   ['silhouettemethod_23',['silhouettemethod',['../classSilhouetteMethod.html',1,'SilhouetteMethod&lt; PT, PD, M &gt;'],['../classSilhouetteMethod.html#a37bbc7d79d15da6cb87468132a71a778',1,'SilhouetteMethod::SilhouetteMethod()']]],
   ['start_24',['start',['../classRender.html#a5f34fdb2ccfd0c9d87ecea916934e576',1,'Render']]],
-  ['storecentroids_25',['storecentroids',['../classGeodesicMetric.html#a27d1a05a59ecfdf888dd74632ce6023c',1,'GeodesicMetric::storeCentroids()'],['../classMetric.html#a15c1b6b24dd38f50dd79adc8e35069cc',1,'Metric::storeCentroids()']]]
+  ['storecentroids_25',['storecentroids',['../classGeodesicDijkstraMetric.html#adb3e486a7521d8aecfb645bf0ab246e9',1,'GeodesicDijkstraMetric::storeCentroids()'],['../classMetric.html#a15c1b6b24dd38f50dd79adc8e35069cc',1,'Metric::storeCentroids()']]]
 ];

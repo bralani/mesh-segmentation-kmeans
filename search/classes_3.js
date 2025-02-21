@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['geodesicheatmetric_0',['GeodesicHeatMetric',['../classGeodesicHeatMetric.html',1,'']]],
-  ['geodesicmetric_1',['GeodesicMetric',['../classGeodesicMetric.html',1,'']]]
+  ['geodesicdijkstrametric_0',['GeodesicDijkstraMetric',['../classGeodesicDijkstraMetric.html',1,'']]],
+  ['geodesicheatmetric_1',['GeodesicHeatMetric',['../classGeodesicHeatMetric.html',1,'']]]
 ];
