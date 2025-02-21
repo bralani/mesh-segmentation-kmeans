@@ -10,17 +10,20 @@
 using namespace std;
 
 static const std::vector<std::string> mesh_files = {
-    std::string(ROOT_FOLDER) + "/resources/meshes/obj/125.obj",   // Smallest file
-    std::string(ROOT_FOLDER) + "/resources/meshes/obj/246.obj",   // 
-    std::string(ROOT_FOLDER) + "/resources/meshes/obj/103.obj",   // 
-    std::string(ROOT_FOLDER) + "/resources/meshes/obj/305.obj"    // Biggest file 
+    std::string(ROOT_FOLDER) + "/resources/WeakTest/2k.obj",   
+    std::string(ROOT_FOLDER) + "/resources/WeakTest/13k.obj",   
+    std::string(ROOT_FOLDER) + "/resources/WeakTest/21k.obj",   
+    std::string(ROOT_FOLDER) + "/resources/WeakTest/55k.obj",   
+    std::string(ROOT_FOLDER) + "/resources/WeakTest/100k.obj",   
+    std::string(ROOT_FOLDER) + "/resources/WeakTest/300k.obj",   
+    std::string(ROOT_FOLDER) + "/resources/WeakTest/500k.obj",   
 };
 
 static void BM_MeshSegmentation(benchmark::State& state) {
-    int num_threads = state.range(0);  // Number of threads to test
+    int num_file = state.range(0);  
 
 
-    std::string file_name = mesh_files[2];
+    std::string file_name = mesh_files[num_file];
     Mesh mesh(file_name);
 
     int n = mesh.getMeshFacesPoints().size();
@@ -29,11 +32,11 @@ static void BM_MeshSegmentation(benchmark::State& state) {
     int num_initialization_method = 2; 
     int num_k_init_method = 0;
 
-    omp_set_num_threads(num_threads);  // Set number of threads for OpenMP
+    omp_set_num_threads(8);
 
     for (auto _ : state) {
-        MeshSegmentation<GeodesicMetric<double, 3>> segmentation(&mesh, num_clusters, 0.05, num_initialization_method, num_k_init_method);
-        segmentation.fit();
+        MeshSegmentation<EuclideanMetric<double, 3>> segmentation(&mesh, num_clusters, 0.05, num_initialization_method, num_k_init_method);
+        //segmentation.fit();
         benchmark::DoNotOptimize(segmentation); 
     }
 
@@ -42,7 +45,7 @@ static void BM_MeshSegmentation(benchmark::State& state) {
 }
 
 BENCHMARK(BM_MeshSegmentation)
-    ->DenseRange(1, 8, 1)                       // Iterate over 1, 2, ..., 8 threads
+    ->DenseRange(1, 7, 1)                    
     ->Complexity();
 
 BENCHMARK_MAIN();
