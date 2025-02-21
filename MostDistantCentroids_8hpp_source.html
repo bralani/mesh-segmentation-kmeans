@@ -98,44 +98,40 @@ $(document).ready(function(){initNavTree('MostDistantCentroids_8hpp_source.html'
   <div class="headertitle"><div class="title">MostDistantCentroids.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">/*============================================================================</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *  MostDistanceClass.hpp</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *============================================================================*/</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor"> #ifndef MOST_DISTANCE_CLASS_HPP</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor"> #define MOST_DISTANCE_CLASS_HPP</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor"> #include &lt;cstddef&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor"> #include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor"> #include &lt;random&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor"> #include &lt;limits&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor"> #include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor"> #include &quot;clustering/CentroidInitializationMethods/CentroidInitMethods.hpp&quot;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> <span class="keyword">template</span> &lt;<span class="keyword">typename</span> PT, std::<span class="keywordtype">size_t</span> PD&gt;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> <span class="keyword">class </span><a class="code hl_class" href="classPoint.html">Point</a>;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor"> #define LIMIT_NUM_CENTROIDS 10</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> <span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> PD&gt;</div>
-<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMostDistanceClass.html">   30</a></span> <span class="keyword">class </span><a class="code hl_class" href="classMostDistanceClass.html">MostDistanceClass</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt;double, PD&gt; {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classMostDistanceClass.html#a44bf4e6cb443490af9a3ccc307064ea7">   40</a></span>     <a class="code hl_function" href="classMostDistanceClass.html#a44bf4e6cb443490af9a3ccc307064ea7">MostDistanceClass</a>(<span class="keyword">const</span> std::vector&lt;<a class="code hl_class" href="classPoint.html">Point&lt;double, PD&gt;</a>&gt;&amp; data, <span class="keywordtype">int</span> k);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classMostDistanceClass.html#adee1fb0dfc3e16a5926efb4164f49787">   47</a></span>     <a class="code hl_function" href="classMostDistanceClass.html#adee1fb0dfc3e16a5926efb4164f49787">MostDistanceClass</a>(<span class="keyword">const</span> std::vector&lt;<a class="code hl_class" href="classPoint.html">Point&lt;double, PD&gt;</a>&gt;&amp; data);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3">   57</a></span>     <span class="keywordtype">void</span> <a class="code hl_function" href="classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3">findCentroid</a>(std::vector&lt;<a class="code hl_class" href="classCentroidPoint.html">CentroidPoint&lt;double, PD&gt;</a>&gt;&amp; centroids) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> };</div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef MOST_DISTANCE_CLASS_HPP</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define MOST_DISTANCE_CLASS_HPP</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;clustering/CentroidInitializationMethods/CentroidInitMethods.hpp&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> PT, std::<span class="keywordtype">size_t</span> PD&gt;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">class </span><a class="code hl_class" href="classPoint.html">Point</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define LIMIT_NUM_CENTROIDS 10</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> PD&gt;</div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="};">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="classMostDistanceClass.html">   17</a></span><span class="keyword">class </span><a class="code hl_class" href="classMostDistanceClass.html">MostDistanceClass</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt;double, PD&gt; {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classMostDistanceClass.html">MostDistanceClass</a>(<span class="keyword">const</span> <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt;<a class="code hl_class" href="classKinit.html">Point&lt;double, PD&gt;</a>&gt;&amp; data, <span class="keywordtype">int</span> <a class="code hl_class" href="classKinit.html">k</a>);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="classMostDistanceClass.html">MostDistanceClass</a>(<span class="keyword">const</span> <a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt;<a class="code hl_class" href="classKinit.html">Point&lt;double, PD&gt;</a>&gt;&amp; data);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3">   22</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3">findCentroid</a>(<a class="code hl_function" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt;<a class="code hl_class" href="classKinit.html">CentroidPoint&lt;double, PD&gt;</a>&gt;&amp; centroids) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
 </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor"> #endif </span><span class="comment">// MOST_DISTANCE_CLASS_HPP</span></div>
-<div class="ttc" id="aclassCentroidInitMethod_html"><div class="ttname"><a href="classCentroidInitMethod.html">CentroidInitMethod</a></div><div class="ttdoc">Base class for centroid initialization methods.</div><div class="ttdef"><b>Definition</b> CentroidInitMethods.hpp:20</div></div>
-<div class="ttc" id="aclassCentroidPoint_html"><div class="ttname"><a href="classCentroidPoint.html">CentroidPoint</a></div><div class="ttdoc">Represents a point with a centroid and associated weights.</div><div class="ttdef"><b>Definition</b> CentroidPoint.hpp:26</div></div>
-<div class="ttc" id="aclassMostDistanceClass_html"><div class="ttname"><a href="classMostDistanceClass.html">MostDistanceClass</a></div><div class="ttdoc">Class for centroid initialization based on maximum distance.</div><div class="ttdef"><b>Definition</b> MostDistantCentroids.hpp:30</div></div>
-<div class="ttc" id="aclassMostDistanceClass_html_a44bf4e6cb443490af9a3ccc307064ea7"><div class="ttname"><a href="classMostDistanceClass.html#a44bf4e6cb443490af9a3ccc307064ea7">MostDistanceClass::MostDistanceClass</a></div><div class="ttdeci">MostDistanceClass(const std::vector&lt; Point&lt; double, PD &gt; &gt; &amp;data, int k)</div><div class="ttdoc">Constructor for the MostDistanceClass.</div></div>
-<div class="ttc" id="aclassMostDistanceClass_html_a95677d31ad2e03d6b0947c36ce4bf9c3"><div class="ttname"><a href="classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3">MostDistanceClass::findCentroid</a></div><div class="ttdeci">void findCentroid(std::vector&lt; CentroidPoint&lt; double, PD &gt; &gt; &amp;centroids) override</div><div class="ttdoc">Finds the initial centroids based on maximum distance.</div></div>
-<div class="ttc" id="aclassMostDistanceClass_html_adee1fb0dfc3e16a5926efb4164f49787"><div class="ttname"><a href="classMostDistanceClass.html#adee1fb0dfc3e16a5926efb4164f49787">MostDistanceClass::MostDistanceClass</a></div><div class="ttdeci">MostDistanceClass(const std::vector&lt; Point&lt; double, PD &gt; &gt; &amp;data)</div><div class="ttdoc">Constructor for the MostDistanceClass with a predefined number of centroids.</div></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassCentroidInitMethod_html"><div class="ttname"><a href="classCentroidInitMethod.html">CentroidInitMethod</a></div><div class="ttdoc">A class for managing the initialization of centroids and computing cluster centroids.</div><div class="ttdef"><b>Definition</b> CentroidInitMethods.hpp:15</div></div>
+<div class="ttc" id="aclassKinit_html"><div class="ttname"><a href="classKinit.html">Kinit</a></div><div class="ttdoc">Abstract base class for determining the optimal number of clusters (k).</div><div class="ttdef"><b>Definition</b> kInitMethods.hpp:26</div></div>
+<div class="ttc" id="aclassKinit_html_a0d02442296360a40a640d3bd41b349a7"><div class="ttname"><a href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">Kinit::Kinit</a></div><div class="ttdeci">Kinit(const KMeans&lt; PT, PD, M &gt; &amp;kMeans)</div><div class="ttdoc">Constructor for the Kinit class.</div><div class="ttdef"><b>Definition</b> kInitMethods.hpp:33</div></div>
+<div class="ttc" id="aclassMostDistanceClass_html"><div class="ttname"><a href="classMostDistanceClass.html">MostDistanceClass</a></div><div class="ttdef"><b>Definition</b> MostDistantCentroids.hpp:17</div></div>
+<div class="ttc" id="aclassMostDistanceClass_html_a95677d31ad2e03d6b0947c36ce4bf9c3"><div class="ttname"><a href="classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3">MostDistanceClass::findCentroid</a></div><div class="ttdeci">void findCentroid(std::vector&lt; CentroidPoint&lt; double, PD &gt; &gt; &amp;centroids) override</div><div class="ttdoc">Abstract method to find a centroid given a set of centroids.</div></div>
 <div class="ttc" id="aclassPoint_html"><div class="ttname"><a href="classPoint.html">Point</a></div><div class="ttdoc">Represents a mathematical point in a multi-dimensional space.</div><div class="ttdef"><b>Definition</b> Point.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

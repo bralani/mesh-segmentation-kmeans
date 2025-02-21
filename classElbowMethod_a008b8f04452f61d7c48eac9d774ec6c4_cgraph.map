@@ -1,5 +1,5 @@
 <map id="ElbowMethod::findK" name="ElbowMethod::findK">
-<area shape="rect" id="Node000001" title="Determines the optimal number of clusters using the elbow method." alt="" coords="5,13,156,38"/>
-<area shape="rect" id="Node000002" href="$classMostDistanceClass.html#a95677d31ad2e03d6b0947c36ce4bf9c3" title="Finds the initial centroids based on maximum distance." alt="" coords="204,5,359,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,23,191,23,191,28,156,28"/>
+<area shape="rect" id="Node000001" title="Pure virtual function to determine the number of clusters (k)." alt="" coords="5,5,156,31"/>
+<area shape="rect" id="Node000002" href="$classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class." alt="" coords="204,5,295,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,15,190,15,190,21,156,21"/>
 </map>

@@ -1,9 +1,7 @@
 <map id="Face::Face" name="Face::Face">
-<area shape="rect" id="Node000001" title="Constructor that initializes a face with three vertices and computes its area and normal." alt="" coords="5,55,93,80"/>
-<area shape="rect" id="Node000002" href="$classPoint.html#aabbdd5f6af8a5ae39764192ce9bf16d5" title="Cross product." alt="" coords="141,5,239,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,52,139,33,141,38,87,57"/>
-<area shape="rect" id="Node000003" href="$classPoint.html#a94fed4ccceeba364d0909f79967284fd" title="Computes the norm (magnitude) of the point." alt="" coords="141,55,239,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="94,65,127,65,127,70,94,70"/>
-<area shape="rect" id="Node000004" href="$classPoint.html#a2de70b524bfdcaf108f4f793ecd2fcd2" title="Sets the ID of the point." alt="" coords="141,104,239,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="87,78,141,97,139,102,85,83"/>
+<area shape="rect" id="Node000001" title="Constructor that initializes a face with three vertices and computes its area and normal." alt="" coords="5,31,93,56"/>
+<area shape="rect" id="Node000002" href="$classPoint.html#a94fed4ccceeba364d0909f79967284fd" title="Computes the norm (magnitude) of the point." alt="" coords="141,5,239,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,33,127,27,128,32,94,38"/>
+<area shape="rect" id="Node000003" href="$classPoint.html#a2de70b524bfdcaf108f4f793ecd2fcd2" title="Sets the ID of the point." alt="" coords="141,55,239,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="94,48,128,54,127,59,93,53"/>
 </map>

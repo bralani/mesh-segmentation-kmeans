@@ -102,11 +102,6 @@ $(document).ready(function(){initNavTree('classKDEBase.html',''); initResizable(
   <div class="headertitle"><div class="title">KDEBase&lt; PD &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>Base class for <a class="el" href="classKernel.html" title="Provides various kernel functions for density estimation and regression.">Kernel</a> Density Estimation (<a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a>) operations.  
- <a href="classKDEBase.html#details">More...</a></p>
-
-<p><code>#include &lt;<a class="el" href="KDEBase_8hpp_source.html">KDEBase.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for KDEBase&lt; PD &gt;:</div>
 <div class="dyncontent">
@@ -120,186 +115,34 @@ Collaboration diagram for KDEBase&lt; PD &gt;:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a847395522ce476db49b3e21fe8758795" id="r_a847395522ce476db49b3e21fe8758795"><td class="memItemLeft" align="right" valign="top"><a id="a847395522ce476db49b3e21fe8758795" name="a847395522ce476db49b3e21fe8758795"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>KDEBase</b> ()=default</td></tr>
-<tr class="memdesc:a847395522ce476db49b3e21fe8758795"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
-<tr class="separator:a847395522ce476db49b3e21fe8758795"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6f2d55a1efab8b3a855ab8ef41eec48" id="r_af6f2d55a1efab8b3a855ab8ef41eec48"><td class="memItemLeft" align="right" valign="top"><a id="af6f2d55a1efab8b3a855ab8ef41eec48" name="af6f2d55a1efab8b3a855ab8ef41eec48"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>~KDEBase</b> ()=default</td></tr>
-<tr class="memdesc:af6f2d55a1efab8b3a855ab8ef41eec48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default destructor. <br /></td></tr>
-<tr class="separator:af6f2d55a1efab8b3a855ab8ef41eec48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5a8be265615bf89bd33a8bac0b86a05" id="r_af5a8be265615bf89bd33a8bac0b86a05"><td class="memItemLeft" align="right" valign="top">std::pair&lt; double, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDEBase.html#af5a8be265615bf89bd33a8bac0b86a05">computeMeanAndStdDev</a> (int dim, const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; double, PD &gt; &gt; &amp;m_data)</td></tr>
-<tr class="memdesc:af5a8be265615bf89bd33a8bac0b86a05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the mean and standard deviation for a given dimension.  <br /></td></tr>
+<tr class="memitem:af5a8be265615bf89bd33a8bac0b86a05" id="r_af5a8be265615bf89bd33a8bac0b86a05"><td class="memItemLeft" align="right" valign="top"><a id="af5a8be265615bf89bd33a8bac0b86a05" name="af5a8be265615bf89bd33a8bac0b86a05"></a>
+<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::pair</a>&lt; <a class="el" href="classKinit.html">double</a>, <a class="el" href="classKinit.html">double</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>computeMeanAndStdDev</b> (<a class="el" href="classKinit.html">int</a> <a class="el" href="classKinit.html">dim</a>, <a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;m_data)</td></tr>
 <tr class="separator:af5a8be265615bf89bd33a8bac0b86a05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac98abdb845ce1d2f0bd42fc078c37040" id="r_ac98abdb845ce1d2f0bd42fc078c37040"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDEBase.html#ac98abdb845ce1d2f0bd42fc078c37040">bandwidth_RuleOfThumb</a> (const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; double, PD &gt; &gt; &amp;m_data)</td></tr>
-<tr class="memdesc:ac98abdb845ce1d2f0bd42fc078c37040"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the bandwidth matrix using the Rule of Thumb method.  <br /></td></tr>
+<tr class="memitem:ac98abdb845ce1d2f0bd42fc078c37040" id="r_ac98abdb845ce1d2f0bd42fc078c37040"><td class="memItemLeft" align="right" valign="top"><a id="ac98abdb845ce1d2f0bd42fc078c37040" name="ac98abdb845ce1d2f0bd42fc078c37040"></a>
+Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><b>bandwidth_RuleOfThumb</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; &amp;m_data)</td></tr>
 <tr class="separator:ac98abdb845ce1d2f0bd42fc078c37040"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69bddc50ae389c079a01596097855d27" id="r_a69bddc50ae389c079a01596097855d27"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDEBase.html#a69bddc50ae389c079a01596097855d27">kdeValue</a> (const <a class="el" href="classPoint.html">Point</a>&lt; double, PD &gt; &amp;x)</td></tr>
-<tr class="memdesc:a69bddc50ae389c079a01596097855d27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the <a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a> value at a given point.  <br /></td></tr>
+<tr class="memitem:a69bddc50ae389c079a01596097855d27" id="r_a69bddc50ae389c079a01596097855d27"><td class="memItemLeft" align="right" valign="top"><a id="a69bddc50ae389c079a01596097855d27" name="a69bddc50ae389c079a01596097855d27"></a>
+<a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>kdeValue</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, <a class="el" href="classKinit.html">PD</a> &gt; &amp;<a class="el" href="classKinit.html">x</a>)</td></tr>
 <tr class="separator:a69bddc50ae389c079a01596097855d27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d2b89091cdf33f4128491f29b8e1d7b" id="r_a3d2b89091cdf33f4128491f29b8e1d7b"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKDEBase.html#a3d2b89091cdf33f4128491f29b8e1d7b">pointToVector</a> (const <a class="el" href="classPoint.html">Point</a>&lt; double, PD &gt; &amp;point)</td></tr>
-<tr class="memdesc:a3d2b89091cdf33f4128491f29b8e1d7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <a class="el" href="classPoint.html" title="Represents a mathematical point in a multi-dimensional space.">Point</a> object to an Eigen vector.  <br /></td></tr>
+<tr class="memitem:a3d2b89091cdf33f4128491f29b8e1d7b" id="r_a3d2b89091cdf33f4128491f29b8e1d7b"><td class="memItemLeft" align="right" valign="top"><a id="a3d2b89091cdf33f4128491f29b8e1d7b" name="a3d2b89091cdf33f4128491f29b8e1d7b"></a>
+Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><b>pointToVector</b> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">double</a>, <a class="el" href="classKinit.html">PD</a> &gt; &amp;<a class="el" href="classKinit.html">point</a>)</td></tr>
 <tr class="separator:a3d2b89091cdf33f4128491f29b8e1d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a7b14808cd07ea0120225a65b69c9dae9" id="r_a7b14808cd07ea0120225a65b69c9dae9"><td class="memItemLeft" align="right" valign="top"><a id="a7b14808cd07ea0120225a65b69c9dae9" name="a7b14808cd07ea0120225a65b69c9dae9"></a>
-std::vector&lt; Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_transformedPoints</b></td></tr>
-<tr class="memdesc:a7b14808cd07ea0120225a65b69c9dae9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transformed points for <a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a> calculations. <br /></td></tr>
+<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_transformedPoints</b></td></tr>
 <tr class="separator:a7b14808cd07ea0120225a65b69c9dae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa8dd2aaaffc831cacb4aa61ce3feb7c" id="r_afa8dd2aaaffc831cacb4aa61ce3feb7c"><td class="memItemLeft" align="right" valign="top"><a id="afa8dd2aaaffc831cacb4aa61ce3feb7c" name="afa8dd2aaaffc831cacb4aa61ce3feb7c"></a>
 Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><b>m_h_sqrt_inv</b></td></tr>
-<tr class="memdesc:afa8dd2aaaffc831cacb4aa61ce3feb7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inverse square root of the bandwidth matrix. <br /></td></tr>
 <tr class="separator:afa8dd2aaaffc831cacb4aa61ce3feb7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13136595f1b1d5fd0301d500deabdf51" id="r_a13136595f1b1d5fd0301d500deabdf51"><td class="memItemLeft" align="right" valign="top"><a id="a13136595f1b1d5fd0301d500deabdf51" name="a13136595f1b1d5fd0301d500deabdf51"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>m_h_det_sqrt</b></td></tr>
-<tr class="memdesc:a13136595f1b1d5fd0301d500deabdf51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Square root of the determinant of the bandwidth matrix. <br /></td></tr>
+<a class="el" href="classKinit.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><b>m_h_det_sqrt</b></td></tr>
 <tr class="separator:a13136595f1b1d5fd0301d500deabdf51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3362ee6d02d83724156f973abab521e" id="r_af3362ee6d02d83724156f973abab521e"><td class="memItemLeft" align="right" valign="top"><a id="af3362ee6d02d83724156f973abab521e" name="af3362ee6d02d83724156f973abab521e"></a>
 Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><b>m_h</b></td></tr>
-<tr class="memdesc:af3362ee6d02d83724156f973abab521e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandwidth matrix used for <a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a> computations. <br /></td></tr>
 <tr class="separator:af3362ee6d02d83724156f973abab521e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;std::size_t PD&gt;<br />
-class KDEBase&lt; PD &gt;</div><p>Base class for <a class="el" href="classKernel.html" title="Provides various kernel functions for density estimation and regression.">Kernel</a> Density Estimation (<a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a>) operations. </p>
-<p>This class provides fundamental methods for <a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a> computations, including bandwidth estimation, mean and standard deviation calculations, and <a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a> value evaluation at a given point.</p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">PD</td><td>Dimension of the data points. </td></tr>
-  </table>
-  </dd>
-</dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac98abdb845ce1d2f0bd42fc078c37040" name="ac98abdb845ce1d2f0bd42fc078c37040"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac98abdb845ce1d2f0bd42fc078c37040">&#9670;&#160;</a></span>bandwidth_RuleOfThumb()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::size_t PD&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::MatrixXd <a class="el" href="classKDEBase.html">KDEBase</a>&lt; PD &gt;::bandwidth_RuleOfThumb </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; double, PD &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>m_data</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes the bandwidth matrix using the Rule of Thumb method. </p>
-<p>This method estimates the bandwidth matrix required for <a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a> calculations.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">m_data</td><td>The dataset used for bandwidth estimation. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The computed bandwidth matrix. </dd></dl>
-
-</div>
-</div>
-<a id="af5a8be265615bf89bd33a8bac0b86a05" name="af5a8be265615bf89bd33a8bac0b86a05"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5a8be265615bf89bd33a8bac0b86a05">&#9670;&#160;</a></span>computeMeanAndStdDev()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::size_t PD&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt; double, double &gt; <a class="el" href="classKDEBase.html">KDEBase</a>&lt; PD &gt;::computeMeanAndStdDev </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>dim</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; double, PD &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>m_data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes the mean and standard deviation for a given dimension. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">dim</td><td>The dimension for which statistics are computed. </td></tr>
-    <tr><td class="paramname">m_data</td><td>The dataset used for the computation. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>A pair containing the mean and standard deviation. </dd></dl>
-
-</div>
-</div>
-<a id="a69bddc50ae389c079a01596097855d27" name="a69bddc50ae389c079a01596097855d27"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69bddc50ae389c079a01596097855d27">&#9670;&#160;</a></span>kdeValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::size_t PD&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">double <a class="el" href="classKDEBase.html">KDEBase</a>&lt; PD &gt;::kdeValue </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPoint.html">Point</a>&lt; double, PD &gt; &amp;&#160;</td>
-          <td class="paramname"><em>x</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Computes the <a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a> value at a given point. </p>
-<p>This method evaluates the <a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a> function at a specific point in the dataset.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>The point at which <a class="el" href="classKDE.html" title="Implements Kernel Density Estimation (KDE) for centroid initialization.">KDE</a> is computed. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The estimated density value at the given point. </dd></dl>
-
-</div>
-</div>
-<a id="a3d2b89091cdf33f4128491f29b8e1d7b" name="a3d2b89091cdf33f4128491f29b8e1d7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d2b89091cdf33f4128491f29b8e1d7b">&#9670;&#160;</a></span>pointToVector()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;std::size_t PD&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">Eigen::VectorXd <a class="el" href="classKDEBase.html">KDEBase</a>&lt; PD &gt;::pointToVector </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classPoint.html">Point</a>&lt; double, PD &gt; &amp;&#160;</td>
-          <td class="paramname"><em>point</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Converts a <a class="el" href="classPoint.html" title="Represents a mathematical point in a multi-dimensional space.">Point</a> object to an Eigen vector. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">point</td><td>The point to be converted. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An Eigen::VectorXd representation of the input point. </dd></dl>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/clustering/CentroidInitializationMethods/<a class="el" href="KDEBase_8hpp_source.html">KDEBase.hpp</a></li>
 </ul>

@@ -114,8 +114,8 @@ Collaboration diagram for CSVUtils:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:af8d9a5ac2fbe8408cdd36bfbb5cac996" id="r_af8d9a5ac2fbe8408cdd36bfbb5cac996"><td class="memTemplParams" colspan="2">template&lt;typename PT , std::size_t PD&gt; </td></tr>
-<tr class="memitem:af8d9a5ac2fbe8408cdd36bfbb5cac996"><td class="memTemplItemLeft" align="right" valign="top">static std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCSVUtils.html#af8d9a5ac2fbe8408cdd36bfbb5cac996">readCSV</a> (const std::string &amp;filepath)</td></tr>
+<tr class="memitem:af8d9a5ac2fbe8408cdd36bfbb5cac996" id="r_af8d9a5ac2fbe8408cdd36bfbb5cac996"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </td></tr>
+<tr class="memitem:af8d9a5ac2fbe8408cdd36bfbb5cac996"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classCSVUtils.html#af8d9a5ac2fbe8408cdd36bfbb5cac996">readCSV</a> (<a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;<a class="el" href="classKinit.html">filepath</a>)</td></tr>
 <tr class="memdesc:af8d9a5ac2fbe8408cdd36bfbb5cac996"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a CSV file and converts its rows into <code><a class="el" href="classPoint.html" title="Represents a mathematical point in a multi-dimensional space.">Point</a></code> objects.  <br /></td></tr>
 <tr class="separator:af8d9a5ac2fbe8408cdd36bfbb5cac996"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -129,15 +129,15 @@ Static Public Member Functions</h2></td></tr>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename PT , std::size_t PD&gt; </div>
+template&lt;<a class="el" href="classKinit.html">typename</a> <a class="el" href="classKinit.html">PT</a> , <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::size_t</a> PD&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; CSVUtils::readCSV </td>
+          <td class="memname"><a class="el" href="classKinit.html">static</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::vector</a>&lt; <a class="el" href="classPoint.html">Point</a>&lt; <a class="el" href="classKinit.html">PT</a>, <a class="el" href="classKinit.html">PD</a> &gt; &gt; CSVUtils::readCSV </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classKinit.html">const</a> <a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7">std::string</a> &amp;&#160;</td>
           <td class="paramname"><em>filepath</em></td><td>)</td>
           <td></td>
         </tr>
@@ -153,8 +153,8 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 <p>This static method processes a CSV file where each row corresponds to a <code><a class="el" href="classPoint.html" title="Represents a mathematical point in a multi-dimensional space.">Point</a></code> in a multi-dimensional space. The method ensures that each row has the correct number of dimensions and converts the data into numerical values of type <code>PT</code>.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">PT</td><td>The data type of the point coordinates (e.g., <code>float</code>, <code>double</code>, <code>int</code>). </td></tr>
-    <tr><td class="paramname">PD</td><td>The number of dimensions of each point (e.g., 2 for 2D, 3 for 3D). </td></tr>
+    <tr><td class="paramname">PT</td><td>The data type of the point coordinates (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., <code>float</code>, <code>double</code>, <code>int</code>). </td></tr>
+    <tr><td class="paramname">PD</td><td>The number of dimensions of each point (<a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">e.g</a>., 2 for 2D, 3 for 3D). </td></tr>
   </table>
   </dd>
 </dl>
@@ -167,10 +167,15 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>A vector of <code><a class="el" href="classPoint.html" title="Represents a mathematical point in a multi-dimensional space.">Point</a>&lt;PT, PD&gt;</code> objects representing the data in the CSV file. </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">std::runtime_error</td><td>If the CSV file cannot be opened or contains invalid data. </td></tr>
+    <tr><td class="paramname"><a class="el" href="classKinit.html#a0d02442296360a40a640d3bd41b349a7" title="Constructor for the Kinit class.">std::runtime_error</a></td><td>If the CSV file cannot be opened or contains invalid data. </td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classCSVUtils_af8d9a5ac2fbe8408cdd36bfbb5cac996_cgraph.svg" width="291" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 
 </div>
 </div>

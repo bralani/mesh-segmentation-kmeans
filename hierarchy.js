@@ -17,7 +17,8 @@ var hierarchy =
     [ "Enums", "classEnums.html", null ],
     [ "Face", "structFace.html", null ],
     [ "HasWgtCent< PT, PD >", "classHasWgtCent.html", [
-      [ "CentroidPoint< PT, PD >", "classCentroidPoint.html", null ]
+      [ "CentroidPoint< PT, PD >", "classCentroidPoint.html", null ],
+      [ "KdNode< PT, PD >", "classKdNode.html", null ]
     ] ],
     [ "KDEBase< PD >", "classKDEBase.html", [
       [ "KDE< PD >", "classKDE.html", null ]
@@ -25,11 +26,11 @@ var hierarchy =
     [ "KDEBase< 3 >", "classKDEBase.html", [
       [ "KDE3D", "classKDE3D.html", null ]
     ] ],
-    [ "KDNode< PT, PD >", "classKDNode.html", null ],
     [ "KdTree< PT, PD >", "classKdTree.html", null ],
     [ "Kernel", "classKernel.html", null ],
     [ "Kinit< PT, PD, M >", "classKinit.html", [
       [ "ElbowMethod< PT, PD, M >", "classElbowMethod.html", null ],
+      [ "KDEMethod< PT, PD, M >", "classKDEMethod.html", null ],
       [ "SilhouetteMethod< PT, PD, M >", "classSilhouetteMethod.html", null ]
     ] ],
     [ "KMeans< PT, PD, M >", "classKMeans.html", null ],

@@ -11,7 +11,7 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Implements the K&#45;Means clustering algorithm.">
+<g id="a_Node000001"><a xlink:title="Class implementing the K&#45;Means clustering algorithm.">
 <polygon fill="#999999" stroke="transparent" points="119,-199 0,-199 0,0 119,0 119,-199"/>
 <text text-anchor="start" x="5.5" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">KMeans&lt; PT, PD, M &gt;</text>
 <text text-anchor="start" x="7.5" y="-171.5" font-family="Helvetica,sans-Serif" font-size="10.00">#</text>

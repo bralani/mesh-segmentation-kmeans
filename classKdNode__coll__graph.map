@@ -1,0 +1,5 @@
+<map id="KdNode&lt; PT, PD &gt;" name="KdNode&lt; PT, PD &gt;">
+<area shape="rect" id="Node000001" title="Represents a node in a kd&#45;tree, including its bounding box and child pointers." alt="" coords="20,179,157,364"/>
+<area shape="rect" id="Node000002" href="$classHasWgtCent.html" title="Represents an object with an array of weights and a counter." alt="" coords="5,5,172,131"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,145,91,178,86,178,86,145"/>
+</map>
