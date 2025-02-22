@@ -9,23 +9,31 @@ Mesh::Mesh(const std::string path)
   {
     std::ifstream in(path.c_str());
     auto model = obj::parseObjModel(in);
-    for (int i = 0; i < model.vertex.size(); i = i + 3)
+
+    meshVertices.reserve(model.vertex.size() / 3);
+    std::vector<Point<double, 3>> localMeshVertices(model.vertex.size() / 3);
+    #pragma omp parallel for
+    for (int i = 0; i < model.vertex.size(); i += 3)
     {
       std::array<double, 3> coords = {model.vertex[i], model.vertex[i + 1], model.vertex[i + 2]};
-      Point<double, 3> point(coords, i / 3);
-      meshVertices.push_back(point);
+      localMeshVertices[i / 3] = Point<double, 3>(coords, i / 3);
     }
+    meshVertices = std::move(localMeshVertices);
 
     const auto faces = model.faces.at("default");
     const auto &faceVertices = faces.first;
 
+    meshFaces.reserve(faces.first.size() / 3);
+    std::vector<Face> localMeshFaces(faceVertices.size() / 3);
+    #pragma omp parallel for
     for (int j = 0; j < faceVertices.size(); j = j + 3)
     {
       FaceId faceId(j / 3);
       Face face = Face({VertId(faceVertices[j].v), VertId(faceVertices[j + 1].v), VertId(faceVertices[j + 2].v)}, meshVertices, faceId);
 
-      meshFaces.push_back(face);
+      localMeshFaces[j / 3] = face;
     }
+    meshFaces = std::move(localMeshFaces);
   }
   catch (const std::exception &e)
   {
@@ -83,38 +91,57 @@ int Mesh::createSegmentationFromSegFile(const std::filesystem::path &path)
 
 void Mesh::buildFaceAdjacency()
 {
-  faceAdjacency.clear();
+    faceAdjacency.clear();
 
-  // Temporary map to store the faces connected to each vertex
-  std::unordered_map<VertId, std::set<FaceId>> vertexToFaces;
+    std::unordered_map<VertId, std::set<FaceId>> vertexToFaces;
 
-  // Populates the vertexToFaces map
-  for (const auto &face : meshFaces)
-  {
-    for (VertId vertex : face.vertices)
+    #pragma omp parallel
     {
-      vertexToFaces[vertex].insert(face.baricenter.id);
+        std::unordered_map<VertId, std::set<FaceId>> vertexToFacesThreadLocal;
+
+        #pragma omp for nowait
+        for (size_t i = 0; i < meshFaces.size(); i++)
+        {
+            const auto &face = meshFaces[i];
+            for (VertId vertex : face.vertices)
+            {
+                vertexToFacesThreadLocal[vertex].insert(face.baricenter.id);
+            }
+        }
+
+        #pragma omp critical
+        {
+            for (const auto &[vertex, faces] : vertexToFacesThreadLocal)
+            {
+                vertexToFaces[vertex].insert(faces.begin(), faces.end());
+            }
+        }
     }
-  }
 
-  // Creates the adjacency list
-  for (const auto &face : meshFaces)
-  {
-    std::set<FaceId> adjacentFacesSet;
+    std::vector<std::vector<FaceId>> tempFaceAdjacency(meshFaces.size());
 
-    for (VertId vertex : face.vertices)
+    #pragma omp parallel for
+    for (size_t i = 0; i < meshFaces.size(); i++)
     {
-      const auto &connectedFaces = vertexToFaces[vertex];
-      adjacentFacesSet.insert(connectedFaces.begin(), connectedFaces.end());
+        const auto &face = meshFaces[i];
+        std::set<FaceId> adjacentFacesSet;
+
+        for (VertId vertex : face.vertices)
+        {
+            const auto &connectedFaces = vertexToFaces[vertex];
+            adjacentFacesSet.insert(connectedFaces.begin(), connectedFaces.end());
+        }
+
+        adjacentFacesSet.erase(face.baricenter.id);
+        tempFaceAdjacency[i] = std::vector<FaceId>(adjacentFacesSet.begin(), adjacentFacesSet.end());
     }
 
-    // Remove the face itself from the set
-    adjacentFacesSet.erase(face.baricenter.id);
-
-    // Save in the final adjacency map
-    faceAdjacency[face.baricenter.id] = std::vector<FaceId>(adjacentFacesSet.begin(), adjacentFacesSet.end());
-  }
+    for (size_t i = 0; i < meshFaces.size(); i++)
+    {
+        faceAdjacency[meshFaces[i].baricenter.id] = std::move(tempFaceAdjacency[i]);
+    }
 }
+
 void Mesh::exportToObj(const std::string &filepath, int cluster)
 {
   std::ofstream objFile(filepath);

@@ -86,6 +86,11 @@ struct Face
     }
 
     /**
+     * \brief Default constructor for the Face struct.
+     */
+    Face() = default;
+
+    /**
      * \brief Returns the area of the face.
      * 
      * This method returns the computed area of the triangular face.

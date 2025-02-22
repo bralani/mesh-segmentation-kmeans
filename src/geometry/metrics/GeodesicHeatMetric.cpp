@@ -25,16 +25,27 @@ GeodesicHeatMetric<PT, PD>::GeodesicHeatMetric(Mesh &mesh, double percentage_thr
             F(faceId, i) = face.vertices[i];
         }
     }
-
-    const PT h = igl::avg_edge_length(V, F);
-    const PT t = h * h;
+    
     Eigen::SparseMatrix<PT> L, M;
     VectorXS dblA;
 
-    igl::cotmatrix(V, F, L);
-    igl::massmatrix(V, F, igl::MASSMATRIX_TYPE_DEFAULT, M);
-    igl::doublearea(V, F, dblA);
-    igl::grad(V, F, data_heat.Grad);
+    #pragma omp parallel
+    {
+        #pragma omp single nowait
+        igl::cotmatrix(V, F, L);
+
+        #pragma omp single nowait
+        igl::massmatrix(V, F, igl::MASSMATRIX_TYPE_DEFAULT, M);
+
+        #pragma omp single nowait
+        igl::doublearea(V, F, dblA);
+
+        #pragma omp single nowait
+        igl::grad(V, F, data_heat.Grad);
+    }
+
+    const PT h = igl::avg_edge_length(V, F);
+    const PT t = h * h;
 
     assert(F.cols() == 3 && "Only triangles are supported");
     data_heat.ng = data_heat.Grad.rows() / F.rows();
@@ -45,30 +56,37 @@ GeodesicHeatMetric<PT, PD>::GeodesicHeatMetric(Mesh &mesh, double percentage_thr
     Eigen::MatrixXi O;
     igl::boundary_facets(F, O);
     igl::unique(O, data_heat.b);
+    
     Eigen::SparseMatrix<PT> _;
-    auto time = std::chrono::high_resolution_clock::now();
-    if (!igl::min_quad_with_fixed_precompute(Q, Eigen::VectorXi(), _, true, data_heat.Neumann))
+    bool success1 = false, success2 = false, success3 = false;
+    #pragma omp parallel sections
     {
-        throw std::runtime_error("Error in heat_geodesics_precompute");
-        return;
-    }
-
-    // Only need if there's a boundary
-    if (data_heat.b.size() > 0)
-    {
-        if (!igl::min_quad_with_fixed_precompute(Q, data_heat.b, _, true, data_heat.Dirichlet))
+        #pragma omp section
         {
-            throw std::runtime_error("Error in heat_geodesics_precompute");
-            return;
+            success1 = igl::min_quad_with_fixed_precompute(Q, Eigen::VectorXi(), _, true, data_heat.Neumann);
+        }
+        
+        #pragma omp section
+        {
+            success2 = true;
+            if (data_heat.b.size() > 0)
+            {
+                success2 = igl::min_quad_with_fixed_precompute(Q, data_heat.b, _, true, data_heat.Dirichlet);
+            }
+        }
+
+        #pragma omp section
+        {
+            const Eigen::Matrix<PT, 1, Eigen::Dynamic> M_diag_tr = M.diagonal().transpose();
+            const Eigen::SparseMatrix<PT> Aeq = M_diag_tr.sparseView();
+            L *= -0.5;
+            success3 = igl::min_quad_with_fixed_precompute(L, Eigen::VectorXi(), Aeq, true, data_heat.Poisson);
         }
     }
-    const Eigen::Matrix<PT, 1, Eigen::Dynamic> M_diag_tr = M.diagonal().transpose();
-    const Eigen::SparseMatrix<PT> Aeq = M_diag_tr.sparseView();
-    L *= -0.5;
-    if (!igl::min_quad_with_fixed_precompute(L, Eigen::VectorXi(), Aeq, true, data_heat.Poisson))
+
+    if (!success1 || !success2 || !success3)
     {
         throw std::runtime_error("Error in heat_geodesics_precompute");
-        return;
     }
 }
 

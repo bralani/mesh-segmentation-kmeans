@@ -17,12 +17,13 @@ double GeodesicDijkstraMetric<PT, PD>::setupAvg(){
   int totalPairs = 0;
   int dimension = mesh->numFaces();
 
+  #pragma omp parallel for reduction(+:result, totalPairs)
   for (FaceId faceId = 0; faceId < dimension; ++faceId) {
       FaceId currentId = faceId;
       const auto& currFace = mesh->getFace(currentId);
-      const auto& currBaricenter = currFace.baricenter; 
+      const auto& currBaricenter = currFace.baricenter;
 
-      const std::vector<FaceId>& adjacentFaces = mesh->getFaceAdjacencyAt(currentId); 
+      const std::vector<FaceId>& adjacentFaces = mesh->getFaceAdjacencyAt(currentId);
 
       for (size_t faceIdy = 0; faceIdy < adjacentFaces.size(); ++faceIdy) {
           if (currentId < adjacentFaces[faceIdy]) { 
@@ -36,7 +37,7 @@ double GeodesicDijkstraMetric<PT, PD>::setupAvg(){
       }
   }
 
-  return result/totalPairs;
+  return totalPairs > 0 ? result / totalPairs : 0.0;
 }
 
 template <typename PT, std::size_t PD>
@@ -74,7 +75,7 @@ template <typename PT, std::size_t PD>
 void GeodesicDijkstraMetric<PT, PD>::setup()
 {
   this->avgDistances = setupAvg();
-  //#pragma omp parallel for
+  #pragma omp parallel for
   for (int centroidId = 0; centroidId < this->centroids->size(); ++centroidId)
   {
     const auto &centroid = this->centroids->at(centroidId);
@@ -89,41 +90,42 @@ void GeodesicDijkstraMetric<PT, PD>::setup()
 template <typename PT, std::size_t PD>
 FaceId GeodesicDijkstraMetric<PT, PD>::findClosestFace(const Point<PT, PD> &centroid) const
 {
-  double minDistance = std::numeric_limits<double>::max();
-  FaceId closestFaceId = 0;
+    double minDistance = std::numeric_limits<double>::max();
+    FaceId closestFaceId = -1;
 
-#pragma omp parallel
-  {
-    double threadMinDistance = std::numeric_limits<double>::max();
-    FaceId threadClosestFaceId = 0;
-
-#pragma omp for nowait
-    for (FaceId faceId = 0; faceId < mesh->numFaces(); ++faceId)
+    #pragma omp parallel
     {
-      const auto &face = mesh->getFace(faceId);
-      const auto &baricenter = face.baricenter;
+        double localMinDistance = std::numeric_limits<double>::max();
+        FaceId localClosestFaceId = -1;
 
-      double distance = computeEuclideanDistance(centroid, baricenter);
+        #pragma omp for nowait
+        for (FaceId faceId = 0; faceId < mesh->numFaces(); ++faceId)
+        {
+            const auto &face = mesh->getFace(faceId);
+            const auto &baricenter = face.baricenter;
 
-      if (distance < threadMinDistance)
-      {
-        threadMinDistance = distance;
-        threadClosestFaceId = faceId;
-      }
+            double distance = computeEuclideanDistance(centroid, baricenter);
+
+            if (distance < localMinDistance)
+            {
+                localMinDistance = distance;
+                localClosestFaceId = faceId;
+            }
+        }
+
+        #pragma omp critical
+        {
+            if (localMinDistance < minDistance)
+            {
+                minDistance = localMinDistance;
+                closestFaceId = localClosestFaceId;
+            }
+        }
     }
 
-#pragma omp critical
-    {
-      if (threadMinDistance < minDistance)
-      {
-        minDistance = threadMinDistance;
-        closestFaceId = threadClosestFaceId;
-      }
-    }
-  }
-
-  return closestFaceId;
+    return closestFaceId;
 }
+
 
 template <typename PT, std::size_t PD>
 void GeodesicDijkstraMetric<PT, PD>::fit_cpu()
@@ -178,18 +180,39 @@ void GeodesicDijkstraMetric<PT, PD>::fit_cpu()
       newCentroids[i].coordinates.fill(0);
     }
 
-    for (FaceId faceId = 0; faceId < numFaces; ++faceId)
+    #pragma omp parallel
     {
-      int centroidIndex = mesh->getFaceCluster(faceId);
-      const auto &baricenter = mesh->getFace(faceId).baricenter;
+        std::vector<Point<double,3>> localCentroids(newCentroids.size());
+        std::vector<int> localCounts(counts.size(), 0);
 
-      for (size_t dim = 0; dim < PD; ++dim)
-      {
-        newCentroids[centroidIndex].coordinates[dim] += baricenter.coordinates[dim];
-      }
-      counts[centroidIndex]++;
+        #pragma omp for
+        for (FaceId faceId = 0; faceId < numFaces; ++faceId)
+        {
+            int centroidIndex = mesh->getFaceCluster(faceId);
+            const auto &baricenter = mesh->getFace(faceId).baricenter;
+
+            for (size_t dim = 0; dim < PD; ++dim)
+            {
+                localCentroids[centroidIndex].coordinates[dim] += baricenter.coordinates[dim];
+            }
+            localCounts[centroidIndex]++;
+        }
+
+        // Merge local results into global arrays
+        #pragma omp critical
+        {
+            for (size_t i = 0; i < newCentroids.size(); ++i)
+            {
+                for (size_t dim = 0; dim < PD; ++dim)
+                {
+                    newCentroids[i].coordinates[dim] += localCentroids[i].coordinates[dim];
+                }
+                counts[i] += localCounts[i];
+            }
+        }
     }
 
+    #pragma omp parallel for
     for (size_t centroidIndex = 0; centroidIndex < numCentroids; ++centroidIndex)
     {
       if (counts[centroidIndex] > 0)
@@ -201,6 +224,7 @@ void GeodesicDijkstraMetric<PT, PD>::fit_cpu()
       }
     }
 
+    #pragma omp parallel for
     for (size_t i = 0; i < numCentroids; ++i)
     {
       this->centroids->at(i).coordinates = newCentroids[i].coordinates;
