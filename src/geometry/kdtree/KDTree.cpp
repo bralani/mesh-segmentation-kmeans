@@ -51,11 +51,8 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT, PD>::buildTree(typename std::vector<P
 
     // Determine if parallel execution is possible
     int max_threads = omp_get_max_threads();
-    bool can_parallelize = (depth < std::log2(max_threads));
 
-    if (can_parallelize)
-    {
-#pragma omp parallel sections
+#pragma omp parallel sections if (depth < std::log2(max_threads))
         {
 #pragma omp section
             node->left = buildTree(begin, median, depth + 1);
@@ -63,12 +60,6 @@ std::unique_ptr<KdNode<PT, PD>> KdTree<PT, PD>::buildTree(typename std::vector<P
 #pragma omp section
             node->right = buildTree(median, end, depth + 1);
         }
-    }
-    else
-    {
-        node->left = buildTree(begin, median, depth + 1);
-        node->right = buildTree(median, end, depth + 1);
-    }
 
     return node;
 }

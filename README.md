@@ -166,7 +166,7 @@ Moreover, we provide other two executables for quality evaluation of metrics and
   <num_initialization_method>  : Initialization method for centroids (0: random, 1: KDE, 2: most distant, 3: Static KDE - 3D point)
   <metric>                     : Distance metric (0: Euclidean, 1: Dijkstra, 2: Heat)
   ```
-  For example, the following command will evaluate the Dijkstra metric with the Static KDE initialization method.
+  For example, the following command will evaluate the Dijkstra metric (on the entire dataset) with the Static KDE initialization method.
 
   ```
   ./evaluation 3 1
