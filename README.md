@@ -111,11 +111,9 @@ With Docker, the project is already built; however, please note that the UI is n
 docker compose up --build -d
 ```
 
-# Mesh Segmentation with Docker
+### Mesh Segmentation with Docker
 
-## Prerequisites
-
-### 1. Install Docker Desktop
+#### 1. Install Docker Desktop
 
 Docker allows us to containerize and run applications easily. Follow the steps below based on your operating system:
 
@@ -148,9 +146,9 @@ To verify the installation:
 docker --version
 ```
 
-## Setup and Run the Container
+### Setup and Run the Container
 
-### **1. Build and Start the Container**
+#### **1. Build and Start the Container**
 
 Run the following command to build the container and start it in the background:
 
@@ -158,7 +156,7 @@ Run the following command to build the container and start it in the background:
 docker compose up --build -d
 ```
 
-### **2. Enter the Container**
+#### **2. Enter the Container**
 
 Since we don’t run the program at startup, we need to manually enter the container:
 
@@ -166,7 +164,7 @@ Since we don’t run the program at startup, we need to manually enter the conta
 docker exec -it kmeans-container /bin/bash
 ```
 
-### **3. Run the Mesh Segmentation Program**
+#### **3. Run the Mesh Segmentation Program**
 
 Inside the container, execute:
 
@@ -174,17 +172,17 @@ Inside the container, execute:
 /workspace/build/bin/mesh_segmentation
 ```
 
-## Managing Docker Containers
+### Managing Docker Containers
 
-### **Stop the Running Container**
+#### **Stop the Running Container**
 
 ```sh
 docker stop kmeans-container
 ```
 
-## Troubleshooting
+### Troubleshooting
 
-### **1. Out of Memory Issues**
+#### **1. Out of Memory Issues**
 
 If you encounter a `ResourceExhausted` error, increase Docker's memory allocation:
 
