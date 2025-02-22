@@ -10,10 +10,10 @@ EuclideanMetric<PT, PD>::EuclideanMetric(std::vector<Point<PT, PD>> data, double
         if (this->data.size() > MIN_NUM_POINTS_CUDA) {
             kdtree = nullptr;
         } else {
-            kdtree = new KdTree<PT, PD>(this->data);
+            kdtree = std::make_unique<KdTree<PT, PD>>(this->data);
         }
     #else
-        kdtree = new KdTree<PT, PD>(this->data);
+        kdtree = std::make_unique<KdTree<PT, PD>>(this->data);
     #endif
 }
 
@@ -28,10 +28,10 @@ EuclideanMetric<PT, PD>::EuclideanMetric(Mesh &mesh, double percentage_threshold
         if (this->data.size() > MIN_NUM_POINTS_CUDA) {
             kdtree = nullptr;
         } else {
-            kdtree = new KdTree<PT, PD>(this->data);
+            kdtree = std::make_unique<KdTree<PT, PD>>(this->data);
         }
     #else
-        kdtree = new KdTree<PT, PD>(this->data);
+        kdtree = std::make_unique<KdTree<PT, PD>>(this->data);
     #endif
 }
 

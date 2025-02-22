@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         if (argc < 5)
         {
             std::cerr << "Usage: " << argv[0] << " <mesh_file> <num_clusters> <init_method> <metric> [k_init_method]" << std::endl;
-            std::cerr << "  <mesh_file>       : Name of the mesh file in /resources/meshes/obj folder (without extension)" << std::endl;
+            std::cerr << "  <mesh_file>       : Name of the mesh file (i.e resources/meshes/obj/1.obj)" << std::endl;
             std::cerr << "  <num_clusters>    : Number of clusters (0 if unknown)" << std::endl;
             std::cerr << "  <init_method>     : Initialization method for centroids (0: random, 1: KDE, 2: most distant, 3: Static KDE - 3D point)" << std::endl;
             std::cerr << "  <metric>          : Distance metric (0: Euclidean, 1: Dijkstra, 2: Heat)" << std::endl;
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
             return 1;
         }
 
-        string file_name = std::string(ROOT_FOLDER) + "/resources/meshes/obj/" + string(argv[1]) + ".obj";
+        string file_name = std::string(ROOT_FOLDER) + "/" + string(argv[1]);
 
         int num_clusters = std::stoi(argv[2]);
         int num_initialization_method = std::stoi(argv[3]);
