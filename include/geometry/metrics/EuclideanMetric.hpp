@@ -104,7 +104,7 @@ public:
 private:
     Mesh *mesh; /**< Pointer to the mesh object for the metric calculation. */
     double treshold; /**< The threshold value for the metric. */
-    KdTree<PT, PD> *kdtree; /**< Pointer to the KDTree used for nearest-neighbor search. */
+    std::unique_ptr<KdTree<PT, PD>> kdtree; /**< Pointer to the KDTree used for nearest-neighbor search. */
 
     /**
      * \brief Filters the data points based on certain criteria.
