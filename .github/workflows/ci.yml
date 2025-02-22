@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [monitoring]
+    branches: [main]
   pull_request:
-    branches: [monitoring]
+    branches: [main]
 
 jobs:
   build-and-test:
@@ -48,7 +48,6 @@ jobs:
       run: |
         cd build/bin
         valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=definite,indirect --error-exitcode=1 ./mesh_segmentation resources/test.obj 3 2 1
-
     
     - name: Memory leaks Heat
       run: |
