@@ -6,7 +6,7 @@ var searchData=
   ['_7ehaswgtcent_3',['~HasWgtCent',['../classHasWgtCent.html#a2c51491aab82c121155ec91411ecdb31',1,'HasWgtCent']]],
   ['_7ekdebase_4',['~KDEBase',['../classKDEBase.html#af6f2d55a1efab8b3a855ab8ef41eec48',1,'KDEBase']]],
   ['_7ekdnode_5',['~KdNode',['../classKdNode.html#a4dccc768158b0087774167260627667c',1,'KdNode']]],
-  ['_7ekdtree_6',['~KdTree',['../classKdTree.html#ab73701abd136e4ef2e9d59ec6bef38a0',1,'KdTree']]],
+  ['_7ekdtree_6',['~KdTree',['../classKdTree.html#abe41277ad4726f3c9c2a22982009716d',1,'KdTree']]],
   ['_7ekinit_7',['~Kinit',['../classKinit.html#a33ec8eb0394de9e179dd7749be1e94cc',1,'Kinit']]],
   ['_7ekmeans_8',['~KMeans',['../classKMeans.html#ae173d356990d4df38f9c12c1a8e5216b',1,'KMeans']]],
   ['_7emesh_9',['~Mesh',['../classmeshviewer_1_1Mesh.html#a5e60ae1a59eee2ece12430f2b51d7472',1,'meshviewer::Mesh']]],

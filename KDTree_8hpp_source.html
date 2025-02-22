@@ -115,7 +115,7 @@ $(document).ready(function(){initNavTree('KDTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classKdTree.html#a6961e4f76bf311d6d9ec9982945eef4f">   32</a></span>    <a class="code hl_function" href="classKdTree.html#a6961e4f76bf311d6d9ec9982945eef4f">KdTree</a>(std::vector&lt;<a class="code hl_class" href="classPoint.html">Point&lt;PT, PD&gt;</a>&gt;&amp; points);</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classKdTree.html#ab73701abd136e4ef2e9d59ec6bef38a0">   39</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="classKdTree.html#ab73701abd136e4ef2e9d59ec6bef38a0">~KdTree</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classKdTree.html#abe41277ad4726f3c9c2a22982009716d">   39</a></span>    <a class="code hl_function" href="classKdTree.html#abe41277ad4726f3c9c2a22982009716d">~KdTree</a>();</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classKdTree.html#addbc57d40f96b2e18ce3763f7f5a99f3">   48</a></span>    std::unique_ptr&lt;KdNode&lt;PT, PD&gt;&gt;&amp; <a class="code hl_function" href="classKdTree.html#addbc57d40f96b2e18ce3763f7f5a99f3">getRoot</a>();</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
@@ -125,13 +125,17 @@ $(document).ready(function(){initNavTree('KDTree_8hpp_source.html',''); initResi
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    std::unique_ptr&lt;KdNode&lt;PT, PD&gt;&gt; buildTree(<span class="keyword">typename</span> std::vector&lt;<a class="code hl_class" href="classPoint.html">Point&lt;PT, PD&gt;</a>&gt;::iterator begin,</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                                              <span class="keyword">typename</span> std::vector&lt;<a class="code hl_class" href="classPoint.html">Point&lt;PT, PD&gt;</a>&gt;::iterator end,</div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                                              <span class="keywordtype">int</span> depth);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>};</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">void</span> clearTree(std::unique_ptr&lt;<a class="code hl_class" href="classKdNode.html">KdNode&lt;PT, PD&gt;</a>&gt;&amp; node);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>};</div>
 </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#endif </span><span class="comment">// KDTREE_HPP</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif </span><span class="comment">// KDTREE_HPP</span></div>
+<div class="ttc" id="aclassKdNode_html"><div class="ttname"><a href="classKdNode.html">KdNode</a></div><div class="ttdoc">Represents a node in a kd-tree, including its bounding box and child pointers.</div><div class="ttdef"><b>Definition</b> KDNode.hpp:23</div></div>
 <div class="ttc" id="aclassKdTree_html"><div class="ttname"><a href="classKdTree.html">KdTree</a></div><div class="ttdoc">A k-dimensional tree (kd-tree) for organizing and searching spatial data.</div><div class="ttdef"><b>Definition</b> KDTree.hpp:23</div></div>
 <div class="ttc" id="aclassKdTree_html_a6961e4f76bf311d6d9ec9982945eef4f"><div class="ttname"><a href="classKdTree.html#a6961e4f76bf311d6d9ec9982945eef4f">KdTree::KdTree</a></div><div class="ttdeci">KdTree(std::vector&lt; Point&lt; PT, PD &gt; &gt; &amp;points)</div><div class="ttdoc">Constructs a KD-tree from a given set of points.</div></div>
-<div class="ttc" id="aclassKdTree_html_ab73701abd136e4ef2e9d59ec6bef38a0"><div class="ttname"><a href="classKdTree.html#ab73701abd136e4ef2e9d59ec6bef38a0">KdTree::~KdTree</a></div><div class="ttdeci">virtual ~KdTree()=default</div><div class="ttdoc">Default virtual destructor.</div></div>
+<div class="ttc" id="aclassKdTree_html_abe41277ad4726f3c9c2a22982009716d"><div class="ttname"><a href="classKdTree.html#abe41277ad4726f3c9c2a22982009716d">KdTree::~KdTree</a></div><div class="ttdeci">~KdTree()</div><div class="ttdoc">Destructor.</div></div>
 <div class="ttc" id="aclassKdTree_html_addbc57d40f96b2e18ce3763f7f5a99f3"><div class="ttname"><a href="classKdTree.html#addbc57d40f96b2e18ce3763f7f5a99f3">KdTree::getRoot</a></div><div class="ttdeci">std::unique_ptr&lt; KdNode&lt; PT, PD &gt; &gt; &amp; getRoot()</div><div class="ttdoc">Returns a reference to the root node of the kd-tree.</div></div>
 <div class="ttc" id="aclassPoint_html"><div class="ttname"><a href="classPoint.html">Point</a></div><div class="ttdoc">Represents a mathematical point in a multi-dimensional space.</div><div class="ttdef"><b>Definition</b> Point.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -155,7 +155,7 @@ var NAVTREEINDEX0 =
 "classKdNode.html#ad30f769759b8ba05d332e69c0da003cd":[0,0,16,4],
 "classKdTree.html":[0,0,17],
 "classKdTree.html#a6961e4f76bf311d6d9ec9982945eef4f":[0,0,17,0],
-"classKdTree.html#ab73701abd136e4ef2e9d59ec6bef38a0":[0,0,17,1],
+"classKdTree.html#abe41277ad4726f3c9c2a22982009716d":[0,0,17,1],
 "classKdTree.html#addbc57d40f96b2e18ce3763f7f5a99f3":[0,0,17,2],
 "classKernel.html":[0,0,18],
 "classKinit.html":[0,0,19],

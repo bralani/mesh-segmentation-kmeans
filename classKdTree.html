@@ -117,9 +117,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6961e4f76bf311d6d9ec9982945eef4f" id="r_a6961e4f76bf311d6d9ec9982945eef4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKdTree.html#a6961e4f76bf311d6d9ec9982945eef4f">KdTree</a> (std::vector&lt; <a class="el" href="classPoint.html">Point</a>&lt; PT, PD &gt; &gt; &amp;points)</td></tr>
 <tr class="memdesc:a6961e4f76bf311d6d9ec9982945eef4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a KD-tree from a given set of points.  <br /></td></tr>
 <tr class="separator:a6961e4f76bf311d6d9ec9982945eef4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab73701abd136e4ef2e9d59ec6bef38a0" id="r_ab73701abd136e4ef2e9d59ec6bef38a0"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKdTree.html#ab73701abd136e4ef2e9d59ec6bef38a0">~KdTree</a> ()=default</td></tr>
-<tr class="memdesc:ab73701abd136e4ef2e9d59ec6bef38a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default virtual destructor.  <br /></td></tr>
-<tr class="separator:ab73701abd136e4ef2e9d59ec6bef38a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe41277ad4726f3c9c2a22982009716d" id="r_abe41277ad4726f3c9c2a22982009716d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKdTree.html#abe41277ad4726f3c9c2a22982009716d">~KdTree</a> ()</td></tr>
+<tr class="memdesc:abe41277ad4726f3c9c2a22982009716d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="separator:abe41277ad4726f3c9c2a22982009716d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addbc57d40f96b2e18ce3763f7f5a99f3" id="r_addbc57d40f96b2e18ce3763f7f5a99f3"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classKdNode.html">KdNode</a>&lt; PT, PD &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classKdTree.html#addbc57d40f96b2e18ce3763f7f5a99f3">getRoot</a> ()</td></tr>
 <tr class="memdesc:addbc57d40f96b2e18ce3763f7f5a99f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a reference to the root node of the kd-tree.  <br /></td></tr>
 <tr class="separator:addbc57d40f96b2e18ce3763f7f5a99f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,32 +165,24 @@ template&lt;typename PT , std::size_t PD&gt; </div>
 
 </div>
 </div>
-<a id="ab73701abd136e4ef2e9d59ec6bef38a0" name="ab73701abd136e4ef2e9d59ec6bef38a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab73701abd136e4ef2e9d59ec6bef38a0">&#9670;&#160;</a></span>~KdTree()</h2>
+<a id="abe41277ad4726f3c9c2a22982009716d" name="abe41277ad4726f3c9c2a22982009716d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe41277ad4726f3c9c2a22982009716d">&#9670;&#160;</a></span>~KdTree()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename PT , std::size_t PD&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="classKdTree.html">KdTree</a>&lt; PT, PD &gt;::~<a class="el" href="classKdTree.html">KdTree</a> </td>
+          <td class="memname"><a class="el" href="classKdTree.html">KdTree</a>&lt; PT, PD &gt;::~<a class="el" href="classKdTree.html">KdTree</a> </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span><span class="mlabel">default</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Default virtual destructor. </p>
+<p>Destructor. </p>
 <p>Ensures proper cleanup of dynamically allocated nodes when the <a class="el" href="classKdTree.html" title="A k-dimensional tree (kd-tree) for organizing and searching spatial data.">KdTree</a> object is destroyed. </p>
 
 </div>
