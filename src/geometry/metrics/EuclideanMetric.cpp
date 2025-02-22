@@ -28,10 +28,10 @@ EuclideanMetric<PT, PD>::EuclideanMetric(Mesh &mesh, double percentage_threshold
         if (this->data.size() > MIN_NUM_POINTS_CUDA) {
             kdtree = nullptr;
         } else {
-            kdtree = new KdTree<PT, PD>(this->data);
+            kdtree = std::make_unique<KdTree<PT, PD>>(this->data);
         }
     #else
-        kdtree = new KdTree<PT, PD>(this->data);
+        kdtree = std::make_unique<KdTree<PT, PD>>(this->data);
     #endif
 }
 
@@ -60,7 +60,7 @@ void EuclideanMetric<PT, PD>::setup() {}
 // Execute clustering on CPU
 template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::fit_cpu() {
-    bool convergence = false;
+    /*bool convergence = false;
     int iter = 0;
     while (!convergence) {
         filter();
@@ -71,7 +71,7 @@ void EuclideanMetric<PT, PD>::fit_cpu() {
     }
 
     updateFaceClusters();
-    storeCentroids();
+    storeCentroids();*/
 }
 
 #ifdef USE_CUDA
