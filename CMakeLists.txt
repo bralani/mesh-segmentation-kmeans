@@ -80,6 +80,5 @@ if(TARGET model_renderer)
     endif()
 endif()
 
-add_kmeans_executable(monitoring "src/monitoring.cpp;${SOURCES}" "${CUDA_SOURCES}")
 add_kmeans_executable(kmeans_benchmark "src/benchmark.cpp;${SOURCES}" "${CUDA_SOURCES}")
 target_link_libraries(kmeans_benchmark benchmark::benchmark)

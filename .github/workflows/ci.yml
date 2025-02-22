@@ -42,16 +42,16 @@ jobs:
     - name: Memory leaks Euclidean
       run: |
         cd build/bin
-        valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=definite,indirect --error-exitcode=1 ./monitoring test 3 2 0
+        valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=definite,indirect --error-exitcode=1 ./mesh_segmentation resources/test.obj 3 2 0
 
     - name: Memory leaks Dijkstra
       run: |
         cd build/bin
-        valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=definite,indirect --error-exitcode=1 ./monitoring test 3 2 1
+        valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=definite,indirect --error-exitcode=1 ./mesh_segmentation resources/test.obj 3 2 1
 
     
     - name: Memory leaks Heat
       run: |
         cd build/bin
-        valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=definite,indirect --error-exitcode=1 ./monitoring test 3 2 2
+        valgrind --leak-check=full --show-leak-kinds=all --errors-for-leak-kinds=definite,indirect --error-exitcode=1 ./mesh_segmentation resources/test.obj 3 2 2
       

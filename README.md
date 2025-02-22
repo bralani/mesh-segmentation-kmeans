@@ -127,7 +127,7 @@ Once the project is built, you can use two ready-to-run executables for segmenta
   ```
 
   ```
-  <mesh_file>       : Name of the mesh file (without extension)
+  <mesh_file>       : Name of the mesh file (i.e resources/meshes/obj/1.obj)
   <num_clusters>    : Number of clusters (0 if unknown)
   <init_method>     : Initialization method for centroids (0: random, 1: KDE, 2: most distant, 3: Static KDE - 3D point)
   <metric>          : Distance metric (0: Euclidean, 1: Dijkstra, 2: Heat)
@@ -135,7 +135,7 @@ Once the project is built, you can use two ready-to-run executables for segmenta
   ```
   For example, the following command will segmentate the `resources/meshes/obj/1.obj` file in 5 clusters with the Heat method using a random initialization method for centroids and it will export the mesh in the following file: `resources/meshes/obj/1_segmented.obj`.
   ```bash
-  ./mesh_segmentation 1 5 0 2
+  ./mesh_segmentation resources/meshes/obj/1.obj 5 0 2
   ``` 
   To visualize the resulting clusters, you can use any 3D visualization tool that supports importing OBJ files with group-based splitting (we recommend Blender). Alternatively, you can use our built-in viewer library for a seamless experience (see the next section for details).
 
