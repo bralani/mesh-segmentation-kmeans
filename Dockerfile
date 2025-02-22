@@ -25,7 +25,7 @@ RUN mkdir -p /workspace/build
 
 # Configure and compile the project
 WORKDIR /workspace/build
-RUN cmake .. && make -j$(nproc)
+RUN cmake .. && make -j2
 
 # Run the compiled executable on container startup
 CMD ["/bin/bash"]
