@@ -60,7 +60,7 @@ void EuclideanMetric<PT, PD>::setup() {}
 // Execute clustering on CPU
 template <typename PT, std::size_t PD>
 void EuclideanMetric<PT, PD>::fit_cpu() {
-    /*bool convergence = false;
+    bool convergence = false;
     int iter = 0;
     while (!convergence) {
         filter();
@@ -71,7 +71,7 @@ void EuclideanMetric<PT, PD>::fit_cpu() {
     }
 
     updateFaceClusters();
-    storeCentroids();*/
+    storeCentroids();
 }
 
 #ifdef USE_CUDA
