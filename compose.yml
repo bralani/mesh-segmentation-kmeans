@@ -1,10 +1,10 @@
-version: "3"
+version: "3.8"
 
 services:
-  cpp_project:
+  kmeans-app:
     build: .
-    container_name: cpp_dev
+    container_name: kmeans-container
+    restart: always
     volumes:
-      - .:/workspace  # Sync main project folder with the container
-    working_dir: /workspace
-    tty: true
+      - ./data:/workspace/data  # Only mount necessary directories, NOT `build/`
+    tty: true  # Keep the container running
