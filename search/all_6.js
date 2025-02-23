@@ -1,7 +1,7 @@
 var searchData=
 [
   ['gaussian_0',['gaussian',['../classKernel.html#a955fa7611c16312b639c4a7a46f2df46',1,'Kernel']]],
-  ['generategrid_1',['generateGrid',['../classKDE.html#ab3faa34b87d977dfda22ae125ad98f48',1,'KDE']]],
+  ['generategrid_1',['generategrid',['../classKDE.html#ab3faa34b87d977dfda22ae125ad98f48',1,'KDE::generateGrid()'],['../classKDE3D.html#ab89620595d05e9ad6d2ef178390d31b1',1,'KDE3D::generateGrid()']]],
   ['geodesicdijkstrametric_2',['geodesicdijkstrametric',['../classGeodesicDijkstraMetric.html',1,'GeodesicDijkstraMetric&lt; PT, PD &gt;'],['../classGeodesicDijkstraMetric.html#a4876f1dda5c5a2349e9fc096b66a8aca',1,'GeodesicDijkstraMetric::GeodesicDijkstraMetric()']]],
   ['geodesicheatmetric_3',['geodesicheatmetric',['../classGeodesicHeatMetric.html',1,'GeodesicHeatMetric&lt; PT, PD &gt;'],['../classGeodesicHeatMetric.html#a90b6ae59b7b2581908ce87edd1845087',1,'GeodesicHeatMetric::GeodesicHeatMetric()']]],
   ['get_5fk_4',['get_k',['../classCentroidInitMethod.html#a5ce9a780958fa0642c8334235af9c3ef',1,'CentroidInitMethod']]],

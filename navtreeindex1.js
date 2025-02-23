@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"classPoint.html#a1f270ab277fe6bd3a79a038a9a1b36be":[0,0,29,9],
+"classPoint.html#a2de70b524bfdcaf108f4f793ecd2fcd2":[0,0,29,16],
 "classPoint.html#a3be1d2092e5f3230a2eb44f25f77ec11":[0,0,29,11],
 "classPoint.html#a4a242bac74479be7b9afcc800091b228":[0,0,29,14],
 "classPoint.html#a64a53c3b8bb764efa27288fd2609b2d0":[0,0,29,15],

@@ -1,7 +1,7 @@
 <map id="KDE3D" name="KDE3D">
-<area shape="rect" id="Node000001" title="Implements Kernel Density Estimation (KDE) for 3D data." alt="" coords="164,313,281,419"/>
+<area shape="rect" id="Node000001" title="Implements Kernel Density Estimation (KDE) for 3D data." alt="" coords="148,313,297,459"/>
 <area shape="rect" id="Node000002" href="$classCentroidInitMethod.html" title=" " alt="" coords="5,5,211,265"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,277,199,312,194,314,177,279"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,276,192,312,187,314,171,279"/>
 <area shape="rect" id="Node000003" href="$classKDEBase.html" title=" " alt="" coords="235,23,439,248"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="277,262,251,314,246,312,273,259"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="282,262,258,314,253,312,278,260"/>
 </map>

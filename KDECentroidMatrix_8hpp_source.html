@@ -102,63 +102,65 @@ $(document).ready(function(){initNavTree('KDECentroidMatrix_8hpp_source.html',''
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment"> *  KDE3D.hpp</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment"> *============================================================================*/</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor"> #ifndef KDE3D_HPP</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor"> #define KDE3D_HPP</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#ifndef KDE3D_HPP</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define KDE3D_HPP</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor"> #include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor"> #include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor"> #include &lt;cmath&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor"> #include &lt;Eigen/Dense&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor"> #include &lt;stdexcept&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor"> #include &lt;fstream&gt;</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor"> #include &lt;cstddef&gt;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor"> #include &quot;clustering/CentroidInitializationMethods/KernelFunction.hpp&quot;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor"> #include &quot;clustering/CentroidInitializationMethods/CentroidInitMethods.hpp&quot;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor"> #include &quot;clustering/CentroidInitializationMethods/MostDistantCentroids.hpp&quot;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor"> #include &quot;clustering/CentroidInitializationMethods/KDEBase.hpp&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;Eigen/Dense&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;clustering/CentroidInitializationMethods/KernelFunction.hpp&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;clustering/CentroidInitializationMethods/CentroidInitMethods.hpp&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;clustering/CentroidInitializationMethods/MostDistantCentroids.hpp&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;clustering/CentroidInitializationMethods/KDEBase.hpp&quot;</span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor"> #define PDS 3</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor"> #ifndef M_PI</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor"> #define M_PI 3.14159265358979323846</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor"> #endif</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#define PDS 3</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#ifndef M_PI</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#define M_PI 3.14159265358979323846</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> <span class="keyword">using </span>Grid3D = std::vector&lt;std::vector&lt;std::vector&lt;Point&lt;double, 3&gt;&gt;&gt;&gt;;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> <span class="keyword">using </span>Densities3D = std::vector&lt;std::vector&lt;std::vector&lt;double&gt;&gt;&gt;;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> <span class="keyword">using namespace </span>Eigen;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">using </span>Grid3D = std::vector&lt;std::vector&lt;std::vector&lt;Point&lt;double, 3&gt;&gt;&gt;&gt;;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">using </span>Densities3D = std::vector&lt;std::vector&lt;std::vector&lt;double&gt;&gt;&gt;;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">using namespace </span>Eigen;</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classKDE3D.html">   36</a></span> <span class="keyword">class </span><a class="code hl_class" href="classKDE3D.html">KDE3D</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt;double, 3&gt; , <span class="keyword">public</span> <a class="code hl_class" href="classKDEBase.html">KDEBase</a>&lt;3&gt;  {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classKDE3D.html#a3de6133491589a0ede69d6e2348deed6">   46</a></span>     <a class="code hl_function" href="classKDE3D.html#a3de6133491589a0ede69d6e2348deed6">KDE3D</a>(<span class="keyword">const</span> std::vector&lt;<a class="code hl_class" href="classPoint.html">Point&lt;double, 3&gt;</a>&gt;&amp; data, <span class="keywordtype">int</span> k);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classKDE3D.html#af3a9bf72973b46ddbee9902a2f3cef8a">   53</a></span>     <a class="code hl_function" href="classKDE3D.html#af3a9bf72973b46ddbee9902a2f3cef8a">KDE3D</a>(<span class="keyword">const</span> std::vector&lt;<a class="code hl_class" href="classPoint.html">Point&lt;double, 3&gt;</a>&gt;&amp; data);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classKDE3D.html#aeec9035c2c30732fa539781304420ab0">   60</a></span>     <span class="keywordtype">void</span> <a class="code hl_function" href="classKDE3D.html#aeec9035c2c30732fa539781304420ab0">findCentroid</a>(std::vector&lt;<a class="code hl_class" href="classCentroidPoint.html">CentroidPoint&lt;double, 3&gt;</a>&gt;&amp; centroids) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>     <span class="keywordtype">double</span> truncateToThreeDecimals(<span class="keywordtype">double</span> value);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>     <span class="keywordtype">int</span> m_bandwidthMethods; </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>     <span class="keywordtype">int</span> range_number_division; </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>     std::size_t m_totalPoints; </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>     std::array&lt;double, 3&gt; m_range; </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>     std::array&lt;double, 3&gt; m_step; </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>     std::array&lt;size_t, 3&gt; m_numPoints; </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classKDE3D.html">   36</a></span><span class="keyword">class </span><a class="code hl_class" href="classKDE3D.html">KDE3D</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCentroidInitMethod.html">CentroidInitMethod</a>&lt;double, 3&gt;, <span class="keyword">public</span> <a class="code hl_class" href="classKDEBase.html">KDEBase</a>&lt;3&gt;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classKDE3D.html#a3de6133491589a0ede69d6e2348deed6">   47</a></span>    <a class="code hl_function" href="classKDE3D.html#a3de6133491589a0ede69d6e2348deed6">KDE3D</a>(<span class="keyword">const</span> std::vector&lt;<a class="code hl_class" href="classPoint.html">Point&lt;double, 3&gt;</a>&gt; &amp;data, <span class="keywordtype">int</span> k);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classKDE3D.html#af3a9bf72973b46ddbee9902a2f3cef8a">   54</a></span>    <a class="code hl_function" href="classKDE3D.html#af3a9bf72973b46ddbee9902a2f3cef8a">KDE3D</a>(<span class="keyword">const</span> std::vector&lt;<a class="code hl_class" href="classPoint.html">Point&lt;double, 3&gt;</a>&gt; &amp;data);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classKDE3D.html#aeec9035c2c30732fa539781304420ab0">   61</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKDE3D.html#aeec9035c2c30732fa539781304420ab0">findCentroid</a>(std::vector&lt;<a class="code hl_class" href="classCentroidPoint.html">CentroidPoint&lt;double, 3&gt;</a>&gt; &amp;centroids) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classKDE3D.html#ab89620595d05e9ad6d2ef178390d31b1">   68</a></span>    Grid3D <a class="code hl_function" href="classKDE3D.html#ab89620595d05e9ad6d2ef178390d31b1">generateGrid</a>();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classKDE3D.html#ac8e239132c4ec0c5d922909c27c24b58">   76</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classKDE3D.html#ac8e239132c4ec0c5d922909c27c24b58">findLocalMaxima</a>(<span class="keyword">const</span> Grid3D &amp;gridPoints, std::vector&lt;<a class="code hl_class" href="classCentroidPoint.html">CentroidPoint&lt;double, PDS&gt;</a>&gt; &amp;returnVec);</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>     Grid3D generateGrid();</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>     <span class="keywordtype">void</span> findLocalMaxima(<span class="keyword">const</span> Grid3D&amp; gridPoints, std::vector&lt;<a class="code hl_class" href="classCentroidPoint.html">CentroidPoint&lt;double, PDS&gt;</a>&gt;&amp; returnVec);</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>     <span class="keywordtype">bool</span> isLocalMaximum(<span class="keyword">const</span> Grid3D&amp; gridPoints, <span class="keyword">const</span> Densities3D&amp; densities, <span class="keywordtype">size_t</span> x, <span class="keywordtype">size_t</span> y, <span class="keywordtype">size_t</span> z);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> };</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">double</span> truncateToThreeDecimals(<span class="keywordtype">double</span> value);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">int</span> m_bandwidthMethods;            </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">int</span> range_number_division;         </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    std::size_t m_totalPoints;         </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    std::array&lt;double, 3&gt; m_range;     </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    std::array&lt;double, 3&gt; m_step;      </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    std::array&lt;size_t, 3&gt; m_numPoints; </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">bool</span> isLocalMaximum(<span class="keyword">const</span> Grid3D &amp;gridPoints, <span class="keyword">const</span> Densities3D &amp;densities, <span class="keywordtype">size_t</span> x, <span class="keywordtype">size_t</span> y, <span class="keywordtype">size_t</span> z);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
 </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor"> #endif </span><span class="comment">// KDE3D_HPP</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#endif </span><span class="comment">// KDE3D_HPP</span></div>
 <div class="ttc" id="aclassCentroidInitMethod_html"><div class="ttname"><a href="classCentroidInitMethod.html">CentroidInitMethod</a></div><div class="ttdoc">Base class for centroid initialization methods.</div><div class="ttdef"><b>Definition</b> CentroidInitMethods.hpp:21</div></div>
 <div class="ttc" id="aclassCentroidPoint_html"><div class="ttname"><a href="classCentroidPoint.html">CentroidPoint</a></div><div class="ttdoc">Represents a point with a centroid and associated weights.</div><div class="ttdef"><b>Definition</b> CentroidPoint.hpp:26</div></div>
-<div class="ttc" id="aclassKDE3D_html"><div class="ttname"><a href="classKDE3D.html">KDE3D</a></div><div class="ttdoc">Implements Kernel Density Estimation (KDE) for 3D data.</div><div class="ttdef"><b>Definition</b> KDECentroidMatrix.hpp:36</div></div>
+<div class="ttc" id="aclassKDE3D_html"><div class="ttname"><a href="classKDE3D.html">KDE3D</a></div><div class="ttdoc">Implements Kernel Density Estimation (KDE) for 3D data.</div><div class="ttdef"><b>Definition</b> KDECentroidMatrix.hpp:37</div></div>
 <div class="ttc" id="aclassKDE3D_html_a3de6133491589a0ede69d6e2348deed6"><div class="ttname"><a href="classKDE3D.html#a3de6133491589a0ede69d6e2348deed6">KDE3D::KDE3D</a></div><div class="ttdeci">KDE3D(const std::vector&lt; Point&lt; double, 3 &gt; &gt; &amp;data, int k)</div><div class="ttdoc">Constructor for KDE3D.</div></div>
+<div class="ttc" id="aclassKDE3D_html_ab89620595d05e9ad6d2ef178390d31b1"><div class="ttname"><a href="classKDE3D.html#ab89620595d05e9ad6d2ef178390d31b1">KDE3D::generateGrid</a></div><div class="ttdeci">Grid3D generateGrid()</div><div class="ttdoc">Generates a 3D grid based on input data.</div></div>
+<div class="ttc" id="aclassKDE3D_html_ac8e239132c4ec0c5d922909c27c24b58"><div class="ttname"><a href="classKDE3D.html#ac8e239132c4ec0c5d922909c27c24b58">KDE3D::findLocalMaxima</a></div><div class="ttdeci">void findLocalMaxima(const Grid3D &amp;gridPoints, std::vector&lt; CentroidPoint&lt; double, PDS &gt; &gt; &amp;returnVec)</div><div class="ttdoc">Identifies local maxima in the KDE grid.</div></div>
 <div class="ttc" id="aclassKDE3D_html_aeec9035c2c30732fa539781304420ab0"><div class="ttname"><a href="classKDE3D.html#aeec9035c2c30732fa539781304420ab0">KDE3D::findCentroid</a></div><div class="ttdeci">void findCentroid(std::vector&lt; CentroidPoint&lt; double, 3 &gt; &gt; &amp;centroids) override</div><div class="ttdoc">Finds initial centroids using KDE-based local maxima detection.</div></div>
 <div class="ttc" id="aclassKDE3D_html_af3a9bf72973b46ddbee9902a2f3cef8a"><div class="ttname"><a href="classKDE3D.html#af3a9bf72973b46ddbee9902a2f3cef8a">KDE3D::KDE3D</a></div><div class="ttdeci">KDE3D(const std::vector&lt; Point&lt; double, 3 &gt; &gt; &amp;data)</div><div class="ttdoc">Constructor for KDE3D with a predefined number of centroids.</div></div>
 <div class="ttc" id="aclassKDEBase_html"><div class="ttname"><a href="classKDEBase.html">KDEBase</a></div><div class="ttdoc">Base class for Kernel Density Estimation (KDE) operations.</div><div class="ttdef"><b>Definition</b> KDEBase.hpp:23</div></div>
