@@ -55,12 +55,13 @@ var NAVTREEINDEX0 =
 "classCamera.html#aff7393c9cfbccd7e369091f00008da93":[0,0,1,16],
 "classCentroidInitMethod.html":[0,0,2],
 "classCentroidInitMethod.html#a4e66f7f21cfd7e9f925f3420e21e78ed":[0,0,2,2],
-"classCentroidInitMethod.html#a692d9e32c9b92206c1b46de4467bfaa8":[0,0,2,5],
+"classCentroidInitMethod.html#a5ce9a780958fa0642c8334235af9c3ef":[0,0,2,4],
+"classCentroidInitMethod.html#a692d9e32c9b92206c1b46de4467bfaa8":[0,0,2,6],
 "classCentroidInitMethod.html#a6989528b92fdf1091ec02309f65f5f68":[0,0,2,0],
-"classCentroidInitMethod.html#a97ef11ecfbfaa73a05169ff8466f3e12":[0,0,2,4],
+"classCentroidInitMethod.html#a97ef11ecfbfaa73a05169ff8466f3e12":[0,0,2,5],
 "classCentroidInitMethod.html#ac5b8f0f0e4e4d893732f08ed8740b37f":[0,0,2,3],
 "classCentroidInitMethod.html#af0d1458d943b4bb799a388e411b0c4cd":[0,0,2,1],
-"classCentroidInitMethod.html#af6826d66fb866a6d0071584a9169eb71":[0,0,2,6],
+"classCentroidInitMethod.html#af6826d66fb866a6d0071584a9169eb71":[0,0,2,7],
 "classCentroidPoint.html":[0,0,3],
 "classCentroidPoint.html#a10d147d7223246fe8cfc61fe6210519e":[0,0,3,8],
 "classCentroidPoint.html#a3644e95361d0ec5242fbab37cff1c475":[0,0,3,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classPoint.html#a1f270ab277fe6bd3a79a038a9a1b36be":[0,0,29,9],
 "classPoint.html#a2de70b524bfdcaf108f4f793ecd2fcd2":[0,0,29,16],
 "classPoint.html#a3be1d2092e5f3230a2eb44f25f77ec11":[0,0,29,11],
-"classPoint.html#a4a242bac74479be7b9afcc800091b228":[0,0,29,14],
-"classPoint.html#a64a53c3b8bb764efa27288fd2609b2d0":[0,0,29,15]
+"classPoint.html#a4a242bac74479be7b9afcc800091b228":[0,0,29,14]
 };

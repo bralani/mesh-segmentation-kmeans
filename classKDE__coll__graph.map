@@ -1,7 +1,7 @@
 <map id="KDE&lt; PD &gt;" name="KDE&lt; PD &gt;">
-<area shape="rect" id="Node000001" title="Implements Kernel Density Estimation (KDE) for centroid initialization." alt="" coords="114,293,331,419"/>
-<area shape="rect" id="Node000002" href="$classCentroidInitMethod.html" title=" " alt="" coords="5,5,211,245"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,256,194,292,189,294,171,259"/>
-<area shape="rect" id="Node000003" href="$classKDEBase.html" title="Base class for Kernel Density Estimation (KDE) operations." alt="" coords="235,13,439,238"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="277,252,256,294,251,292,273,249"/>
+<area shape="rect" id="Node000001" title="Implements Kernel Density Estimation (KDE) for centroid initialization." alt="" coords="114,313,331,439"/>
+<area shape="rect" id="Node000002" href="$classCentroidInitMethod.html" title=" " alt="" coords="5,5,211,265"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,276,195,312,191,314,173,279"/>
+<area shape="rect" id="Node000003" href="$classKDEBase.html" title="Base class for Kernel Density Estimation (KDE) operations." alt="" coords="235,23,439,248"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="280,261,255,314,250,312,276,259"/>
 </map>

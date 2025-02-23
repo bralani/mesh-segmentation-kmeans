@@ -1,5 +1,5 @@
 <map id="RandomCentroidInit&lt; PT, PD &gt;" name="RandomCentroidInit&lt; PT, PD &gt;">
-<area shape="rect" id="Node000001" title="Implements a centroid initialization method using random selection." alt="" coords="23,293,193,413"/>
-<area shape="rect" id="Node000002" href="$classCentroidInitMethod.html" title="Base class for centroid initialization methods." alt="" coords="5,5,211,245"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,260,111,293,105,293,105,260"/>
+<area shape="rect" id="Node000001" title="Implements a centroid initialization method using random selection." alt="" coords="23,313,193,433"/>
+<area shape="rect" id="Node000002" href="$classCentroidInitMethod.html" title="Base class for centroid initialization methods." alt="" coords="5,5,211,265"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,279,111,313,105,313,105,279"/>
 </map>
