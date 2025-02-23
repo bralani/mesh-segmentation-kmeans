@@ -68,6 +68,7 @@ add_kmeans_test(my_tests
     ${CMAKE_SOURCE_DIR}/tests/geometry/metrics/GeodesicHeatMetricTest.cpp
     ${CMAKE_SOURCE_DIR}/tests/geometry/kdtree/KDNodeTest.cpp
     ${CMAKE_SOURCE_DIR}/tests/geometry/kdtree/KDTreeTest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/clustering/KMeansTest.cpp
     ${SOURCES} 
     ${CUDA_SOURCES}
 )
