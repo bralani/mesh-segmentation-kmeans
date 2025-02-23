@@ -102,98 +102,6 @@ cmake ..
 make
 ```
 
-### Mesh Segmentation with Docker
-
-#### 1. Install Docker Desktop
-
-Docker allows us to containerize and run applications easily. Follow the steps below based on your operating system:
-
-#### **MacOS & Windows**
-
-1. Download Docker Desktop from the official site: [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-2. Install the application and follow the setup instructions.
-3. Ensure Docker is running by opening a terminal and executing:
-
-   ```sh
-   docker --version
-   ```
-
-   You should see an output like: `Docker version XX.XX.XX, build XXXXX`
-
-#### **Linux**
-
-Run the following commands:
-
-```sh
-sudo apt update
-sudo apt install docker.io -y
-sudo systemctl start docker
-sudo systemctl enable docker
-```
-
-To verify the installation:
-
-```sh
-docker --version
-```
-
-### Setup and Run the Container
-
-#### **1. Build and Start the Container**
-
-Run the following command from the root folder, containing the Dockerfile, to build the container and start it in the background:
-
-```sh
-docker compose up --build -d
-```
-
-#### **2. Enter the Container**
-
-Since we don’t run the program at startup, we need to manually enter the container:
-
-```sh
-docker exec -it kmeans-container /bin/bash
-```
-
-#### **3. Run the Mesh Segmentation Program**
-
-Inside the container, execute:
-
-```sh
-/workspace/build/bin/mesh_segmentation
-```
-
-### Managing Docker Containers
-
-#### **Stop the Running Container**
-
-```sh
-docker stop kmeans-container
-```
-
-### Troubleshooting
-
-#### **1. Out of Memory Issues**
-
-If you encounter a `ResourceExhausted` error, increase Docker's memory allocation:
-
-- **MacOS/Windows**: Go to Docker Desktop → Settings → Resources → Increase Memory (at least 6GB).
-- **Linux**: Add swap space:
-
-  ```sh
-  sudo fallocate -l 4G /swapfile
-  sudo chmod 600 /swapfile
-  sudo mkswap /swapfile
-  sudo swapon /swapfile
-  ```
-
-#### **2. Your disk is out of memory**
-
-```sh
-docker compose down -v
-docker system prune -f
-```
-
 ## Dataset
 
 To run the project, download the required 3D dataset from the following [link](https://polimi365-my.sharepoint.com/:u:/g/personal/10978268_polimi_it/EZKJJOmNr_REh4EHY5Tln7QBmNEsD940wz2wfekhq0LguA?e=noOjtN). Unzip the files and place them in the `resources` folder. The folder structure should look like this:
@@ -287,6 +195,98 @@ Moreover, we provide other two executables for quality evaluation of metrics and
   ```
 
   Edit the `src/benchmark.cpp` file as you prefer and re-build this executable if you want to change benchmark configurations.
+
+## Mesh Segmentation with Docker
+
+#### 1. Install Docker Desktop
+
+Docker allows us to containerize and run applications easily. Follow the steps below based on your operating system:
+
+#### **MacOS & Windows**
+
+1. Download Docker Desktop from the official site: [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+2. Install the application and follow the setup instructions.
+3. Ensure Docker is running by opening a terminal and executing:
+
+   ```sh
+   docker --version
+   ```
+
+   You should see an output like: `Docker version XX.XX.XX, build XXXXX`
+
+#### **Linux**
+
+Run the following commands:
+
+```sh
+sudo apt update
+sudo apt install docker.io -y
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+To verify the installation:
+
+```sh
+docker --version
+```
+
+### Setup and Run the Container
+
+#### **1. Build and Start the Container**
+
+Run the following command from the root folder, containing the Dockerfile, to build the container and start it in the background:
+
+```sh
+docker compose up --build -d
+```
+
+#### **2. Enter the Container**
+
+Since we don’t run the program at startup, we need to manually enter the container:
+
+```sh
+docker exec -it kmeans-container /bin/bash
+```
+
+#### **3. Run the Mesh Segmentation Program**
+
+Inside the container, execute:
+
+```sh
+/workspace/build/bin/mesh_segmentation
+```
+
+### Managing Docker Containers
+
+#### **Stop the Running Container**
+
+```sh
+docker stop kmeans-container
+```
+
+### Troubleshooting
+
+#### **1. Out of Memory Issues**
+
+If you encounter a `ResourceExhausted` error, increase Docker's memory allocation:
+
+- **MacOS/Windows**: Go to Docker Desktop → Settings → Resources → Increase Memory (at least 6GB).
+- **Linux**: Add swap space:
+
+  ```sh
+  sudo fallocate -l 4G /swapfile
+  sudo chmod 600 /swapfile
+  sudo mkswap /swapfile
+  sudo swapon /swapfile
+  ```
+
+#### **2. Your disk is out of memory**
+
+```sh
+docker compose down -v
+docker system prune -f
+```
 
 ## Viewer
 
