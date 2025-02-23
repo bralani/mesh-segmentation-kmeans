@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['uniform_0',['uniform',['../classKernel.html#a3004363039615180e88ba91b81d342d0',1,'Kernel']]],
-  ['updateviewmatrix_1',['updateViewMatrix',['../classCamera.html#a8fe5c71a390571a861ad8afd99dfdea3',1,'Camera']]],
-  ['use_2',['use',['../classTexture2D.html#abfbd7e11c06f66180f1361da80e2ef94',1,'Texture2D::use()'],['../classMaterial.html#a9ed781bf777a3637519e7372cf8ce1d9',1,'Material::use()'],['../classPhongMaterial.html#a902a287348a0b54e1ccef715d75247ac',1,'PhongMaterial::use()'],['../classShaderProgram.html#aa3860ee49bab09ae3fc117da165ea73a',1,'ShaderProgram::use()']]]
+  ['texture2d_0',['texture2d',['../classTexture2D.html#ab62c7c5172a4800b4629cd475147819d',1,'Texture2D::Texture2D()'],['../classTexture2D.html#a15f32406b651825edafe73b100622492',1,'Texture2D::Texture2D(const std::string &amp;path)'],['../classTexture2D.html#a36d0a3126d22e8e7878c05c444418b80',1,'Texture2D::Texture2D(unsigned char *rawData, int width, int height)']]],
+  ['triangular_1',['triangular',['../classKernel.html#a2723d5286da733c981bcafb87f601324',1,'Kernel']]],
+  ['triweight_2',['triweight',['../classKernel.html#abfdc55e6909d7dc3a43c75effb60bdf2',1,'Kernel']]],
+  ['truncatetothreedecimals_3',['truncateToThreeDecimals',['../classCentroidInitMethod.html#a43bf9b3b7c9633f5fa4f98e567428f96',1,'CentroidInitMethod']]]
 ];

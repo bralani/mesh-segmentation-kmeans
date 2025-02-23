@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['randomcentroidinit_0',['randomcentroidinit',['../classRandomCentroidInit.html#a1b356ab30d491aef167b6963cec4de60',1,'RandomCentroidInit::RandomCentroidInit(const std::vector&lt; Point&lt; PT, PD &gt; &gt; &amp;data, int k)'],['../classRandomCentroidInit.html#a27a3bc0c19ef3a799f1213c0519740be',1,'RandomCentroidInit::RandomCentroidInit(const std::vector&lt; Point&lt; PT, PD &gt; &gt; &amp;data)']]],
-  ['readcsv_1',['readCSV',['../classCSVUtils.html#af8d9a5ac2fbe8408cdd36bfbb5cac996',1,'CSVUtils']]],
-  ['render_2',['Render',['../classRender.html#a3a98d94e16e0361cc976b939276f3d73',1,'Render']]],
-  ['renderfile_3',['renderFile',['../classRender.html#a7413db2179c4bafeea297e5fb102e6e4',1,'Render']]],
-  ['resetcamera_4',['resetCamera',['../classCamera.html#aee8027b5309a5dc77db956d27924c387',1,'Camera']]],
-  ['resetcentroids_5',['resetcentroids',['../classKMeans.html#a730a3ec3842d97937e9e9d5f30309506',1,'KMeans::resetCentroids()'],['../classMetric.html#ac43c1fec1d78f22f8467008f8b467f65',1,'Metric::resetCentroids()']]],
-  ['resetcount_6',['resetCount',['../classHasWgtCent.html#a9653c626a51d02140779ed70ab0098ce',1,'HasWgtCent']]]
+  ['phongmaterial_0',['phongmaterial',['../classPhongMaterial.html#a5edfd5d4415cb5f7c10e8eea49cb692d',1,'PhongMaterial::PhongMaterial()'],['../classPhongMaterial.html#a982050458be4659cb9516dffbd775d37',1,'PhongMaterial::PhongMaterial(ShaderProgram *program, std::vector&lt; Texture2D * &gt; textures, int texDiffuse, int texSpecular, float shininess)']]],
+  ['point_1',['point',['../classPoint.html#aaa0c03ecddb5b1a433ab9a13e8dab90e',1,'Point::Point()'],['../classPoint.html#aec7ab5d672ea9f13d4daa6ab80a70022',1,'Point::Point(const std::array&lt; PT, PD &gt; &amp;coords, int id=-1)'],['../classPoint.html#aa424c2fdc1aa2cb1949ec0e6c35663ef',1,'Point::Point(PT value, int id=-1)']]],
+  ['pointtovector_2',['pointToVector',['../classKDEBase.html#a3d2b89091cdf33f4128491f29b8e1d7b',1,'KDEBase']]],
+  ['positionbasedonobject_3',['positionbasedonobject',['../classCamera.html#a15bdd706790066d2cefba1968cce15e6',1,'Camera::positionBasedOnObject()'],['../classModelRotationCamera.html#ac946811fb44ed9d8a03877152cfc6810',1,'ModelRotationCamera::positionBasedOnObject()']]],
+  ['print_4',['print',['../classKMeans.html#ab1318dbe7bc28f2adb26babeb5c229c9',1,'KMeans::print()'],['../classPoint.html#ad5b6638028562d58b0ab36636f8ffab8',1,'Point::print()']]]
 ];

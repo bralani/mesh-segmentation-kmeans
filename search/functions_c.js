@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['phongmaterial_0',['phongmaterial',['../classPhongMaterial.html#a5edfd5d4415cb5f7c10e8eea49cb692d',1,'PhongMaterial::PhongMaterial()'],['../classPhongMaterial.html#a982050458be4659cb9516dffbd775d37',1,'PhongMaterial::PhongMaterial(ShaderProgram *program, std::vector&lt; Texture2D * &gt; textures, int texDiffuse, int texSpecular, float shininess)']]],
-  ['point_1',['point',['../classPoint.html#aaa0c03ecddb5b1a433ab9a13e8dab90e',1,'Point::Point()'],['../classPoint.html#aec7ab5d672ea9f13d4daa6ab80a70022',1,'Point::Point(const std::array&lt; PT, PD &gt; &amp;coords, int id=-1)'],['../classPoint.html#aa424c2fdc1aa2cb1949ec0e6c35663ef',1,'Point::Point(PT value, int id=-1)']]],
-  ['pointtovector_2',['pointToVector',['../classKDEBase.html#a3d2b89091cdf33f4128491f29b8e1d7b',1,'KDEBase']]],
-  ['positionbasedonobject_3',['positionbasedonobject',['../classCamera.html#a15bdd706790066d2cefba1968cce15e6',1,'Camera::positionBasedOnObject()'],['../classModelRotationCamera.html#ac946811fb44ed9d8a03877152cfc6810',1,'ModelRotationCamera::positionBasedOnObject()']]],
-  ['print_4',['print',['../classKMeans.html#ab1318dbe7bc28f2adb26babeb5c229c9',1,'KMeans::print()'],['../classPoint.html#ad5b6638028562d58b0ab36636f8ffab8',1,'Point::print()']]]
+  ['operator_21_3d_0',['operator!=',['../classCentroidPoint.html#ab44378e4fb86a80601baf94aae3797f7',1,'CentroidPoint::operator!=(const CentroidPoint&lt; PT, PD &gt; &amp;other) const'],['../classCentroidPoint.html#a368eedcd466fce58dbab2201e41ebfd2',1,'CentroidPoint::operator!=(const Point&lt; PT, PD &gt; &amp;other) const']]],
+  ['operator_2b_1',['operator+',['../classCentroidPoint.html#a61b6e9ff012efb8cd7cf10aa58ba6acc',1,'CentroidPoint::operator+()'],['../classPoint.html#ac3ab9f1ce8279381650719e4680b5d4a',1,'Point::operator+(const Point&lt; PT, PD &gt; &amp;other) const']]],
+  ['operator_2d_2',['operator-',['../classPoint.html#a1f270ab277fe6bd3a79a038a9a1b36be',1,'Point']]],
+  ['operator_2f_3',['operator/',['../classPoint.html#a99bdc837b6bf4163634e4febb4381849',1,'Point::operator/(const Point&lt; PT, PD &gt; &amp;other) const'],['../classPoint.html#a3be1d2092e5f3230a2eb44f25f77ec11',1,'Point::operator/(double div) const']]],
+  ['operator_3d_3d_4',['operator==',['../classCentroidPoint.html#a56dff55d6b50587fc65195453811037e',1,'CentroidPoint::operator==(const CentroidPoint&lt; PT, PD &gt; &amp;other) const'],['../classCentroidPoint.html#a10d147d7223246fe8cfc61fe6210519e',1,'CentroidPoint::operator==(const Point&lt; PT, PD &gt; &amp;other) const'],['../classPoint.html#a04eeb76892e69d4e3c2490728c7a881d',1,'Point::operator==()']]]
 ];
