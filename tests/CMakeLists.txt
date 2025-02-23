@@ -70,6 +70,7 @@ add_kmeans_test(my_tests
     ${CMAKE_SOURCE_DIR}/tests/geometry/kdtree/KDTreeTest.cpp
     ${CMAKE_SOURCE_DIR}/tests/clustering/KMeansTest.cpp
     ${CMAKE_SOURCE_DIR}/tests/clustering/CentroidInitializationMethods/CentroidInitMethodsTest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/clustering/CentroidInitializationMethods/KDEBaseTest.cpp
     ${SOURCES} 
     ${CUDA_SOURCES}
 )
