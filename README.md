@@ -141,7 +141,7 @@ docker --version
 
 #### **1. Build and Start the Container**
 
-Run the following command to build the container and start it in the background:
+Run the following command from the root folder, containing the Dockerfile, to build the container and start it in the background:
 
 ```sh
 docker compose up --build -d
@@ -186,6 +186,13 @@ If you encounter a `ResourceExhausted` error, increase Docker's memory allocatio
   sudo mkswap /swapfile
   sudo swapon /swapfile
   ```
+
+#### **2. Your disk is out of memory**
+
+```sh
+docker compose down -v
+docker system prune -f
+```
 
 ## Dataset
 
