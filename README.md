@@ -102,15 +102,6 @@ cmake ..
 make
 ```
 
-### Docker
-
-With Docker, the project is already built; however, please note that the UI is not accessible, so the viewer library will not be available.
-
-```bash
-# From the main folder
-docker compose up --build -d
-```
-
 ### Mesh Segmentation with Docker
 
 #### 1. Install Docker Desktop
