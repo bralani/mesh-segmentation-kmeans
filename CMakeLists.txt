@@ -58,7 +58,7 @@ if(MSVC)
 endif()
 
 file(GLOB_RECURSE SOURCES "src/geometry/*.cpp" "src/clustering/*.cpp")
-file(GLOB_RECURSE CUDA_SOURCES "include/*.cu")
+file(GLOB_RECURSE CUDA_SOURCES "src/*.cu")
 
 # Compile options
 if(MSVC)

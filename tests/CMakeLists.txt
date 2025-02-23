@@ -57,7 +57,7 @@ endif()
 
 # Collect source files for the project
 file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/src/geometry/*.cpp" "${CMAKE_SOURCE_DIR}/src/clustering/*.cpp")
-file(GLOB_RECURSE CUDA_SOURCES "${CMAKE_SOURCE_DIR}/include/*.cu")
+file(GLOB_RECURSE CUDA_SOURCES "${CMAKE_SOURCE_DIR}/src/*.cu")
 
 # Add the test executable
 add_kmeans_test(my_tests 
