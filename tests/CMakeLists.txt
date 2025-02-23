@@ -74,8 +74,8 @@ add_kmeans_test(my_tests
     ${CMAKE_SOURCE_DIR}/tests/clustering/CentroidInitializationMethods/KDECentroidTest.cpp
     ${CMAKE_SOURCE_DIR}/tests/clustering/CentroidInitializationMethods/KDECentroidMatrixTest.cpp
     ${CMAKE_SOURCE_DIR}/tests/clustering/CentroidInitializationMethods/KernelFunctionTest.cpp
-    ${CMAKE_SOURCE_DIR}/tests/clustering/CentroidInitializationMethods/MostDistantCentroidsTests.cpp
-    
+    ${CMAKE_SOURCE_DIR}/tests/clustering/CentroidInitializationMethods/MostDistantCentroidsTest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/clustering/CentroidInitializationMethods/RandomCentroidsTest.cpp    
     ${SOURCES} 
     ${CUDA_SOURCES}
 )
