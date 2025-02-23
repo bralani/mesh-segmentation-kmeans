@@ -67,6 +67,7 @@ add_kmeans_test(my_tests
     ${CMAKE_SOURCE_DIR}/tests/geometry/metrics/EuclideanMetricTest.cpp
     ${CMAKE_SOURCE_DIR}/tests/geometry/metrics/GeodesicHeatMetricTest.cpp
     ${CMAKE_SOURCE_DIR}/tests/geometry/kdtree/KDNodeTest.cpp
+    ${CMAKE_SOURCE_DIR}/tests/geometry/kdtree/KDTreeTest.cpp
     ${SOURCES} 
     ${CUDA_SOURCES}
 )
